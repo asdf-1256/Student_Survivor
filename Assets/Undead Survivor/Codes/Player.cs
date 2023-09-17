@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,10 +10,12 @@ public class Player : MonoBehaviour
     public Vector2 inputVec;
     public float speed;
     public Scanner scanner;
+    public Hand[] hands;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    public RuntimeAnimatorController[] animCon;
 
 
     void Awake()
@@ -21,9 +24,17 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+        hands = GetComponentsInChildren<Hand>(true); // 비활성화된 오브젝트를 포함하여 가져온다.
+    }
+    private void OnEnable()
+    {
+        speed *= Character.Speed;
+        animator.runtimeAnimatorController = animCon[GameManager.Instance.playerId];
     }
     private void FixedUpdate()
     {
+        if (!GameManager.Instance.isLive)
+            return;
         Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
     }
@@ -34,12 +45,33 @@ public class Player : MonoBehaviour
     //프레임이 종료 되기 전 실행되는 함수
     private void LateUpdate()
     {
+        if (!GameManager.Instance.isLive)
+            return;
         animator.SetFloat("Speed", inputVec.magnitude);
         //벡터의 크기
 
         if (inputVec.x != 0)
         {
             spriteRenderer.flipX = inputVec.x < 0;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!GameManager.Instance.isLive)
+            return;
+
+        GameManager.Instance.health -= Time.deltaTime * 10;
+
+        if (GameManager.Instance.health < 0)
+        {
+            //shadow와 area는 살려두고 나머지 비활성화
+            for (int index = 2; index < transform.childCount; index++)
+            {
+                transform.GetChild(index).gameObject.SetActive(false);
+            }
+            animator.SetTrigger("Dead");
+            GameManager.Instance.GameOver();
         }
     }
 }
