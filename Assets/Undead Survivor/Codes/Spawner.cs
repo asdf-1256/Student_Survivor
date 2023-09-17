@@ -6,6 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
+    public float levelTime;
+
     int level;
     float timer;
 
@@ -13,11 +15,16 @@ public class Spawner : MonoBehaviour
     {
         spawnPoint = GetComponentsInChildren<Transform>();
         //자기 자신을 포함한 자식들 component 싹다 갖고옴
+
+        levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
     }
     void Update()
     {
+        if (!GameManager.Instance.isLive)
+            return;
+
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / 10f), spawnData.Length - 1);
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / levelTime), spawnData.Length - 1);
         //나눠서 소수점 버림
 
         if (timer > spawnData[level].spawnTime)

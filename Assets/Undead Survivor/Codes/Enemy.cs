@@ -30,6 +30,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (!GameManager.Instance.isLive)
+            return;
+
         if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return;
 
@@ -40,6 +43,9 @@ public class Enemy : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if (!GameManager.Instance.isLive)
+            return;
+
         if (!isLive)
             return;
 
@@ -76,6 +82,7 @@ public class Enemy : MonoBehaviour
             //.. 살았고 피격판정
             //애니메이션, 넉백
             anim.SetTrigger("Hit");
+            AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
         }
         else
         {
@@ -87,6 +94,10 @@ public class Enemy : MonoBehaviour
             anim.SetBool("Dead", true);
             GameManager.Instance.kill++;
             GameManager.Instance.GetExp();
+
+
+            if (GameManager.Instance.isLive)
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
         }
     }
 

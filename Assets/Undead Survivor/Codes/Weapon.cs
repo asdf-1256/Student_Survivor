@@ -14,14 +14,13 @@ public class Weapon : MonoBehaviour
     Player player;
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
-    }
-    private void Start()
-    {
-        Init();
+        player = GameManager.Instance.player;
     }
     void Update()
     {
+        if (!GameManager.Instance.isLive)
+            return;
+
         switch (id)
         {
             case 0:
@@ -46,26 +45,55 @@ public class Weapon : MonoBehaviour
     }
     public void LevelUp(float damage, int count)
     {
-        this.damage = damage;
+        this.damage = damage * Character.Damage;
         this.count += count;
 
         if (id == 0)
         {
             Arrange();
         }
+
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
-    public void Init()
+    public void Init(ItemData data)
     {
+        // Basic Setting
+        name = "Weapon " + data.itemId;
+        transform.parent = player.transform;
+        transform.localPosition = Vector3.zero;
+
+        // Property Setting
+        id = data.itemId;
+        damage = data.baseDamage * Character.Damage;
+        count = data.baseCount + Character.Count;
+
+        for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++) 
+        {
+            if (data.projectile == GameManager.Instance.pool.prefabs[index])
+            {
+                prefabId = index;
+                break;
+            }
+        }
         switch (id)
         {
             case 0:
-                speed = 150;
+                speed = 150 * Character.WeaponSpeed;
                 Arrange();
                 break;
             default:
-                speed = 0.3f;
+                speed = 0.5f * Character.WeaponRate;
                 break;
         }
+
+        // Hand Set
+        Hand hand = player.hands[(int)data.itemType];
+        hand.spriteRenderer.sprite = data.hand;
+        hand.gameObject.SetActive(true);
+
+        //나중에 추가된 무기에도 버프가 적용되도록
+        //이 함수를 갖고있는 애들 다 실행해라 방송
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
     void Arrange()
     {
@@ -90,7 +118,7 @@ public class Weapon : MonoBehaviour
             bullet.Rotate(rotVec);
             bullet.Translate(bullet.up * 1.5f, Space.World);
 
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);
+            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero);
             // -1은 무한히 관통시키겠다는 뜻
         }
     }
@@ -109,6 +137,8 @@ public class Weapon : MonoBehaviour
         bullet.position = transform.position;//위치결정
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);//회전결정
         bullet.GetComponent<Bullet>().Init(damage, count, dir);
+
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.Range);
     }
 
 }
