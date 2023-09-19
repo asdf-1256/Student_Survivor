@@ -17,6 +17,8 @@ public class Spawner : MonoBehaviour
         //자기 자신을 포함한 자식들 component 싹다 갖고옴
 
         levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
+
+        StartCoroutine(CreateCoinRoutine());
     }
     void Update()
     {
@@ -32,7 +34,16 @@ public class Spawner : MonoBehaviour
             timer = 0f;
             Spwan();
         }
-  
+ 
+    }
+
+    IEnumerator CreateCoinRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            SpawnCoin();
+        }
     }
     void Spwan()
     {
@@ -40,6 +51,13 @@ public class Spawner : MonoBehaviour
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         //1인 이유는 자기 자신 제외
         enemy.GetComponent<Enemy>().Init(spawnData[level]);
+    }
+
+    void SpawnCoin()
+    {
+        GameObject coin = GameManager.Instance.pool.Get(3);
+        coin.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 5;
+
     }
 }
 
