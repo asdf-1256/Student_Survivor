@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
-    CircleCollider2D coll;
+    CircleCollider2D circleCollider;
 
     private void Awake()
     {
-        coll = GetComponent<CircleCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    //Stay로 변경
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (!collision.CompareTag("Coin"))
             return;
 
-        GameManager.Instance.money++;
+        //거리계산
+        if(( GameManager.Instance.player.transform.position - collision.gameObject.transform.position ).magnitude < 0.5f){
+            GameManager.Instance.money++;
 
-        Debug.Log("코인과 충돌 발생");
+            Debug.Log("코인과 충돌 발생");
 
-        collision.gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
+        }
+        else
+        {
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce((GameManager.Instance.player.transform.position - collision.gameObject.transform.position).normalized * 2f, ForceMode2D.Force);
+        }
     }
 
     private void LevelUpColliderRadius()
     {
-        coll.radius *= 2f;
+        circleCollider.radius *= 2f;
     }
 
     private void Update()
