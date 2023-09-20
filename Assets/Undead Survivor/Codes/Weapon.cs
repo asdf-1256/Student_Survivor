@@ -32,7 +32,8 @@ public class Weapon : MonoBehaviour
                 if(timer > speed)
                 {
                     timer = 0f;
-                    Fire();
+                    // Fire();
+                    FireDDabal();
                 }
                 break;
         }
@@ -143,4 +144,24 @@ public class Weapon : MonoBehaviour
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Range);
     }
 
+    void FireDDabal()
+    {
+        if (!player.scanner.nearestTarget)
+            return;
+
+        Vector2 randomCircle = Random.insideUnitCircle * 2; // r=2인 원 내에 랜덤한 위치
+        Vector3 ddabalRate = new Vector3(randomCircle.x, randomCircle.y, 0); // vector3로 변환
+
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 dir = targetPos - transform.position + ddabalRate; // 플레이어->적 벡터에 따발률 첨가
+        dir = dir.normalized;//방향 구하기
+
+        Transform bullet = GameManager.Instance.pool.Get(prefabId).transform;
+
+        bullet.position = transform.position;//위치결정
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);//회전결정
+        bullet.GetComponent<Bullet>().Init(damage, count, dir);
+
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.Range);
+    }
 }
