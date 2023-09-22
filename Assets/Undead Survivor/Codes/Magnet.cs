@@ -4,36 +4,70 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
-    CircleCollider2D circleCollider;
+    CircleCollider2D coll;
 
     private void Awake()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
+        coll = GetComponent<CircleCollider2D>();
     }
 
-    //Stay로 변경
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Coin"))
-            return;
-
-        //거리계산
-        if(( GameManager.Instance.player.transform.position - collision.gameObject.transform.position ).magnitude < 0.5f){
+        if (collision.CompareTag("Coin"))
+        {
             GameManager.Instance.money++;
 
             Debug.Log("코인과 충돌 발생");
 
             collision.gameObject.SetActive(false);
         }
-        else
-        {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce((GameManager.Instance.player.transform.position - collision.gameObject.transform.position).normalized * 2f, ForceMode2D.Force);
+        else if (collision.CompareTag("Exp 0")) {
+            GameManager.Instance.GetExp();
+
+            Debug.Log("경험치와 충돌 발생");
+
+            collision.gameObject.SetActive(false);
         }
+        else if (collision.CompareTag("Exp 1"))
+        {
+            GameManager.Instance.GetExp(10);
+
+            Debug.Log("메가경험치 충동");
+
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.CompareTag("Health"))
+        {
+            GameManager.Instance.GetHealth(10); // 10만큼 체력 회복
+
+            Debug.Log("체력 충동");
+
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.CompareTag("Mag")) // 일단은 영구 증가?
+        {
+
+            StartCoroutine(CreateMagRoutine());
+
+
+            collision.gameObject.SetActive(false);
+        }
+
+    }
+
+    IEnumerator CreateMagRoutine() // 10초 동안 반지름 10 증가
+    {
+        Debug.Log("자석자석");
+
+        coll.radius += 10;
+        yield return new WaitForSeconds(10);
+        coll.radius -= 10;
+        Debug.Log("자석 효과 끝");
     }
 
     private void LevelUpColliderRadius()
     {
-        circleCollider.radius *= 2f;
+        coll.radius *= 2f;
     }
 
     private void Update()

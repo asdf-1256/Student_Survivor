@@ -94,11 +94,23 @@ public class Enemy : MonoBehaviour
             anim.SetBool("Dead", true);
             GameManager.Instance.kill++;
             GameManager.Instance.GetExp();
-
+            DropExp();
 
             if (GameManager.Instance.isLive)
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
         }
+    }
+
+    void DropExp()
+    {
+        int tmp = Random.RandomRange(0, 100);
+        if (tmp > 20) // 확률적으로 Exp 드롭
+        {
+            return;
+        }
+        GameObject Exp = GameManager.Instance.pool.Get(4);
+        Exp.transform.position = new Vector2(transform.position.x, transform.position.y);
+
     }
 
     //코루틴 - 비동기

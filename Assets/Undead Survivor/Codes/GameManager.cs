@@ -31,6 +31,16 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
+
+    [Header("# Item Spawn")]
+    public float ItemsRandomSpawnArea = 10;
+    public float coin_spd = 10;
+    public float exp0_spd = 80;
+    public float exp1_spd = 10;
+    public float health_spd = 5;
+    public float mag_spd = 1;
+
+
     private void Awake()
     {
         Instance = this;
@@ -111,18 +121,36 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void GetExp()
+    public void GetExp() //.. 1만큼 증가하는 경험치 획득 함수
     {
         if (!isLive)
             return;
         exp++;
-
-        if(exp == nextExp[Mathf.Min(level, nextExp.Length-1)])//index bound error 안 나오도록
+        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)]) //index bound error 안 나오도록
         {
             level++;
             exp = 0;
             uiLevelUp.Show();
         }
+    }
+    public void GetExp(int e) //... e만큼 증가하는 경험치 획득 함수
+    {
+        if (!isLive)
+            return;
+        exp += e;
+        int nextexp = nextExp[Mathf.Min(level, nextExp.Length - 1)]; //index bound error 안 나오도록
+        if (exp >= nextexp)
+        {
+            level++;
+            exp = exp - nextexp;
+            uiLevelUp.Show();
+        }
+    }
+    public void GetHealth(int h) //.. h만큼 체력 회복
+    {
+        if (!isLive)
+            return;
+        health = Mathf.Min(maxHealth, health + h);
     }
 
     //각 스크립트의 Update 계열 로직에 isLive 조건 추가

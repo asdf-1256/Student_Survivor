@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - Bullet
   - Coin
+  - Exp 0
+  - Exp 1
+  - Health
+  - Mag
   layers:
   - Default
   - TransparentFX

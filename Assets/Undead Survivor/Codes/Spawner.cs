@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
     public float levelTime;
+    public float ItemsRandomSpawnArea; //.. 플레이어 주위로 아이템 스폰되는 써클의 반지름
 
     int level;
     float timer;
@@ -17,6 +18,8 @@ public class Spawner : MonoBehaviour
         //자기 자신을 포함한 자식들 component 싹다 갖고옴
 
         levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
+
+        ItemsRandomSpawnArea = GameManager.Instance.ItemsRandomSpawnArea;
 
         StartCoroutine(CreateCoinRoutine());
     }
@@ -32,7 +35,7 @@ public class Spawner : MonoBehaviour
         if (timer > spawnData[level].spawnTime)
         {
             timer = 0f;
-            Spwan();
+            SpwanEnemy();
         }
  
     }
@@ -42,10 +45,11 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            SpawnCoin();
+            int randomItemNum = SelectRandomItem();
+            SpawnItem(randomItemNum);
         }
     }
-    void Spwan()
+    void SpwanEnemy()
     {
         GameObject enemy = GameManager.Instance.pool.Get(0);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
@@ -53,11 +57,36 @@ public class Spawner : MonoBehaviour
         enemy.GetComponent<Enemy>().Init(spawnData[level]);
     }
 
-    void SpawnCoin()
+    int SelectRandomItem() //.. 게임매니저의 아이템 별 degree수치에 따라 확률적으로 아이템 번호를 선택하는 함수
     {
-        GameObject coin = GameManager.Instance.pool.Get(3);
-        coin.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 5;
+        int resultItem;
+        float coin_spd = GameManager.Instance.coin_spd;
+        float exp0_spd = GameManager.Instance.exp0_spd;
+        float exp1_spd = GameManager.Instance.exp1_spd;
+        float health_spd = GameManager.Instance.health_spd;
+        float mag_spd = GameManager.Instance.mag_spd;
 
+        float total_spd = coin_spd + exp0_spd + exp1_spd + health_spd + mag_spd;
+        float select_spd = Random.Range(0f, total_spd);
+
+        if (select_spd < coin_spd)
+            resultItem = 3;
+        else if (select_spd < coin_spd + exp0_spd)
+            resultItem = 4;
+        else if (select_spd < coin_spd + exp0_spd + exp1_spd)
+            resultItem = 5;
+        else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
+            resultItem = 6;
+        else
+            resultItem = 7;
+        return resultItem;
+    }
+
+    void SpawnItem(int itemNum) // 3 : 코인, 4 : Exp 0, 5 : Exp 1
+    {
+        GameObject item = GameManager.Instance.pool.Get(itemNum);
+        item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
+        
     }
 }
 
