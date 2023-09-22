@@ -63,16 +63,22 @@ public class Spawner : MonoBehaviour
         float coin_spd = GameManager.Instance.coin_spd;
         float exp0_spd = GameManager.Instance.exp0_spd;
         float exp1_spd = GameManager.Instance.exp1_spd;
+        float health_spd = GameManager.Instance.health_spd;
+        float mag_spd = GameManager.Instance.mag_spd;
 
-        float total_spd = coin_spd + exp0_spd + exp1_spd;
+        float total_spd = coin_spd + exp0_spd + exp1_spd + health_spd + mag_spd;
         float select_spd = Random.Range(0f, total_spd);
 
         if (select_spd < coin_spd)
             resultItem = 3;
         else if (select_spd < coin_spd + exp0_spd)
             resultItem = 4;
-        else
+        else if (select_spd < coin_spd + exp0_spd + exp1_spd)
             resultItem = 5;
+        else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
+            resultItem = 6;
+        else
+            resultItem = 7;
         return resultItem;
     }
 
