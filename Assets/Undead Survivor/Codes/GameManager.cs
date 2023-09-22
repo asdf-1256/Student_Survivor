@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     public float coin_spd = 10;
     public float exp0_spd = 80;
     public float exp1_spd = 10;
+    public float health_spd = 5;
+    public float mag_spd = 1;
+
 
     private void Awake()
     {
@@ -142,6 +145,12 @@ public class GameManager : MonoBehaviour
             exp = exp - nextexp;
             uiLevelUp.Show();
         }
+    }
+    public void GetHealth(int h) //.. h만큼 체력 회복
+    {
+        if (!isLive)
+            return;
+        health = Mathf.Min(maxHealth, health + h);
     }
 
     //각 스크립트의 Update 계열 로직에 isLive 조건 추가

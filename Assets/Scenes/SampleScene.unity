@@ -5979,6 +5979,8 @@ MonoBehaviour:
   coin_spd: 10
   exp0_spd: 80
   exp1_spd: 10
+  health_spd: 5
+  mag_spd: 1
 --- !u!4 &283515367
 Transform:
   m_ObjectHideFlags: 0
@@ -10519,6 +10521,8 @@ MonoBehaviour:
   - {fileID: 7831486342206985405, guid: 34b9435f321ba53459bbf0754946eb12, type: 3}
   - {fileID: 3388508727558375379, guid: 12bf2965133585e43877de5c97560681, type: 3}
   - {fileID: 7958842504111412297, guid: 74e692234a9feca41b96db56a5895fa8, type: 3}
+  - {fileID: 6652516139621229888, guid: 49878a9c90fba024aaf690bfe067d688, type: 3}
+  - {fileID: 5544009488469751532, guid: b7ff89ced615a844cb6328d76640fa11, type: 3}
 --- !u!4 &344728783
 Transform:
   m_ObjectHideFlags: 0

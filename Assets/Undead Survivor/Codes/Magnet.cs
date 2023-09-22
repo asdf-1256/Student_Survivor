@@ -36,6 +36,33 @@ public class Magnet : MonoBehaviour
 
             collision.gameObject.SetActive(false);
         }
+        else if (collision.CompareTag("Health"))
+        {
+            GameManager.Instance.GetHealth(10); // 10만큼 체력 회복
+
+            Debug.Log("체력 충동");
+
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.CompareTag("Mag")) // 일단은 영구 증가?
+        {
+
+            StartCoroutine(CreateMagRoutine());
+
+
+            collision.gameObject.SetActive(false);
+        }
+
+    }
+
+    IEnumerator CreateMagRoutine() // 10초 동안 반지름 10 증가
+    {
+        Debug.Log("자석자석");
+
+        coll.radius += 10;
+        yield return new WaitForSeconds(10);
+        coll.radius -= 10;
+        Debug.Log("자석 효과 끝");
     }
 
     private void LevelUpColliderRadius()
