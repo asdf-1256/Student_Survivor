@@ -13,14 +13,29 @@ public class Magnet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Coin"))
-            return;
+        if (collision.CompareTag("Coin"))
+        {
+            GameManager.Instance.money++;
 
-        GameManager.Instance.money++;
+            Debug.Log("코인과 충돌 발생");
 
-        Debug.Log("코인과 충돌 발생");
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.CompareTag("Exp 0")) {
+            GameManager.Instance.GetExp();
 
-        collision.gameObject.SetActive(false);
+            Debug.Log("경험치와 충돌 발생");
+
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.CompareTag("Exp 1"))
+        {
+            GameManager.Instance.GetExp(10);
+
+            Debug.Log("메가경험치 충동");
+
+            collision.gameObject.SetActive(false);
+        }
     }
 
     private void LevelUpColliderRadius()

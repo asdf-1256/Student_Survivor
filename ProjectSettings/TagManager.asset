@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Bullet
   - Coin
+  - Exp 0
+  - Exp 1
   layers:
   - Default
   - TransparentFX
