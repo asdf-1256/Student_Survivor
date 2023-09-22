@@ -5975,6 +5975,10 @@ MonoBehaviour:
   uiResult: {fileID: 833415375}
   uiJoy: {fileID: 495292951}
   enemyCleaner: {fileID: 343345482}
+  ItemsRandomSpawnArea: 10
+  coin_spd: 10
+  exp0_spd: 80
+  exp1_spd: 10
 --- !u!4 &283515367
 Transform:
   m_ObjectHideFlags: 0
@@ -10513,6 +10517,8 @@ MonoBehaviour:
   - {fileID: 1453727380183071208, guid: ed1876d06e0f8424e8cefabfca09d430, type: 3}
   - {fileID: 1272332711815712340, guid: 15c34713d43d0a9469e978492fffa98c, type: 3}
   - {fileID: 7831486342206985405, guid: 34b9435f321ba53459bbf0754946eb12, type: 3}
+  - {fileID: 3388508727558375379, guid: 12bf2965133585e43877de5c97560681, type: 3}
+  - {fileID: 7958842504111412297, guid: 74e692234a9feca41b96db56a5895fa8, type: 3}
 --- !u!4 &344728783
 Transform:
   m_ObjectHideFlags: 0
@@ -15915,7 +15921,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.9791665
+  orthographic size: 8.37963
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -17544,6 +17550,7 @@ MonoBehaviour:
     health: 15
     speed: 2.4
   levelTime: 0
+  ItemsRandomSpawnArea: 5
 --- !u!1 &882894347
 GameObject:
   m_ObjectHideFlags: 0
