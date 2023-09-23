@@ -10,6 +10,8 @@ public class PoolManager : MonoBehaviour
 
     // .. 풀 담당 리스트들
     List<GameObject>[] pools;
+    
+    //현재 0-적, 1-삽, 2-총, 3-아이템 으로 설정되어있음.
 
     private void Awake()
     {

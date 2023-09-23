@@ -12,6 +12,10 @@ public class Spawner : MonoBehaviour
     int level;
     float timer;
 
+    public SpawnItemData[] itemDatas;
+    //public int[] drop_rates; // 나중에 아이템에 드롭율을 넣게 된다면 설정.
+    //private int total_drop_rate;
+
     private void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
@@ -20,6 +24,8 @@ public class Spawner : MonoBehaviour
         levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
 
         ItemsRandomSpawnArea = GameManager.Instance.ItemsRandomSpawnArea;
+
+        //drop_rates = new int[items.Length];
 
         StartCoroutine(CreateCoinRoutine());
     }
@@ -69,6 +75,7 @@ public class Spawner : MonoBehaviour
         float total_spd = coin_spd + exp0_spd + exp1_spd + health_spd + mag_spd;
         float select_spd = Random.Range(0f, total_spd);
 
+        /* //이전 코드
         if (select_spd < coin_spd)
             resultItem = 3;
         else if (select_spd < coin_spd + exp0_spd)
@@ -79,12 +86,28 @@ public class Spawner : MonoBehaviour
             resultItem = 6;
         else
             resultItem = 7;
+        return resultItem;*/
+
+
+        //resultItem을 itemDatas배열의 인덱스로 사용.
+        if (select_spd < coin_spd)
+            resultItem = 0;
+        else if (select_spd < coin_spd + exp0_spd)
+            resultItem = 1;
+        else if (select_spd < coin_spd + exp0_spd + exp1_spd)
+            resultItem = 2;
+        else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
+            resultItem = 3;
+        else
+            resultItem = 4;
         return resultItem;
+
     }
 
     void SpawnItem(int itemNum) // 3 : 코인, 4 : Exp 0, 5 : Exp 1
     {
-        GameObject item = GameManager.Instance.pool.Get(itemNum);
+        GameObject item = GameManager.Instance.pool.Get(3);
+        item.GetComponent<SpawnItem>().Init(itemDatas[itemNum]);
         item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
         
     }

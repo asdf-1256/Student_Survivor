@@ -4,54 +4,33 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
-    CircleCollider2D coll;
+    [SerializeField]
+    private float radius; //아직은 사용되지 않음
+
+    CircleCollider2D coll; // 자력 범위를 설정할 Collider
 
     private void Awake()
     {
         coll = GetComponent<CircleCollider2D>();
+        radius = coll.radius;
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Coin"))
+        if (!collision.CompareTag("Item"))//Item만을 끌어당긴다.
+            return;
+
+
+        MagnetableItem magnet;//현재 충돌한 아이템의 스크립트를 불러와
+        if (!collision.TryGetComponent<MagnetableItem>(out magnet))
         {
-            GameManager.Instance.money++;
-
-            Debug.Log("코인과 충돌 발생");
-
-            collision.gameObject.SetActive(false);
+            Debug.LogWarning("TryGetComponent문 실패했을 경우 실행됨");
+            return;
         }
-        else if (collision.CompareTag("Exp 0")) {
-            GameManager.Instance.GetExp();
-
-            Debug.Log("경험치와 충돌 발생");
-
-            collision.gameObject.SetActive(false);
-        }
-        else if (collision.CompareTag("Exp 1"))
-        {
-            GameManager.Instance.GetExp(10);
-
-            Debug.Log("메가경험치 충동");
-
-            collision.gameObject.SetActive(false);
-        }
-        else if (collision.CompareTag("Health"))
-        {
-            GameManager.Instance.GetHealth(10); // 10만큼 체력 회복
-
-            Debug.Log("체력 충동");
-
-            collision.gameObject.SetActive(false);
-        }
-        else if (collision.CompareTag("Mag")) // 일단은 영구 증가?
-        {
-
-            StartCoroutine(CreateMagRoutine());
+            magnet.ActiveMagnet(coll.radius);//자석을 활성화 한다.
 
 
-            collision.gameObject.SetActive(false);
-        }
 
     }
 
