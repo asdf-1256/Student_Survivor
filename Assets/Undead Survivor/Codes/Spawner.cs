@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -8,13 +9,16 @@ public class Spawner : MonoBehaviour
     public SpawnData[] spawnData;
     public float levelTime;
     public float ItemsRandomSpawnArea; //.. 플레이어 주위로 아이템 스폰되는 써클의 반지름
+    public float ItemSpawnTime;
+
+    private WaitForSeconds WaitSpawnTime; //디버깅용- 아이템이 스폰되는데 걸리는 시간. default:1초
 
     int level;
     float timer;
 
     public SpawnItemData[] itemDatas;
-    //public int[] drop_rates; // 나중에 아이템에 드롭율을 넣게 된다면 설정.
-    //private int total_drop_rate;
+    public int[] dropRates; //SpawnItemData 내부에 있는 드롭율 부분을 읽어와 순서대로 저장하는 배열
+    private int totalDropRate; // dropRates 배열의 값을 다 더한 숫자
 
     private void Awake()
     {
@@ -23,12 +27,28 @@ public class Spawner : MonoBehaviour
 
         levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
 
-        ItemsRandomSpawnArea = GameManager.Instance.ItemsRandomSpawnArea;
+        //ItemsRandomSpawnArea = GameManager.Instance.ItemsRandomSpawnArea;
+        ItemsRandomSpawnArea = 10f;
 
-        //drop_rates = new int[items.Length];
+        dropRates = new int[itemDatas.Length];
+
+        for (int i = 0; i < dropRates.Length; i++)
+            dropRates[i] = itemDatas[i].dropRate;
+
+        totalDropRate = dropRates.Sum();
+
+        ItemSpawnTime = 1f;
+        WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
 
         StartCoroutine(CreateCoinRoutine());
     }
+
+    private void OnValidate()//유니티 Inspector에서 값이 변경될 경우 호출되는 함수.
+    {
+        totalDropRate = dropRates.Sum();//드롭율 총합 다시 계산
+        WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);//아이템 스폰 시간 객체 다시 만듬
+    }
+
     void Update()
     {
         if (!GameManager.Instance.isLive)
@@ -50,7 +70,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return WaitSpawnTime; //new를 없애기 위해 awake단계에서 WaitForSeconds를 만듬
             int randomItemNum = SelectRandomItem();
             SpawnItem(randomItemNum);
         }
@@ -63,6 +83,7 @@ public class Spawner : MonoBehaviour
         enemy.GetComponent<Enemy>().Init(spawnData[level]);
     }
 
+    /*
     int SelectRandomItem() //.. 게임매니저의 아이템 별 degree수치에 따라 확률적으로 아이템 번호를 선택하는 함수
     {
         int resultItem;
@@ -75,18 +96,18 @@ public class Spawner : MonoBehaviour
         float total_spd = coin_spd + exp0_spd + exp1_spd + health_spd + mag_spd;
         float select_spd = Random.Range(0f, total_spd);
 
-        /* //이전 코드
-        if (select_spd < coin_spd)
-            resultItem = 3;
-        else if (select_spd < coin_spd + exp0_spd)
-            resultItem = 4;
-        else if (select_spd < coin_spd + exp0_spd + exp1_spd)
-            resultItem = 5;
-        else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
-            resultItem = 6;
-        else
-            resultItem = 7;
-        return resultItem;*/
+         //이전 코드
+        //if (select_spd < coin_spd)
+        //    resultItem = 3;
+        //else if (select_spd < coin_spd + exp0_spd)
+        //    resultItem = 4;
+        //else if (select_spd < coin_spd + exp0_spd + exp1_spd)
+        //    resultItem = 5;
+        //else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
+        //    resultItem = 6;
+        //else
+        //    resultItem = 7;
+        //return resultItem;
 
 
         //resultItem을 itemDatas배열의 인덱스로 사용.
@@ -103,8 +124,27 @@ public class Spawner : MonoBehaviour
         return resultItem;
 
     }
+*/
+    int SelectRandomItem()
+    {
+        int resultItem = 0;
+        int select = Random.Range(0, totalDropRate);
 
-    void SpawnItem(int itemNum) // 3 : 코인, 4 : Exp 0, 5 : Exp 1
+        for (int i = 0; i < dropRates.Length; i++)
+        {
+            select -= dropRates[i];
+
+            if (select <= 0)
+            {
+                resultItem = i;
+                break;
+            }
+        }
+
+        return resultItem;
+    }
+
+    void SpawnItem(int itemNum) //Item : 3번, 드랍율에 따라 선택된 정수값을 받아, 해당 정수값을 index로 하는 데이터의 아이템을 스폰.
     {
         GameObject item = GameManager.Instance.pool.Get(3);
         item.GetComponent<SpawnItem>().Init(itemDatas[itemNum]);

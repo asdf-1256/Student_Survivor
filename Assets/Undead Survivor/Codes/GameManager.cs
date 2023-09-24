@@ -32,13 +32,13 @@ public class GameManager : MonoBehaviour
     public Transform uiJoy;
     public GameObject enemyCleaner;
 
-    [Header("# Item Spawn")]
-    public float ItemsRandomSpawnArea = 10;
-    public float coin_spd = 10;
-    public float exp0_spd = 80;
-    public float exp1_spd = 10;
-    public float health_spd = 5;
-    public float mag_spd = 1;
+    //[Header("# Item Spawn")]
+    //public float ItemsRandomSpawnArea = 10;
+    //public float coin_spd = 10;
+    //public float exp0_spd = 80;
+    //public float exp1_spd = 10;
+    //public float health_spd = 5;
+    //public float mag_spd = 1;
 
 
     private void Awake()

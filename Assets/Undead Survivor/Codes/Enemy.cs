@@ -17,6 +17,10 @@ public class Enemy : MonoBehaviour
     Animator anim;
     SpriteRenderer spriteRenderer;
     WaitForFixedUpdate wait;
+
+    //좀비가 죽을 때 드롭할 경험치 데이터를 Inspector상에서 연결함.(Spawner에 있는 것과 동일한 파일)
+    public SpawnItemData expData;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -94,26 +98,27 @@ public class Enemy : MonoBehaviour
             anim.SetBool("Dead", true);
             GameManager.Instance.kill++;
             GameManager.Instance.GetExp();
-            //DropExp();
+            DropExp();
 
             if (GameManager.Instance.isLive)
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
         }
     }
 
-    /*
+    
     void DropExp()
     {
-        int tmp = Random.RandomRange(0, 100);
+        int tmp = Random.Range(0, 100);
         if (tmp > 20) // 확률적으로 Exp 드롭
         {
             return;
         }
         GameObject Exp = GameManager.Instance.pool.Get(3);
-        Exp.GetComponent<SpawnItem>().Init(Spawner.itemDatas[2]);
+        Exp.GetComponent<SpawnItem>().Init(expData);
         Exp.transform.position = new Vector2(transform.position.x, transform.position.y);
+        Debug.Log("@경험치 드랍됨");
 
-    }*/
+    }
 
     //코루틴 - 비동기
     IEnumerator KnockBack()

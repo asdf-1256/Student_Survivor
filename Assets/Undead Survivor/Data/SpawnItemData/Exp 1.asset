@@ -17,6 +17,7 @@ MonoBehaviour:
   image: {fileID: 1807624531, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   magnetable: 1
   value: 10
+  dropRate: 3
   buffType: 5
   duration: 0
   prefab: {fileID: 7831486342206985405, guid: 34b9435f321ba53459bbf0754946eb12, type: 3}

@@ -23,6 +23,7 @@ public class SpawnItemData : ScriptableObject
 
     [Header("# value")]
     public int value; //값 (코인양, 경험치량, 힐양, 버프 수치 등등)
+    public int dropRate; // 드롭율
 
     [Header("# Buff Item Info")]
     public BuffEffect buffType;//버프효과 설정
