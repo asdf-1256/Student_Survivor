@@ -8,11 +8,12 @@ TagManager:
   - Area
   - Enemy
   - Bullet
-  - Coin
   - Exp 0
   - Exp 1
   - Health
   - Mag
+  - Magnetable
+  - Item
   layers:
   - Default
   - TransparentFX

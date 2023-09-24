@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4293599316323199061}
   m_Layer: 0
   m_Name: Exp 0
-  m_TagString: Exp 0
+  m_TagString: Magnetable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
