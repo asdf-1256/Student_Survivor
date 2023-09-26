@@ -5975,12 +5975,6 @@ MonoBehaviour:
   uiResult: {fileID: 833415375}
   uiJoy: {fileID: 495292951}
   enemyCleaner: {fileID: 343345482}
-  ItemsRandomSpawnArea: 10
-  coin_spd: 10
-  exp0_spd: 80
-  exp1_spd: 10
-  health_spd: 5
-  mag_spd: 1
 --- !u!4 &283515367
 Transform:
   m_ObjectHideFlags: 0
@@ -15921,7 +15915,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.180555
+  orthographic size: 10.861111
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -17552,12 +17546,14 @@ MonoBehaviour:
     speed: 2.4
   levelTime: 0
   ItemsRandomSpawnArea: 5
+  ItemSpawnTime: 0
   itemDatas:
   - {fileID: 11400000, guid: 8a0acfa879051b64192d3ffee5df878e, type: 2}
   - {fileID: 11400000, guid: 5e0ad0c8ad5af724c92c1c15bfd46b38, type: 2}
   - {fileID: 11400000, guid: 327c1116655536747baeb63805b1456f, type: 2}
   - {fileID: 11400000, guid: a400248412fa5804ab1e40275ae572b4, type: 2}
   - {fileID: 11400000, guid: a92ae6acbc93d1440b97d076b72490e8, type: 2}
+  dropRates: 
 --- !u!1 &882894347
 GameObject:
   m_ObjectHideFlags: 0
