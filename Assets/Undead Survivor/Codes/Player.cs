@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     Animator animator;
     public RuntimeAnimatorController[] animCon;
 
+    //스텟 수치 = 합연산
 
     void Awake()
     {
