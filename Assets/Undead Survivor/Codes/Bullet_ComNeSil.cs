@@ -6,8 +6,10 @@ public class Bullet_ComNeSil : MonoBehaviour
 {
     public float scaleFactor = 0.5f;
     public float speed = 15;
+    public float lifeTime = 1f;
 
     Rigidbody2D rigid;
+    float timer;
 
     private void Awake()
     {
@@ -20,25 +22,25 @@ public class Bullet_ComNeSil : MonoBehaviour
         rigid.velocity = dir * speed;
     }
 
-    /*
+
     private void Update() // 총알 하나하나에 타이머
     {
         timer += Time.deltaTime;
 
-        if (timer > 5f)
+        if (timer > lifeTime)
         {
             timer = 0f;
             transform.localScale = new Vector3(2f, 2f, 0f);
             gameObject.SetActive(false);
         }
-    }*/
-    private void OnTriggerExit2D(Collider2D collision) // 거리보다 시간을 기준으로 비활성화가 나은 듯
+    }
+    /*private void OnTriggerExit2D(Collider2D collision) // 거리보다 시간을 기준으로 비활성화가 나은 듯
     {
         if (!collision.CompareTag("Area"))
             return;
         transform.localScale = new Vector3(2f, 2f, 0f);
         gameObject.SetActive(false);
-    }
+    }*/
     private void ScaleUp()
     {
         if (!gameObject.activeSelf)
