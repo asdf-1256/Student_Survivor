@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46866a660e2d344cb6fc5c1a3951234, type: 3}
-  m_Name: Mag
+  m_Script: {fileID: 11500000, guid: 4b2bef2dbbdaa4642974373ac53ed902, type: 3}
+  m_Name: MagnetBuff
   m_EditorClassIdentifier: 
-  itemType: 2
-  itemId: 4
+  effect: 3
   image: {fileID: 1997828774, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  magnetable: 0
-  value: 1
-  dropRate: 1
-  buff: {fileID: 11400000, guid: 6fe1c4aeaa97f9d4598e7242ec8dac50, type: 2}
-  prefab: {fileID: 7831486342206985405, guid: 34b9435f321ba53459bbf0754946eb12, type: 3}
+  id: 0
+  value: 5
+  duration: 10

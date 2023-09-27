@@ -18,6 +18,15 @@ public class Player : MonoBehaviour
     public RuntimeAnimatorController[] animCon;
 
     //스텟 수치 = 합연산
+    [SerializeField]
+    public float attackRate; //공격력 버프
+    public float speedRate; //속도 버프
+    public float defenseRate; //방어력 버프
+    //public float magneticRate; // 자석 버프 - 현재는 아이템이 이것뿐이라 이것만 테스트 되어있지만, 다른 아이템도 추가하여 버프를 여러개 획득했을 시의 테스트를 진행해야함
+    public bool isInvincible; // 무적
+
+    private List<BuffData> buffs; //버프 목록
+    private WaitForSeconds wait; //남은 시간 계산용 WaitForSeconds 객체 (0.1초)
 
     void Awake()
     {
@@ -26,6 +35,14 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true); // 비활성화된 오브젝트를 포함하여 가져온다.
+        
+        attackRate = 1f;
+        speedRate = 1f;
+        defenseRate = 1f;
+        //magneticRate = 1f;
+        isInvincible = false;
+        buffs = new List<BuffData>();
+        wait = new WaitForSeconds(0.1f);
     }
     private void OnEnable()
     {
@@ -36,7 +53,7 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.Instance.isLive)
             return;
-        Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime * speedRate;
         rigid.MovePosition(rigid.position + nextVec);
     }
     private void OnMove(InputValue value)
@@ -62,7 +79,10 @@ public class Player : MonoBehaviour
         if (!GameManager.Instance.isLive)
             return;
 
-        GameManager.Instance.health -= Time.deltaTime * 10;
+        if (isInvincible)
+            return;
+
+        GameManager.Instance.health -= Time.deltaTime * 10 / defenseRate;
 
         if (GameManager.Instance.health < 0)
         {
@@ -75,7 +95,79 @@ public class Player : MonoBehaviour
             GameManager.Instance.GameOver();
         }
     }
-   
+    
+
+    //Collector 함수에서 해당 함수를 호출하여 버프 적용
+    public void ActivateBuff(BuffData buff)
+    {
+        if (buffs.Contains(buff))
+        {
+            buff.ResetTime();
+            //Debug.Log("버프 시간 리셋");
+        }
+
+        else
+        {
+            //Debug.Log("버프 적용");
+            switch (buff.effect) //버프 효과 종류에 따라 각각의 스텟에 비율을 곱한다.
+            {
+                case BuffData.BuffEffect.Power:
+                    attackRate *= buff.value;
+                    break;
+                case BuffData.BuffEffect.Speed:
+                    speedRate *= buff.value;
+                    break;
+                case BuffData.BuffEffect.Defense:
+                    defenseRate *= buff.value;
+                    break;
+                case BuffData.BuffEffect.Magnetic:
+                    GetComponentInChildren<Magnet>().MagneticRate *= buff.value;
+                    break;
+                case BuffData.BuffEffect.Invincible:
+                    isInvincible = true;
+                    break;
+            }
+            buffs.Add(buff); //버프 리스트에 버프를 추가한다
+            StartCoroutine(BuffRoutine(buff, () =>  //버프 지속시간을 계산하는 코루틴을 실행한다. 버프가 끝나면 람다식 함수가 호출된다.
+            {
+             //Debug.Log("버프 지속시간 끝");
+             switch (buff.effect) //버프 종류에 따라 종료되는 버프로 증가된 만큼 값을 감소시킨다
+             {
+                 case BuffData.BuffEffect.Power:
+                     attackRate /= buff.value;
+                     break;
+                 case BuffData.BuffEffect.Speed:
+                     speedRate /= buff.value;
+                     break;
+                 case BuffData.BuffEffect.Defense:
+                     defenseRate /= buff.value;
+                     break;
+                 case BuffData.BuffEffect.Magnetic:
+                     GetComponentInChildren<Magnet>().MagneticRate /= buff.value;
+                     break;
+                 case BuffData.BuffEffect.Invincible:
+                     isInvincible = false;
+                     break;
+             }
+                buffs.Remove(buff); //버프 목록에서 제거한다.
+                buff.ResetTime(); //다음에 다시 같은 아이템을 먹게 될 경우 지속시간이 정상적으로 적용되도록 초기화시켜준다.
+            }));
+        }
+    }
+    private IEnumerator BuffRoutine(BuffData buff, System.Action done)
+    {//버프 데이터 객체에서 남은 지속시간을 흘러간 시간만큼 계속 감소시키다가
+        //지속시간이 0이 될 경우 버프를 끝낸다.
+        float remainTime;
+        while ((remainTime = buff.GetRemainTime()) >= 0f)
+        {
+            remainTime -= 0.1f;
+            buff.SetRemainTime(remainTime);
+            yield return wait;
+        }
+        done.Invoke();
+    }
+
+
 }
 
 

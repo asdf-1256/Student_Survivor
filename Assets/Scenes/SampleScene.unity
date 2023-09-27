@@ -15961,7 +15961,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 48.92284
+  orthographic size: 10.791667
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -16877,6 +16877,11 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 438472a62b41978439bf0e3021b92172, type: 2}
   - {fileID: 22100000, guid: 12a2e1ffd3cd09d4294582dc666c449c, type: 2}
   - {fileID: 22100000, guid: af54be96942266843928dd251c1a976a, type: 2}
+  attackRate: 0
+  speedRate: 0
+  defenseRate: 0
+  magneticRate: 0
+  isInvincible: 0
 --- !u!114 &731594823
 MonoBehaviour:
   m_ObjectHideFlags: 0
