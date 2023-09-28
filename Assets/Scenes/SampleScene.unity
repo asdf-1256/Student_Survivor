@@ -15961,7 +15961,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.791667
+  orthographic size: 48.92284
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -16880,7 +16880,6 @@ MonoBehaviour:
   attackRate: 0
   speedRate: 0
   defenseRate: 0
-  magneticRate: 0
   isInvincible: 0
 --- !u!114 &731594823
 MonoBehaviour:
@@ -17605,6 +17604,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 327c1116655536747baeb63805b1456f, type: 2}
   - {fileID: 11400000, guid: a400248412fa5804ab1e40275ae572b4, type: 2}
   - {fileID: 11400000, guid: a92ae6acbc93d1440b97d076b72490e8, type: 2}
+  - {fileID: 11400000, guid: e02ee2bc1c256ad43843c2f679cb40cf, type: 2}
+  - {fileID: 11400000, guid: 9a6628203bdee854981f79a2e066e814, type: 2}
+  - {fileID: 11400000, guid: 27bf44090637d5e41bc54c93f4847c17, type: 2}
+  - {fileID: 11400000, guid: 17839841031c9744c88a014995ccfc37, type: 2}
   dropRates: 
 --- !u!1 &882894347
 GameObject:

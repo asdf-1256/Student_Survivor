@@ -28,8 +28,8 @@ public class Collector : MonoBehaviour
                 //Debug.Log("πˆ«¡ æ∆¿Ã≈€ ∏‘¿Ω");
                 break;
             case SpawnItemData.ItemType.Heal:
-                Debug.Log("»˙ æ∆¿Ã≈€ ∏‘¿Ω");
-                //GameManager.Instance.money += data.value;
+                //Debug.Log("»˙ æ∆¿Ã≈€ ∏‘¿Ω");
+                GameManager.Instance.GetHealth(data.value);
                 break;
         }
 

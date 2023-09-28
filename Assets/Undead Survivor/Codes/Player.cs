@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -111,14 +112,14 @@ public class Player : MonoBehaviour
             //Debug.Log("버프 적용");
             switch (buff.effect) //버프 효과 종류에 따라 각각의 스텟에 비율을 곱한다.
             {
-                case BuffData.BuffEffect.Power:
+                case BuffData.BuffEffect.Attack:
                     attackRate *= buff.value;
                     break;
                 case BuffData.BuffEffect.Speed:
                     speedRate *= buff.value;
                     break;
                 case BuffData.BuffEffect.Defense:
-                    defenseRate *= buff.value;
+                    defenseRate *= buff.value;          
                     break;
                 case BuffData.BuffEffect.Magnetic:
                     GetComponentInChildren<Magnet>().MagneticRate *= buff.value;
@@ -130,25 +131,25 @@ public class Player : MonoBehaviour
             buffs.Add(buff); //버프 리스트에 버프를 추가한다
             StartCoroutine(BuffRoutine(buff, () =>  //버프 지속시간을 계산하는 코루틴을 실행한다. 버프가 끝나면 람다식 함수가 호출된다.
             {
-             //Debug.Log("버프 지속시간 끝");
-             switch (buff.effect) //버프 종류에 따라 종료되는 버프로 증가된 만큼 값을 감소시킨다
-             {
-                 case BuffData.BuffEffect.Power:
-                     attackRate /= buff.value;
-                     break;
-                 case BuffData.BuffEffect.Speed:
-                     speedRate /= buff.value;
-                     break;
-                 case BuffData.BuffEffect.Defense:
-                     defenseRate /= buff.value;
-                     break;
-                 case BuffData.BuffEffect.Magnetic:
-                     GetComponentInChildren<Magnet>().MagneticRate /= buff.value;
-                     break;
-                 case BuffData.BuffEffect.Invincible:
-                     isInvincible = false;
-                     break;
-             }
+                //Debug.Log("버프 지속시간 끝");
+                switch (buff.effect) //버프 종류에 따라 종료되는 버프로 증가된 만큼 값을 감소시킨다
+                {
+                    case BuffData.BuffEffect.Attack:
+                        attackRate /= buff.value;                       
+                        break;
+                    case BuffData.BuffEffect.Speed:
+                        speedRate /= buff.value;
+                        break;
+                    case BuffData.BuffEffect.Defense:
+                        defenseRate /= buff.value;
+                        break;
+                    case BuffData.BuffEffect.Magnetic:
+                        GetComponentInChildren<Magnet>().MagneticRate /= buff.value;
+                        break;
+                    case BuffData.BuffEffect.Invincible:
+                        isInvincible = false;
+                        break;
+                }
                 buffs.Remove(buff); //버프 목록에서 제거한다.
                 buff.ResetTime(); //다음에 다시 같은 아이템을 먹게 될 경우 지속시간이 정상적으로 적용되도록 초기화시켜준다.
             }));
