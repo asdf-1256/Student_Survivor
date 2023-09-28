@@ -25,10 +25,13 @@ public class SpawnItemData : ScriptableObject
     public int value; //값 (코인양, 경험치량, 힐양, 버프 수치 등등)
     public int dropRate; // 드롭율
 
+
     [Header("# Buff Item Info")]
+    public BuffData buff; //버프 데이터를 담고있는 ScriptableObject
+    /*
     public BuffEffect buffType;//버프효과 설정
     public float duration;//버프 지속시간 설정
-
+    */
     [Header("# Prefab(GameObject)")]
     public GameObject prefab;//프리팹 - Coin으로 동일함
     //Coin 내부에는 자석효과를 위한 Rigidbody2D와 Magnetable(자석 움직임 구현) 스크립트, 자석효과와 아이템 습득을 구현하는 CircleCollider2D가 있으며.

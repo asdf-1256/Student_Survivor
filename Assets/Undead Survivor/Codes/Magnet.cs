@@ -6,6 +6,17 @@ public class Magnet : MonoBehaviour
 {
     [SerializeField]
     private float radius; //아직은 사용되지 않음
+    private float magneticRate;
+    public float Radius
+    {
+        get { return radius; }
+        set { radius = value; coll.radius = radius * magneticRate; }
+    }
+    public float MagneticRate
+    {
+        get { return magneticRate; }
+        set { magneticRate = value; coll.radius = radius * magneticRate; }
+    }
 
     CircleCollider2D coll; // 자력 범위를 설정할 Collider
 
@@ -13,6 +24,7 @@ public class Magnet : MonoBehaviour
     {
         coll = GetComponent<CircleCollider2D>();
         radius = coll.radius;
+        magneticRate = 1f;
     }
 
 

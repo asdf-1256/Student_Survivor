@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
         GameObject Exp = GameManager.Instance.pool.Get(3);
         Exp.GetComponent<SpawnItem>().Init(expData);
         Exp.transform.position = new Vector2(transform.position.x, transform.position.y);
-        Debug.Log("@경험치 드랍됨");
+        //Debug.Log("@경험치 드랍됨");
 
     }
 
