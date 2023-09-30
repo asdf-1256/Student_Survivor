@@ -86,7 +86,8 @@ public class Item : MonoBehaviour
                 else
                 {
                     float nextRate = data.damages[level];
-                    gear.LevelUp(nextRate);
+                    gear.LevelUp(nextRate); 
+
                 }
                 level++;
                 break;
