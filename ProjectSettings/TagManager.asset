@@ -15,6 +15,7 @@ TagManager:
   - Magnetable
   - Item
   - Lava
+  - RB_Tree
   layers:
   - Default
   - TransparentFX
