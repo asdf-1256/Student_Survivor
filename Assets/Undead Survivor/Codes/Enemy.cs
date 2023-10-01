@@ -104,8 +104,31 @@ public class Enemy : MonoBehaviour
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)//장판위에 있을 때 호출되도록 할 예정. 웹프 기능인 속도 바꾸는 기능도 여기서 처리해야할듯.
+    {
+        if (!collision.CompareTag("Lava") || !isLive)//일단 장판을 Tag:Lava로 구분하지만, 더 좋은 단어가 없을지 생각
+            return;
 
-    
+        health -= collision.GetComponent<JAVA_CUP>().damage * Time.deltaTime;//데미지를 받아와서 프레임마다 데미지 계산.
+
+        //피격 효과를 제거하고 죽었는지 아닌지만 확인.
+        if (health <= 0)
+        {
+            //.. 죽음
+            isLive = false;
+            coll.enabled = false;
+            rigid.simulated = false;
+            spriteRenderer.sortingOrder = 1;
+            anim.SetBool("Dead", true);
+            GameManager.Instance.kill++;
+            GameManager.Instance.GetExp();
+            DropExp();
+
+            if (GameManager.Instance.isLive)
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+        }
+    }
+
     void DropExp()
     {
         int tmp = Random.Range(0, 100);
