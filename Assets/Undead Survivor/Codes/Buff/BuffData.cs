@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BuffData", menuName = "Scriptable Object/BuffData")]
 public class BuffData : ScriptableObject
 {
-    public enum BuffEffect { Power, Speed, Defense, Magnetic, Invincible } //버프효과 목록
+    public enum BuffEffect { Attack, Speed, Defense, Magnetic, Invincible } //버프효과 목록
 
     public BuffEffect effect;
     public Sprite image;
