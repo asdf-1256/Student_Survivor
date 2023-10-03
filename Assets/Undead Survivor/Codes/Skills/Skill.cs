@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
+    public float cooltime;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +16,17 @@ public class Skill : MonoBehaviour
     {
         
     }
-}
+    public void Activate()
+    {
+        //스킬의 동작 설계
+    }
 
-class Skill_A : Skill
-{
-
+    public override bool Equals(object other)
+    {
+        return base.Equals(other);
+    }
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
 }
