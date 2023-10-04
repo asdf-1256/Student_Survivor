@@ -11,13 +11,13 @@ public class Bullet_OS : MonoBehaviour
     public float duration;
     public float damage;
 
-    Collider2D coll;
+    //Collider2D coll;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
 
     private void Awake()
     {
-        coll = GetComponent<Collider2D>();
+        //coll = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
     }
@@ -35,13 +35,9 @@ public class Bullet_OS : MonoBehaviour
         rigid.velocity = Vector2.zero;
 
         spriteRenderer.sprite = sprites[1];//이미지를 일단 커피로 변경 -> 추후 폭발로 바꿔
-        float timer = 0f;
-        while (timer < duration)
-        { //n초 동안 대기
-            timer += Time.deltaTime;
-        }
 
-        gameObject.SetActive(false);
+        StartCoroutine(TimerRoutine(() => { gameObject.SetActive(false); }));
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -56,5 +52,16 @@ public class Bullet_OS : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         // transform.rotation = Quaternion.identity;
         // StopAllCoroutines();
+    }
+    IEnumerator TimerRoutine(System.Action done)
+    {
+        float timer = 0f;
+        while (timer <= duration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        done.Invoke();
     }
 }
