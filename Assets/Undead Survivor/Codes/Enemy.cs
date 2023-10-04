@@ -108,17 +108,31 @@ public class Enemy : MonoBehaviour
     {
 
         //.. 장판 공격은 공통 태그 Lava로 둘까 했는데 collision에서 어떤 컴퍼넌트인지 비교하는 법을 모르겠따
-        if (( !collision.CompareTag("RB_Tree") && !collision.CompareTag("Lava") ) || !isLive)//일단 장판을 Tag:Lava로 구분하지만, 더 좋은 단어가 없을지 생각
+        if ((!collision.CompareTag("RB_Tree") && !collision.CompareTag("Lava")) || !isLive)//일단 장판을 Tag:Lava로 구분하지만, 더 좋은 단어가 없을지 생각
             return;
 
         float damage = 0;
         if (collision.CompareTag("Lava"))
-            damage = collision.GetComponent<JAVA_CUP>().damage;
+        {
+            SkillBase skillBase = collision.GetComponent<SkillBase>();
+            damage = skillBase.data.damages[skillBase.GetLevel()];
+        }
         else if (collision.CompareTag("RB_Tree"))
         {
-            damage = collision.GetComponent<Bullet_Algorithm>().damage;
+            //damage = collision.GetComponent<Bullet_Algorithm>().damage;
         }
-        Debug.Log("damage는 " + damage);
+
+        /*
+        else if (collision.composite)
+        {
+            damage = collision.GetComponent<SkillBase>().skillData.damage;//가 되지않을까 싶은
+            //그런?
+            //테스트 해봐야되는데
+            //SkillData에 어떤 정보들을 넣을지
+            //멤버 정해야돼요. 데미지나 쿨타임이나 아이콘이나 etc...
+        }*/
+
+        //Debug.Log("damage는 " + damage);
         health -= damage * Time.deltaTime;//데미지를 받아와서 프레임마다 데미지 계산.
         //피격 효과를 제거하고 죽었는지 아닌지만 확인.
         if (health <= 0)

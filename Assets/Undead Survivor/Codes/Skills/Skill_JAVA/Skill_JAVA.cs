@@ -12,10 +12,13 @@ public class Skill_JAVA : MonoBehaviour
     
     public GameObject cup;
 
+    public int space_count = 0;
+
     //쿨타임 계산해서 호출하는 간단한 함수.
 
     private void Update()
     {
+        /*
         if (!GameManager.Instance.isLive)
             return;
 
@@ -25,7 +28,34 @@ public class Skill_JAVA : MonoBehaviour
         {
             timer = 0f;
             Fire();
+        }*/
+        if (!GameManager.Instance.isLive)
+            return;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(string.Format("space바 {0}번째 눌림", space_count));
+            switch (space_count)
+            {
+                case 0:
+                    GameManager.Instance.player.skillManager.AddSkill(0);
+                    break;
+                case 1:
+                    GameManager.Instance.player.skillManager.LevelUp(0);
+                    break;
+                case 2:
+                    GameManager.Instance.player.skillManager.LevelUp(0);
+                    break;
+                case 3:
+                    GameManager.Instance.player.skillManager.LevelUp(0);
+                    break;
+                case 4:
+                    break;
+            }
+            space_count++;
+
         }
+            
+
     }
     void Fire()
     {
