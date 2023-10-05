@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_OS : MonoBehaviour
+public class Skill_Grapics : MonoBehaviour
 {
     public float coolTime;
-    public float damage;
-    public float speed;
+    public float lifeTime;
 
     Player player;
     float timer;
@@ -34,15 +33,15 @@ public class Skill_OS : MonoBehaviour
         if (!player.scanner.nearestTarget)
             return;
 
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Vector3 dir = targetPos - transform.position;
-        dir = dir.normalized;//방향 구하기
+        Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
+        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+        
 
-        Transform bullet = GameManager.Instance.pool.Get(7).transform;
+        Transform bullet = GameManager.Instance.pool.Get(9).transform;
 
-        bullet.position = transform.position + dir;
-        // bullet.rotation = Quaternion.FromToRotation(Vector3.left, dir); // 회전 안 함
-        bullet.GetComponent<Bullet_OS>().Init(damage, speed, dir);
+        bullet.position = transform.position + spawnPosition * 10; // 캐릭터 중심으로 반지름 10인 원 내의 한 점
+        bullet.rotation = Random.rotation; // 랜덤 회전
+        bullet.GetComponent<Bullet_Grapics>().Init(lifeTime);
 
 
         // 오디오

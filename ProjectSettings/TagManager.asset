@@ -18,6 +18,8 @@ TagManager:
   - RB_Tree
   - OS
   - OS_Explosion
+  - Coffee
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -69,7 +69,8 @@ public class Skill_JAVA : MonoBehaviour
     {
         if (!GameManager.Instance.player.scanner.nearestTarget)
             return;
-        GameManager.Instance.pool.Get(5);
+        // GameManager.Instance.pool.Get(5);
+        GameManager.Instance.pool.Get(8);
     }
     IEnumerator ThrowCupRoutine()
     {

@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriteRenderer;
     WaitForFixedUpdate wait;
 
-    //Á»ºñ°¡ Á×À» ¶§ µå·ÓÇÒ °æÇèÄ¡ µ¥ÀÌÅÍ¸¦ Inspector»ó¿¡¼­ ¿¬°áÇÔ.(Spawner¿¡ ÀÖ´Â °Í°ú µ¿ÀÏÇÑ ÆÄÀÏ)
+    //ì¢€ë¹„ê°€ ì£½ì„ ë•Œ ë“œë¡­í•  ê²½í—˜ì¹˜ ë°ì´í„°ë¥¼ Inspectorìƒì—ì„œ ì—°ê²°í•¨.(Spawnerì— ìˆëŠ” ê²ƒê³¼ ë™ì¼í•œ íŒŒì¼)
     public SpawnItemData expData;
 
     // Start is called before the first frame update
@@ -85,15 +85,15 @@ public class Enemy : MonoBehaviour
             health -= collision.GetComponent<Bullet>().damage;
             if (health > 0)
             {
-                //.. »ì¾Ò°í ÇÇ°İÆÇÁ¤
-                //¾Ö´Ï¸ŞÀÌ¼Ç, ³Ë¹é
+                //.. ì‚´ì•˜ê³  í”¼ê²©íŒì •
+                //ì• ë‹ˆë©”ì´ì…˜, ë„‰ë°±
                 anim.SetTrigger("Hit");
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
                 StartCoroutine(KnockBack());
             }
             else
             {
-                //.. Á×À½
+                //.. ì£½ìŒ
                 isLive = false;
                 coll.enabled = false;
                 rigid.simulated = false;
@@ -122,33 +122,33 @@ public class Enemy : MonoBehaviour
     void DropExp()
     {
         int tmp = Random.Range(0, 100);
-        if (tmp > 20) // È®·üÀûÀ¸·Î Exp µå·Ó
+        if (tmp > 20) // í™•ë¥ ì ìœ¼ë¡œ Exp ë“œë¡­
         {
             return;
         }
         GameObject Exp = GameManager.Instance.pool.Get(3);
         Exp.GetComponent<SpawnItem>().Init(expData);
         Exp.transform.position = new Vector2(transform.position.x, transform.position.y);
-        //Debug.Log("@°æÇèÄ¡ µå¶øµÊ");
+        //Debug.Log("@ê²½í—˜ì¹˜ ë“œëë¨");
 
     }
 
-    //ÄÚ·çÆ¾ - ºñµ¿±â
+    //ì½”ë£¨í‹´ - ë¹„ë™ê¸°
     IEnumerator KnockBack()
     {
 
-        //yield - ÄÚ·çÆ¾ ¹İÈ¯
-        //yield return null; // 1ÇÁ·¹ÀÓ ½¬±â
+        //yield - ì½”ë£¨í‹´ ë°˜í™˜
+        //yield return null; // 1í”„ë ˆì„ ì‰¬ê¸°
         
-        //yield return new WaitForSeconds(2f);//2ÃÊ ½¬±â - new °è¼ÓÇÏ¸é ¼º´É¹®Á¦
+        //yield return new WaitForSeconds(2f);//2ì´ˆ ì‰¬ê¸° - new ê³„ì†í•˜ë©´ ì„±ëŠ¥ë¬¸ì œ
 
-        //ÇÏ³ªÀÇ ¹°¸® ÇÁ·¹ÀÓÀ» µô·¹ÀÌÇÒ °Í
+        //í•˜ë‚˜ì˜ ë¬¼ë¦¬ í”„ë ˆì„ì„ ë”œë ˆì´í•  ê²ƒ
         yield return wait;
 
         Vector3 playerPos = GameManager.Instance.player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
         rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
-        //¼ø°£ÀûÀÎ Èû - Impulse
+        //ìˆœê°„ì ì¸ í˜ - Impulse
 
 
     }
@@ -162,10 +162,10 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             health -= skillBase.data.damages[skillBase.GetLevel()] * 0.5f;
-            Debug.Log(string.Format("µ¥¹ÌÁö {0} ·çÆ¾ ¹ßµ¿", skillBase.data.damages[skillBase.GetLevel()]));
+            Debug.Log(string.Format("ë°ë¯¸ì§€ {0} ë£¨í‹´ ë°œë™", skillBase.data.damages[skillBase.GetLevel()]));
             if (health <= 0)
             {
-                //.. Á×À½
+                //.. ì£½ìŒ
                 isLive = false;
                 coll.enabled = false;
                 rigid.simulated = false;
@@ -181,8 +181,8 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                //.. »ì¾Ò°í ÇÇ°İÆÇÁ¤
-                //¾Ö´Ï¸ŞÀÌ¼Ç, ³Ë¹é
+                //.. ì‚´ì•˜ê³  í”¼ê²©íŒì •
+                //ì• ë‹ˆë©”ì´ì…˜, ë„‰ë°±
                 anim.SetTrigger("Hit");
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
             }
