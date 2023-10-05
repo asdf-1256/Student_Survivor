@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0470f2cc5832bcc4f915bc9064e4b1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: b93f7acb76b109943968828bbfd0f126, type: 2}
   curve:
     serializedVersion: 2
     m_Curve:
@@ -136,7 +137,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: befe1604e8276eb419a62e0beaf60ffc, type: 3}
   - {fileID: 21300000, guid: e79e71700cb1e9d4c97ac05193474aca, type: 3}
   duration: 0
-  damage: 0
 --- !u!60 &-5613981120011881579
 PolygonCollider2D:
   m_ObjectHideFlags: 0

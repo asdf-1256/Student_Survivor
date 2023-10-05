@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriteRenderer;
     WaitForFixedUpdate wait;
 
-    //Á»ºñ°¡ Á×À» ¶§ µå·ÓÇÒ °æÇèÄ¡ µ¥ÀÌÅÍ¸¦ Inspector»ó¿¡¼­ ¿¬°áÇÔ.(Spawner¿¡ ÀÖ´Â °Í°ú µ¿ÀÏÇÑ ÆÄÀÏ)
+    //ì¢€ë¹„ê°€ ì£½ì„ ë•Œ ë“œë¡­í•  ê²½í—˜ì¹˜ ë°ì´í„°ë¥¼ Inspectorìƒì—ì„œ ì—°ê²°í•¨.(Spawnerì— ìˆëŠ” ê²ƒê³¼ ë™ì¼í•œ íŒŒì¼)
     public SpawnItemData expData;
 
     // Start is called before the first frame update
@@ -76,108 +76,121 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !isLive)
-            return;
+        //if (!collision.CompareTag("Bullet")||!isLive)
+        //  return;
+        if (!isLive) return;
 
-        health -= collision.GetComponent<Bullet>().damage;
-        StartCoroutine(KnockBack());
-
-        if (health > 0) {
-            //.. »ì¾Ò°í ÇÇ°İÆÇÁ¤
-            //¾Ö´Ï¸ŞÀÌ¼Ç, ³Ë¹é
-            anim.SetTrigger("Hit");
-            AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
-        }
-        else
+        if (collision.CompareTag("Bullet"))
         {
-            //.. Á×À½
-            isLive = false;
-            coll.enabled = false;
-            rigid.simulated = false;
-            spriteRenderer.sortingOrder = 1;
-            anim.SetBool("Dead", true);
-            GameManager.Instance.kill++;
-            GameManager.Instance.GetExp();
-            DropExp();
+            health -= collision.GetComponent<Bullet>().damage;
+            if (health > 0)
+            {
+                //.. ì‚´ì•˜ê³  í”¼ê²©íŒì •
+                //ì• ë‹ˆë©”ì´ì…˜, ë„‰ë°±
+                anim.SetTrigger("Hit");
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
+                StartCoroutine(KnockBack());
+            }
+            else
+            {
+                //.. ì£½ìŒ
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriteRenderer.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.Instance.kill++;
+                GameManager.Instance.GetExp();
+                DropExp();
 
-            if (GameManager.Instance.isLive)
-                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+                if (GameManager.Instance.isLive)
+                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+            }
         }
+        else if (collision.CompareTag("Lava"))
+            StartCoroutine(LavaRoutine(collision.GetComponent<SkillBase>()));
+        else if (collision.CompareTag("Web"))
+            speed /= 3f;
     }
-    private void OnTriggerStay2D(Collider2D collision)//ÀåÆÇÀ§¿¡ ÀÖÀ» ¶§ È£ÃâµÇµµ·Ï ÇÒ ¿¹Á¤. À¥ÇÁ ±â´ÉÀÎ ¼Óµµ ¹Ù²Ù´Â ±â´Éµµ ¿©±â¼­ Ã³¸®ÇØ¾ßÇÒµí.
+    private void OnTriggerExit2D(Collider2D collision)
     {
-
-        //.. ÀåÆÇ °ø°İÀº °øÅë ÅÂ±× Lava·Î µÑ±î Çß´Âµ¥ collision¿¡¼­ ¾î¶² ÄÄÆÛ³ÍÆ®ÀÎÁö ºñ±³ÇÏ´Â ¹ıÀ» ¸ğ¸£°Úµû
-        if (!isLive) //ÀÏ´Ü ÀåÆÇÀ» Tag:Lava·Î ±¸ºĞÇÏÁö¸¸, ´õ ÁÁÀº ´Ü¾î°¡ ¾øÀ»Áö »ı°¢
-            return;
-
-        float damage = 0;
-        if (collision.CompareTag("Lava"))
-            damage = collision.GetComponent<JAVA_CUP>().damage;
-        else if (collision.CompareTag("Coffee"))
-            damage = collision.GetComponent<Bullet_JAVA>().damage; // ÀÚ¹Ù ±×¸²ÀÚ Ãß°¡ ¹öÀü
-        else if (collision.CompareTag("RB_Tree"))
-            damage = collision.GetComponent<Bullet_Algorithm>().damage;
-        else if (collision.CompareTag("OS_Explosion"))
-            damage = collision.GetComponentInParent<Bullet_OS>().damage; // ÄÃ¸®Àü ´ë»óÀº Bullet_OSÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÓ
-        else
-            return;
-
-        Debug.Log("damage´Â " + damage);
-        health -= damage * Time.deltaTime;//µ¥¹ÌÁö¸¦ ¹Ş¾Æ¿Í¼­ ÇÁ·¹ÀÓ¸¶´Ù µ¥¹ÌÁö °è»ê.
-        //ÇÇ°İ È¿°ú¸¦ Á¦°ÅÇÏ°í Á×¾ú´ÂÁö ¾Æ´ÑÁö¸¸ È®ÀÎ.
-        if (health <= 0)
-        {
-            //.. Á×À½
-            isLive = false;
-            coll.enabled = false;
-            rigid.simulated = false;
-            spriteRenderer.sortingOrder = 1;
-            anim.SetBool("Dead", true);
-            GameManager.Instance.kill++;
-            GameManager.Instance.GetExp();
-            DropExp();
-
-            if (GameManager.Instance.isLive)
-                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
-        }
+        if(collision.CompareTag("Lava"))
+            StopAllCoroutines();
+        else if (collision.CompareTag("Web"))
+            speed *= 3f;
     }
-
     void DropExp()
     {
         int tmp = Random.Range(0, 100);
-        if (tmp > 20) // È®·üÀûÀ¸·Î Exp µå·Ó
+        if (tmp > 20) // í™•ë¥ ì ìœ¼ë¡œ Exp ë“œë¡­
         {
             return;
         }
         GameObject Exp = GameManager.Instance.pool.Get(3);
         Exp.GetComponent<SpawnItem>().Init(expData);
         Exp.transform.position = new Vector2(transform.position.x, transform.position.y);
-        //Debug.Log("@°æÇèÄ¡ µå¶øµÊ");
+        //Debug.Log("@ê²½í—˜ì¹˜ ë“œëë¨");
 
     }
 
-    //ÄÚ·çÆ¾ - ºñµ¿±â
+    //ì½”ë£¨í‹´ - ë¹„ë™ê¸°
     IEnumerator KnockBack()
     {
 
-        //yield - ÄÚ·çÆ¾ ¹İÈ¯
-        //yield return null; // 1ÇÁ·¹ÀÓ ½¬±â
+        //yield - ì½”ë£¨í‹´ ë°˜í™˜
+        //yield return null; // 1í”„ë ˆì„ ì‰¬ê¸°
         
-        //yield return new WaitForSeconds(2f);//2ÃÊ ½¬±â - new °è¼ÓÇÏ¸é ¼º´É¹®Á¦
+        //yield return new WaitForSeconds(2f);//2ì´ˆ ì‰¬ê¸° - new ê³„ì†í•˜ë©´ ì„±ëŠ¥ë¬¸ì œ
 
-        //ÇÏ³ªÀÇ ¹°¸® ÇÁ·¹ÀÓÀ» µô·¹ÀÌÇÒ °Í
+        //í•˜ë‚˜ì˜ ë¬¼ë¦¬ í”„ë ˆì„ì„ ë”œë ˆì´í•  ê²ƒ
         yield return wait;
 
         Vector3 playerPos = GameManager.Instance.player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
         rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
-        //¼ø°£ÀûÀÎ Èû - Impulse
+        //ìˆœê°„ì ì¸ í˜ - Impulse
 
 
     }
     void Dead()
     {
         gameObject.SetActive(false);
+    }
+
+    IEnumerator LavaRoutine(SkillBase skillBase)
+    {
+        while (true)
+        {
+            health -= skillBase.data.damages[skillBase.GetLevel()] * 0.5f;
+            Debug.Log(string.Format("ë°ë¯¸ì§€ {0} ë£¨í‹´ ë°œë™", skillBase.data.damages[skillBase.GetLevel()]));
+            if (health <= 0)
+            {
+                //.. ì£½ìŒ
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriteRenderer.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.Instance.kill++;
+                GameManager.Instance.GetExp();
+                DropExp();
+
+                if (GameManager.Instance.isLive)
+                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+                break;
+            }
+            else
+            {
+                //.. ì‚´ì•˜ê³  í”¼ê²©íŒì •
+                //ì• ë‹ˆë©”ì´ì…˜, ë„‰ë°±
+                anim.SetTrigger("Hit");
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 }
