@@ -109,11 +109,15 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.CompareTag("Lava"))
             StartCoroutine(LavaRoutine(collision.GetComponent<SkillBase>()));
+        else if (collision.CompareTag("Web"))
+            speed /= 3f;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.CompareTag("Lava"))
             StopAllCoroutines();
+        else if (collision.CompareTag("Web"))
+            speed *= 3f;
     }
     void DropExp()
     {
