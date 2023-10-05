@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     private List<BuffData> buffs; //버프 목록
     private WaitForSeconds wait; //남은 시간 계산용 WaitForSeconds 객체 (0.1초)
 
+    public SkillManager skillManager;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();

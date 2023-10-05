@@ -76,71 +76,49 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !isLive)
-            return;
+        //if (!collision.CompareTag("Bullet")||!isLive)
+        //  return;
+        if (!isLive) return;
 
-        health -= collision.GetComponent<Bullet>().damage;
-        StartCoroutine(KnockBack());
-
-        if (health > 0) {
-            //.. 살았고 피격판정
-            //애니메이션, 넉백
-            anim.SetTrigger("Hit");
-            AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
-        }
-        else
+        if (collision.CompareTag("Bullet"))
         {
-            //.. 죽음
-            isLive = false;
-            coll.enabled = false;
-            rigid.simulated = false;
-            spriteRenderer.sortingOrder = 1;
-            anim.SetBool("Dead", true);
-            GameManager.Instance.kill++;
-            GameManager.Instance.GetExp();
-            DropExp();
+            health -= collision.GetComponent<Bullet>().damage;
+            if (health > 0)
+            {
+                //.. 살았고 피격판정
+                //애니메이션, 넉백
+                anim.SetTrigger("Hit");
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
+                StartCoroutine(KnockBack());
+            }
+            else
+            {
+                //.. 죽음
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriteRenderer.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.Instance.kill++;
+                GameManager.Instance.GetExp();
+                DropExp();
 
-            if (GameManager.Instance.isLive)
-                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+                if (GameManager.Instance.isLive)
+                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+            }
         }
+        else if (collision.CompareTag("Lava"))
+            StartCoroutine(LavaRoutine(collision.GetComponent<SkillBase>()));
+        else if (collision.CompareTag("Web"))
+            speed /= 3f;
     }
-    private void OnTriggerStay2D(Collider2D collision)//장판위에 있을 때 호출되도록 할 예정. 웹프 기능인 속도 바꾸는 기능도 여기서 처리해야할듯.
+    private void OnTriggerExit2D(Collider2D collision)
     {
-
-        //.. 장판 공격은 공통 태그 Lava로 둘까 했는데 collision에서 어떤 컴퍼넌트인지 비교하는 법을 모르겠따
-        if (!isLive) //일단 장판을 Tag:Lava로 구분하지만, 더 좋은 단어가 없을지 생각
-            return;
-
-        float damage = 0;
-        if (collision.CompareTag("Lava"))
-            damage = collision.GetComponent<JAVA_CUP>().damage;
-        else if (collision.CompareTag("RB_Tree"))
-            damage = collision.GetComponent<Bullet_Algorithm>().damage;
-        else if (collision.CompareTag("OS_Explosion"))
-            damage = collision.GetComponentInParent<Bullet_OS>().damage; // 컬리전 대상은 Bullet_OS의 자식 오브젝트임
-        else
-            return;
-
-        Debug.Log("damage는 " + damage);
-        health -= damage * Time.deltaTime;//데미지를 받아와서 프레임마다 데미지 계산.
-        //피격 효과를 제거하고 죽었는지 아닌지만 확인.
-        if (health <= 0)
-        {
-            //.. 죽음
-            isLive = false;
-            coll.enabled = false;
-            rigid.simulated = false;
-            spriteRenderer.sortingOrder = 1;
-            anim.SetBool("Dead", true);
-            GameManager.Instance.kill++;
-            GameManager.Instance.GetExp();
-            DropExp();
-
-            if (GameManager.Instance.isLive)
-                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
-        }
+        if(collision.CompareTag("Lava"))
+            StopAllCoroutines();
+        else if (collision.CompareTag("Web"))
+            speed *= 3f;
     }
-
     void DropExp()
     {
         int tmp = Random.Range(0, 100);
@@ -177,5 +155,42 @@ public class Enemy : MonoBehaviour
     void Dead()
     {
         gameObject.SetActive(false);
+    }
+
+    IEnumerator LavaRoutine(SkillBase skillBase)
+    {
+        while (true)
+        {
+            health -= skillBase.data.damages[skillBase.GetLevel()] * 0.5f;
+            Debug.Log(string.Format("데미지 {0} 루틴 발동", skillBase.data.damages[skillBase.GetLevel()]));
+            if (health <= 0)
+            {
+                //.. 죽음
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriteRenderer.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.Instance.kill++;
+                GameManager.Instance.GetExp();
+                DropExp();
+
+                if (GameManager.Instance.isLive)
+                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+                break;
+            }
+            else
+            {
+                //.. 살았고 피격판정
+                //애니메이션, 넉백
+                anim.SetTrigger("Hit");
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 }

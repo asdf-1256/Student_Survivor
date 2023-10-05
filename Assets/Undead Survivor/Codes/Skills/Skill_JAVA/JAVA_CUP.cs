@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class JAVA_CUP : MonoBehaviour
+public class JAVA_CUP : SkillBase
 {
     [SerializeField]
     AnimationCurve curve;
@@ -17,7 +17,7 @@ public class JAVA_CUP : MonoBehaviour
     Sprite[] sprites; // 0:컵 이미지, 1:커피 이미지
 
     public float duration;
-    public float damage;
+    //public float damage;
 
     SpriteRenderer spriteRenderer;
 
@@ -30,7 +30,7 @@ public class JAVA_CUP : MonoBehaviour
         coll = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         duration = 2f;
-        damage = 10f;
+        //damage = 10f;
     }
     
     IEnumerator CurveRoutine() //포물선으로 날아가게하는 코루틴
@@ -71,6 +71,8 @@ public class JAVA_CUP : MonoBehaviour
     }
     private void OnEnable()
     {
+        if (GameManager.Instance.player.scanner.nearestTarget == null)
+            return;
         StartCoroutine(CurveRoutine()); //PoolManager에서 Get해오면 바로 컵이 날아가도록한다.
     }
     private void OnDisable() //비활성화할 때 초기상태로 되돌리기
