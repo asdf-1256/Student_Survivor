@@ -16,6 +16,8 @@ TagManager:
   - Item
   - Lava
   - RB_Tree
+  - OS
+  - OS_Explosion
   layers:
   - Default
   - TransparentFX
