@@ -114,6 +114,8 @@ public class Enemy : MonoBehaviour
         float damage = 0;
         if (collision.CompareTag("Lava"))
             damage = collision.GetComponent<JAVA_CUP>().damage;
+        else if (collision.CompareTag("Coffee"))
+            damage = collision.GetComponent<Bullet_JAVA>().damage; // 자바 그림자 추가 버전
         else if (collision.CompareTag("RB_Tree"))
             damage = collision.GetComponent<Bullet_Algorithm>().damage;
         else if (collision.CompareTag("OS_Explosion"))

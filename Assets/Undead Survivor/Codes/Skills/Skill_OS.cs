@@ -6,6 +6,7 @@ public class Skill_OS : MonoBehaviour
 {
     public float coolTime;
     public float damage;
+    public float speed;
 
     Player player;
     float timer;
@@ -41,7 +42,7 @@ public class Skill_OS : MonoBehaviour
 
         bullet.position = transform.position + dir;
         // bullet.rotation = Quaternion.FromToRotation(Vector3.left, dir); // 회전 안 함
-        bullet.GetComponent<Bullet_OS>().Init(damage, dir);
+        bullet.GetComponent<Bullet_OS>().Init(damage, speed, dir);
 
 
         // 오디오

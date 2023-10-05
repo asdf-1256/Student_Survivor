@@ -10,6 +10,7 @@ public class Bullet_OS : MonoBehaviour
 
     public float duration;
     public float damage;
+    public float speed;
 
     Collider2D[] colls; // 자식 오브젝트에 있는 콜라이더들
     SpriteRenderer spriteRenderer;
@@ -22,9 +23,10 @@ public class Bullet_OS : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    public void Init(float damage, Vector3 dir)
+    public void Init(float damage, float speed, Vector3 dir)
     {
         this.damage = damage;
+        this.speed = speed;
         
         rigid.velocity = dir * 1f; // 속도 일단 1로 둬. 하드코딩
     }
