@@ -18,7 +18,7 @@ public class Skill_JAVA : MonoBehaviour
 
     private void Update()
     {
-        /*
+
         if (!GameManager.Instance.isLive)
             return;
 
@@ -28,8 +28,8 @@ public class Skill_JAVA : MonoBehaviour
         {
             timer = 0f;
             Fire();
-        }*/
-        if (!GameManager.Instance.isLive)
+        }
+        /*if (!GameManager.Instance.isLive)
             return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -61,8 +61,8 @@ public class Skill_JAVA : MonoBehaviour
             }
             space_count++;
 
-        }
-            
+        }*/
+
 
     }
     void Fire()

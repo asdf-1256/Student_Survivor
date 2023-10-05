@@ -1099,7 +1099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &161273728
 Transform:
   m_ObjectHideFlags: 0
@@ -5851,6 +5851,7 @@ MonoBehaviour:
   cooltime: 5
   timer: 0
   cup: {fileID: 2564879391130233559, guid: 6f99efd1f4afd644fb379cfb2a6c4fec, type: 3}
+  space_count: 0
 --- !u!1 &231753717
 GameObject:
   m_ObjectHideFlags: 0
@@ -17029,6 +17030,7 @@ MonoBehaviour:
   speedRate: 0
   defenseRate: 0
   isInvincible: 0
+  skillManager: {fileID: 0}
 --- !u!114 &731594823
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class Bullet_JAVA : MonoBehaviour
 
     Transform target;
     Collider2D coll;
-    GameObject child1;
+    GameObject CupObject;
 
     Rigidbody2D rigid;
     private void Awake()
@@ -26,7 +26,7 @@ public class Bullet_JAVA : MonoBehaviour
         coll = GetComponent<Collider2D>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        child1 = transform.GetChild(1).gameObject; // 1번째 자식 갖고 옴 = 자바컵
+        CupObject = transform.GetChild(1).gameObject; // 1번째 자식 갖고 옴 = 자바컵
         duration = 2f;
         damage = 10f;
     }
@@ -44,8 +44,8 @@ public class Bullet_JAVA : MonoBehaviour
         Vector3 end = target.transform.position;
 
         transform.position = start;
-        child1.transform.position = transform.position;
-        child1.GetComponent<Rigidbody2D>().velocity = end - start + new Vector3(0, 9.8f, 0);
+        CupObject.transform.position = transform.position;
+        CupObject.GetComponent<Rigidbody2D>().velocity = end - start + new Vector3(0, 9.8f, 0);
         rigid.velocity = end - start;
 
         while (time < flightSpeed)
@@ -61,7 +61,7 @@ public class Bullet_JAVA : MonoBehaviour
     }
     private void OnDisable() //비활성화할 때 초기상태로 되돌리기
     {
-        child1.SetActive(true);
+        CupObject.SetActive(true);
         spriteRenderer.sprite = sprites[0];
         coll.enabled = false;
         transform.position = new Vector3(0, 0, 0);
@@ -71,7 +71,7 @@ public class Bullet_JAVA : MonoBehaviour
 
     IEnumerator CoffeeLavaRoutine(System.Action done)
     {
-        child1.SetActive(false);
+        CupObject.SetActive(false);
         spriteRenderer.sprite = sprites[1];//이미지를 커피로 변경
         coll.enabled = true;//collider 활성화
         float timer = 0f;
