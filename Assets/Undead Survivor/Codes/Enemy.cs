@@ -108,16 +108,19 @@ public class Enemy : MonoBehaviour
     {
 
         //.. 장판 공격은 공통 태그 Lava로 둘까 했는데 collision에서 어떤 컴퍼넌트인지 비교하는 법을 모르겠따
-        if (( !collision.CompareTag("RB_Tree") && !collision.CompareTag("Lava") ) || !isLive)//일단 장판을 Tag:Lava로 구분하지만, 더 좋은 단어가 없을지 생각
+        if (!isLive) //일단 장판을 Tag:Lava로 구분하지만, 더 좋은 단어가 없을지 생각
             return;
 
         float damage = 0;
         if (collision.CompareTag("Lava"))
             damage = collision.GetComponent<JAVA_CUP>().damage;
         else if (collision.CompareTag("RB_Tree"))
-        {
             damage = collision.GetComponent<Bullet_Algorithm>().damage;
-        }
+        else if (collision.CompareTag("OS_Explosion"))
+            damage = collision.GetComponentInParent<Bullet_OS>().damage; // 컬리전 대상은 Bullet_OS의 자식 오브젝트임
+        else
+            return;
+
         Debug.Log("damage는 " + damage);
         health -= damage * Time.deltaTime;//데미지를 받아와서 프레임마다 데미지 계산.
         //피격 효과를 제거하고 죽었는지 아닌지만 확인.
