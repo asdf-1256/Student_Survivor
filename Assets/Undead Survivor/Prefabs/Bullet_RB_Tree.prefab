@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e3f21f49553054186f41c1deea939f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 816b4a21ab437fd4e8d3e409af357f04, type: 2}
   rotateSpeed: 100
   lifeTime: 3
-  damage: 10

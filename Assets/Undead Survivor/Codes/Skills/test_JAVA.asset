@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: test
+  m_Name: test_JAVA
   m_EditorClassIdentifier: 
   id: 0
   pool_index: 5

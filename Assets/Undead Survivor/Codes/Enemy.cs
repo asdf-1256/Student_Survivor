@@ -118,7 +118,11 @@ public class Enemy : MonoBehaviour
             damage = skillBase.data.damages[skillBase.GetLevel()];
         }
         else if (collision.CompareTag("RB_Tree"))
-            damage = collision.GetComponent<Bullet_Algorithm>().damage;
+        {
+            SkillBase skillBase = collision.GetComponent<SkillBase>();
+            damage = skillBase.data.damages[skillBase.GetLevel()];
+        }
+            //damage = collision.GetComponent<Bullet_Algorithm>().damage;
         else if (collision.CompareTag("OS_Explosion"))
             damage = collision.GetComponentInParent<Bullet_OS>().damage; // 컬리전 대상은 Bullet_OS의 자식 오브젝트임
         else

@@ -46,9 +46,17 @@ public class Skill_JAVA : MonoBehaviour
                     GameManager.Instance.player.skillManager.LevelUp(0);
                     break;
                 case 3:
-                    GameManager.Instance.player.skillManager.LevelUp(0);
                     break;
                 case 4:
+                    GameManager.Instance.player.skillManager.AddSkill(1);
+                    break;
+                case 5:
+                    GameManager.Instance.player.skillManager.LevelUp(1);
+                    break;
+                case 6:
+                    GameManager.Instance.player.skillManager.LevelUp(1);
+                    break;
+                case 7:
                     break;
             }
             space_count++;
