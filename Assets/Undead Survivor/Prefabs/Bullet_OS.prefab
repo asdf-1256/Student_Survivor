@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 3443626151102913400}
   - component: {fileID: -8149822783265827945}
   - component: {fileID: -967952871782319310}
+  - component: {fileID: 2500337827238610902}
   m_Layer: 0
   m_Name: Bullet_OS
   m_TagString: OS
@@ -199,6 +200,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e79e71700cb1e9d4c97ac05193474aca, type: 3}
   duration: 3
   damage: 10
+  speed: 3
+--- !u!114 &2500337827238610902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3768573273252977567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954da90e6398873439f1204c1d27049d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanRange: 5
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  nearestTarget: {fileID: 0}
 --- !u!1 &4587778675110381915
 GameObject:
   m_ObjectHideFlags: 0

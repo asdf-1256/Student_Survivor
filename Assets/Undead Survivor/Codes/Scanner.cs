@@ -6,13 +6,13 @@ using System.Linq;
 public class Scanner : MonoBehaviour
 {
     public float scanRange;
-    public LayerMask targetLayer;
+    public LayerMask targetLayer; // ì¸ìŠ¤í™í„°ì—ì„œ ê°ì§€í•  ëŒ€ìƒ ë ˆì´ì–´ ì„¤ì •
     public RaycastHit2D[] targets;
     public Transform nearestTarget;
 
     private void FixedUpdate()
     {
-        //¿øÇüÀÇ Ä³½ºÆ®¸¦ ½î°í ¸ğµç °á°ú¸¦ ¹İÈ¯
+        //ì›í˜•ì˜ ìºìŠ¤íŠ¸ë¥¼ ì˜ê³  ëª¨ë“  ê²°ê³¼ë¥¼ ë°˜í™˜
         targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
         nearestTarget = GetNearest();
     }
@@ -54,7 +54,7 @@ public class Scanner : MonoBehaviour
             float curDiff = Vector3.Distance(lastesthitedTarget.position, target.transform.position);
 
             if (curDiff < 2.0f || curDiff > 6.0f)
-                continue; //Àû´çÈ÷ ¶³¾îÁ® ÀÖ¾î¾ß Á» ¿¹»Ü °Í °°¾Æ¼­.
+                continue; //ì ë‹¹íˆ ë–¨ì–´ì ¸ ìˆì–´ì•¼ ì¢€ ì˜ˆì  ê²ƒ ê°™ì•„ì„œ.
 
             if (curDiff < diff)
             {
@@ -67,7 +67,7 @@ public class Scanner : MonoBehaviour
     }
 
     /*
-    //¾ÆÁ÷ ¾²Áö´Â ¾Ê´Âµ¥ È¤½Ã³ª ´ÜÀÏ ÀûÇÑÅ×¼­ °¡±î¿î Àû ±¸ÇØ¾ßÇÒ ÀÏ ÀÖÀ¸¸é ¾²·Á°í ¸¸µç ÄÚµå.
+    //ì•„ì§ ì“°ì§€ëŠ” ì•ŠëŠ”ë° í˜¹ì‹œë‚˜ ë‹¨ì¼ ì í•œí…Œì„œ ê°€ê¹Œìš´ ì  êµ¬í•´ì•¼í•  ì¼ ìˆìœ¼ë©´ ì“°ë ¤ê³  ë§Œë“  ì½”ë“œ.
     public Transform GetNearTargetFromEnemy(Transform hitedTarget)
     {
         Transform result = null;
@@ -79,7 +79,7 @@ public class Scanner : MonoBehaviour
             float curDiff = Vector3.Distance(hitedTarget.position, target.transform.position);
 
             if (curDiff < 2.0f)
-                continue; //Àû´çÈ÷ ¶³¾îÁ®´Â ÀÖ¾î¾ß Á» ¿¹»Ü °Í °°¾Æ¼­.
+                continue; //ì ë‹¹íˆ ë–¨ì–´ì ¸ëŠ” ìˆì–´ì•¼ ì¢€ ì˜ˆì  ê²ƒ ê°™ì•„ì„œ.
 
             if (curDiff < diff)
             {
@@ -90,4 +90,14 @@ public class Scanner : MonoBehaviour
         }
         return result;
     }*/
+
+    Transform GetRandomTarget() // ëœë¤í•œ íƒ€ê²Ÿì„ ì„ íƒí•˜ëŠ” í•¨ìˆ˜
+    {
+        Transform result = null;
+        int randomIndex = Random.Range(0, targets.Length);
+        
+        result = targets[randomIndex].transform;
+        
+        return result;
+    }
 }

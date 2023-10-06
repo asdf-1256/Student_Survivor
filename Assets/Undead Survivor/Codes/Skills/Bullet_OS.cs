@@ -15,21 +15,42 @@ public class Bullet_OS : MonoBehaviour
     Collider2D[] colls; // 자식 오브젝트에 있는 콜라이더들
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
+    Scanner scanner;
+    Transform target;
+
+    bool isExplosion;
 
     private void Awake()
     {
         colls = GetComponentsInChildren<Collider2D>(); // 0:OS모드, 1:폭발모드
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
+        scanner = GetComponent<Scanner>();
+        isExplosion = false;
     }
 
-    public void Init(float damage, float speed, Vector3 dir)
+    public void Init(float damage, float speed)
     {
         this.damage = damage;
         this.speed = speed;
         
-        rigid.velocity = dir * 1f; // 속도 일단 1로 둬. 하드코딩
     }
+
+
+    private void FixedUpdate()
+    {
+        if (isExplosion) // 적과 만나 폭발했으면 이동X
+            return;
+        if (!scanner.nearestTarget)
+            return;
+
+        target = scanner.nearestTarget;// OS 객체의 scanner를 통해 최단거리 적 찾아감
+        Vector3 dirVec = target.position - transform.position;
+        Vector3 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
+        rigid.MovePosition(transform.position + nextVec);
+        rigid.velocity = Vector2.zero;
+    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,7 +59,8 @@ public class Bullet_OS : MonoBehaviour
         rigid.velocity = Vector2.zero;
 
         spriteRenderer.sprite = sprites[1];//이미지를 일단 커피로 변경 -> 추후 폭발로 바꿔야 함
-
+        
+        isExplosion = true; // 폭발했음으로 바꿈
 
         StartCoroutine(ExplosionRoutine(() => { gameObject.SetActive(false); }));
         
@@ -55,6 +77,7 @@ public class Bullet_OS : MonoBehaviour
 
         spriteRenderer.sprite = sprites[0];
         transform.position = new Vector3(0, 0, 0);
+        isExplosion = false;
         // transform.rotation = Quaternion.identity;
     }
     IEnumerator ExplosionRoutine(System.Action done)

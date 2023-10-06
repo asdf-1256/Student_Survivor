@@ -5,7 +5,9 @@ using UnityEngine;
 public class Bullet_JAVA : MonoBehaviour
 {
     [SerializeField]
-    float flightSpeed = 2.0f; //1초 후 컵이 커피로 변함
+    float flightTime; // 체공시간. 컵이 커피로 변하는 시간.
+
+    public float rotateSpeed; // 컵이 회전하는 속도
     //[SerializeField]
     //GameObject cup_prefab;
     [SerializeField]
@@ -18,7 +20,7 @@ public class Bullet_JAVA : MonoBehaviour
 
     Transform target;
     Collider2D coll;
-    GameObject child1;
+    GameObject CupObject;
 
     Rigidbody2D rigid;
     private void Awake()
@@ -26,7 +28,7 @@ public class Bullet_JAVA : MonoBehaviour
         coll = GetComponent<Collider2D>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        child1 = transform.GetChild(1).gameObject; // 1번째 자식 갖고 옴 = 자바컵
+        CupObject = transform.GetChild(1).gameObject; // 1번째 자식 갖고 옴 = 자바컵
         duration = 2f;
         damage = 10f;
     }
@@ -44,12 +46,21 @@ public class Bullet_JAVA : MonoBehaviour
         Vector3 end = target.transform.position;
 
         transform.position = start;
-        child1.transform.position = transform.position;
-        child1.GetComponent<Rigidbody2D>().velocity = end - start + new Vector3(0, 9.8f, 0);
-        rigid.velocity = end - start;
+        CupObject.transform.position = transform.position;
 
-        while (time < flightSpeed)
+        Vector3 dirVec = end - start;
+        dirVec = dirVec * 1 / flightTime;
+
+        float upperForceToCup = flightTime * 4.9f; // 컵을 위로 던지는 힘은 날아가는 거리에 비례
+        CupObject.GetComponent<Rigidbody2D>().velocity = dirVec + new Vector3(0, upperForceToCup, 0);
+        rigid.velocity = dirVec;
+
+
+        float rotateCup = 0;
+        while (time < flightTime)
         {
+            rotateCup += rotateSpeed * Time.deltaTime;
+            CupObject.transform.eulerAngles = new Vector3(0, 0, rotateCup);
             time += Time.deltaTime;
 
             yield return null;
@@ -61,7 +72,7 @@ public class Bullet_JAVA : MonoBehaviour
     }
     private void OnDisable() //비활성화할 때 초기상태로 되돌리기
     {
-        child1.SetActive(true);
+        CupObject.SetActive(true);
         spriteRenderer.sprite = sprites[0];
         coll.enabled = false;
         transform.position = new Vector3(0, 0, 0);
@@ -71,7 +82,7 @@ public class Bullet_JAVA : MonoBehaviour
 
     IEnumerator CoffeeLavaRoutine(System.Action done)
     {
-        child1.SetActive(false);
+        CupObject.SetActive(false);
         spriteRenderer.sprite = sprites[1];//이미지를 커피로 변경
         coll.enabled = true;//collider 활성화
         float timer = 0f;
