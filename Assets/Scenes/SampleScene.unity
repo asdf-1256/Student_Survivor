@@ -20041,7 +20041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1507322272
 Transform:
   m_ObjectHideFlags: 0
@@ -20069,9 +20069,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621f624380ad6eb4f88808698582e813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolTime: 10
-  lifeTime: 8
-  damage: 10
+  coolTime: 5
+  lifeTime: 10
+  damage: 3
   speed: 3
 --- !u!1 &1550353509
 GameObject:
