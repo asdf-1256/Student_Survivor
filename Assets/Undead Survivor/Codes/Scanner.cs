@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Scanner : MonoBehaviour
 {
@@ -36,4 +37,57 @@ public class Scanner : MonoBehaviour
 
         return result;
     }
+    
+    public Transform GetNearTargetFromNotHitedEnemy(List<Transform> hitedTargets)
+    {
+        Transform result = null;
+
+        Transform lastesthitedTarget = hitedTargets[^1];
+
+        float diff = 100;
+
+        foreach (RaycastHit2D target in targets)
+        {
+            if (hitedTargets.Contains(target.transform))
+                continue;
+
+            float curDiff = Vector3.Distance(lastesthitedTarget.position, target.transform.position);
+
+            if (curDiff < 2.0f || curDiff > 6.0f)
+                continue; //적당히 떨어져 있어야 좀 예쁠 것 같아서.
+
+            if (curDiff < diff)
+            {
+                diff = curDiff;
+                result = target.transform;
+            }
+
+        }
+        return result;
+    }
+
+    /*
+    //아직 쓰지는 않는데 혹시나 단일 적한테서 가까운 적 구해야할 일 있으면 쓰려고 만든 코드.
+    public Transform GetNearTargetFromEnemy(Transform hitedTarget)
+    {
+        Transform result = null;
+        float diff = 100;
+
+        foreach (RaycastHit2D target in targets)
+        {
+
+            float curDiff = Vector3.Distance(hitedTarget.position, target.transform.position);
+
+            if (curDiff < 2.0f)
+                continue; //적당히 떨어져는 있어야 좀 예쁠 것 같아서.
+
+            if (curDiff < diff)
+            {
+                diff = curDiff;
+                result = target.transform;
+            }
+
+        }
+        return result;
+    }*/
 }
