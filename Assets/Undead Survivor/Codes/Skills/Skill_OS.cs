@@ -42,7 +42,7 @@ public class Skill_OS : MonoBehaviour
 
         bullet.position = transform.position + dir;
         // bullet.rotation = Quaternion.FromToRotation(Vector3.left, dir); // 회전 안 함
-        bullet.GetComponent<Bullet_OS>().Init(damage, speed, dir);
+        bullet.GetComponent<Bullet_OS>().Init(damage, speed);
 
 
         // 오디오
