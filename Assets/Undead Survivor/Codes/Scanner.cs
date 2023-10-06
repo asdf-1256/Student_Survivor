@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Scanner : MonoBehaviour
 {
     public float scanRange;
-    public LayerMask targetLayer; // ÀÎ½ºÆåÅÍ¿¡¼­ °¨ÁöÇÒ ´ë»ó ·¹ÀÌ¾î ¼³Á¤
+    public LayerMask targetLayer; // ì¸ìŠ¤í™í„°ì—ì„œ ê°ì§€í•  ëŒ€ìƒ ë ˆì´ì–´ ì„¤ì •
     public RaycastHit2D[] targets;
     public Transform nearestTarget;
 
     private void FixedUpdate()
     {
-        //¿øÇüÀÇ Ä³½ºÆ®¸¦ ½î°í ¸ğµç °á°ú¸¦ ¹İÈ¯
+        //ì›í˜•ì˜ ìºìŠ¤íŠ¸ë¥¼ ì˜ê³  ëª¨ë“  ê²°ê³¼ë¥¼ ë°˜í™˜
         targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
         nearestTarget = GetNearest();
     }
@@ -36,8 +37,61 @@ public class Scanner : MonoBehaviour
 
         return result;
     }
+    
+    public Transform GetNearTargetFromNotHitedEnemy(List<Transform> hitedTargets)
+    {
+        Transform result = null;
 
-    Transform GetRandomTarget() // ·£´ıÇÑ Å¸°ÙÀ» ¼±ÅÃÇÏ´Â ÇÔ¼ö
+        Transform lastesthitedTarget = hitedTargets[^1];
+
+        float diff = 100;
+
+        foreach (RaycastHit2D target in targets)
+        {
+            if (hitedTargets.Contains(target.transform))
+                continue;
+
+            float curDiff = Vector3.Distance(lastesthitedTarget.position, target.transform.position);
+
+            if (curDiff < 2.0f || curDiff > 6.0f)
+                continue; //ì ë‹¹íˆ ë–¨ì–´ì ¸ ìˆì–´ì•¼ ì¢€ ì˜ˆì  ê²ƒ ê°™ì•„ì„œ.
+
+            if (curDiff < diff)
+            {
+                diff = curDiff;
+                result = target.transform;
+            }
+
+        }
+        return result;
+    }
+
+    /*
+    //ì•„ì§ ì“°ì§€ëŠ” ì•ŠëŠ”ë° í˜¹ì‹œë‚˜ ë‹¨ì¼ ì í•œí…Œì„œ ê°€ê¹Œìš´ ì  êµ¬í•´ì•¼í•  ì¼ ìˆìœ¼ë©´ ì“°ë ¤ê³  ë§Œë“  ì½”ë“œ.
+    public Transform GetNearTargetFromEnemy(Transform hitedTarget)
+    {
+        Transform result = null;
+        float diff = 100;
+
+        foreach (RaycastHit2D target in targets)
+        {
+
+            float curDiff = Vector3.Distance(hitedTarget.position, target.transform.position);
+
+            if (curDiff < 2.0f)
+                continue; //ì ë‹¹íˆ ë–¨ì–´ì ¸ëŠ” ìˆì–´ì•¼ ì¢€ ì˜ˆì  ê²ƒ ê°™ì•„ì„œ.
+
+            if (curDiff < diff)
+            {
+                diff = curDiff;
+                result = target.transform;
+            }
+
+        }
+        return result;
+    }*/
+
+    Transform GetRandomTarget() // ëœë¤í•œ íƒ€ê²Ÿì„ ì„ íƒí•˜ëŠ” í•¨ìˆ˜
     {
         Transform result = null;
         int randomIndex = Random.Range(0, targets.Length);

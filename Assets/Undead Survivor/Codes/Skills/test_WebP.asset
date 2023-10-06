@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
   m_Name: test_WebP
   m_EditorClassIdentifier: 
-  id: 1
-  pool_index: 6
+  id: 0
+  pool_index: 8
   damages:
   - 5
   - 10
   - 20
   cooltimes:
+  - 5
+  - 4
   - 3
-  - 2
-  - 1

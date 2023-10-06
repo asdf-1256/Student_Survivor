@@ -13,13 +13,11 @@ public class Skill_WebProg : SkillBase
     public float duration;
     private bool isWebed;
 
-    Collider2D coll;
 
     Rigidbody2D rigid;
 
     private void Awake()
     {
-        coll = GetComponent<Collider2D>();
         duration = 3f;
         rigid = GetComponent<Rigidbody2D>();
     }
