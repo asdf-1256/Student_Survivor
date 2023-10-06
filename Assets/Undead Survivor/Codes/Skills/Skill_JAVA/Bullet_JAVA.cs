@@ -5,7 +5,9 @@ using UnityEngine;
 public class Bullet_JAVA : MonoBehaviour
 {
     [SerializeField]
-    float flightSpeed = 2.0f; //1초 후 컵이 커피로 변함
+    float flightTime; // 체공시간. 컵이 커피로 변하는 시간.
+
+    public float rotateSpeed; // 컵이 회전하는 속도
     //[SerializeField]
     //GameObject cup_prefab;
     [SerializeField]
@@ -45,11 +47,20 @@ public class Bullet_JAVA : MonoBehaviour
 
         transform.position = start;
         CupObject.transform.position = transform.position;
-        CupObject.GetComponent<Rigidbody2D>().velocity = end - start + new Vector3(0, 9.8f, 0);
-        rigid.velocity = end - start;
 
-        while (time < flightSpeed)
+        Vector3 dirVec = end - start;
+        dirVec = dirVec * 1 / flightTime;
+
+        float upperForceToCup = flightTime * 4.9f; // 컵을 위로 던지는 힘은 날아가는 거리에 비례
+        CupObject.GetComponent<Rigidbody2D>().velocity = dirVec + new Vector3(0, upperForceToCup, 0);
+        rigid.velocity = dirVec;
+
+
+        float rotateCup = 0;
+        while (time < flightTime)
         {
+            rotateCup += rotateSpeed * Time.deltaTime;
+            CupObject.transform.eulerAngles = new Vector3(0, 0, rotateCup);
             time += Time.deltaTime;
 
             yield return null;
