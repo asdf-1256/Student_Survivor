@@ -41,7 +41,9 @@ public class Bullet_JAVA : MonoBehaviour
     IEnumerator CurveRoutine() //child = 첫번째 자식인 자바컵이 중력받으며 위로 올라가는 함수
     {
         float time = 0.0f;
-        target = GameManager.Instance.player.scanner.nearestTarget;
+        // target = GameManager.Instance.player.scanner.nearestTarget;
+        target = GameManager.Instance.player.scanner.GetRandomTarget(); // 랜덤한 적을 타겟으로
+
         Vector3 start = GameManager.Instance.player.transform.position;
         Vector3 end = target.transform.position;
 

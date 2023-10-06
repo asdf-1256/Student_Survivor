@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80b17b6652010b41ad51c4afe5a1608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flightTime: 3
+  flightTime: 2
   rotateSpeed: 200
   sprites:
   - {fileID: 1304559308, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

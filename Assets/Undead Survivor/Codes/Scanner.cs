@@ -91,7 +91,7 @@ public class Scanner : MonoBehaviour
         return result;
     }*/
 
-    Transform GetRandomTarget() // 랜덤한 타겟을 선택하는 함수
+    public Transform GetRandomTarget() // 랜덤한 타겟을 선택하는 함수
     {
         Transform result = null;
         int randomIndex = Random.Range(0, targets.Length);

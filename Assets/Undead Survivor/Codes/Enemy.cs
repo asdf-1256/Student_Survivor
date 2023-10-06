@@ -107,6 +107,36 @@ public class Enemy : MonoBehaviour
                     AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
             }
         }
+        // 위에꺼 그대로 복붙
+        if (collision.CompareTag("Machine"))
+        {
+            health -= collision.GetComponent<Bullet_MachhineLearning>().damage;
+            if (health > 0)
+            {
+                //.. 살았고 피격판정
+                //애니메이션, 넉백
+                anim.SetTrigger("Hit");
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
+                StartCoroutine(KnockBack());
+            }
+            else
+            {
+                //.. 죽음
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriteRenderer.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.Instance.kill++;
+                GameManager.Instance.GetExp();
+                DropExp();
+
+                if (GameManager.Instance.isLive)
+                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+            }
+        }
+
+
         else if (collision.CompareTag("Lava"))
             StartCoroutine(LavaRoutine(collision.GetComponent<SkillBase>()));
         else if (collision.CompareTag("Web"))
