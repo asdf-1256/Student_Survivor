@@ -107,11 +107,86 @@ public class Enemy : MonoBehaviour
                     AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
             }
         }
+
+        else if (collision.CompareTag("Laptop"))
+        {
+            health -= collision.GetComponentInParent<Bullet_Cloud>().damage;
+            if (health > 0)
+            {
+                //.. 살았고 피격판정
+                //애니메이션, 넉백
+                anim.SetTrigger("Hit");
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
+                StartCoroutine(KnockBack());
+            }
+            else
+            {
+                //.. 죽음
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriteRenderer.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.Instance.kill++;
+                GameManager.Instance.GetExp();
+                DropExp();
+
+                if (GameManager.Instance.isLive)
+                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+            }
+        }
+
+
         else if (collision.CompareTag("Lava"))
             StartCoroutine(LavaRoutine(collision.GetComponent<SkillBase>()));
         else if (collision.CompareTag("Web"))
             speed /= 3f;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!isLive) return;
+
+        if (collision.gameObject.CompareTag("Machine"))
+            StartCoroutine(MomBBangRoutine(collision.gameObject));
+    }
+    IEnumerator MomBBangRoutine(GameObject targetObject)
+    {
+        while (true)
+        {
+            health -= targetObject.GetComponent<Bullet_MachhineLearning>().damage;
+            if (health <= 0)
+            {
+                //.. 죽음
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriteRenderer.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.Instance.kill++;
+                GameManager.Instance.GetExp();
+                DropExp();
+
+                if (GameManager.Instance.isLive)
+                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+                break;
+            }
+            else
+            {
+                //.. 살았고 피격판정
+                //애니메이션, 넉백
+                anim.SetTrigger("Hit");
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        StopCoroutine("MomBBangRoutine");
+    }
+
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.CompareTag("Lava"))
@@ -156,7 +231,6 @@ public class Enemy : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
     IEnumerator LavaRoutine(SkillBase skillBase)
     {
         while (true)

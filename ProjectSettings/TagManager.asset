@@ -21,6 +21,8 @@ TagManager:
   - Coffee
   - Wall
   - Web
+  - Machine
+  - Laptop
   layers:
   - Default
   - TransparentFX
