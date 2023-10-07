@@ -94,6 +94,8 @@ public class Scanner : MonoBehaviour
     public Transform GetRandomTarget() // 랜덤한 타겟을 선택하는 함수
     {
         Transform result = null;
+        if (targets.Length == 0)
+            return null; // 인덱스 오버나는 경우 막음
         int randomIndex = Random.Range(0, targets.Length);
         
         result = targets[randomIndex].transform;

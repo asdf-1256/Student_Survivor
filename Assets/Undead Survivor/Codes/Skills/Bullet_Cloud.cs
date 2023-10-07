@@ -52,7 +52,8 @@ public class Bullet_Cloud : MonoBehaviour
     {
         if (!target || Vector3.Distance(transform.position, target.position) < 0.1f) // 타겟이 비활성화거나 도착했을 때
             target = GameManager.Instance.player.scanner.GetRandomTarget(); // 랜덤한 타겟 선택
-        
+        if (!target)
+            return; // sccaner가 null을 받아오는 경우도 있음
 
         Vector3 dirVec = target.position - transform.position;
         Vector3 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
