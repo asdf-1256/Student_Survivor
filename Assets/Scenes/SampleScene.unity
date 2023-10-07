@@ -10662,6 +10662,7 @@ MonoBehaviour:
   - {fileID: 269035776209164623, guid: 3ad375ac845864e4883a57933a81be57, type: 3}
   - {fileID: 6019882768493531185, guid: f4bb13f966537ef4d92d9fa06da9a71c, type: 3}
   - {fileID: 1155342979010886728, guid: 401b32686349da649bfd22014119050d, type: 3}
+  - {fileID: 6961580268855133401, guid: 26265290d7e260f41a4fa0fa3b1a9f13, type: 3}
 --- !u!4 &344728783
 Transform:
   m_ObjectHideFlags: 0
@@ -16242,6 +16243,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569592258}
   m_CullTransparentMesh: 1
+--- !u!1 &575337387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575337388}
+  - component: {fileID: 575337389}
+  m_Layer: 0
+  m_Name: Skill_IoT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575337388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575337387}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 731594820}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &575337389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575337387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55851f1b4408914cb20827975eef426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolTime: 10
+  lifeTime: 9
+  damage: 10
+  speed: 3
+  attackCoolTime: 0.1
+  movePosTime: 2
 --- !u!1 &579472616
 GameObject:
   m_ObjectHideFlags: 0
@@ -16974,6 +17025,7 @@ Transform:
   - {fileID: 1017083840}
   - {fileID: 1507322272}
   - {fileID: 1784644758}
+  - {fileID: 575337388}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &731594821
@@ -21264,9 +21316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolTime: 10
-  lifeTime: 8
+  lifeTime: 9
   damage: 9
-  speed: 3
+  speed: 4
   dropCycleTime: 0.1
 --- !u!1 &1793489137
 GameObject:
