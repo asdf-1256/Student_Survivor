@@ -107,7 +107,34 @@ public class Enemy : MonoBehaviour
                     AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
             }
         }
-        
+
+        else if (collision.CompareTag("Laptop"))
+        {
+            health -= collision.GetComponentInParent<Bullet_Cloud>().damage;
+            if (health > 0)
+            {
+                //.. 살았고 피격판정
+                //애니메이션, 넉백
+                anim.SetTrigger("Hit");
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
+                StartCoroutine(KnockBack());
+            }
+            else
+            {
+                //.. 죽음
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriteRenderer.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.Instance.kill++;
+                GameManager.Instance.GetExp();
+                DropExp();
+
+                if (GameManager.Instance.isLive)
+                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
+            }
+        }
 
 
         else if (collision.CompareTag("Lava"))
