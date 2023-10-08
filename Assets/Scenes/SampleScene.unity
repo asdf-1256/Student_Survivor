@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooltime: 5
   timer: 5
+  speed: 7
 --- !u!1 &24741043
 GameObject:
   m_ObjectHideFlags: 0
@@ -10785,6 +10786,7 @@ MonoBehaviour:
   - {fileID: 1155342979010886728, guid: 401b32686349da649bfd22014119050d, type: 3}
   - {fileID: 6961580268855133401, guid: 26265290d7e260f41a4fa0fa3b1a9f13, type: 3}
   - {fileID: 5665052994215594943, guid: f72040c2bc43fa244954dcd643287080, type: 3}
+  - {fileID: 1889395839027343230, guid: 93561b892688a1c4f981034940920ba7, type: 3}
 --- !u!4 &344728783
 Transform:
   m_ObjectHideFlags: 0
@@ -16121,6 +16123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92add9a2f49e68b4fbfbdf5914cb7e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 5
+  speed: 2
 --- !u!212 &503149676
 SpriteRenderer:
   m_ObjectHideFlags: 0
