@@ -5,16 +5,27 @@ using UnityEngine;
 public class Skill_JAVA : MonoBehaviour
 {
     [SerializeField]
-    public int id = 2;
-    public float cooltime = 5f;
-    public float timer;
+    public int bulletPrefabID;
+    public float coolTime;
+    public float flightTime; // 체공시간. 컵이 커피로 변하는 시간.
+    public float rotateSpeed; // 컵이 회전하는 속도
+    public float lifeTime; // 용암으로 존재하는 시간
+    public float damage;
 
-    
-    public GameObject cup;
+    public GameObject Bullet; // 총알이 어떤 프리팹인지 보여주기만 하는 용도
 
-    public int space_count = 0;
 
-    //쿨타임 계산해서 호출하는 간단한 함수.
+    float timer;
+    private void Awake()
+    {
+        A_Skill_Data skillData = GetComponentInParent<A_Skill_Data>();
+        bulletPrefabID = skillData.bulletPrefabID;
+        coolTime = skillData.coolTime;
+        flightTime = skillData.flightTime;
+        rotateSpeed = skillData.rotateSpeed;
+        lifeTime = skillData.lifeTime;
+        damage = skillData.damage;
+    }
 
     private void Update()
     {
@@ -24,7 +35,7 @@ public class Skill_JAVA : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer > cooltime)
+        if (timer > coolTime)
         {
             timer = 0f;
             Fire();
@@ -70,7 +81,8 @@ public class Skill_JAVA : MonoBehaviour
         if (!GameManager.Instance.player.scanner.nearestTarget)
             return;
         // GameManager.Instance.pool.Get(5);
-        GameManager.Instance.pool.Get(8);
+        Transform bullet = GameManager.Instance.pool.Get(bulletPrefabID).transform;
+        bullet.GetComponent<Bullet_JAVA>().Init(flightTime, rotateSpeed, lifeTime, damage);
     }
     IEnumerator ThrowCupRoutine()
     {
