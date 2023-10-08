@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bullet_ComNeSil : MonoBehaviour
 {
-    public float scaleFactor = 0.5f;
-    public float speed = 15;
-    public float lifeTime = 1f;
+    public float lifeTime;
+    public float speed;
+    public float scaleFactor;
 
     Rigidbody2D rigid;
     float timer;
@@ -17,9 +17,12 @@ public class Bullet_ComNeSil : MonoBehaviour
         InvokeRepeating("ScaleUp", 0.1f, 0.1f);  // 0.1f초마다 함수 실행, 얘는 비활성화 상태에서도 계속 반복함
     }
 
-    public void Init(Vector3 dir)
+    public void Init(Vector3 dir, float lifeTime, float speed, float scaleFactor)
     {
         rigid.velocity = dir * speed;
+        this.lifeTime = lifeTime;
+        this.speed = speed;
+        this.scaleFactor = scaleFactor;
     }
 
 

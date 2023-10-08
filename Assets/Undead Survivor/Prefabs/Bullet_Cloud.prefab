@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 2584239368679714048}
   - component: {fileID: 4914895405725146790}
   - component: {fileID: 3994284020090283948}
+  - component: {fileID: 661738288531533990}
   m_Layer: 0
   m_Name: Bullet_Cloud
   m_TagString: Untagged
@@ -283,7 +284,7 @@ MonoBehaviour:
   damage: 10
   speed: 3
   lifeTime: 0
-  dropCycleTime: 0
+  attackCoolTime: 0
   dropTimeOfLaptop: 0.5
 --- !u!50 &3994284020090283948
 Rigidbody2D:
@@ -312,6 +313,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &661738288531533990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155342979010886728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 0
+  coolTime: 0
+  lifeTime: 0
+  damage: 0
+  speed: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  attackCoolTime: 0
 --- !u!1 &2522204956026508566
 GameObject:
   m_ObjectHideFlags: 0

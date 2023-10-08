@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 695133530992704878}
   - component: {fileID: 2107944741740521306}
   - component: {fileID: -432130965409097215}
+  - component: {fileID: 2399634816434640068}
   m_Layer: 0
   m_Name: Bullet_Java
   m_TagString: Coffee
@@ -112,11 +113,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flightTime: 2
   rotateSpeed: 200
+  lifeTime: 2
+  damage: 10
   sprites:
   - {fileID: 1304559308, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   - {fileID: 21300000, guid: e79e71700cb1e9d4c97ac05193474aca, type: 3}
-  duration: 3
-  damage: 10
+--- !u!114 &2399634816434640068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349547450116809816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolTime: 0
+  lifeTime: 0
+  damage: 0
+  speed: 0
+  scaleFactor: 0
 --- !u!1 &6083623912135906013
 GameObject:
   m_ObjectHideFlags: 0
