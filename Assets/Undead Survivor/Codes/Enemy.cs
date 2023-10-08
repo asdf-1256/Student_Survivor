@@ -291,7 +291,6 @@ public class Enemy : MonoBehaviour
     }
     public IEnumerator LockRoutine(float duration, System.Action done)
     {
-        HEAD
         float tempSpeed = speed;
 
         speed = 0;
