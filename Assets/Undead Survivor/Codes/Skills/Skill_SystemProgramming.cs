@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_Microprocessor : MonoBehaviour
+public class Skill_SystemProgramming : MonoBehaviour
 {
     public float cooltime = 5f;
     public float timer = 5f;
@@ -18,6 +18,7 @@ public class Skill_Microprocessor : MonoBehaviour
     }
     void Fire()
     {
-        GameManager.Instance.pool.Get(14);
+        GameManager.Instance.pool.Get(15);
     }
+
 }
