@@ -8,7 +8,7 @@ public class Bullet_Cloud : MonoBehaviour
     public float damage;
     public float speed;
     public float lifeTime;
-    public float attackCoolTime; // 구름이 전자기기를 떨어뜨리는 주기
+    public float dropCycleTime; // 구름이 전자기기를 떨어뜨리는 주기
     public float dropTimeOfLaptop; // 랩탑 자체가 떨어지는 시간.
 
     Rigidbody2D rigid;
@@ -26,13 +26,12 @@ public class Bullet_Cloud : MonoBehaviour
         laptop = transform.GetChild(2).gameObject; // 랩탑 오브젝트 가져오기
     }
 
-    public void Init(float damage, float speed, float lifeTime, float attackCoolTime)
+    public void Init(float damage, float speed, float lifeTime, float dropCycleTime)
     {
         this.damage = damage;
         this.speed = speed;
         this.lifeTime = lifeTime;
-        this.attackCoolTime = attackCoolTime;
-        GetComponentInParent<A_Skill_Data>().damage = damage; // 외부에서 참조하기 쉽게 따로 데미지 표시
+        this.dropCycleTime = dropCycleTime;
     }
 
     private void Update() // 타이머 기능
@@ -81,7 +80,7 @@ public class Bullet_Cloud : MonoBehaviour
 
             laptop.SetActive(false);
 
-            yield return new WaitForSeconds(attackCoolTime);
+            yield return new WaitForSeconds(dropCycleTime);
         }
     }
 

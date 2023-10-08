@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Skill_Grapics : MonoBehaviour
 {
-    public int bulletPrefabID;
     public float coolTime;
     public float lifeTime;
-
-    public GameObject Bullet; // 총알이 어떤 프리팹인지 보여주기만 하는 용도
-
 
     Player player;
     float timer;
@@ -17,10 +13,6 @@ public class Skill_Grapics : MonoBehaviour
     {
         player = GameManager.Instance.player;
 
-        A_Skill_Data skillData = GetComponentInParent<A_Skill_Data>();
-        bulletPrefabID = skillData.bulletPrefabID;
-        coolTime = skillData.coolTime;
-        lifeTime = skillData.lifeTime;
     }
 
     private void Update()
@@ -45,7 +37,7 @@ public class Skill_Grapics : MonoBehaviour
         Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
         
 
-        Transform bullet = GameManager.Instance.pool.Get(bulletPrefabID).transform;
+        Transform bullet = GameManager.Instance.pool.Get(9).transform;
 
         bullet.position = transform.position + spawnPosition * 10; // 캐릭터 중심으로 반지름 10인 원 내의 한 점
         bullet.rotation = Random.rotation; // 랜덤 회전

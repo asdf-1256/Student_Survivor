@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Algorithm : MonoBehaviour
+public class Bullet_Algorithm : SkillBase
 {
-    public float rotateSpeed;
-    public float lifeTime;
-    public float damage;
+    public float rotateSpeed = 100f;
+    public float lifeTime = 3f;
+    //public float damage = 10f;
 
 
     Collider2D coll;
@@ -15,16 +15,9 @@ public class Bullet_Algorithm : MonoBehaviour
 
     private void Awake()
     {
-        coll = GetComponentInChildren<Collider2D>();
+        coll = GetComponent<Collider2D>();
     }
 
-    public void Init(float rotateSpeed, float lifeTime, float damage)
-    {
-        this.rotateSpeed = rotateSpeed;
-        this.lifeTime = lifeTime;
-        this.damage = damage;
-        GetComponentInParent<A_Skill_Data>().damage = damage; // 외부에서 참조하기 쉽게 따로 데미지 표시
-    }
 
     IEnumerator RotateRoutine()
     {
