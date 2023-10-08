@@ -265,12 +265,12 @@ public class Enemy : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (transform.childCount > 0)
+        /*if (transform.childCount > 0)
         {
             Transform SystemProgLockObj = transform.GetChild(0);
             SystemProgLockObj.parent = GameManager.Instance.pool.transform;
             SystemProgLockObj.gameObject.SetActive(false);
-        }
+        }*/
 
         StopAllCoroutines();
     }

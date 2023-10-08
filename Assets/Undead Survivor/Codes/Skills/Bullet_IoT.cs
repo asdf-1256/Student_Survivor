@@ -23,12 +23,12 @@ public class Bullet_IoT : MonoBehaviour
         scanner = GetComponent<Scanner>();
     }
 
-    public void Init(float damage, float speed, float lifeTime, float attackSpeed, float movePosTime)
+    public void Init(float damage, float speed, float lifeTime, float attackCoolTime, float movePosTime)
     {
         this.damage = damage;
         this.speed = speed;
         this.lifeTime = lifeTime;
-        this.attackCoolTime = attackSpeed;
+        this.attackCoolTime = attackCoolTime;
         this.movePosTime = movePosTime;
     }
     private void Update() // 타이머 기능
