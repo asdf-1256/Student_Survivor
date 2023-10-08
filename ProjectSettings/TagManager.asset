@@ -23,6 +23,7 @@ TagManager:
   - Web
   - Machine
   - Laptop
+  - SysProg
   layers:
   - Default
   - TransparentFX
