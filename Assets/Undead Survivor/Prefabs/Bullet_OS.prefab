@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4434969654333846664}
   m_Layer: 0
   m_Name: Bullet_OS
-  m_TagString: OS_Explosion
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

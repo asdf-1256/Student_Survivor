@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 4869271700745172802}
   m_Layer: 0
   m_Name: Bullet_Cloud
-  m_TagString: Laptop
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

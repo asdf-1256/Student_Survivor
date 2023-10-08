@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2399634816434640068}
   m_Layer: 0
   m_Name: Bullet_Java
-  m_TagString: Coffee
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

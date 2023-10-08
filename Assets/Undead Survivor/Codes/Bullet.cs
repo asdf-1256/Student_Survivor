@@ -18,8 +18,9 @@ public class Bullet : MonoBehaviour
     {
         this.damage = damage;
         this.per = per;
+        GetComponentInParent<A_Skill_Data>().damage = damage; // 외부에서 참조하기 쉽게 따로 데미지 표시
 
-        if(per >= 0)
+        if (per >= 0)
         {
             rigid.velocity = dir * 15f;
         }
