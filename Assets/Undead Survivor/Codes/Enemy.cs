@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     //좀비가 죽을 때 드롭할 경험치 데이터를 Inspector상에서 연결함.(Spawner에 있는 것과 동일한 파일)
     public SpawnItemData expData;
 
+    Coroutine lockCoroutine = null;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -141,6 +143,22 @@ public class Enemy : MonoBehaviour
             StartCoroutine(LavaRoutine(collision.GetComponent<SkillBase>()));
         else if (collision.CompareTag("Web"))
             speed /= 3f;
+        else if (collision.CompareTag("SysProg"))
+        {
+            Bullet_SystemProgramming bullet = collision.GetComponent<Bullet_SystemProgramming>();
+            if(lockCoroutine == null)
+                lockCoroutine = StartCoroutine(LockRoutine(collision.GetComponent<Bullet_SystemProgramming>().duration, () =>
+                {
+                    lockCoroutine = null;
+                    bullet.transform.parent = GameManager.Instance.pool.transform;
+                    bullet.gameObject.SetActive(false);
+                }));
+            else
+            {
+                bullet.gameObject.SetActive(false);
+            }
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -229,6 +247,14 @@ public class Enemy : MonoBehaviour
     }
     void Dead()
     {
+        if (transform.childCount > 1)
+        {
+            rigid.bodyType = RigidbodyType2D.Dynamic;
+            Bullet_SystemProgramming bullet = GetComponentInChildren<Bullet_SystemProgramming>();
+            bullet.transform.parent = GameManager.Instance.pool.transform;
+            bullet.gameObject.SetActive(false);
+        }
+
         gameObject.SetActive(false);
     }
     IEnumerator LavaRoutine(SkillBase skillBase)
@@ -263,7 +289,6 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
-<<<<<<< HEAD
     public IEnumerator LockRoutine(float duration, System.Action done)
     {
         HEAD
@@ -285,17 +310,8 @@ public class Enemy : MonoBehaviour
         done.Invoke();
 
     }
-=======
->>>>>>> parent of 82e7fcf (시스템프로그래밍및보안 기능 구현)
     private void OnDisable()
     {
-        if (transform.childCount > 0)
-        {
-            Transform SystemProgLockObj = transform.GetChild(0);
-            SystemProgLockObj.parent = GameManager.Instance.pool.transform;
-            SystemProgLockObj.gameObject.SetActive(false);
-        }
-
         StopAllCoroutines();
     }
 }
