@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet_Microprocessor : MonoBehaviour
@@ -24,12 +25,17 @@ public class Bullet_Microprocessor : MonoBehaviour
         positions[4] = new Vector3(-1, -1, 0) * 2;
         positions[5] = new Vector3(0, -1, 0) * 2;
     }
+    
     private void OnEnable()
     {
         transform.parent = GameManager.Instance.player.transform;
         transform.position = GameManager.Instance.player.transform.position;
         lineTracer.rotation = Quaternion.Euler(0, 0, 180f);
         StartCoroutine(LineTracerRoutine(() => { gameObject.SetActive(false); }));
+    }
+    private void OnDisable()
+    {
+        transform.parent = GameManager.Instance.pool.transform;
     }
     IEnumerator LineTracerRoutine(System.Action done)
     {
