@@ -29,6 +29,7 @@ public class Bullet_MachhineLearning : MonoBehaviour
         this.damage = damage;
         this.speed = speed;
         this.lifeTime = lifeTime;
+        GetComponentInParent<A_Skill_Data>().damage = damage; // 외부에서 참조하기 쉽게 따로 데미지 표시
     }
 
     private void Update()
