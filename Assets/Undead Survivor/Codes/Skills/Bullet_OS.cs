@@ -12,7 +12,7 @@ public class Bullet_OS : MonoBehaviour
     public float damage;
     public float speed;
 
-    Collider2D[] colls; // 자식 오브젝트에 있는 콜라이더들
+    Collider2D collExplosion, collOSBot; // 콜라이더들
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
     Scanner scanner;
@@ -22,7 +22,8 @@ public class Bullet_OS : MonoBehaviour
 
     private void Awake()
     {
-        colls = GetComponentsInChildren<Collider2D>(); // 0:OS모드, 1:폭발모드
+        collExplosion = GetComponent<Collider2D>(); // 폭발모드 콜라이더
+        collOSBot = GetComponentInChildren<Collider2D>(); // OS로봇 모드 콜라이더
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         scanner = GetComponent<Scanner>();
@@ -66,15 +67,10 @@ public class Bullet_OS : MonoBehaviour
         StartCoroutine(ExplosionRoutine(() => { gameObject.SetActive(false); }));
         
     }
-    /*private void OnTriggerExit2D(Collider2D collision) // 이거 없으니까 되네
-    {
-        if (!collision.CompareTag("Area"))
-            return;
-        Debug.Log("OS 로봇 밖으로 나감");
-        gameObject.SetActive(false);
-    }*/
     private void OnDisable()
     {
+        collExplosion.enabled = false;
+        collOSBot.enabled = true;
 
         spriteRenderer.sprite = sprites[0];
         transform.position = new Vector3(0, 0, 0);
@@ -83,8 +79,8 @@ public class Bullet_OS : MonoBehaviour
     }
     IEnumerator ExplosionRoutine(System.Action done)
     {
-        colls[0].enabled = false;
-        colls[1].enabled = true;
+        collOSBot.enabled = false;
+        collExplosion.enabled = true;
 
         float timer = 0f;
         while (timer <= lifeTime)
@@ -92,10 +88,6 @@ public class Bullet_OS : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-
-        colls[1].enabled = false;
-        colls[0].enabled = true;
-
         done.Invoke();
     }
 }

@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 786865045531560411}
   - component: {fileID: 5735526346175609333}
   - component: {fileID: 3594247042182551634}
-  - component: {fileID: 799318908438938493}
   m_Layer: 0
   m_Name: Laptop
   m_TagString: Laptop
@@ -197,41 +196,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &799318908438938493
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848983275476969122}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.16
 --- !u!1 &1155342979010886728
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,9 +208,10 @@ GameObject:
   - component: {fileID: 4914895405725146790}
   - component: {fileID: 3994284020090283948}
   - component: {fileID: 661738288531533990}
+  - component: {fileID: 4869271700745172802}
   m_Layer: 0
   m_Name: Bullet_Cloud
-  m_TagString: Untagged
+  m_TagString: Laptop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,6 +299,41 @@ MonoBehaviour:
   flightTime: 0
   rotateSpeed: 0
   attackCoolTime: 0
+--- !u!70 &4869271700745172802
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155342979010886728}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.31}
+  m_Size: {x: 0.5, y: 1.48}
+  m_Direction: 0
 --- !u!1 &2522204956026508566
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class Skill_OS : MonoBehaviour
     public float coolTime;
     public float damage;
     public float speed;
-    public float lifeTime;
+    public float lifeTime; // 폭발하는 시간?
 
     public GameObject Bullet; // 총알이 어떤 프리팹인지 보여주기만 하는 용도
 
