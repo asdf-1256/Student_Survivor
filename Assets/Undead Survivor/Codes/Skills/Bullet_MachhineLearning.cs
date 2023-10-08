@@ -13,6 +13,7 @@ public class Bullet_MachhineLearning : MonoBehaviour
     Rigidbody2D rigid;
     Scanner scanner;
     Transform target;
+    SpriteRenderer spriteRenderer;
 
     float timer;
 
@@ -20,6 +21,7 @@ public class Bullet_MachhineLearning : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         scanner = GetComponent<Scanner>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Init(float damage, float speed, float lifeTime)
@@ -54,5 +56,10 @@ public class Bullet_MachhineLearning : MonoBehaviour
         rigid.MovePosition(transform.position + nextVec);
         rigid.velocity = Vector2.zero;
     }
-
+    private void LateUpdate()
+    {
+        if (!GameManager.Instance.isLive || !target) // 플레이어 사망 혹은 타겟이 null인 경우 제외
+            return;
+        spriteRenderer.flipX = target.position.x < rigid.position.x;
+    }
 }
