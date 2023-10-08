@@ -222,9 +222,10 @@ public class Enemy : MonoBehaviour
         {
             rigid.bodyType = RigidbodyType2D.Dynamic;
             Bullet_SystemProgramming bullet = GetComponentInChildren<Bullet_SystemProgramming>();
-            bullet.transform.parent = GameManager.Instance.pool.transform;
-            bullet.gameObject.SetActive(false);
+            bullet?.transform.SetParent(GameManager.Instance.pool.transform);
+            bullet?.gameObject.SetActive(false);
         }
+        lockCoroutine = null;
 
         gameObject.SetActive(false);
     }
