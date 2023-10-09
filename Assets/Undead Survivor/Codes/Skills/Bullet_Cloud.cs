@@ -21,7 +21,7 @@ public class Bullet_Cloud : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        coll = GetComponentInChildren<Collider2D>();
+        coll = GetComponent<Collider2D>();
         coll.enabled = false;
         laptop = transform.GetChild(2).gameObject; // 랩탑 오브젝트 가져오기
     }

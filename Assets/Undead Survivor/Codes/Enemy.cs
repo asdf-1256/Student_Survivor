@@ -82,9 +82,9 @@ public class Enemy : MonoBehaviour
         //  return;
         if (!isLive) return;
 
-        if (collision.CompareTag("Bullet"))
+        if (collision.CompareTag("Bullet")) // 일단은 기본무기 + 운체, 자바, 클라우드, 알고리즘, IoT를 담당
         {
-            health -= collision.GetComponent<Bullet>().damage;
+            health -= collision.GetComponent<A_Skill_Data>().damage;
             if (health > 0)
             {
                 //.. 살았고 피격판정
@@ -109,35 +109,6 @@ public class Enemy : MonoBehaviour
                     AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
             }
         }
-
-        else if (collision.CompareTag("Laptop"))
-        {
-            health -= collision.GetComponentInParent<Bullet_Cloud>().damage;
-            if (health > 0)
-            {
-                //.. 살았고 피격판정
-                //애니메이션, 넉백
-                anim.SetTrigger("Hit");
-                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
-                StartCoroutine(KnockBack());
-            }
-            else
-            {
-                //.. 죽음
-                isLive = false;
-                coll.enabled = false;
-                rigid.simulated = false;
-                spriteRenderer.sortingOrder = 1;
-                anim.SetBool("Dead", true);
-                GameManager.Instance.kill++;
-                GameManager.Instance.GetExp();
-                DropExp();
-
-                if (GameManager.Instance.isLive)
-                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
-            }
-        }
-
 
         else if (collision.CompareTag("Lava"))
             StartCoroutine(LavaRoutine(collision.GetComponent<SkillBase>()));
@@ -251,9 +222,10 @@ public class Enemy : MonoBehaviour
         {
             rigid.bodyType = RigidbodyType2D.Dynamic;
             Bullet_SystemProgramming bullet = GetComponentInChildren<Bullet_SystemProgramming>();
-            bullet.transform.parent = GameManager.Instance.pool.transform;
-            bullet.gameObject.SetActive(false);
+            bullet?.transform.SetParent(GameManager.Instance.pool.transform);
+            bullet?.gameObject.SetActive(false);
         }
+        lockCoroutine = null;
 
         gameObject.SetActive(false);
     }

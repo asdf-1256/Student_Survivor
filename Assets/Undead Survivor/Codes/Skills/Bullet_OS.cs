@@ -8,11 +8,11 @@ public class Bullet_OS : MonoBehaviour
     [SerializeField]
     Sprite[] sprites; // 0:로봇 이미지, 1: 일단 커피 이미지
 
-    public float duration;
+    public float lifeTime;
     public float damage;
     public float speed;
 
-    Collider2D[] colls; // 자식 오브젝트에 있는 콜라이더들
+    Collider2D collExplosion, collOSBot; // 콜라이더들
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
     Scanner scanner;
@@ -22,18 +22,20 @@ public class Bullet_OS : MonoBehaviour
 
     private void Awake()
     {
-        colls = GetComponentsInChildren<Collider2D>(); // 0:OS모드, 1:폭발모드
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        collExplosion = GetComponent<Collider2D>(); // 폭발모드 콜라이더
+        collOSBot = GetComponentInChildren<Collider2D>(); // OS로봇 모드 콜라이더
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         scanner = GetComponent<Scanner>();
         isExplosion = false;
     }
 
-    public void Init(float damage, float speed)
+    public void Init(float damage, float speed, float lifeTime)
     {
         this.damage = damage;
         this.speed = speed;
-        
+        this.lifeTime = lifeTime;
+        GetComponentInParent<A_Skill_Data>().damage = damage; // 외부에서 참조하기 쉽게 따로 데미지 표시
     }
 
 
@@ -58,22 +60,17 @@ public class Bullet_OS : MonoBehaviour
             return;
         rigid.velocity = Vector2.zero;
 
-        spriteRenderer.sprite = sprites[1];//이미지를 일단 커피로 변경 -> 추후 폭발로 바꿔야 함
+        spriteRenderer.sprite = sprites[1];//이미지를 폭발로 변경
         
         isExplosion = true; // 폭발했음으로 바꿈
 
         StartCoroutine(ExplosionRoutine(() => { gameObject.SetActive(false); }));
         
     }
-    /*private void OnTriggerExit2D(Collider2D collision) // 이거 없으니까 되네
-    {
-        if (!collision.CompareTag("Area"))
-            return;
-        Debug.Log("OS 로봇 밖으로 나감");
-        gameObject.SetActive(false);
-    }*/
     private void OnDisable()
     {
+        collExplosion.enabled = false;
+        collOSBot.enabled = true;
 
         spriteRenderer.sprite = sprites[0];
         transform.position = new Vector3(0, 0, 0);
@@ -82,19 +79,15 @@ public class Bullet_OS : MonoBehaviour
     }
     IEnumerator ExplosionRoutine(System.Action done)
     {
-        colls[1].enabled = true;
-        colls[0].enabled = false;
+        collOSBot.enabled = false;
+        collExplosion.enabled = true;
 
         float timer = 0f;
-        while (timer <= duration)
+        while (timer <= lifeTime)
         {
             timer += Time.deltaTime;
             yield return null;
         }
-
-        colls[0].enabled = true;
-        colls[1].enabled = false;
-
         done.Invoke();
     }
 }

@@ -242,9 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5727a71d84a96e1459cc0d6c406229e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooltime: 1
-  timer: 1
-  speed: 10
+  cooltime: 5
+  timer: 5
+  speed: 7
 --- !u!1 &24741043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,6 +1140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 161273728}
   - component: {fileID: 161273729}
+  - component: {fileID: 161273730}
   m_Layer: 0
   m_Name: Skill_Grapics
   m_TagString: Untagged
@@ -1174,8 +1175,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5282b844ef0945348b9efdba5a88beb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabID: 0
   coolTime: 1
   lifeTime: 2
+  Bullet: {fileID: 3888502785941969304, guid: 3c078ec35ae184345971ea4f8351e55a, type: 3}
+--- !u!114 &161273730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161273727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 9
+  coolTime: 5
+  lifeTime: 3
+  damage: 0
+  speed: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  attackCoolTime: 0
 --- !u!1 &169400564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169400565}
   - component: {fileID: 169400566}
+  - component: {fileID: 169400567}
   m_Layer: 0
   m_Name: Skill_ComNeSil
   m_TagString: Untagged
@@ -1220,7 +1245,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836069e95ccb6e442bf69080465c7f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabID: 0
+  coolTime: 0
+  lifeTime: 0
+  speed: 0
+  scaleFactor: 0
+  Bullet: {fileID: 5031534047927111826, guid: b71f736a988eb5045a5a7bb74b3fb086, type: 3}
+--- !u!114 &169400567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169400564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 4
   coolTime: 1
+  lifeTime: 1
+  damage: 0
+  speed: 5
+  scaleFactor: 0.5
+  flightTime: 0
+  rotateSpeed: 0
+  attackCoolTime: 0
 --- !u!1 &189691588
 GameObject:
   m_ObjectHideFlags: 0
@@ -5860,13 +5911,14 @@ GameObject:
   m_Component:
   - component: {fileID: 227351292}
   - component: {fileID: 227351293}
+  - component: {fileID: 227351294}
   m_Layer: 0
   m_Name: Skill_JAVA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &227351292
 Transform:
   m_ObjectHideFlags: 0
@@ -5894,11 +5946,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea199a9cb8794d41be69cf2d984f5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
-  cooltime: 5
-  timer: 0
-  cup: {fileID: 2564879391130233559, guid: 6f99efd1f4afd644fb379cfb2a6c4fec, type: 3}
-  space_count: 0
+  bulletPrefabID: 0
+  coolTime: 0
+  flightTime: 0
+  rotateSpeed: 0
+  lifeTime: 0
+  damage: 0
+  Bullet: {fileID: 1349547450116809816, guid: 722c8c2180dc2ba4b88720d5cdd656c5, type: 3}
+--- !u!114 &227351294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227351291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 8
+  coolTime: 4
+  lifeTime: 2
+  damage: 10
+  speed: 0
+  scaleFactor: 0
+  flightTime: 2
+  rotateSpeed: 200
+  attackCoolTime: 0
 --- !u!1 &231753717
 GameObject:
   m_ObjectHideFlags: 0
@@ -11797,7 +11872,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 1c48da1ac717b514ba2c2a8d214f9608, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16302,6 +16377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 575337388}
   - component: {fileID: 575337389}
+  - component: {fileID: 575337390}
   m_Layer: 0
   m_Name: Skill_IoT
   m_TagString: Untagged
@@ -16336,12 +16412,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55851f1b4408914cb20827975eef426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabID: 0
   coolTime: 10
   lifeTime: 9
   damage: 10
   speed: 3
   attackCoolTime: 0.1
-  movePosTime: 2
+  Bullet: {fileID: 6961580268855133401, guid: 26265290d7e260f41a4fa0fa3b1a9f13, type: 3}
+--- !u!114 &575337390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575337387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 13
+  coolTime: 13
+  lifeTime: 12
+  damage: 2
+  speed: 4
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  attackCoolTime: 0.1
 --- !u!1 &579472616
 GameObject:
   m_ObjectHideFlags: 0
@@ -16955,13 +17053,14 @@ GameObject:
   m_Component:
   - component: {fileID: 705522733}
   - component: {fileID: 705522734}
+  - component: {fileID: 705522735}
   m_Layer: 0
   m_Name: Skill_Algorithm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &705522733
 Transform:
   m_ObjectHideFlags: 0
@@ -16989,7 +17088,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0e1782f9dffbd4ba012a077fe77c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabID: 0
   coolTime: 5
+  rotateSpeed: 100
+  lifeTime: 3
+  damage: 10
+  Bullet: {fileID: 4108934483820179828, guid: 6e2a3d2a307dabe4088a51564ad46700, type: 3}
+--- !u!114 &705522735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705522732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 6
+  coolTime: 6
+  lifeTime: 3
+  damage: 10
+  speed: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 100
+  attackCoolTime: 0
 --- !u!1 &731594817
 GameObject:
   m_ObjectHideFlags: 0
@@ -18434,6 +18559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1017083840}
   - component: {fileID: 1017083841}
+  - component: {fileID: 1017083842}
   m_Layer: 0
   m_Name: Skill_DataStructure
   m_TagString: Untagged
@@ -18468,8 +18594,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63306db60d457f04f88ce76309a8d933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooltime: 5
-  timer: 5
+  bulletPrefabID: 0
+  coolTime: 0
+  Bullet: {fileID: 269035776209164623, guid: 3ad375ac845864e4883a57933a81be57, type: 3}
+--- !u!114 &1017083842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017083839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 10
+  coolTime: 5
+  lifeTime: 0
+  damage: 0
+  speed: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  attackCoolTime: 0
 --- !u!1 &1032264943
 GameObject:
   m_ObjectHideFlags: 0
@@ -20186,6 +20334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1507322272}
   - component: {fileID: 1507322273}
+  - component: {fileID: 1507322274}
   m_Layer: 0
   m_Name: Skill_MachineLearning
   m_TagString: Untagged
@@ -20220,10 +20369,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621f624380ad6eb4f88808698582e813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabID: 0
   coolTime: 10
   lifeTime: 8
   damage: 3
   speed: 3
+  Bullet: {fileID: 6019882768493531185, guid: f4bb13f966537ef4d92d9fa06da9a71c, type: 3}
+--- !u!114 &1507322274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507322271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 11
+  coolTime: 10
+  lifeTime: 8
+  damage: 3
+  speed: 3
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  attackCoolTime: 0
 --- !u!1 &1550353509
 GameObject:
   m_ObjectHideFlags: 0
@@ -20486,13 +20658,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1601993283}
   - component: {fileID: 1601993284}
+  - component: {fileID: 1601993285}
   m_Layer: 0
   m_Name: Skill_OS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1601993283
 Transform:
   m_ObjectHideFlags: 0
@@ -20520,9 +20693,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e64798d6e4ece4ca16783f2ebe60c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabID: 0
   coolTime: 5
   damage: 10
   speed: 3
+  lifeTime: 0
+  Bullet: {fileID: 3768573273252977567, guid: 87faba1d298f2e1489d576878b2069ff, type: 3}
+--- !u!114 &1601993285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601993282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 7
+  coolTime: 7
+  lifeTime: 3
+  damage: 10
+  speed: 3
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  attackCoolTime: 0
 --- !u!1 &1612416430
 GameObject:
   m_ObjectHideFlags: 0
@@ -21378,13 +21575,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1784644758}
   - component: {fileID: 1784644759}
+  - component: {fileID: 1784644760}
   m_Layer: 0
   m_Name: Skill_Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1784644758
 Transform:
   m_ObjectHideFlags: 0
@@ -21412,11 +21610,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb249030f4851ac47b568bf8beb894b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabID: 0
   coolTime: 10
   lifeTime: 9
   damage: 9
   speed: 4
-  dropCycleTime: 0.1
+  attackCoolTime: 0
+  Bullet: {fileID: 1155342979010886728, guid: 401b32686349da649bfd22014119050d, type: 3}
+--- !u!114 &1784644760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784644757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabID: 12
+  coolTime: 12
+  lifeTime: 10
+  damage: 6
+  speed: 4
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  attackCoolTime: 0.5
 --- !u!1 &1793489137
 GameObject:
   m_ObjectHideFlags: 0
