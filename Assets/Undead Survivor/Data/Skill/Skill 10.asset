@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
+  m_Name: Skill 10
+  m_EditorClassIdentifier: 
+  skillType: 0
+  skillID: 10
+  bulletPrefabID: 4
+  skillName: "\uC2DC\uBCF4"
+  skillDesc: "\uCEF4\uB124\uC2E4\uC785\uB2C8\uB2E4"
+  skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  pool_index: 0
+  cooltimes:
+  - 7
+  - 5
+  - 3
+  lifeTime:
+  - 1
+  - 1
+  - 1
+  damages:
+  - 3
+  - 6
+  - 10
+  speed:
+  - 1
+  - 2
+  - 3
+  attackCoolTime: 0
+  scaleFactor: 0.1
+  flightTime: 2
+  rotateSpeed: 200
