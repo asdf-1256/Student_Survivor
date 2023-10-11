@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isLive)
             return;
+        
         exp += e;
         int nextexp = nextExp[Mathf.Min(level, nextExp.Length - 1)]; //index bound error 안 나오도록
         if (exp >= nextexp)
