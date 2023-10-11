@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class SkillSelect : MonoBehaviour
 {
+    // 전 버전 item 스트립트
     public SkillData skillData;
     public int level;
-    public Weapon weapon;
+    public BasedSkill skill; // 전 버전 weapon
     public Gear gear;
 
     Image icon;
@@ -45,7 +46,7 @@ public class SkillSelect : MonoBehaviour
 
 
     }
-/*
+
     public void OnClick()
     {
         switch (skillData.skillType)
@@ -53,23 +54,16 @@ public class SkillSelect : MonoBehaviour
             case SkillData.SkillType.전공:
                 if (level == 0)
                 {
-                    GameObject newWeapon = new GameObject();
-                    weapon = newWeapon.AddComponent<Weapon>();
-                    weapon.Init(skillData);
+                    GameObject newSkill = new GameObject();
+                    skill = newSkill.AddComponent<BasedSkill>();
+                    skill.Init(skillData);
                 }
                 else
                 {
-                    float nextDamage = skillData.baseDamage;
-                    int nextCount = 0;
-
-                    nextDamage += skillData.baseDamage * skillData.damages[level];
-                    nextCount += skillData.counts[level];
-
-                    weapon.LevelUp(nextDamage, nextCount);
+                    skill.LevelUp();
                 }
-                level++;
                 break;
-            case SkillData.SkillType.교양:
+            /*case SkillData.SkillType.교양:
                 if (level == 0)
                 {
                     GameObject newGear = new GameObject();
@@ -83,11 +77,11 @@ public class SkillSelect : MonoBehaviour
 
                 }
                 level++;
-                break;
+                break;*/
         }
         if (level == skillData.damages.Length)
         {
             GetComponent<Button>().interactable = false;
         }
-    }*/
+    }
 }
