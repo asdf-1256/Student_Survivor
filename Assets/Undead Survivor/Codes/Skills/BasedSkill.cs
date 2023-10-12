@@ -78,4 +78,12 @@ public class BasedSkill : MonoBehaviour
         //이 함수를 갖고있는 애들 다 실행해라 방송
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
+
+    void Fire()
+    {
+        if (!player.scanner.nearestTarget)
+            return;
+        GameObject bullet = GameManager.Instance.pool.Get(5); // 임시로 자바컵 생성
+        bullet.GetComponent<SkillBase>().Init(1);
+    }
 }

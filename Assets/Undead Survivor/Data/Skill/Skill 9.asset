@@ -16,7 +16,7 @@ MonoBehaviour:
   skillID: 9
   bulletPrefabID: 4
   skillName: "\uB9C8\uD504"
-  skillDesc: "\uCEF4\uB124\uC2E4\uC785\uB2C8\uB2E4"
+  skillDesc: "\uB77C\uC778\uD2B8\uB808\uC774\uC11C"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   pool_index: 0
   cooltimes:
