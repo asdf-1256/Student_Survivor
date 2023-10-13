@@ -12,6 +12,7 @@ public class SkillData : ScriptableObject
     public SkillType skillType;
     public int skillID;
     public int bulletPrefabID; // Bullet의 프리펩 ID
+    public int level; // 0~2까지
     public string skillName;
     [TextArea]
     public string skillDesc;

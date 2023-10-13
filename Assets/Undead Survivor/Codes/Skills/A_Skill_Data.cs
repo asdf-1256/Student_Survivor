@@ -5,6 +5,7 @@ using UnityEngine;
 public class A_Skill_Data : MonoBehaviour
 {
     public int bulletPrefabID; // Bullet의 프리펩 ID
+    public int level; // 0~2까지
     public float coolTime;
     public float lifeTime;
     public float damage;

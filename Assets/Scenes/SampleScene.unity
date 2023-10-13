@@ -1577,6 +1577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 9
+  level: 0
   coolTime: 5
   lifeTime: 3
   damage: 0
@@ -1644,6 +1645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 4
+  level: 0
   coolTime: 1
   lifeTime: 1
   damage: 0
@@ -6423,6 +6425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 8
+  level: 0
   coolTime: 4
   lifeTime: 2
   damage: 10
@@ -17137,6 +17140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 13
+  level: 0
   coolTime: 13
   lifeTime: 12
   damage: 2
@@ -18040,6 +18044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 6
+  level: 0
   coolTime: 6
   lifeTime: 3
   damage: 10
@@ -19882,7 +19887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1017083840
 Transform:
   m_ObjectHideFlags: 0
@@ -19925,6 +19930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 10
+  level: 0
   coolTime: 5
   lifeTime: 0
   damage: 0
@@ -22426,6 +22432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 11
+  level: 0
   coolTime: 10
   lifeTime: 8
   damage: 3
@@ -23148,6 +23155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 7
+  level: 0
   coolTime: 7
   lifeTime: 3
   damage: 10
@@ -24225,6 +24233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabID: 12
+  level: 0
   coolTime: 12
   lifeTime: 10
   damage: 6

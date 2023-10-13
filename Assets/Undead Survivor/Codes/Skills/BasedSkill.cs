@@ -7,9 +7,6 @@ public class BasedSkill : MonoBehaviour
     public int id;
     public int prefabId;
     public float coolTime;
-    public float damage;
-    public float speed;
-    public int count;
 
     public int level;
 
@@ -28,10 +25,10 @@ public class BasedSkill : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer > coolTime)
+        if (timer > skillData.cooltimes[skillData.level])
         {
             timer = 0f;
-            // Fire();
+            Fire();
         }
     }
 
@@ -49,7 +46,7 @@ public class BasedSkill : MonoBehaviour
     public void Init(SkillData skillData)
     {
         this.skillData = skillData;
-        level = 0;
+        skillData.level = 2;
         Debug.Log("여기는 BasedSkill의 Init함수 내부입니다");
         name = "SKILL " + skillData.skillName; // 오브젝트 name을 설정하는거임
         transform.parent = player.transform;
