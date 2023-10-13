@@ -18,6 +18,8 @@ public class SkillSelect : MonoBehaviour
 
     private void Awake()
     {
+        level = 0;
+
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = skillData.skillIcon;
 
@@ -58,6 +60,7 @@ public class SkillSelect : MonoBehaviour
                     skill = newSkill.AddComponent<BasedSkill>();
                     Debug.Log("선택한 스킬의 Init함수 실행");
                     skill.Init(skillData);
+                    level++;
                 }
                 else
                 {

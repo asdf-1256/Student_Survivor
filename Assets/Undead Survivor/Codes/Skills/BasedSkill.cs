@@ -46,7 +46,7 @@ public class BasedSkill : MonoBehaviour
     public void Init(SkillData skillData)
     {
         this.skillData = skillData;
-        skillData.level = 0; // 레벨 초기화
+        // skillData.level = 0; // 레벨 초기화
         Debug.Log("여기는 BasedSkill의 Init함수 내부입니다");
         name = "SKILL " + skillData.skillName; // 오브젝트 name을 설정하는거임
         transform.parent = player.transform;
@@ -87,6 +87,6 @@ public class BasedSkill : MonoBehaviour
         if (!player.scanner.nearestTarget)
             return;
         GameObject bullet = GameManager.Instance.pool.Get(prefabId);
-        bullet.GetComponent<BulletBase>().Init(skillData);
+        bullet.GetComponent<BulletBase>().Init(skillData, level);
     }
 }

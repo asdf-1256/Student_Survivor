@@ -33,8 +33,11 @@ MonoBehaviour:
   - 3
   - 6
   - 10
-  speeds: []
-  attackCoolTime: 0
+  speeds:
+  - 1
+  - 2
+  - 3
+  attackCoolTime: 0.5
   scaleFactor: 0.1
   flightTime: 2
   rotateSpeed: 200

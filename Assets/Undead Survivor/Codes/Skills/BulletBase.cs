@@ -12,9 +12,8 @@ public class BulletBase : MonoBehaviour
     public float flightTime; // 자바 : 체공 시간 = 컵이 날아가 커피로 변하기 까지의 시간
     public float rotateSpeed; // 자바 : Bullet 오브젝트가 회전하는 속도
 
-    public void Init(SkillData skillData)
+    public void Init(SkillData skillData, int level)
     {
-        int level = skillData.level;
         lifeTime = skillData.lifeTimes[level];
         damage = skillData.damages[level];
         speed = skillData.speeds[level];
