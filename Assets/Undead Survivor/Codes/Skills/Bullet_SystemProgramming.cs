@@ -3,19 +3,31 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet_SystemProgramming : MonoBehaviour
+public class Bullet_SystemProgramming : BulletBase
 {
     Rigidbody2D rigid;
     Collider2D coll;
 
-    public float duration = 5f;
-
-    public float speed = 2.0f;
     private void Awake()
     {
         coll = GetComponent<Collider2D>();
         rigid = GetComponent<Rigidbody2D>();
     }
+    private void OnEnable()
+    {
+        Vector3 playerPos = GameManager.Instance.player.transform.position;
+        Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;
+        transform.position = playerPos;
+        
+        Vector3 dir = targetPos - playerPos;
+        transform.LookAt(dir);
+
+        rigid.velocity = dir.normalized * speed;
+
+        coll.enabled = true;
+        StartCoroutine(ExtinctTimerRoutine());
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy"))
@@ -29,17 +41,11 @@ public class Bullet_SystemProgramming : MonoBehaviour
         transform.rotation = Quaternion.identity;
         transform.localPosition = new Vector3(0, 1, 0);
     }
-    private void OnEnable()
-    {
-        coll.enabled = true;
-        StartCoroutine(ExtinctTimerRoutine());
-    }
-
     //발사되고 오래 지나면 비활성화 시키는 루틴
     //CompareTag("Area") 하려고 했는데 잘 안 됐음 아마 transform.parent를 바꾸는 과정에서 Area에서 벗어나서 그런듯...
     IEnumerator ExtinctTimerRoutine()
     {
-        yield return new WaitForSeconds(duration + 10f);
+        yield return new WaitForSeconds(lifeTime + 10f);
         gameObject.SetActive(false);
     }
     private void OnDisable()

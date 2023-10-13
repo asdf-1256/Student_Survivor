@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet_Algorithm : BulletBase
 {
-
+    public float spawnDistance = 3;
     Collider2D coll;
 
     float timer;
@@ -51,7 +51,7 @@ public class Bullet_Algorithm : BulletBase
         Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
         spawnPosition = spawnPosition.normalized; // 원 위의 한 점
 
-        transform.position = GameManager.Instance.player.transform.position + spawnPosition * 3;
+        transform.position = GameManager.Instance.player.transform.position + spawnPosition * spawnDistance;
 
         StartCoroutine(RotateRoutine()); // 해당 오브젝트가 On 될 때마다 실행
     }

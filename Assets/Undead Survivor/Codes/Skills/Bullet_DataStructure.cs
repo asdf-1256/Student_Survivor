@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet_DataStructure : SkillBase
+public class Bullet_DataStructure : BulletBase
 {
     LineRenderer lineRenderer;
 

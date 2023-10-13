@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_MachhineLearning : MonoBehaviour
+public class Bullet_MachhineLearning : BulletBase
 {
-
-    public float damage;
-    public float speed;
-    public float lifeTime;
-
+    public float spawnDistance = 5;
 
     Rigidbody2D rigid;
     Scanner scanner;
@@ -22,11 +18,14 @@ public class Bullet_MachhineLearning : MonoBehaviour
         scanner = GetComponent<Scanner>();
     }
 
-    public void Init(float damage, float speed, float lifeTime)
+
+    private void OnEnable()
     {
-        this.damage = damage;
-        this.speed = speed;
-        this.lifeTime = lifeTime;
+
+        Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
+        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+
+        transform.position =GameManager.Instance.player.transform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
     }
 
     private void Update()

@@ -6,7 +6,7 @@ public class Bullet_OS : BulletBase
 {
 
     [SerializeField]
-    Sprite[] sprites; // 0:로봇 이미지, 1: 일단 커피 이미지
+    Sprite[] sprites; // 0:로봇 이미지, 1: 폭발 이미지
 
 
     Collider2D collExplosion, collOSBot; // 콜라이더들
@@ -25,6 +25,16 @@ public class Bullet_OS : BulletBase
         rigid = GetComponent<Rigidbody2D>();
         scanner = GetComponent<Scanner>();
         isExplosion = false;
+    }
+
+    private void OnEnable()
+    {
+        Vector3 playerPos = GameManager.Instance.player.transform.position;
+        Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;
+        Vector3 dir = targetPos - playerPos;
+        dir = dir.normalized;//방향 구하기
+
+        transform.position = playerPos + dir;
     }
 
     private void FixedUpdate()

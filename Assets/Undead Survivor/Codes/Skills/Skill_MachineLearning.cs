@@ -29,14 +29,11 @@ public class Skill_DeBun : MonoBehaviour
     }
     void Fire()
     {
-        Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
-        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
 
 
         Transform bullet = GameManager.Instance.pool.Get(11).transform;
 
-        bullet.position = transform.position + spawnPosition * 5; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
-        bullet.GetComponent<Bullet_MachhineLearning>().Init(damage, speed, lifeTime);
+        // bullet.GetComponent<Bullet_MachhineLearning>().Init(damage, speed, lifeTime);
 
 
         // 오디오

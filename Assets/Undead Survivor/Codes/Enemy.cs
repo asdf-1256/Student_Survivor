@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
 
         if (collision.CompareTag("Bullet")) // 일단은 기본무기 + 운체, 자바, 클라우드, 알고리즘, IoT를 담당
         {
-            health -= collision.GetComponent<A_Skill_Data>().damage; // 이건 왜 이거야
+            health -= collision.GetComponent<BulletBase>().damage; // 이건 왜 이거야
             if (health > 0)
             {
                 //.. 살았고 피격판정
@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
         {
             Bullet_SystemProgramming bullet = collision.GetComponent<Bullet_SystemProgramming>();
             if(lockCoroutine == null)
-                lockCoroutine = StartCoroutine(LockRoutine(collision.GetComponent<Bullet_SystemProgramming>().duration, () =>
+                lockCoroutine = StartCoroutine(LockRoutine(collision.GetComponent<Bullet_SystemProgramming>().lifeTime, () =>
                 {
                     lockCoroutine = null;
                     bullet.transform.parent = GameManager.Instance.pool.transform;

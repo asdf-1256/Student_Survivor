@@ -24,15 +24,7 @@ public class Skill_SystemProgramming : MonoBehaviour
         {
             return;
         }
-        Transform player = GameManager.Instance.player.transform;
-
         Transform bullet = GameManager.Instance.pool.Get(15).transform;
-        bullet.position = player.position;
-
-        Vector3 dir = target.position - player.position;
-        transform.LookAt(dir);
-
-        bullet.GetComponent<Rigidbody2D>().velocity = dir.normalized * speed;
     }
 
 }

@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_IoT : MonoBehaviour
+public class Bullet_IoT : BulletBase
 {
-    public float damage;
-    public float speed;
-    public float lifeTime;
-    public float attackCoolTime;
-    public float movePosTime; // 다음 포지션으로 변경하는 시간
+    public float spawnDistance = 5;
+    public float movePosTime = 2f; // 다음 포지션으로 변경하는 시간
 
     Rigidbody2D rigid;
     Scanner scanner;
@@ -23,14 +20,18 @@ public class Bullet_IoT : MonoBehaviour
         scanner = GetComponent<Scanner>();
     }
 
-    public void Init(float damage, float speed, float lifeTime, float attackSpeed, float movePosTime)
+    private void OnEnable()
     {
-        this.damage = damage;
-        this.speed = speed;
-        this.lifeTime = lifeTime;
-        this.attackCoolTime = attackSpeed;
-        this.movePosTime = movePosTime;
+
+        Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
+        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+
+        transform.position = GameManager.Instance.player.transform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
+
+        // 계속 플레이어 주위를 엄호하기?
+        StartCoroutine(setNextPos());
     }
+
     private void Update() // 타이머 기능
     {
         if (!GameManager.Instance.isLive)
@@ -60,13 +61,6 @@ public class Bullet_IoT : MonoBehaviour
         Vector3 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(transform.position + nextVec);
         rigid.velocity = Vector2.zero;
-    }
-
-
-    private void OnEnable()
-    {
-        // 계속 플레이어 주위를 엄호하기?
-        StartCoroutine(setNextPos());
     }
 
     IEnumerator setNextPos()

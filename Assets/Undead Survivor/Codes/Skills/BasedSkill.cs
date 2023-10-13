@@ -86,7 +86,7 @@ public class BasedSkill : MonoBehaviour
     {
         if (!player.scanner.nearestTarget)
             return;
-        GameObject bullet = GameManager.Instance.pool.Get(5); // 임시로 자바컵 생성
-        bullet.GetComponent<SkillBase>().Init(1);
+        GameObject bullet = GameManager.Instance.pool.Get(prefabId);
+        bullet.GetComponent<BulletBase>().Init(skillData);
     }
 }

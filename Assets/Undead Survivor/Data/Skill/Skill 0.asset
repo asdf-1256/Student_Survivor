@@ -25,7 +25,10 @@ MonoBehaviour:
   - 7
   - 5
   - 3
-  lifeTimes: []
+  lifeTimes:
+  - 1
+  - 2
+  - 3
   damages:
   - 3
   - 6
