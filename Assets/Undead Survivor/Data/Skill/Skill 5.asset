@@ -15,26 +15,22 @@ MonoBehaviour:
   skillType: 0
   skillID: 5
   bulletPrefabID: 4
+  level: 0
   skillName: "\uC790\uAD6C"
   skillDesc: "\uC790\uAD6C\uC790\uAD6C"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  bulletPrefab: {fileID: 269035776209164623, guid: 3ad375ac845864e4883a57933a81be57, type: 3}
   pool_index: 0
   cooltimes:
   - 7
   - 5
   - 3
-  lifeTime:
-  - 1
-  - 1
-  - 1
+  lifeTimes: []
   damages:
   - 3
   - 6
   - 10
-  speed:
-  - 1
-  - 2
-  - 3
+  speeds: []
   attackCoolTime: 0
   scaleFactor: 0.1
   flightTime: 2

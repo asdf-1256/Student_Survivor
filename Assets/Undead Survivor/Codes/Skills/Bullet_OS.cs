@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_OS : MonoBehaviour
+public class Bullet_OS : BulletBase
 {
 
     [SerializeField]
     Sprite[] sprites; // 0:로봇 이미지, 1: 일단 커피 이미지
 
-    public float lifeTime;
-    public float damage;
-    public float speed;
 
     Collider2D collExplosion, collOSBot; // 콜라이더들
     SpriteRenderer spriteRenderer;
@@ -29,15 +26,6 @@ public class Bullet_OS : MonoBehaviour
         scanner = GetComponent<Scanner>();
         isExplosion = false;
     }
-
-    public void Init(float damage, float speed, float lifeTime)
-    {
-        this.damage = damage;
-        this.speed = speed;
-        this.lifeTime = lifeTime;
-        GetComponentInParent<A_Skill_Data>().damage = damage; // 외부에서 참조하기 쉽게 따로 데미지 표시
-    }
-
 
     private void FixedUpdate()
     {

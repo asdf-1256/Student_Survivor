@@ -2,18 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Algorithm : SkillBase
+public class Bullet_Algorithm : BulletBase
 {
-    public float rotateSpeed = 100f;
-    public float lifeTime = 3f;
-    //public float damage = 10f;
-
 
     Collider2D coll;
+
     float timer;
-
-
-    private void Awake()
+        private void Awake()
     {
         coll = GetComponent<Collider2D>();
     }
