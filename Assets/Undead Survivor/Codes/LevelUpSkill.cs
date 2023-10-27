@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class LevelUpSkill : MonoBehaviour
 {
+    public float[] SkillSelectRates;
     //UI는 rect transform
     RectTransform rect;
     Item[] items;
     SkillSelect[] skillSelects;
 
+    public int[] selectedNums = new int[3];
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -36,6 +38,7 @@ public class LevelUpSkill : MonoBehaviour
     {
         skillSelects[index].OnClick();
     }
+
     void Next()
     {
         // 1. 모든 아이템 비활성화
@@ -72,5 +75,39 @@ public class LevelUpSkill : MonoBehaviour
             }
         }
 
+    }
+    int SelectSkill(int ignoreCount) // 이미 선택된 스킬 개수를 ignoreCount로 주입
+    {
+        int index;
+        float AllSkillRange = 0;
+
+        // 
+        for (int i=0; i<SkillSelectRates.Length; i++)
+        {
+            AllSkillRange += SkillSelectRates[i];
+        }
+        for (int i=0; i<ignoreCount; i++)
+        {
+            AllSkillRange -= selectedNums[i];
+        }
+
+        float randomFloat = Random.Range(0f, AllSkillRange);
+
+        for (index=0; index<SkillSelectRates.Length; index++)
+        {
+            for (int i=0; i<ignoreCount; i++)
+            {
+                if (index == selectedNums[i])
+                {
+                    // 아직 덜만듦
+                }
+            }
+            randomFloat -= SkillSelectRates[index];
+            if (randomFloat < 0)
+            {
+                return index;
+            }
+        }
+        return index;
     }
 }

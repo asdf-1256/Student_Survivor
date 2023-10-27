@@ -87,6 +87,6 @@ public class BasedSkill : MonoBehaviour
         if (!player.scanner.nearestTarget)
             return;
         GameObject bullet = GameManager.Instance.pool.Get(prefabId);
-        bullet.GetComponent<BulletBase>().Init(skillData, level);
+        bullet.GetComponent<BulletBase>().Init(skillData, level); // 새로 호출되거나 레벨업 시에만 유의미함
     }
 }

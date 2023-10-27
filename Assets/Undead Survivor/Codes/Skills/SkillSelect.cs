@@ -34,7 +34,7 @@ public class SkillSelect : MonoBehaviour
 
     private void OnEnable()
     {
-        textLevel.text = "Lv." + (level + 1);
+        textLevel.text = "Lv." + (level);
 
         switch (skillData.skillType)
         {
@@ -65,6 +65,7 @@ public class SkillSelect : MonoBehaviour
                 else
                 {
                     skill.LevelUp();
+                    level++;
                 }
                 break;
             /*case SkillData.SkillType.±³¾ç:
