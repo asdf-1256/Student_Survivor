@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2631925169112403449}
   - component: {fileID: 5815262495934349121}
   - component: {fileID: 7354282558089106744}
+  - component: {fileID: -8189074090273090021}
   m_Layer: 0
   m_Name: Bullet_Python
   m_TagString: Bullet
@@ -130,3 +131,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3888889, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-8189074090273090021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379763508112298106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d48a80f3fdd9ba4caf62ebb62846406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 0
+  damage: 0
+  speed: 0
+  count: 0
+  attackCoolTime: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0

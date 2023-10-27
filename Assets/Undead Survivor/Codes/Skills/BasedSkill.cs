@@ -47,7 +47,6 @@ public class BasedSkill : MonoBehaviour
     {
         this.skillData = skillData;
         // skillData.level = 0; // 레벨 초기화
-        Debug.Log("여기는 BasedSkill의 Init함수 내부입니다");
         name = "SKILL " + skillData.skillName; // 오브젝트 name을 설정하는거임
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero;

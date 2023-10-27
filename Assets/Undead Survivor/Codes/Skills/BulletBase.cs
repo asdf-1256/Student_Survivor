@@ -24,4 +24,13 @@ public class BulletBase : MonoBehaviour
         flightTime = skillData.flightTime;
         rotateSpeed = skillData.rotateSpeed;
     }
+
+    public float getDamage()
+    {
+        return damage;
+    }
+    public void putDamage(float damage)
+    {
+        this.damage = damage;
+    }
 }

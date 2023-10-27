@@ -67,21 +67,21 @@ public class SkillSelect : MonoBehaviour
                     level++;
                 }
                 break;
-            /*case SkillData.SkillType.교양:
-                if (level == 0)
-                {
-                    GameObject newGear = new GameObject();
-                    gear = newGear.AddComponent<Gear>();
-                    gear.Init(skillData);
-                }
-                else
-                {
-                    float nextRate = skillData.damages[level];
-                    gear.LevelUp(nextRate);
+                /*case SkillData.SkillType.교양:
+                    if (level == 0)
+                    {
+                        GameObject newGear = new GameObject();
+                        gear = newGear.AddComponent<Gear>();
+                        gear.Init(skillData);
+                    }
+                    else
+                    {
+                        float nextRate = skillData.damages[level];
+                        gear.LevelUp(nextRate);
 
-                }
-                level++;
-                break;*/
+                    }
+                    level++;
+                    break;*/
         }
         if (level == skillData.damages.Length)
         {

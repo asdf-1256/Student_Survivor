@@ -37,6 +37,10 @@ MonoBehaviour:
   - 1
   - 2
   - 3
+  counts:
+  - 1
+  - 1
+  - 1
   attackCoolTime: 0.5
   scaleFactor: 0.1
   flightTime: 2
