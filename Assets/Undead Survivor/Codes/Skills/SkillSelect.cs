@@ -58,7 +58,6 @@ public class SkillSelect : MonoBehaviour
                 {
                     GameObject newSkill = new GameObject();
                     skill = newSkill.AddComponent<BasedSkill>();
-                    Debug.Log("선택한 스킬의 Init함수 실행");
                     skill.Init(skillData);
                     level++;
                 }

@@ -25,7 +25,7 @@ public class BasedSkill : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer > skillData.cooltimes[skillData.level])
+        if (timer > skillData.cooltimes[level])
         {
             timer = 0f;
             Fire();

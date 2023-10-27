@@ -20,6 +20,7 @@ public class Bullet_C_Language : BulletBase
         Vector3 dir = targetPos - player.transform.position;
         dir = dir.normalized;//방향 구하기
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        rigid.velocity = dir * speed;
     }
 
 
