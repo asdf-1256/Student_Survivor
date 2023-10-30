@@ -22,13 +22,13 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1155342979010886728, guid: 401b32686349da649bfd22014119050d, type: 3}
   pool_index: 0
   cooltimes:
-  - 7
-  - 5
-  - 3
-  lifeTimes:
-  - 7
-  - 8
+  - 10
   - 9
+  - 8
+  lifeTimes:
+  - 5
+  - 6
+  - 7
   damages:
   - 3
   - 6
