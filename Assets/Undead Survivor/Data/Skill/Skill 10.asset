@@ -26,9 +26,9 @@ MonoBehaviour:
   - 5
   - 3
   lifeTimes:
-  - 1
-  - 2
-  - 3
+  - 5
+  - 7
+  - 9
   damages:
   - 3
   - 6
