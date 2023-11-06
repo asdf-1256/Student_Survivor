@@ -8,6 +8,13 @@ public class Bullet_Grapics : BulletBase
 
     GameObject selectedPolygon;
 
+    private void Awake()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(false);
+    }
     private void OnEnable()
     {
 
