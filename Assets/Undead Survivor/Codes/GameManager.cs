@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int kill;
     public int exp;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
-    public int money;
+    //public int money;
 
     [Header("# Game Object")]
     public PoolManager pool;
@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameRetry()
     {
+        DataManager.Instance.Save();
         SceneManager.LoadScene(0); // build setting¿¡ scene ¹øÈ£
     }
 
