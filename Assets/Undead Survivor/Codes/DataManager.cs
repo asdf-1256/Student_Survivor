@@ -8,7 +8,7 @@ public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
     public int money = 0; //돈
-    public int selectedCharacterId = 0; //선택된 캐릭터
+    public int selectedCharacterId = 0; //현재 선택된 캐릭터
     public bool[] isUnlockCharacters = new bool[4]; //캐릭터가 해금된 상태인지 여부
     public static DataManager Instance //이 클래스의 instance를 받아올 수 있는 속성 - 게임매니저쓸 때랑 똑같이 쓰면 됨.
     {
@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
         Init(); //초기화를 수행한다.
         DontDestroyOnLoad(gameObject);//게임을 재시작하여 LoadScene이 호출되어도 이 오브젝트는 파괴되지 않는다.
     }
-    private void Init()
+    private void Init()//초기화 함수 - 기기에 저장된 데이터를 불러와 멤버 변수들을 초기화한다.
     {
         if (!PlayerPrefs.HasKey("UserData"))
             Save();
@@ -50,7 +50,10 @@ public class DataManager : MonoBehaviour
             PlayerPrefs.SetInt(string.Format("isUnlockCharacter{0}", i), Convert.ToInt32(isUnlockCharacters[i]));
         }
     }
-    public void UnlockCharacter(int id, int price)//캐릭터 해금 함수.
+
+    //UnlockCharacter, CheckMoney 는 아직 테스트 못 함. 미래를 위해 만들어둔 메소드
+
+    public void UnlockCharacter(int id, int price)//캐릭터 해금 메소드
     {
         if(!CheckMoney(price))//돈 양을 검사한다.
             return;
@@ -60,7 +63,7 @@ public class DataManager : MonoBehaviour
 
         Save();//저장한다.
     }
-    public bool CheckMoney(int price)//돈이 모자라지 않는지 검사한다. 돈 충분 - true, 돈 안 충분 - false. 
+    public bool CheckMoney(int price)//돈이 모자라지 않는지 검사하는 메소드. return value = if 돈 충분 - true, else 돈 안 충분 - false. 
     {
         return money > price;
     }

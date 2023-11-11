@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Bullet_DataBase : BulletBase
 {
-    GameObject blackhole;
-    Rigidbody2D rigid;
+    GameObject blackhole; //자식 오브젝트
+    Rigidbody2D rigid; //본인 Rigidbody2D
 
     float timer = 0;
     private void Awake()
@@ -13,7 +13,7 @@ public class Bullet_DataBase : BulletBase
         blackhole = transform.GetChild(0).gameObject;
         rigid = GetComponent<Rigidbody2D>();
     }
-    private void Start()
+    private void Start() //OnEnable에서만 위치를 조정하니까 오브젝트가 처음 생성될 때만 Rigidbody2D의 velocity가 (0,0)이 되는 오류가 있어서 Start함수도 호출
     {
         transform.position = GameManager.Instance.player.transform.position;
         Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;
@@ -23,7 +23,7 @@ public class Bullet_DataBase : BulletBase
         rigid.velocity = Vector3.zero;
         rigid.velocity = dir * speed;
     }
-    private void Update()
+    private void Update() //타이머
     {
         timer += Time.deltaTime;
 
@@ -33,8 +33,7 @@ public class Bullet_DataBase : BulletBase
             gameObject.SetActive(false);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //적과 충돌 감지 - 블랙홀 활성화
     {
         if (!collision.CompareTag("Enemy"))
             return;
@@ -42,7 +41,7 @@ public class Bullet_DataBase : BulletBase
         transform.rotation = Quaternion.identity;
         blackhole.SetActive(true);
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision) //플레이어 주변에서 멀어질 경우 총알을 비활성화, 블랙홀이 활성화된 상태라면 이 작업은 무시
     {
         if (!collision.CompareTag("Area"))
             return;
@@ -51,7 +50,7 @@ public class Bullet_DataBase : BulletBase
             return;
         gameObject.SetActive(false);
     }
-    private void OnEnable()
+    private void OnEnable() //발사 로직
     {
         transform.position = GameManager.Instance.player.transform.position;
         Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;
@@ -61,7 +60,7 @@ public class Bullet_DataBase : BulletBase
         rigid.velocity = Vector3.zero;
         rigid.velocity = dir * speed;
     }
-    private void OnDisable()
+    private void OnDisable() //블랙홀 끄기
     {
         blackhole.SetActive(false);
     }
