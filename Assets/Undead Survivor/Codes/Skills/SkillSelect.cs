@@ -119,10 +119,10 @@ public class SkillSelect : MonoBehaviour
                 }
                 break;
             case SkillData.GEType.AttackCoolDownReduction:
-
+                GameManager.Instance.player.attackSkillCoolDownRate = skillData.damages[level];
                 break;
             case SkillData.GEType.SpawnCoolDownReduction:
-
+                GameManager.Instance.player.spawnSkillCoolDownRate = skillData.damages[level];
                 break;
         }
         level++;

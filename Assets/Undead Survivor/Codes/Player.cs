@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
 
     public SkillManager skillManager;
 
+
+    public float spawnSkillCoolDownRate = 1f;
+    public float attackSkillCoolDownRate = 1f;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
