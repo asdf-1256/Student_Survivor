@@ -19,9 +19,14 @@ public class SkillData : ScriptableObject
     public string skillDesc;
     public Sprite skillIcon;
 
+    [Header("# Major Subject Skill Info")]
     public GameObject bulletPrefab;
     public int pool_index;
 
+    public enum GEType { Speed, Size, MagnetSize, Attack, Defense, EXP, MaxHealth, Recovery, AttackCoolDownReduction, SpawnCoolDownReduction }
+
+    [Header("# General Elective Subject Skill Info ")]
+    public GEType getype;
 
     [Header("# Level Data")]
     public float[] cooltimes;

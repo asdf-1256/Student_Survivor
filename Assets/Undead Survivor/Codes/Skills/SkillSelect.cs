@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,25 +68,63 @@ public class SkillSelect : MonoBehaviour
                     level++;
                 }
                 break;
-                /*case SkillData.SkillType.교양:
-                    if (level == 0)
-                    {
-                        GameObject newGear = new GameObject();
-                        gear = newGear.AddComponent<Gear>();
-                        gear.Init(skillData);
-                    }
-                    else
-                    {
-                        float nextRate = skillData.damages[level];
-                        gear.LevelUp(nextRate);
-
-                    }
-                    level++;
-                    break;*/
+                case SkillData.SkillType.교양:
+                GEActive();
+                break;
         }
         if (level == skillData.damages.Length)
         {
             GetComponent<Button>().interactable = false;
         }
+    }
+
+    private void GEActive()
+    {
+        switch (skillData.getype)
+        {
+            case SkillData.GEType.Speed:
+                GameManager.Instance.player.speedRate *= skillData.damages[level];
+                break;
+            case SkillData.GEType.Size:
+                GameManager.Instance.player.transform.localScale = Vector3.one * skillData.damages[level];
+                break;
+            case SkillData.GEType.MagnetSize:
+                GameManager.Instance.player.GetComponentInChildren<Magnet>().MagneticRate *= skillData.damages[level];
+                break;
+            case SkillData.GEType.Attack:
+                GameManager.Instance.player.attackRate *= skillData.damages[level];
+                break;
+            case SkillData.GEType.Defense:
+                GameManager.Instance.player.defenseRate *= skillData.damages[level];
+                break;
+            case SkillData.GEType.EXP:
+                GameManager.Instance.expRate *= skillData.damages[level];
+                break;
+            case SkillData.GEType.MaxHealth:
+                GameManager.Instance.maxHealth += skillData.damages[level];
+                GameManager.Instance.GetHealth(Convert.ToInt32(skillData.damages[level]));
+                break;
+            case SkillData.GEType.Recovery:
+                if (level == 0)
+                {
+                    GameObject newSkill = new GameObject();
+                    skill = newSkill.AddComponent<BasedSkill>();
+                    skill.Init(skillData);
+                    level++;
+                }
+                else
+                {
+                    skill.LevelUp();
+                    level++;
+                }
+                break;
+            case SkillData.GEType.AttackCoolDownReduction:
+
+                break;
+            case SkillData.GEType.SpawnCoolDownReduction:
+
+                break;
+        }
+        level++;
     }
 }

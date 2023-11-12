@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,7 +29,10 @@ public class BasedSkill : MonoBehaviour
         if (timer > skillData.cooltimes[level])
         {
             timer = 0f;
-            Fire();
+            if(skillData.skillType == SkillData.SkillType.전공)
+                Fire();
+            else if (skillData.getype == SkillData.GEType.Recovery)
+                GameManager.Instance.GetHealth(Convert.ToInt32(skillData.damages[level]));
         }
     }
 
@@ -51,14 +55,15 @@ public class BasedSkill : MonoBehaviour
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero;
 
-        for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++)
-        {
-            if (skillData.bulletPrefab == GameManager.Instance.pool.prefabs[index])
+        if (skillData.skillType == SkillData.SkillType.전공)
+            for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++)
             {
-                prefabId = index;
-                break;
+                if (skillData.bulletPrefab == GameManager.Instance.pool.prefabs[index])
+                {
+                    prefabId = index;
+                    break;
+                }
             }
-        }
 
         /*switch (id)
         {

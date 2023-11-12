@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int exp;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
     //public int money;
+    public float expRate = 1.0f;
 
     [Header("# Game Object")]
     public PoolManager pool;
@@ -130,12 +132,14 @@ public class GameManager : MonoBehaviour
     {
         if (!isLive)
             return;
+        if(expRate != 1.0f) //경험치 증가 교양스킬이 추가되면 이 부분이 실행됨. - 실수값을 곱해서 반올림한 정수형
+            e = Convert.ToInt32(expRate * e);
         exp += e;
         int nextexp = nextExp[Mathf.Min(level, nextExp.Length - 1)]; //index bound error 안 나오도록
         if (exp >= nextexp)
         {
             level++;
-            exp = exp - nextexp;
+            exp -= nextexp;
             uiLevelUpSkill.Show();
         }
     }
