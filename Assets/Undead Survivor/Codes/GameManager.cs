@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [Header("# Game Object")]
     public PoolManager pool;
     public Player player;
+    public AI_Player ai_Player;
     public LevelUp uiLevelUp;
     public LevelUpSkill uiLevelUpSkill; // 임시 추가
     public Result uiResult;

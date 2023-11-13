@@ -20,12 +20,15 @@ public class Skill_Python : BulletBase
             }
         }
     }
-    private void OnEnable()
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
-        transform.parent = GameManager.Instance.player.transform; // 부모를 pool에서 player로 바꾸기
+        base.Init(isAI, skillData, level);
+
+        transform.parent = playerTransform; // 부모를 pool에서 player로 바꾸기
         transform.localPosition = Vector3.zero;
 
         Arrange();
+
     }
 
     private void Update()

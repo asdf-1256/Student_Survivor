@@ -25,8 +25,9 @@ public class Bullet_JAVA : BulletBase
         CupObject = transform.GetChild(1).gameObject; // 1번째 자식 갖고 옴 = 자바컵
     }
 
-    private void OnEnable()
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
+        base.Init(isAI, skillData, level);
 
         StartCoroutine(CurveRoutine()); //PoolManager에서 Get해오면 바로 컵이 날아가도록한다.
     }
@@ -34,9 +35,9 @@ public class Bullet_JAVA : BulletBase
     {
         float time = 0.0f;
         // target = GameManager.Instance.player.scanner.nearestTarget;
-        target = GameManager.Instance.player.scanner.GetRandomTarget(); // 랜덤한 적을 타겟으로
+        target = playerTransform.GetComponent<Scanner>().GetRandomTarget(); // 랜덤한 적을 타겟으로
 
-        Vector3 start = GameManager.Instance.player.transform.position;
+        Vector3 start = playerTransform.position;
         Vector3 end = target.transform.position;
 
         transform.position = start;

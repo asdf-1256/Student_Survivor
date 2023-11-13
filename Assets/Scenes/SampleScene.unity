@@ -7535,6 +7535,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: 84ea29cb809212742b7a300350972d9d, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &221412408
 MonoBehaviour:
@@ -8206,6 +8207,7 @@ MonoBehaviour:
   expRate: 1
   pool: {fileID: 344728782}
   player: {fileID: 731594822}
+  ai_Player: {fileID: 1807414842}
   uiLevelUp: {fileID: 0}
   uiLevelUpSkill: {fileID: 1039649994}
   uiResult: {fileID: 833415375}
@@ -13326,6 +13328,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: 820b9585dcaa9f34783766047707bfc8, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &403286791
 MonoBehaviour:
@@ -13994,6 +13997,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: 6abc95f87e278bb4f9287127e710c307, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &488301338
 MonoBehaviour:
@@ -20106,6 +20110,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooltime: 5
   timer: 5
+--- !u!1001 &622134585
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.9834661
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.7380197
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447392023661930757, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242732053339692270, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_Name
+      value: AI_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242732053339692270, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
 --- !u!1 &639177759
 GameObject:
   m_ObjectHideFlags: 0
@@ -21223,6 +21288,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: 603dfa3f5860c694ebda339c39736a40, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!1 &752075536
 GameObject:
@@ -21436,6 +21502,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: ba6e765064b762146986ed3dc0373f7e, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &767204576
 MonoBehaviour:
@@ -26233,6 +26300,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: e0d756b35bec64940993afa78b2b1344, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &1371515423
 MonoBehaviour:
@@ -27106,6 +27174,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: 0a414fc2065a1e24a8a998aa1285a849, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &1451565923
 MonoBehaviour:
@@ -27891,6 +27960,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: 04f22e0c16c1b524eb6f62194d73bab6, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &1582873110
 MonoBehaviour:
@@ -29189,6 +29259,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: 22415877f0ff15a4797f39720c1baf34, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &1678648737
 MonoBehaviour:
@@ -29591,6 +29662,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: e5bf4b36365d1ca4889a9311a4da7dcd, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &1752416137
 MonoBehaviour:
@@ -30089,6 +30161,17 @@ MonoBehaviour:
   flightTime: 0
   rotateSpeed: 0
   attackCoolTime: 0.5
+--- !u!114 &1807414842 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 358657708645730685, guid: 68e2104cfb3612145ad1dc1bc121b01d, type: 3}
+  m_PrefabInstance: {fileID: 622134585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0a5e89c120aea468947927afc7dd24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1813470864
 GameObject:
   m_ObjectHideFlags: 0
@@ -35810,6 +35893,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: ff539b3e410678c46a1a7ab29c8a3ce8, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &2020980061
 MonoBehaviour:
@@ -35975,6 +36059,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: 3009809f7ec7da443b303aa8b678b1ec, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &2046272505
 MonoBehaviour:
@@ -36622,6 +36707,7 @@ MonoBehaviour:
   skillData: {fileID: 11400000, guid: ff8adb6699e04884cb97cff18dfc0046, type: 2}
   level: 0
   skill: {fileID: 0}
+  AIskill: {fileID: 0}
   gear: {fileID: 0}
 --- !u!114 &2078677273
 MonoBehaviour:
@@ -37705,3 +37791,4 @@ SceneRoots:
   - {fileID: 343345485}
   - {fileID: 57589813}
   - {fileID: 1648422928}
+  - {fileID: 622134585}

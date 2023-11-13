@@ -13,7 +13,9 @@ public class BulletBase : MonoBehaviour
     public float flightTime; // 자바 : 체공 시간 = 컵이 날아가 커피로 변하기 까지의 시간
     public float rotateSpeed; // 자바 : Bullet 오브젝트가 회전하는 속도
 
-    public void Init(SkillData skillData, int level)
+    public Transform playerTransform;
+
+    public virtual void Init(bool isAI, SkillData skillData, int level)
     {
         lifeTime = skillData.lifeTimes[level];
         damage = skillData.damages[level];
@@ -23,6 +25,15 @@ public class BulletBase : MonoBehaviour
         scaleFactor = skillData.scaleFactor;
         flightTime = skillData.flightTime;
         rotateSpeed = skillData.rotateSpeed;
+
+        if (isAI)
+        {
+            playerTransform = GameManager.Instance.ai_Player.transform;
+        }
+        else
+        {
+            playerTransform = GameManager.Instance.player.transform;
+        }
     }
 
     public float getDamage()

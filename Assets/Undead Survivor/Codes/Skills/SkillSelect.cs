@@ -9,7 +9,7 @@ public class SkillSelect : MonoBehaviour
     // 전 버전 item 스트립트
     public SkillData skillData;
     public int level;
-    public BasedSkill skill; // 전 버전 weapon
+    public BasedSkill skill, AIskill; // 전 버전 weapon
     public Gear gear;
 
     Image icon;
@@ -58,13 +58,18 @@ public class SkillSelect : MonoBehaviour
                 if (level == 0)
                 {
                     GameObject newSkill = new GameObject();
+                    GameObject newAISkill = new GameObject();
                     skill = newSkill.AddComponent<BasedSkill>();
-                    skill.Init(skillData);
+                    AIskill = newSkill.AddComponent<BasedSkill>();
+
+                    skill.Init(false, skillData);
+                    AIskill.Init(true, skillData);
                     level++;
                 }
                 else
                 {
                     skill.LevelUp();
+                    AIskill.LevelUp();
                     level++;
                 }
                 break;

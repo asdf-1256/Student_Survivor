@@ -12,10 +12,13 @@ public class Bullet_ComNeSil : BulletBase
         rigid = GetComponent<Rigidbody2D>();
         InvokeRepeating("ScaleUp", 0.1f, 0.1f);  // 0.1f초마다 함수 실행, 얘는 비활성화 상태에서도 계속 반복함
     }
-    private void OnEnable()
+
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
-        Vector3 playerPos = GameManager.Instance.player.transform.position;
-        Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;
+        base.Init(isAI, skillData, level);
+
+        Vector3 playerPos = playerTransform.position;
+        Vector3 targetPos = playerTransform.GetComponent<Scanner>().nearestTarget.position;
         Vector3 dir = targetPos - playerPos;
         dir = dir.normalized;//방향 구하기
 
@@ -24,7 +27,6 @@ public class Bullet_ComNeSil : BulletBase
 
         rigid.velocity = dir * speed;
     }
-
 
 
     private void Update() // 총알 하나하나에 타이머

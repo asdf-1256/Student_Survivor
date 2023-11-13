@@ -13,6 +13,19 @@ public class Bullet_Algorithm : BulletBase
         coll = GetComponent<Collider2D>();
     }
 
+    public override void Init(bool isAI, SkillData skillData, int level)
+    {
+        base.Init(isAI, skillData, level);
+
+
+        Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
+        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+        spawnPosition = spawnPosition.normalized; // 원 위의 한 점
+
+        transform.position = playerTransform.position + spawnPosition * spawnDistance;
+
+        StartCoroutine(RotateRoutine()); // 해당 오브젝트가 On 될 때마다 실행
+    }
 
     IEnumerator RotateRoutine()
     {
@@ -45,16 +58,6 @@ public class Bullet_Algorithm : BulletBase
         done.Invoke(); // 이후 비활성화 함수 호출
     }
 
-    private void OnEnable()
-    {
-        Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
-        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
-        spawnPosition = spawnPosition.normalized; // 원 위의 한 점
-
-        transform.position = GameManager.Instance.player.transform.position + spawnPosition * spawnDistance;
-
-        StartCoroutine(RotateRoutine()); // 해당 오브젝트가 On 될 때마다 실행
-    }
     private void OnDisable()
     {
         coll.enabled = false;

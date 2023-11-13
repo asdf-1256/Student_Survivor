@@ -16,9 +16,11 @@ public class BasedSkill : MonoBehaviour
 
     Player player;
     float timer;
+    bool isAI;
     private void Awake()
     {
         player = GameManager.Instance.player;
+        timer = 999;
     }
     void Update()
     {
@@ -46,12 +48,20 @@ public class BasedSkill : MonoBehaviour
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
         player.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
     }
-    public void Init(SkillData skillData)
+    public void Init(bool isAI, SkillData skillData)
     {
+        this.isAI = isAI;
         this.skillData = skillData;
         // skillData.level = 0; // 레벨 초기화
         name = "SKILL " + skillData.skillName; // 오브젝트 name을 설정하는거임
-        transform.parent = player.transform;
+        if (isAI)
+        {
+            transform.parent = GameManager.Instance.ai_Player.transform;
+        }
+        else
+        {
+            transform.parent = player.transform;
+        }
         transform.localPosition = Vector3.zero;
         coolTime = skillData.cooltimes[0];
 
@@ -92,7 +102,7 @@ public class BasedSkill : MonoBehaviour
         if (!player.scanner.nearestTarget)
             return;
         GameObject bullet = GameManager.Instance.pool.Get(prefabId);
-        bullet.GetComponent<BulletBase>().Init(skillData, level); // 새로 호출되거나 레벨업 시에만 유의미함
+        bullet.GetComponent<BulletBase>().Init(isAI, skillData, level); // 새로 호출되거나 레벨업 시에만 유의미함
     }
 
     void ApplyCooldown()
