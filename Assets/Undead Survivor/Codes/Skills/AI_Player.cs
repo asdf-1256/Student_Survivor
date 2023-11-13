@@ -23,6 +23,8 @@ public class AI_Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameManager.Instance.isLive)
+            return;
         if (Mathf.Abs(rigid.position.x - playerRigid.position.x) > playerDistance
             || Mathf.Abs(rigid.position.y - playerRigid.position.y) > playerDistance)
         {

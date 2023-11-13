@@ -22,6 +22,16 @@ public class Bullet_Cloud : BulletBase
         laptop = transform.GetChild(2).gameObject; // 랩탑 오브젝트 가져오기
     }
 
+    public override void Init(bool isAI, SkillData skillData, int level)
+    {
+        base.Init(isAI, skillData, level);
+
+        Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
+        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+
+        transform.position = playerTransform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
+        StartCoroutine(DropRoutine());
+    }
 
     private void Update() // 타이머 기능
     {
@@ -50,15 +60,6 @@ public class Bullet_Cloud : BulletBase
         rigid.velocity = Vector2.zero;
     }
 
-    private void OnEnable()
-    {
-
-        Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
-        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
-
-        transform.position =GameManager.Instance.player.transform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
-        StartCoroutine(DropRoutine());
-    }
 
     IEnumerator DropRoutine()
     {

@@ -18,14 +18,17 @@ public class Bullet_MachhineLearning : BulletBase
         scanner = GetComponent<Scanner>();
     }
 
-
-    private void OnEnable()
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
+        base.Init(isAI, skillData, level);
+
+
+        Vector3 playerPos = playerTransform.position;
 
         Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
         Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
 
-        transform.position =GameManager.Instance.player.transform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
+        transform.position = playerPos + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
     }
 
     private void Update()

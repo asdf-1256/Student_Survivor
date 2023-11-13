@@ -5,19 +5,19 @@ using UnityEngine;
 public class Bullet_C_Language : BulletBase
 {
     Rigidbody2D rigid;
-    Player player;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        player = GameManager.Instance.player;
     }
 
-    private void OnEnable()
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
-        transform.position = player.transform.position;
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Vector3 dir = targetPos - player.transform.position;
+        base.Init(isAI, skillData, level);
+        Debug.Log("C언어 Init 실행됨!!");
+        transform.position = playerTransform.position;
+        Vector3 targetPos = playerTransform.GetComponent<Scanner>().nearestTarget.position;
+        Vector3 dir = targetPos - playerTransform.position;
         dir = dir.normalized;//방향 구하기
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         rigid.velocity = dir * speed;

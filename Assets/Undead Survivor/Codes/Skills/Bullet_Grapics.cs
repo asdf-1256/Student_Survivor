@@ -15,14 +15,16 @@ public class Bullet_Grapics : BulletBase
         transform.GetChild(2).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(false);
     }
-    private void OnEnable()
+
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
+        base.Init(isAI, skillData, level);
 
         Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
         Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
 
 
-        transform.position = GameManager.Instance.player.transform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 10인 원 내의 한 점
+        transform.position = playerTransform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 10인 원 내의 한 점
         // transform.rotation = Random.rotation; // 랜덤 회전
 
         int selectedChildNum = Random.Range(0, 4); // 0~4 중 자식 한 명 선택함

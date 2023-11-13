@@ -19,18 +19,19 @@ public class Bullet_IoT : BulletBase
         rigid = GetComponent<Rigidbody2D>();
         scanner = GetComponent<Scanner>();
     }
-
-    private void OnEnable()
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
+        base.Init(isAI, skillData, level);
 
         Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
         Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
 
-        transform.position = GameManager.Instance.player.transform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
+        transform.position = playerTransform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
 
         // 계속 플레이어 주위를 엄호하기?
         StartCoroutine(setNextPos());
     }
+
 
     private void Update() // 타이머 기능
     {

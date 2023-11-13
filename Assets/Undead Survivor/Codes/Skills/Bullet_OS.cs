@@ -27,15 +27,19 @@ public class Bullet_OS : BulletBase
         isExplosion = false;
     }
 
-    private void OnEnable()
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
-        Vector3 playerPos = GameManager.Instance.player.transform.position;
-        Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;
+        base.Init(isAI, skillData, level);
+
+        Vector3 playerPos = playerTransform.position;
+        Vector3 targetPos = playerTransform.GetComponent<Scanner>().nearestTarget.position;
+
         Vector3 dir = targetPos - playerPos;
         dir = dir.normalized;//방향 구하기
 
         transform.position = playerPos + dir;
     }
+
 
     private void FixedUpdate()
     {
