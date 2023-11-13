@@ -60,7 +60,7 @@ public class SkillSelect : MonoBehaviour
                     GameObject newSkill = new GameObject();
                     GameObject newAISkill = new GameObject();
                     skill = newSkill.AddComponent<BasedSkill>();
-                    AIskill = newSkill.AddComponent<BasedSkill>();
+                    AIskill = newAISkill.AddComponent<BasedSkill>();
 
                     skill.Init(false, skillData);
                     AIskill.Init(true, skillData);
@@ -115,7 +115,7 @@ public class SkillSelect : MonoBehaviour
                 {
                     GameObject newSkill = new GameObject();
                     skill = newSkill.AddComponent<BasedSkill>();
-                    skill.Init(skillData);
+                    skill.Init(false, skillData);
                 }
                 else
                 {
