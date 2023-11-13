@@ -86,7 +86,8 @@ public class SkillSelect : MonoBehaviour
                 GameManager.Instance.player.speedRate *= skillData.damages[level];
                 break;
             case SkillData.GEType.Size:
-                GameManager.Instance.player.transform.localScale = Vector3.one * skillData.damages[level];
+                //GameManager.Instance.player.transform.localScale = Vector3.one * skillData.damages[level];
+                GameManager.Instance.player.Scale = Vector3.one * skillData.damages[level];
                 break;
             case SkillData.GEType.MagnetSize:
                 GameManager.Instance.player.GetComponentInChildren<Magnet>().MagneticRate *= skillData.damages[level];
@@ -102,7 +103,7 @@ public class SkillSelect : MonoBehaviour
                 break;
             case SkillData.GEType.MaxHealth:
                 GameManager.Instance.maxHealth += skillData.damages[level];
-                GameManager.Instance.GetHealth(Convert.ToInt32(skillData.damages[level]));
+                GameManager.Instance.health += Convert.ToInt32(skillData.damages[level]);
                 break;
             case SkillData.GEType.Recovery:
                 if (level == 0)
@@ -110,19 +111,19 @@ public class SkillSelect : MonoBehaviour
                     GameObject newSkill = new GameObject();
                     skill = newSkill.AddComponent<BasedSkill>();
                     skill.Init(skillData);
-                    level++;
                 }
                 else
                 {
                     skill.LevelUp();
-                    level++;
                 }
                 break;
             case SkillData.GEType.AttackCoolDownReduction:
                 GameManager.Instance.player.attackSkillCoolDownRate = skillData.damages[level];
+                GameManager.Instance.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
                 break;
             case SkillData.GEType.SpawnCoolDownReduction:
                 GameManager.Instance.player.spawnSkillCoolDownRate = skillData.damages[level];
+                GameManager.Instance.player.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
                 break;
         }
         level++;

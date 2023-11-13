@@ -97,8 +97,8 @@ public class BasedSkill : MonoBehaviour
 
     void ApplyCooldown()
     {
-        int[] spawnSkillId = { };
-        int[] attackSkillId = { };//음... 스킬 데이터에 enum 한 칸 또 넣고싶어지는 코드다
+        int[] spawnSkillId = { 3, 6, 7, 8 };
+        int[] attackSkillId = { 0, 1, 2, 5, 10, 11, 12, 13 };//음... 스킬 데이터에 enum 한 칸 또 넣고싶어지는 코드다
 
         if (spawnSkillId.Contains(skillData.skillID))
             coolTime = skillData.cooltimes[level] * GameManager.Instance.player.spawnSkillCoolDownRate;
