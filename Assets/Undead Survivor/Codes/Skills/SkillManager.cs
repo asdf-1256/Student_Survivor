@@ -40,7 +40,7 @@ public class SkillManager : MonoBehaviour
     {
         foreach (Skill skill in skillList)
         {
-            if(skill.data.id == skillId)
+            if(skill.data.skillID == skillId)
             {
                 skill.LevelUp();
             }

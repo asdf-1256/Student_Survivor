@@ -29,40 +29,6 @@ public class Skill_JAVA : MonoBehaviour
             timer = 0f;
             Fire();
         }
-        /*if (!GameManager.Instance.isLive)
-            return;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(string.Format("space바 {0}번째 눌림", space_count));
-            switch (space_count)
-            {
-                case 0:
-                    GameManager.Instance.player.skillManager.AddSkill(0);
-                    break;
-                case 1:
-                    GameManager.Instance.player.skillManager.LevelUp(0);
-                    break;
-                case 2:
-                    GameManager.Instance.player.skillManager.LevelUp(0);
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    GameManager.Instance.player.skillManager.AddSkill(1);
-                    break;
-                case 5:
-                    GameManager.Instance.player.skillManager.LevelUp(1);
-                    break;
-                case 6:
-                    GameManager.Instance.player.skillManager.LevelUp(1);
-                    break;
-                case 7:
-                    break;
-            }
-            space_count++;
-
-        }*/
-
 
     }
     void Fire()

@@ -2,18 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Grapics : MonoBehaviour
+public class Bullet_Grapics : BulletBase
 {
-    public float lifeTime;
+    public float spawnDistance = 10;
 
     GameObject selectedPolygon;
 
-    public void Init(float lifeTime)
+    private void Awake()
     {
-        this.lifeTime = lifeTime;
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(false);
     }
-    private void OnEnable()
+
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
+        base.Init(isAI, skillData, level);
+
+        Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
+        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+
+
+        transform.position = playerTransform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 10인 원 내의 한 점
+        // transform.rotation = Random.rotation; // 랜덤 회전
+
         int selectedChildNum = Random.Range(0, 4); // 0~4 중 자식 한 명 선택함
         selectedPolygon = transform.GetChild(selectedChildNum).gameObject;
         selectedPolygon.SetActive(true); // 오브젝트 하나만 활성화

@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 1763556960994412061}
   - component: {fileID: -2627929074486314852}
   - component: {fileID: 7584892011986366055}
-  - component: {fileID: -2722368897841864492}
   - component: {fileID: 6688249485435628760}
   m_Layer: 0
-  m_Name: Bullet_Algorithm
+  m_Name: Bullet_RB_Tree
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,30 +74,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e3f21f49553054186f41c1deea939f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 100
   lifeTime: 3
   damage: 10
---- !u!114 &-2722368897841864492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4108934483820179828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefabID: 0
-  coolTime: 0
-  lifeTime: 0
-  damage: 0
   speed: 0
+  attackCoolTime: 0
   scaleFactor: 0
   flightTime: 0
-  rotateSpeed: 0
-  attackCoolTime: 0
+  rotateSpeed: 100
+  spawnDistance: 3
 --- !u!70 &6688249485435628760
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

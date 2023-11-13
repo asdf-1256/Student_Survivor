@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: -8149822783265827945}
   - component: {fileID: -967952871782319310}
   - component: {fileID: 2500337827238610902}
-  - component: {fileID: 7253039517421950811}
   - component: {fileID: 4434969654333846664}
   m_Layer: 0
   m_Name: Bullet_OS
@@ -162,12 +161,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf493fd6ff538444b62ec202b652893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 32bc6cd75a95c4b40bcbe42d5c5b8499, type: 3}
-  - {fileID: 21300000, guid: bdd787635b2250b4fa8987ead7428e09, type: 3}
   lifeTime: 0
   damage: 10
   speed: 3
+  attackCoolTime: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  sprites:
+  - {fileID: 21300000, guid: 32bc6cd75a95c4b40bcbe42d5c5b8499, type: 3}
+  - {fileID: 21300000, guid: bdd787635b2250b4fa8987ead7428e09, type: 3}
 --- !u!114 &2500337827238610902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,27 +188,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   nearestTarget: {fileID: 0}
---- !u!114 &7253039517421950811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3768573273252977567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895995249c05a36499e86d818ae1cb29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefabID: 0
-  coolTime: 0
-  lifeTime: 0
-  damage: 0
-  speed: 0
-  scaleFactor: 0
-  flightTime: 0
-  rotateSpeed: 0
-  attackCoolTime: 0
 --- !u!58 &4434969654333846664
 CircleCollider2D:
   m_ObjectHideFlags: 0

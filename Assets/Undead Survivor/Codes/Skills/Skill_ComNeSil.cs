@@ -33,15 +33,8 @@ public class Skill_ComNeSil : MonoBehaviour
         if (!player.scanner.nearestTarget)
             return;
 
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Vector3 dir = targetPos - transform.position;
-        dir = dir.normalized;//방향 구하기
 
         Transform bullet = GameManager.Instance.pool.Get(4).transform;
-
-        bullet.position = transform.position + dir;
-        bullet.rotation = Quaternion.FromToRotation(Vector3.left, dir);//회전결정
-        bullet.GetComponent<Bullet_ComNeSil>().Init(dir);
 
 
         // 오디오

@@ -31,6 +31,25 @@ public class Player : MonoBehaviour
 
     public SkillManager skillManager;
 
+
+    public float spawnSkillCoolDownRate = 1f;
+    public float attackSkillCoolDownRate = 1f;
+
+    public Vector3 Scale
+    {
+        set
+        {
+            transform.localScale = value;
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                if (i == 0)
+                    continue;
+                Transform child = transform.GetChild(i);
+                child.localScale = new Vector3(1 / value.x, 1 / value.y, 1 / value.z);
+            }
+        }
+    }
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();

@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_JAVA : MonoBehaviour
+public class Bullet_JAVA : BulletBase
 {
-    [SerializeField]
-    float flightTime; // 체공시간. 컵이 커피로 변하는 시간.
-
-    public float rotateSpeed; // 컵이 회전하는 속도
     //[SerializeField]
     //GameObject cup_prefab;
     [SerializeField]
     Sprite[] sprites; // 0:컵 이미지, 1:커피 이미지
 
-    public float duration;
-    public float damage;
 
     SpriteRenderer spriteRenderer;
 
@@ -29,12 +23,11 @@ public class Bullet_JAVA : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         CupObject = transform.GetChild(1).gameObject; // 1번째 자식 갖고 옴 = 자바컵
-        duration = 2f;
-        damage = 10f;
     }
 
-    private void OnEnable()
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
+        base.Init(isAI, skillData, level);
 
         StartCoroutine(CurveRoutine()); //PoolManager에서 Get해오면 바로 컵이 날아가도록한다.
     }
@@ -42,9 +35,9 @@ public class Bullet_JAVA : MonoBehaviour
     {
         float time = 0.0f;
         // target = GameManager.Instance.player.scanner.nearestTarget;
-        target = GameManager.Instance.player.scanner.GetRandomTarget(); // 랜덤한 적을 타겟으로
+        target = playerTransform.GetComponent<Scanner>().GetRandomTarget(); // 랜덤한 적을 타겟으로
 
-        Vector3 start = GameManager.Instance.player.transform.position;
+        Vector3 start = playerTransform.position;
         Vector3 end = target.transform.position;
 
         transform.position = start;
@@ -88,7 +81,7 @@ public class Bullet_JAVA : MonoBehaviour
         spriteRenderer.sprite = sprites[1];//이미지를 커피로 변경
         coll.enabled = true;//collider 활성화
         float timer = 0f;
-        while (timer < duration)
+        while (timer < lifeTime)
         { //n초 동안 대기
             timer += Time.deltaTime;
             yield return null;

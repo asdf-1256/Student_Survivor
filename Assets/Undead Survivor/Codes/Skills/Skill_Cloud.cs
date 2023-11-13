@@ -29,14 +29,9 @@ public class Skill_Cloud : MonoBehaviour
     }
     void Fire()
     {
-        Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
-        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
-
-
         Transform bullet = GameManager.Instance.pool.Get(12).transform;
 
-        bullet.position = transform.position + spawnPosition * 5; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
-        bullet.GetComponent<Bullet_Cloud>().Init(damage, speed, lifeTime, dropCycleTime);
+        // bullet.GetComponent<Bullet_Cloud>().Init(damage, speed, lifeTime, dropCycleTime);
 
 
         // 오디오

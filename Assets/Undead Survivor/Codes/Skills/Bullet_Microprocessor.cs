@@ -24,6 +24,9 @@ public class Bullet_Microprocessor : MonoBehaviour
         positions[4] = new Vector3(-1, -1, 0) * 2;
         positions[5] = new Vector3(0, -1, 0) * 2;
     }
+
+    
+
     private void OnEnable()
     {
         transform.parent = GameManager.Instance.player.transform;
