@@ -25,13 +25,7 @@ public class Skill_Algorithm : MonoBehaviour
 
     void Fire()
     {
-        Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
-        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
-        spawnPosition = spawnPosition.normalized; // 원 위의 한 점
-
         Transform bullet = GameManager.Instance.pool.Get(6).transform;
-
-        bullet.position = transform.position + spawnPosition * 3;
 
     }
 

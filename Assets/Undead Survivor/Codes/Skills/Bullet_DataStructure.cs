@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet_DataStructure : SkillBase
+public class Bullet_DataStructure : BulletBase
 {
     LineRenderer lineRenderer;
 
@@ -23,6 +23,26 @@ public class Bullet_DataStructure : SkillBase
         hitedTargets = new List<Transform>();
         positions = new Vector3[targetCount];
     }
+
+    public override void Init(bool isAI, SkillData skillData, int level)
+    {
+        base.Init(isAI, skillData, level);
+
+        if (lineRenderer.positionCount != targetCount || positions.Length != targetCount)
+        {
+            Array.Resize(ref positions, targetCount);
+        }
+        Transform targetTransform = playerTransform.GetComponent<Scanner>().nearestTarget;
+        if (targetTransform == null)
+            return;
+        hitedTargets.Add(targetTransform);
+        transform.position = targetTransform.position;
+
+        lineRenderer.positionCount = targetCount;
+
+        StartCoroutine(RayRoutine(() => { gameObject.SetActive(false); }));
+    }
+
     private void Update()
     {
         if (hitedTargets.Count < 1)
@@ -31,21 +51,6 @@ public class Bullet_DataStructure : SkillBase
             positions[i] = hitedTargets[Mathf.Min(i, hitedTargets.Count - 1)].position;
         }
         lineRenderer.SetPositions(positions);
-    }
-    private void OnEnable()
-    {
-        if (lineRenderer.positionCount != targetCount || positions.Length != targetCount)
-        {
-            Array.Resize(ref positions, targetCount);
-        }
-        if (GameManager.Instance.player.scanner.nearestTarget == null)
-            return;
-        hitedTargets.Add(GameManager.Instance.player.scanner.nearestTarget);
-        transform.position = GameManager.Instance.player.scanner.nearestTarget.position;
-
-        lineRenderer.positionCount = targetCount;
-
-        StartCoroutine(RayRoutine(() => { gameObject.SetActive(false); }));
     }
     private void OnDisable()
     {
@@ -69,7 +74,7 @@ public class Bullet_DataStructure : SkillBase
     {
         for (int i = 1; i < targetCount; i++)
         {
-            Transform nextTarget = GameManager.Instance.player.scanner.GetNearTargetFromNotHitedEnemy(hitedTargets);
+            Transform nextTarget = playerTransform.GetComponent<Scanner>().GetNearTargetFromNotHitedEnemy(hitedTargets);
             if (nextTarget != null)
             {
                 hitedTargets.Add(nextTarget);

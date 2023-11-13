@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,12 +23,15 @@ public class GameManager : MonoBehaviour
     public int kill;
     public int exp;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
-    public int money;
+    //public int money;
+    public float expRate = 1.0f;
 
     [Header("# Game Object")]
     public PoolManager pool;
     public Player player;
+    public AI_Player ai_Player;
     public LevelUp uiLevelUp;
+    public LevelUpSkill uiLevelUpSkill; // 임시 추가
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
@@ -46,7 +50,7 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(true);
 
         //첫번째 캐릭터 선택
-        uiLevelUp.Select(playerId % 2);
+        // uiLevelUp.Select(playerId % 2); // 캐릭터 선택하면 무기 지급했던거 주석처리 함
         Resume();
 
         AudioManager.Instance.PlayBgm(true);
@@ -91,6 +95,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameRetry()
     {
+        DataManager.Instance.Save();
         SceneManager.LoadScene(0); // build setting에 scene 번호
     }
 
@@ -121,20 +126,22 @@ public class GameManager : MonoBehaviour
         {
             level++;
             exp = 0;
-            uiLevelUp.Show();
+            uiLevelUpSkill.Show();
         }
     }
     public void GetExp(int e) //... e만큼 증가하는 경험치 획득 함수
     {
         if (!isLive)
             return;
+        if(expRate != 1.0f) //경험치 증가 교양스킬이 추가되면 이 부분이 실행됨. - 실수값을 곱해서 반올림한 정수형
+            e = Convert.ToInt32(expRate * e);
         exp += e;
         int nextexp = nextExp[Mathf.Min(level, nextExp.Length - 1)]; //index bound error 안 나오도록
         if (exp >= nextexp)
         {
             level++;
-            exp = exp - nextexp;
-            uiLevelUp.Show();
+            exp -= nextexp;
+            uiLevelUpSkill.Show();
         }
     }
     public void GetHealth(int h) //.. h만큼 체력 회복

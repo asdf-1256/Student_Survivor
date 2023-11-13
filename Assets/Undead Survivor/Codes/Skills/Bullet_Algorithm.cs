@@ -2,22 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Algorithm : SkillBase
+public class Bullet_Algorithm : BulletBase
 {
-    public float rotateSpeed = 100f;
-    public float lifeTime = 3f;
-    //public float damage = 10f;
-
-
+    public float spawnDistance = 3;
     Collider2D coll;
+
     float timer;
-
-
-    private void Awake()
+        private void Awake()
     {
         coll = GetComponent<Collider2D>();
     }
 
+    public override void Init(bool isAI, SkillData skillData, int level)
+    {
+        base.Init(isAI, skillData, level);
+
+
+        Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
+        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+        spawnPosition = spawnPosition.normalized; // 원 위의 한 점
+
+        transform.position = playerTransform.position + spawnPosition * spawnDistance;
+
+        StartCoroutine(RotateRoutine()); // 해당 오브젝트가 On 될 때마다 실행
+    }
 
     IEnumerator RotateRoutine()
     {
@@ -50,16 +58,6 @@ public class Bullet_Algorithm : SkillBase
         done.Invoke(); // 이후 비활성화 함수 호출
     }
 
-    private void OnEnable()
-    {
-        Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
-        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
-        spawnPosition = spawnPosition.normalized; // 원 위의 한 점
-
-        transform.position = GameManager.Instance.player.transform.position + spawnPosition * 3;
-
-        StartCoroutine(RotateRoutine()); // 해당 오브젝트가 On 될 때마다 실행
-    }
     private void OnDisable()
     {
         coll.enabled = false;

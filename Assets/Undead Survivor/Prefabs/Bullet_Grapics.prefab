@@ -759,7 +759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9039513427872230177
 Transform:
   m_ObjectHideFlags: 0
@@ -769,7 +769,7 @@ Transform:
   m_GameObject: {fileID: 2046261775136383506}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.8, y: 8.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -794,7 +794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1862815371889450717
 Transform:
   m_ObjectHideFlags: 0
@@ -804,7 +804,7 @@ Transform:
   m_GameObject: {fileID: 2906098192404232355}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -13.45, y: -13.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1088,6 +1088,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 3
+  damage: 0
+  speed: 0
+  count: 0
+  attackCoolTime: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  spawnDistance: 10
 --- !u!1 &4197157801048303815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2499,7 +2507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6604546674042899642
 Transform:
   m_ObjectHideFlags: 0
@@ -2509,7 +2517,7 @@ Transform:
   m_GameObject: {fileID: 7645290789550503920}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -15.99, y: 9.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2957,7 +2965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4214697078899329304
 Transform:
   m_ObjectHideFlags: 0
@@ -2967,7 +2975,7 @@ Transform:
   m_GameObject: {fileID: 9127418845078883968}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 11.17, y: -10.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2991,13 +2999,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet_Grapics_Triangle
       objectReference: {fileID: 0}
+    - target: {fileID: 3894050942383363696, guid: 329d157cec9a14446864296defbfc13d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6033830297797936241, guid: 329d157cec9a14446864296defbfc13d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.14
+      value: -13.45
       objectReference: {fileID: 0}
     - target: {fileID: 6033830297797936241, guid: 329d157cec9a14446864296defbfc13d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.2
+      value: -13.45
       objectReference: {fileID: 0}
     - target: {fileID: 6033830297797936241, guid: 329d157cec9a14446864296defbfc13d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3048,13 +3060,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet_Grapics_Pentagon
       objectReference: {fileID: 0}
+    - target: {fileID: 1449028146318847597, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3535283382233004730, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.48
+      value: -15.99
       objectReference: {fileID: 0}
     - target: {fileID: 3535283382233004730, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.6
+      value: 9.07
       objectReference: {fileID: 0}
     - target: {fileID: 3535283382233004730, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3103,11 +3119,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 110535743649847784, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.46
+      value: 11.17
       objectReference: {fileID: 0}
     - target: {fileID: 110535743649847784, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.34
+      value: -10.55
       objectReference: {fileID: 0}
     - target: {fileID: 110535743649847784, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3145,6 +3161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet_Grapics_Hexagon
       objectReference: {fileID: 0}
+    - target: {fileID: 4353299911938103793, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3162,13 +3182,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet_Grapics_Square
       objectReference: {fileID: 0}
+    - target: {fileID: 12433427899032228, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5443513149702663406, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.17
+      value: 9.8
       objectReference: {fileID: 0}
     - target: {fileID: 5443513149702663406, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9
+      value: 8.9
       objectReference: {fileID: 0}
     - target: {fileID: 5443513149702663406, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
       propertyPath: m_LocalPosition.z

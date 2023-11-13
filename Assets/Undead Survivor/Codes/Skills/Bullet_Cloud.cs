@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Cloud : MonoBehaviour
+public class Bullet_Cloud : BulletBase
 {
-
-    public float damage;
-    public float speed;
-    public float lifeTime;
-    public float dropCycleTime; // 구름이 전자기기를 떨어뜨리는 주기
-    public float dropTimeOfLaptop; // 랩탑 자체가 떨어지는 시간.
+    public float spawnDistance = 5;
+    public float dropTimeOfLaptop = 0.6f;
 
     Rigidbody2D rigid;
     Transform target;
@@ -26,12 +22,15 @@ public class Bullet_Cloud : MonoBehaviour
         laptop = transform.GetChild(2).gameObject; // 랩탑 오브젝트 가져오기
     }
 
-    public void Init(float damage, float speed, float lifeTime, float dropCycleTime)
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
-        this.damage = damage;
-        this.speed = speed;
-        this.lifeTime = lifeTime;
-        this.dropCycleTime = dropCycleTime;
+        base.Init(isAI, skillData, level);
+
+        Vector2 randomCircle = Random.insideUnitCircle.normalized; // 원 위의 한 점
+        Vector3 spawnPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+
+        transform.position = playerTransform.position + spawnPosition * spawnDistance; // 캐릭터 중심으로 반지름 5인 원 위의 한 점
+        StartCoroutine(DropRoutine());
     }
 
     private void Update() // 타이머 기능
@@ -61,10 +60,6 @@ public class Bullet_Cloud : MonoBehaviour
         rigid.velocity = Vector2.zero;
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(DropRoutine());
-    }
 
     IEnumerator DropRoutine()
     {
@@ -80,7 +75,7 @@ public class Bullet_Cloud : MonoBehaviour
 
             laptop.SetActive(false);
 
-            yield return new WaitForSeconds(dropCycleTime);
+            yield return new WaitForSeconds(attackCoolTime);
         }
     }
 

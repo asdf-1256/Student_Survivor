@@ -18,6 +18,5 @@ MonoBehaviour:
   magnetable: 1
   value: 1
   dropRate: 5
-  buffType: 5
-  duration: 0
+  buff: {fileID: 0}
   prefab: {fileID: 7831486342206985405, guid: 34b9435f321ba53459bbf0754946eb12, type: 3}
