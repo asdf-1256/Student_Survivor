@@ -16,18 +16,18 @@ MonoBehaviour:
   skillID: 21
   bulletPrefabID: 0
   level: 0
-  skillName: "\uC77C\uBC18 \uBB3C\uB9AC"
-  skillDesc: "\uACF5\uACA9\uB825 \uC0C1\uC2B9"
+  skillName: "\uCCB4\uC911 \uAD00\uB9AC"
+  skillDesc: "\uB2E4\uC774\uC5B4\uD2B8"
   skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   bulletPrefab: {fileID: 0}
   pool_index: 0
-  getype: 3
+  getype: 1
   cooltimes: []
   lifeTimes: []
   damages:
-  - 1.1
-  - 1.2
-  - 1.3
+  - 0.8
+  - 0.6
+  - 0.4
   speeds: []
   counts: []
   attackCoolTime: 0

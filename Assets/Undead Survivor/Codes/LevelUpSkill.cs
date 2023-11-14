@@ -7,7 +7,6 @@ public class LevelUpSkill : MonoBehaviour
     public float[] SkillSelectRates;
     //UI는 rect transform
     RectTransform rect;
-    Item[] items;
     SkillSelect[] skillSelects;
 
     public int[] selectedNums = new int[3]; // 스킬 선택 개수 3개

@@ -55,7 +55,13 @@ public class SkillSelect : MonoBehaviour
         switch (skillData.skillType)
         {
             case SkillData.SkillType.전공:
-                if (level == 0)
+
+                if (skillData.skillID == 15) // 인공지능 스킬이라면
+                {
+                    GameManager.Instance.ai_Player.gameObject.SetActive(true);
+                    level++;
+                }
+                else if (level == 0)
                 {
                     GameObject newSkill = new GameObject();
                     GameObject newAISkill = new GameObject();
