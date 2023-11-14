@@ -12571,7 +12571,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7c1becfe27c0d4ca0f2aa43bc81958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
   damage: 10000000
+  speed: 0
+  count: 0
+  attackCoolTime: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  playerTransform: {fileID: 0}
+  boltSpeed: 0
   per: -1
 --- !u!61 &343345484
 BoxCollider2D:
@@ -23328,20 +23337,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillSelectRates:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   - 1
   - 1
   - 1

@@ -129,7 +129,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7c1becfe27c0d4ca0f2aa43bc81958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
   damage: 100
+  speed: 0
+  count: 0
+  attackCoolTime: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  playerTransform: {fileID: 0}
+  boltSpeed: 0
   per: -100
 --- !u!61 &1480564136679979604
 BoxCollider2D:
@@ -207,8 +216,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 9043185136380304022}
   - {fileID: 5697661357337790576}
+  - {fileID: 9043185136380304022}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1315450137505496362
