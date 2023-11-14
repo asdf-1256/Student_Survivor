@@ -15,6 +15,7 @@ public class BasedSkill : MonoBehaviour
     public SkillData skillData;
 
     Player player;
+    Transform playerTransform;
     float timer;
     bool isAI;
     private void Awake()
@@ -45,8 +46,8 @@ public class BasedSkill : MonoBehaviour
 
         coolTime = skillData.cooltimes[level];
 
-        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
-        player.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
+        playerTransform.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+        playerTransform.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
     }
     public void Init(bool isAI, SkillData skillData)
     {
@@ -56,11 +57,13 @@ public class BasedSkill : MonoBehaviour
         name = "SKILL " + skillData.skillName; // 오브젝트 name을 설정하는거임
         if (isAI)
         {
-            transform.parent = GameManager.Instance.ai_Player.transform;
+            playerTransform = GameManager.Instance.ai_Player.transform;
+            transform.parent = playerTransform;
         }
         else
         {
-            transform.parent = player.transform;
+            playerTransform = GameManager.Instance.player.transform;
+            transform.parent = playerTransform;
         }
         transform.localPosition = Vector3.zero;
         coolTime = skillData.cooltimes[0];
@@ -93,13 +96,13 @@ public class BasedSkill : MonoBehaviour
 
         //나중에 추가된 무기에도 버프가 적용되도록
         //이 함수를 갖고있는 애들 다 실행해라 방송
-        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
-        player.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
+        playerTransform.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+        playerTransform.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
     }
 
     void Fire()
     {
-        if (!player.scanner.nearestTarget)
+        if (!playerTransform.GetComponent<Scanner>().nearestTarget)
             return;
         GameObject bullet = GameManager.Instance.pool.Get(prefabId);
         bullet.GetComponent<BulletBase>().Init(isAI, skillData, level); // 새로 호출되거나 레벨업 시에만 유의미함

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : BulletBase
 {
-    public float damage;
+    public float boltSpeed;
     public int per;
 
     Rigidbody2D rigid;
@@ -16,13 +16,12 @@ public class Bullet : MonoBehaviour
 
     public void Init(float damage, int per, Vector3 dir)
     {
-        this.damage = damage;
+        putDamage(damage);
         this.per = per;
-        GetComponentInParent<A_Skill_Data>().damage = damage; // 외부에서 참조하기 쉽게 따로 데미지 표시
 
         if (per >= 0)
         {
-            rigid.velocity = dir * 15f;
+            rigid.velocity = dir * boltSpeed;
         }
     }
 
