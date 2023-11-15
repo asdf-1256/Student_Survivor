@@ -31,8 +31,8 @@ public class MagnetableItem : MonoBehaviour
         Vector2 directionVect = target.position - transform.position; // 코인 -> 플레이어 벡터 구하기
         float distance = directionVect.magnitude; //거리 구하기
         Vector2 MagneticForce = directionVect.normalized * MagneticConst / distance; // 자기력 구하기
-        if (MagneticForce.magnitude < 1f) //자기력이 너무 작다면(= 속도가 너무 느리다면) 일정 수준(1)으로 보정
-            MagneticForce = MagneticForce.normalized;
+        if (MagneticForce.magnitude < 4f) //자기력이 너무 작다면(= 속도가 너무 느리다면) 일정 수준(4)으로 보정
+            MagneticForce = MagneticForce.normalized * 4;
         transform.Translate(MagneticForce * Time.fixedDeltaTime); //코인의 좌표를 벡터 * 프레임 만큼 이동시키기
     }
 

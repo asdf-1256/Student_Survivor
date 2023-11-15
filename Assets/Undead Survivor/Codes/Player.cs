@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
     //public float magneticRate; // 자석 버프 - 현재는 아이템이 이것뿐이라 이것만 테스트 되어있지만, 다른 아이템도 추가하여 버프를 여러개 획득했을 시의 테스트를 진행해야함
     public bool isInvincible; // 무적
 
-    private List<BuffData> buffs; //버프 목록
+    private List<BuffData> buffs; //활성화된 버프 목록
     private WaitForSeconds wait; //남은 시간 계산용 WaitForSeconds 객체 (0.1초)
 
     public SkillManager skillManager;
@@ -38,6 +39,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float totalDistance = 0f;
 
+    [SerializeField] private Shield shield;
+    [SerializeField] private BuffData[] buffDatas;
+
     public float TotalDistance
     {
         get { return totalDistance; }
@@ -47,14 +51,15 @@ public class Player : MonoBehaviour
     {
         set
         {
-            transform.localScale = value;
-            for(int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
                 if (i == 0)
                     continue;
                 Transform child = transform.GetChild(i);
-                child.localScale = new Vector3(1 / value.x, 1 / value.y, 1 / value.z);
+                child.localScale = new Vector3(child.localScale.x / value.x, child.localScale.y / value.y, child.localScale.z / value.z);
             }
+            transform.localScale = value;
+            
         }
     }
 
@@ -113,6 +118,14 @@ public class Player : MonoBehaviour
         if (isInvincible)
             return;
 
+        if (shield.ShieldCount > 0)
+        {
+            shield.RemoveShield();
+            foreach (var buffdata in buffDatas)
+                if (buffdata.effect == BuffData.BuffEffect.Invincible)
+                    ActivateBuff(buffdata);
+        }
+
         GameManager.Instance.health -= Time.deltaTime * 10 / defenseRate;
 
         if (GameManager.Instance.health < 0)
@@ -131,13 +144,8 @@ public class Player : MonoBehaviour
     //Collector 함수에서 해당 함수를 호출하여 버프 적용
     public void ActivateBuff(BuffData buff)
     {
-        if (buffs.Contains(buff))
-        {
-            buff.ResetTime();
-            //Debug.Log("버프 시간 리셋");
-        }
-
-        else
+        buff.ResetTime();
+        if (!buffs.Contains(buff))
         {
             //Debug.Log("버프 적용");
             switch (buff.effect) //버프 효과 종류에 따라 각각의 스텟에 비율을 곱한다.

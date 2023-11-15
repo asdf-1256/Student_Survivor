@@ -15,7 +15,12 @@ public class Magnet : MonoBehaviour
     public float MagneticRate
     {
         get { return magneticRate; }
-        set { magneticRate = value; coll.radius = radius * magneticRate; }
+        set
+        {
+            magneticRate = value;
+            //coll.radius = radius * magneticRate;
+            transform.localScale = Vector3.one * magneticRate;
+        }
     }
 
     CircleCollider2D coll; // 자력 범위를 설정할 Collider
