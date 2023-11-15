@@ -20,6 +20,8 @@ public class Spawner : MonoBehaviour
     public int[] dropRates; //SpawnItemData 내부에 있는 드롭율 부분을 읽어와 순서대로 저장하는 배열
     private int totalDropRate; // dropRates 배열의 값을 다 더한 숫자
 
+    public bool isPlayer;
+
     private void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
@@ -28,19 +30,23 @@ public class Spawner : MonoBehaviour
         levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
 
         //ItemsRandomSpawnArea = GameManager.Instance.ItemsRandomSpawnArea;
-        ItemsRandomSpawnArea = 10f;
+        if (isPlayer)
+        {
+            ItemsRandomSpawnArea = 10f;
 
-        dropRates = new int[itemDatas.Length];
+            dropRates = new int[itemDatas.Length];
 
-        for (int i = 0; i < dropRates.Length; i++)
-            dropRates[i] = itemDatas[i].dropRate;
+            for (int i = 0; i < dropRates.Length; i++)
+                dropRates[i] = itemDatas[i].dropRate;
 
-        totalDropRate = dropRates.Sum();
+            totalDropRate = dropRates.Sum();
 
-        ItemSpawnTime = 1f;
-        WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
+            ItemSpawnTime = 1f;
+            WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
 
-        StartCoroutine(CreateCoinRoutine());
+
+            StartCoroutine(CreateCoinRoutine());
+        }
     }
 
     private void OnValidate()//유니티 Inspector에서 값이 변경될 경우 호출되는 함수.

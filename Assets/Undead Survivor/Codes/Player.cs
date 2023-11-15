@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,6 +35,13 @@ public class Player : MonoBehaviour
 
     public float spawnSkillCoolDownRate = 1f;
     public float attackSkillCoolDownRate = 1f;
+
+    [SerializeField] private float totalDistance = 0f;
+
+    public float TotalDistance
+    {
+        get { return totalDistance; }
+    }
 
     public Vector3 Scale
     {
@@ -76,6 +84,7 @@ public class Player : MonoBehaviour
         if (!GameManager.Instance.isLive)
             return;
         Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime * speedRate;
+        totalDistance += nextVec.magnitude;
         rigid.MovePosition(rigid.position + nextVec);
     }
     private void OnMove(InputValue value)
@@ -188,7 +197,6 @@ public class Player : MonoBehaviour
         }
         done.Invoke();
     }
-
 
 }
 
