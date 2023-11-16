@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     //public float magneticRate; // 자석 버프 - 현재는 아이템이 이것뿐이라 이것만 테스트 되어있지만, 다른 아이템도 추가하여 버프를 여러개 획득했을 시의 테스트를 진행해야함
     public bool isInvincible; // 무적
 
+    [SerializeField]
     private List<BuffData> buffs; //활성화된 버프 목록
     private WaitForSeconds wait; //남은 시간 계산용 WaitForSeconds 객체 (0.1초)
 

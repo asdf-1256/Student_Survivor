@@ -21168,6 +21168,7 @@ MonoBehaviour:
   speedRate: 0
   defenseRate: 0
   isInvincible: 0
+  buffs: []
   skillManager: {fileID: 0}
   spawnSkillCoolDownRate: 1
   attackSkillCoolDownRate: 1
@@ -26865,7 +26866,7 @@ GameObject:
   - component: {fileID: 1437811210}
   - component: {fileID: 1437811209}
   m_Layer: 0
-  m_Name: Shield Parents
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26897,8 +26898,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.23, y: 1.23, z: 1.23}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 447436343}
   - {fileID: 1432873104}
@@ -27444,7 +27445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1506284887
 Transform:
   m_ObjectHideFlags: 0

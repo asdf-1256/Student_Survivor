@@ -20,16 +20,20 @@ public class Magnet : MonoBehaviour
             magneticRate = value;
             //coll.radius = radius * magneticRate;
             transform.localScale = Vector3.one * magneticRate;
+            spriteRenderer.enabled = true;
         }
     }
 
     CircleCollider2D coll; // 자력 범위를 설정할 Collider
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         coll = GetComponent<CircleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         radius = coll.radius;
         magneticRate = 1f;
+        spriteRenderer.enabled = false;
     }
 
 
