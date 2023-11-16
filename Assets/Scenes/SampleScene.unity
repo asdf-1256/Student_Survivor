@@ -28250,6 +28250,8 @@ MonoBehaviour:
   money: 0
   selectedCharacterId: 0
   isUnlockCharacters: 00000000
+  bgmVolume: 0
+  sfxVolume: 0
 --- !u!4 &1583963132
 Transform:
   m_ObjectHideFlags: 0
