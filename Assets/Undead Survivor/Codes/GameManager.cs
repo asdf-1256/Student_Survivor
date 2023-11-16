@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
+    public Bgm_Slider uibgm;
+    public Sfx_Slider uisfx;
+    
 
     private void Awake()
     {
@@ -56,6 +60,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayBgm(true);
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Select);
     }
+
     public void GameOver()
     {
         StartCoroutine(GameOverRoutine());
@@ -165,3 +170,4 @@ public class GameManager : MonoBehaviour
         uiJoy.localScale = Vector3.one;
     }
 }
+

@@ -10,6 +10,9 @@ public class DataManager : MonoBehaviour
     public int money = 0; //돈
     public int selectedCharacterId = 0; //현재 선택된 캐릭터
     public bool[] isUnlockCharacters = new bool[4]; //캐릭터가 해금된 상태인지 여부
+    public float bgmVolume;
+    public float sfxVolume;
+
     public static DataManager Instance //이 클래스의 instance를 받아올 수 있는 속성 - 게임매니저쓸 때랑 똑같이 쓰면 됨.
     {
         get { return instance; }
@@ -76,4 +79,5 @@ public class DataManager : MonoBehaviour
     {
         money -= value;
     }
+
 }

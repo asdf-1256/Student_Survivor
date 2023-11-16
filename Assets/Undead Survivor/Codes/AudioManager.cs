@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.InputSystem;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     [Header("#BGM")]
     public AudioClip bgmClip;
+    public AudioMixerGroup output;
     public float bgmVolume;
     AudioSource bgmPlayer;
     AudioHighPassFilter bgmEffect;
 
     [Header("#SFX")]
     public AudioClip[] sfxClips;
+    public AudioMixerGroup output1;
     public float sfxVolume;
     public int channels;
     AudioSource[] sfxPlayers;

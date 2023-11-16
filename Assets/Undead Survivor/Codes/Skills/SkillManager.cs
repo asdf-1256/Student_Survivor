@@ -26,15 +26,6 @@ public class SkillManager : MonoBehaviour
     {
         skillList.Clear();
     }
-    private void Update()
-    {
-        foreach (Skill skill in skillList)
-        {
-            skill.remainTime -= Time.deltaTime;
-            if (skill.remainTime <= 0f)
-                skill.Activate();
-        }
-    }
 
     public void LevelUp(int skillId)
     {
@@ -62,31 +53,6 @@ class Skill {
         this.data = data;
         this.cooltime = data.cooltimes[level];
         this.remainTime = data.cooltimes[level];
-    }
-    public void Activate()
-    {
-        //공격스킬이라면
-        //GameManager.inst.pool.get(pool's index)
-
-        //전공이다
-        GameManager.Instance.pool.Get(data.poolIndex).GetComponent<SkillBase>().Init(level);
-
-        //버프스킬이라면 - 교양이다
-        //스탯변화.... --방어막 추가, 일정 시간마다 체력회복
-
-        switch (data.능력치)
-        {
-            case SkillData.교양능력치.MaxHp:
-                GameManager.Instance.maxHealth += data.damages[level];
-                break;
-        }
-
-        //반영구적인 스탯의 변화는? - 공격력 증가 같은거?
-        //Skill 클래스 멤버로 isActivated 같은거 둬야하나.
-
-        this.remainTime = cooltime;
-
-        this.remainTime = float.MaxValue;
     }
 
     public void LevelUp()
