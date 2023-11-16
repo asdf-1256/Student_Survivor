@@ -10,6 +10,8 @@ public class DataManager : MonoBehaviour
     public int money = 0; //돈
     public int selectedCharacterId = 0; //현재 선택된 캐릭터
     public bool[] isUnlockCharacters = new bool[4]; //캐릭터가 해금된 상태인지 여부
+    [SerializeField] private float bgmVolume = 0.2f;
+    [SerializeField] private float sfxVolume = 0.5f;
     public static DataManager Instance //이 클래스의 instance를 받아올 수 있는 속성 - 게임매니저쓸 때랑 똑같이 쓰면 됨.
     {
         get { return instance; }
@@ -33,6 +35,9 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < isUnlockCharacters.Length; i++) {
             isUnlockCharacters[i] = Convert.ToBoolean(PlayerPrefs.GetInt(string.Format("isUnlockCharacter{0}", i)));
         }
+
+        bgmVolume = PlayerPrefs.GetFloat("bgmVolume");//볼륨 받아오기
+        sfxVolume = PlayerPrefs.GetFloat("sfxVolume");//볼륨 받아오기
     }
     public void SetSelectedCharacter(int id)//캐릭터 선택 버튼에 연결되는 메소드
     {
@@ -49,6 +54,12 @@ public class DataManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(string.Format("isUnlockCharacter{0}", i), Convert.ToInt32(isUnlockCharacters[i]));
         }
+
+        bgmVolume = AudioManager.Instance.bgmVolume;
+        sfxVolume = AudioManager.Instance.sfxVolume;
+
+        PlayerPrefs.SetFloat("bgmVolume", bgmVolume);//볼륨 받아오기
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);//볼륨 받아오기
     }
 
     //UnlockCharacter, CheckMoney 는 아직 테스트 못 함. 미래를 위해 만들어둔 메소드
