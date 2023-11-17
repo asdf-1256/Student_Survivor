@@ -10,6 +10,7 @@ public class QuestData : ScriptableObject
     }
 
     public QuestType Type;
+    public string Name;
 
     public int IntValue;
     public float FloatValue;

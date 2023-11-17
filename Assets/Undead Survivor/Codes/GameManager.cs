@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public int level;
     public int kill;
     public int exp;
+    public float manBoGi;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
     //public int money;
     public float expRate = 1.0f;
@@ -151,6 +152,11 @@ public class GameManager : MonoBehaviour
         if (!isLive)
             return;
         health = Mathf.Min(maxHealth, health + h);
+    }
+
+    public void AddManBogi(float distance)
+    {
+        manBoGi += distance;
     }
 
     //각 스크립트의 Update 계열 로직에 isLive 조건 추가

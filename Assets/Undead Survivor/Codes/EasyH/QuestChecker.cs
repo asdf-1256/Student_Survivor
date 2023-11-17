@@ -2,6 +2,7 @@ using UnityEngine;
 
 public interface QuestChecker {
     public bool CheckAchieve();
+    public float GetProgress();
 }
 
 public class SafeTimeQuestChecker : QuestChecker {
@@ -31,6 +32,11 @@ public class SafeTimeQuestChecker : QuestChecker {
 
         return true;
     }
+
+    public float GetProgress() {
+        return _spendTime / _goalTime;
+    
+    }
 }
 
 public class HealthMakeToQuestChecker : QuestChecker {
@@ -48,6 +54,12 @@ public class HealthMakeToQuestChecker : QuestChecker {
             return false;
 
         return true;
+    }
+
+    public float GetProgress()
+    {
+        return GameManager.Instance.health / GameManager.Instance.maxHealth / _goalRatio;
+
     }
 }
 
@@ -68,16 +80,28 @@ public class KillCountQuestChecker : QuestChecker {
 
         return true;
     }
+    public float GetProgress()
+    {
+        return GameManager.Instance.kill - _originKillCount / _goalCount;
+
+    }
 }
 
 public class WalkQuestChecker : QuestChecker {
-    float _walkAmount;
+    float _golaWalk;
+    float _originalWalk;
     public WalkQuestChecker(float walkAmount) { 
-        _walkAmount = walkAmount;
+        _golaWalk = walkAmount;
+        _originalWalk = GameManager.Instance.manBoGi;
     }
-
+    
     public bool CheckAchieve() {
-        return false;
+        if (GameManager.Instance.manBoGi - _originalWalk < _golaWalk) return false;
+        return true;
     }
 
+    public float GetProgress()
+    {
+        return GameManager.Instance.manBoGi - _originalWalk / _golaWalk;
+    }
 }

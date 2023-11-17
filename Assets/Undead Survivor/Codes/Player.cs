@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
         if (!GameManager.Instance.isLive)
             return;
         Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime * speedRate;
+        GameManager.Instance.AddManBogi(nextVec.magnitude);
         rigid.MovePosition(rigid.position + nextVec);
     }
     private void OnMove(InputValue value)

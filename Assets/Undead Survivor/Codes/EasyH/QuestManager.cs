@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
+    public int level;
+    public string Name;
 
     QuestChecker _checker; // 하나의 퀘스트를 관리하는 클래스
     SkillData _SkillData;
     BasedSkill skill, AIskill;
-    int level;
+
+    public float progress;
+
     public void SetQuest(QuestData newQuest, SkillData skillData) {
         _SkillData = skillData;
+        Name = newQuest.Name;
         transform.parent = GameManager.Instance.QuestBox.transform; // 위치를 퀘스트박스로 이동
 
         switch (newQuest.Type) {
@@ -33,6 +38,10 @@ public class QuestManager : MonoBehaviour
                 _checker = new HealthMakeToQuestChecker(newQuest.FloatValue);
                 break;
         }
+    }
+
+    public float GetProgress() {
+        return _checker.GetProgress();
     }
 
     public void QuestAchieve()
@@ -62,6 +71,7 @@ public class QuestManager : MonoBehaviour
     void Update()
     {
         if (_checker == null) return;
+        progress = _checker.GetProgress();
         if (!_checker.CheckAchieve()) return;
 
         QuestAchieve();
