@@ -37,6 +37,10 @@ public class SafeTimeQuestChecker : QuestChecker {
         return _spendTime / _goalTime;
     
     }
+
+    public override string ToString() { 
+        return _spendTime.ToString("F0") + " / " + _goalTime.ToString("F0");
+    }
 }
 
 public class HealthMakeToQuestChecker : QuestChecker {
@@ -59,6 +63,12 @@ public class HealthMakeToQuestChecker : QuestChecker {
     public float GetProgress()
     {
         return GameManager.Instance.health / GameManager.Instance.maxHealth / _goalRatio;
+
+    }
+    public override string ToString()
+    {
+        if (CheckAchieve()) return "1 / 1";
+        return "0 / 0";
 
     }
 }
@@ -85,6 +95,10 @@ public class KillCountQuestChecker : QuestChecker {
         return GameManager.Instance.kill - _originKillCount / _goalCount;
 
     }
+    public override string ToString()
+    {
+        return (GameManager.Instance.kill - _originKillCount).ToString() + " / " + _goalCount.ToString();
+    }
 }
 
 public class WalkQuestChecker : QuestChecker {
@@ -103,5 +117,10 @@ public class WalkQuestChecker : QuestChecker {
     public float GetProgress()
     {
         return GameManager.Instance.manBoGi - _originalWalk / _golaWalk;
+    }
+    public override string ToString()
+    {
+        return (GameManager.Instance.manBoGi - _originalWalk).ToString("F0") + " / " + _golaWalk.ToString("F0");
+
     }
 }
