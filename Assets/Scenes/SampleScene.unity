@@ -1028,6 +1028,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &62218251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,6 +2115,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &106721918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7251,10 +7255,10 @@ RectTransform:
   - {fileID: 1314171925}
   m_Father: {fileID: 1413302695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 76, y: -25}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &197442768
 MonoBehaviour:
@@ -7605,6 +7609,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &221412408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8281,6 +8287,7 @@ MonoBehaviour:
   uiResult: {fileID: 833415375}
   uiJoy: {fileID: 495292951}
   enemyCleaner: {fileID: 343345482}
+  QuestBox: {fileID: 582250775}
 --- !u!4 &283515367
 Transform:
   m_ObjectHideFlags: 0
@@ -13132,10 +13139,10 @@ RectTransform:
   - {fileID: 1067120470}
   m_Father: {fileID: 1413302695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 76, y: -76}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &349015205
 MonoBehaviour:
@@ -13566,6 +13573,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &403286791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14391,6 +14400,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &488301338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19090,7 +19101,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.8796296
+  orthographic size: 48.92284
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19403,6 +19414,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &559754313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19569,6 +19582,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &563582259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19827,6 +19842,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579472616}
   m_CullTransparentMesh: 1
+--- !u!1 &582250775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582250776}
+  m_Layer: 0
+  m_Name: QuestBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &582250776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582250775}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25, y: -0.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594100779
 GameObject:
   m_ObjectHideFlags: 0
@@ -21688,6 +21734,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!1 &752075536
 GameObject:
   m_ObjectHideFlags: 0
@@ -21902,6 +21950,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &767204576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23440,6 +23490,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &979942348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23776,6 +23828,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1007285819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25733,6 +25787,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1288578604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26200,10 +26256,10 @@ RectTransform:
   - {fileID: 1612416431}
   m_Father: {fileID: 1413302695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 25, y: -25}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343245217
 MonoBehaviour:
@@ -26473,6 +26529,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1371515423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26614,10 +26672,10 @@ RectTransform:
   - {fileID: 579472617}
   m_Father: {fileID: 1413302695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 25, y: -76}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1373731110
 MonoBehaviour:
@@ -27098,11 +27156,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a5d6f5342cd204ea9724cab9a0ba6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillData: {fileID: 11400000, guid: 32fca3ab78ed63746a1824c92fdd332e, type: 2}
+  skillData: {fileID: 11400000, guid: 5cc95f5bee8c7644a8a499bbcc53a24d, type: 2}
   level: 0
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1426053059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27269,6 +27329,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1444776787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27514,6 +27576,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1451565923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28363,6 +28427,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1582873110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29662,6 +29728,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1678648737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30065,6 +30133,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1752416137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30385,6 +30455,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1777930036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31240,7 +31312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1875922038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31822,11 +31894,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a5d6f5342cd204ea9724cab9a0ba6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillData: {fileID: 11400000, guid: 5c21f8d2f4a36104793d409e9be99cce, type: 2}
+  skillData: {fileID: 11400000, guid: e2d7c55dca9c24b47bc9a42a6d5bb067, type: 2}
   level: 0
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &1969190308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32188,7 +32262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c775cb128b8ea49afee07c4b863b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _questManager: {fileID: 2147402780}
+  _questManager: {fileID: 0}
 --- !u!1 &1990352696
 GameObject:
   m_ObjectHideFlags: 0
@@ -36725,6 +36799,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &2020980061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36891,6 +36967,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &2046272505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37460,6 +37538,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &2078677273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37983,6 +38063,8 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
+  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &2118327832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38489,50 +38571,6 @@ Transform:
   - {fileID: 1004063898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2147402779
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2147402781}
-  - component: {fileID: 2147402780}
-  m_Layer: 0
-  m_Name: QuestManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2147402780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147402779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d96921b84c102ce408e265248eb4a846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2147402781
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147402779}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4381125164878864185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38654,8 +38692,8 @@ SceneRoots:
   - {fileID: 283515367}
   - {fileID: 344728783}
   - {fileID: 658546499}
-  - {fileID: 2147402781}
   - {fileID: 1583963132}
+  - {fileID: 582250776}
   - {fileID: 90996945}
   - {fileID: 731594820}
   - {fileID: 622134585}

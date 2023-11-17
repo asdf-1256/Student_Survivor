@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc8cda8f3af4854faccd002e4ea3326, type: 3}
   m_Name: JavaQuest
   m_EditorClassIdentifier: 
-  Type: 4
-  IntValue: 0
-  FloatValue: 100
+  Type: 0
+  IntValue: 3
+  FloatValue: 10

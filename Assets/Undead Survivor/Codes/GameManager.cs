@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
+    public GameObject QuestBox;
+
 
     private void Awake()
     {

@@ -11,6 +11,8 @@ public class SkillSelect : MonoBehaviour
     public int level;
     public BasedSkill skill, AIskill; // 전 버전 weapon
     public Gear gear;
+    public QuestData questData;
+    public QuestManager quest;
 
     Image icon;
     Text textLevel;
@@ -52,9 +54,17 @@ public class SkillSelect : MonoBehaviour
 
     public void OnClick()
     {
+
         switch (skillData.skillType)
         {
             case SkillData.SkillType.전공:
+                if (!quest)
+                {
+                    GameObject newQuest = new GameObject();
+                    quest = newQuest.AddComponent<QuestManager>();
+                }
+                quest.SetQuest(questData, skillData);
+                /*
                 if (level == 0)
                 {
                     GameObject newSkill = new GameObject();
@@ -72,8 +82,9 @@ public class SkillSelect : MonoBehaviour
                     AIskill.LevelUp();
                     level++;
                 }
+*/
                 break;
-                case SkillData.SkillType.교양:
+            case SkillData.SkillType.교양:
                 GEActive();
                 break;
         }

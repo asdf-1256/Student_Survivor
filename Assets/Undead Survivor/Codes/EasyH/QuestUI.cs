@@ -6,7 +6,7 @@ public class QuestUI : MonoBehaviour {
     [SerializeField] QuestManager _questManager;
 
     public void QuestSet(QuestData data, Skill skill) {
-        _questManager.SetQuest(data, skill);
+        // _questManager.SetQuest(data, skill);
     }
 
 }
