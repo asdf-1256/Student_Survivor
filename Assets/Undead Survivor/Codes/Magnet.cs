@@ -69,7 +69,7 @@ public class Magnet : MonoBehaviour
     {
         coll.radius *= 2f;
     }
-
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -77,5 +77,5 @@ public class Magnet : MonoBehaviour
             Debug.Log("Space Key Input ¹ß»ý");
             LevelUpColliderRadius();
         }
-    }
+    }*/
 }
