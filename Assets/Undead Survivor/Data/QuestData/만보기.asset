@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fc8cda8f3af4854faccd002e4ea3326, type: 3}
-  m_Name: JavaQuest 4
+  m_Name: "\uB9CC\uBCF4\uAE30"
   m_EditorClassIdentifier: 
-  Type: 4
-  Name: "\uC624\uB798\uC0B4\uC544"
+  Type: 3
+  Name: "\uB9CC\uBCF4\uAE30"
   IntValue: 0
-  FloatValue: 10
+  FloatValue: 100

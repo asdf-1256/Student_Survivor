@@ -41,10 +41,10 @@ public class SkillSelect : MonoBehaviour
 
         switch (skillData.skillType)
         {
-            case SkillData.SkillType.����:
+            case SkillData.SkillType.전공:
                 textDesc.text = string.Format(skillData.skillDesc);
                 break;
-            case SkillData.SkillType.����:
+            case SkillData.SkillType.교양:
                 textDesc.text = string.Format(skillData.skillDesc);
                 break;
         }
@@ -57,7 +57,7 @@ public class SkillSelect : MonoBehaviour
 
         switch (skillData.skillType)
         {
-            case SkillData.SkillType.����:
+            case SkillData.SkillType.전공:
                 if (!quest)
                 {
                     GameObject newQuest = new GameObject();
@@ -90,7 +90,7 @@ public class SkillSelect : MonoBehaviour
                 }
 */
                 break;
-            case SkillData.SkillType.����:
+            case SkillData.SkillType.교양:
                 GEActive();
                 break;
         }
