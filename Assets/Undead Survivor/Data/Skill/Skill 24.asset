@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Skill 24
   m_EditorClassIdentifier: 
   skillType: 1
-  skillID: 23
+  skillID: 24
   bulletPrefabID: 0
   level: 0
-  skillName: "\uC735\uBCF5\uD569\uAE00\uC4F0\uAE30"
-  skillDesc: "\uACBD\uD5D8\uCE58 \uC2B5\uB4DD\uB7C9 \uC99D\uAC00"
+  skillName: "\uAC77\uAE30\uC640 \uB2EC\uB9AC\uAE30"
+  skillDesc: "\uAC77\uAE30\uC640 \uB2EC\uB9AC\uAE30"
   skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   bulletPrefab: {fileID: 0}
   pool_index: 0
-  getype: 5
+  getype: 0
   cooltimes: []
   lifeTimes: []
   damages:

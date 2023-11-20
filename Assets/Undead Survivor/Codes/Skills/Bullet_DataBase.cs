@@ -13,8 +13,11 @@ public class Bullet_DataBase : BulletBase
         blackhole = transform.GetChild(0).gameObject;
         rigid = GetComponent<Rigidbody2D>();
     }
-    private void Start() //OnEnable에서만 위치를 조정하니까 오브젝트가 처음 생성될 때만 Rigidbody2D의 velocity가 (0,0)이 되는 오류가 있어서 Start함수도 호출
+
+    public override void Init(bool isAI, SkillData skillData, int level)//OnEnable에서만 위치를 조정하니까 오브젝트가 처음 생성될 때만 Rigidbody2D의 velocity가 (0,0)이 되는 오류가 있어서
     {
+        base.Init(isAI, skillData, level);
+
         transform.position = GameManager.Instance.player.transform.position;
         Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;
         Vector3 dir = targetPos - GameManager.Instance.player.transform.position;

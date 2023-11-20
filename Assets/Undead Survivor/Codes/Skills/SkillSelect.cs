@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class SkillSelect : MonoBehaviour
 {
-    // Àü ¹öÀü item ½ºÆ®¸³Æ®
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ item ï¿½ï¿½Æ®ï¿½ï¿½Æ®
     public SkillData skillData;
     public int level;
-    public BasedSkill skill, AIskill; // Àü ¹öÀü weapon
+    public BasedSkill skill, AIskill; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ weapon
     public Gear gear;
     public QuestData questData;
     public QuestManager quest;
@@ -30,7 +30,7 @@ public class SkillSelect : MonoBehaviour
         textLevel = texts[0];
         textName = texts[1];
         textDesc = texts[2];
-        //get componentsÀÇ ¼ø¼­´Â hierarchy¿¡ µû¸¥´Ù.
+        //get componentsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ hierarchyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
         textName.text = skillData.skillName;
     }
@@ -41,10 +41,10 @@ public class SkillSelect : MonoBehaviour
 
         switch (skillData.skillType)
         {
-            case SkillData.SkillType.Àü°ø:
+            case SkillData.SkillType.ï¿½ï¿½ï¿½ï¿½:
                 textDesc.text = string.Format(skillData.skillDesc);
                 break;
-            case SkillData.SkillType.±³¾ç:
+            case SkillData.SkillType.ï¿½ï¿½ï¿½ï¿½:
                 textDesc.text = string.Format(skillData.skillDesc);
                 break;
         }
@@ -57,15 +57,21 @@ public class SkillSelect : MonoBehaviour
 
         switch (skillData.skillType)
         {
-            case SkillData.SkillType.Àü°ø:
+            case SkillData.SkillType.ï¿½ï¿½ï¿½ï¿½:
                 if (!quest)
                 {
                     GameObject newQuest = new GameObject();
                     quest = newQuest.AddComponent<QuestManager>();
                 }
                 quest.SetQuest(questData, skillData);
+                
+                if (skillData.skillID == 15) // ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½Ì¶ï¿½ï¿½
+                {
+                    GameManager.Instance.ai_Player.gameObject.SetActive(true);
+                    level++;
+                }
                 /*
-                if (level == 0)
+                else if (level == 0)
                 {
                     GameObject newSkill = new GameObject();
                     GameObject newAISkill = new GameObject();
@@ -84,7 +90,7 @@ public class SkillSelect : MonoBehaviour
                 }
 */
                 break;
-            case SkillData.SkillType.±³¾ç:
+            case SkillData.SkillType.ï¿½ï¿½ï¿½ï¿½:
                 GEActive();
                 break;
         }

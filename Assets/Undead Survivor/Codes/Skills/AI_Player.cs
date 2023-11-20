@@ -19,6 +19,7 @@ public class AI_Player : MonoBehaviour
     private void OnEnable()
     {
         playerRigid = GameManager.Instance.player.GetComponent<Rigidbody2D>();
+        transform.position = GameManager.Instance.player.transform.position;
     }
 
     private void FixedUpdate()
