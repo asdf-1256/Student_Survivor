@@ -11,9 +11,13 @@ public class QuestManager : MonoBehaviour
     SkillData _SkillData;
     BasedSkill skill, AIskill;
 
+    public UIQuest questUI;
+
     public float progress;
 
     public void SetQuest(QuestData newQuest, SkillData skillData) {
+        if (!GameManager.Instance.CanAddQuest()) return;
+
         _SkillData = skillData;
         Name = newQuest.Name;
         transform.parent = GameManager.Instance.QuestBox.transform; // 위치를 퀘스트박스로 이동
@@ -38,6 +42,8 @@ public class QuestManager : MonoBehaviour
                 _checker = new HealthMakeToQuestChecker(newQuest.FloatValue);
                 break;
         }
+
+        questUI = GameManager.Instance.AddQuest(_checker, newQuest);
     }
 
     public float GetProgress() {
@@ -47,6 +53,8 @@ public class QuestManager : MonoBehaviour
     public void QuestAchieve()
     {
         Debug.Log("퀘스트 성공");
+
+        GameManager.Instance.EndQuest(questUI);
 
         if (level == 0)
         {

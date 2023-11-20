@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,6 +39,32 @@ public class GameManager : MonoBehaviour
     public GameObject enemyCleaner;
     public GameObject QuestBox;
 
+    public int MaxQuestCount = 3;
+    public List<UIQuest> freeQuestUI;
+
+    int questCount = 0;
+
+    public bool CanAddQuest() {
+        if (questCount < MaxQuestCount) return true;
+        return false;
+    }
+
+    public UIQuest AddQuest(QuestChecker checker, QuestData data) {
+        UIQuest questUI = freeQuestUI[0];
+        freeQuestUI.RemoveAt(0);
+        questCount++;
+
+        questUI.QuestSet(checker, data);
+
+        return questUI;
+    }
+
+    public void EndQuest(UIQuest endQuestUI) {
+        endQuestUI.gameObject.SetActive(false);
+        freeQuestUI.Add(endQuestUI);
+        questCount--;
+
+    }
 
     private void Awake()
     {
