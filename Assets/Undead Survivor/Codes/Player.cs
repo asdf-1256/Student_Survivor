@@ -20,17 +20,17 @@ public class Player : MonoBehaviour
     Animator animator;
     public RuntimeAnimatorController[] animCon;
 
-    //½ºÅÝ ¼öÄ¡ = ÇÕ¿¬»ê
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ = ï¿½Õ¿ï¿½ï¿½ï¿½
     [SerializeField]
-    public float attackRate; //°ø°Ý·Â ¹öÇÁ
-    public float speedRate; //¼Óµµ ¹öÇÁ
-    public float defenseRate; //¹æ¾î·Â ¹öÇÁ
-    //public float magneticRate; // ÀÚ¼® ¹öÇÁ - ÇöÀç´Â ¾ÆÀÌÅÛÀÌ ÀÌ°Í»ÓÀÌ¶ó ÀÌ°Í¸¸ Å×½ºÆ® µÇ¾îÀÖÁö¸¸, ´Ù¸¥ ¾ÆÀÌÅÛµµ Ãß°¡ÇÏ¿© ¹öÇÁ¸¦ ¿©·¯°³ È¹µæÇßÀ» ½ÃÀÇ Å×½ºÆ®¸¦ ÁøÇàÇØ¾ßÇÔ
-    public bool isInvincible; // ¹«Àû
+    public float attackRate; //ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float speedRate; //ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float defenseRate; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //public float magneticRate; // ï¿½Ú¼ï¿½ ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì°Í»ï¿½ï¿½Ì¶ï¿½ ï¿½Ì°Í¸ï¿½ ï¿½×½ï¿½Æ® ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ß°ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
+    public bool isInvincible; // ï¿½ï¿½ï¿½ï¿½
 
     [SerializeField]
-    private List<BuffData> buffs; //È°¼ºÈ­µÈ ¹öÇÁ ¸ñ·Ï
-    private WaitForSeconds wait; //³²Àº ½Ã°£ °è»ê¿ë WaitForSeconds °´Ã¼ (0.1ÃÊ)
+    private List<BuffData> buffs; //È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+    private WaitForSeconds wait; //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ WaitForSeconds ï¿½ï¿½Ã¼ (0.1ï¿½ï¿½)
 
     public SkillManager skillManager;
 
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
-        hands = GetComponentsInChildren<Hand>(true); // ºñÈ°¼ºÈ­µÈ ¿ÀºêÁ§Æ®¸¦ Æ÷ÇÔÇÏ¿© °¡Á®¿Â´Ù.
+        hands = GetComponentsInChildren<Hand>(true); // ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
         
         attackRate = 1f;
         speedRate = 1f;
@@ -94,19 +94,20 @@ public class Player : MonoBehaviour
         
         Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime * speedRate * debuffSpeedRate;
         totalDistance += nextVec.magnitude;
+        GameManager.Instance.AddManBogi(nextVec.magnitude);
         rigid.MovePosition(rigid.position + nextVec);
     }
     private void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();
     }
-    //ÇÁ·¹ÀÓÀÌ Á¾·á µÇ±â Àü ½ÇÇàµÇ´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     private void LateUpdate()
     {
         if (!GameManager.Instance.isLive)
             return;
         animator.SetFloat("Speed", inputVec.magnitude);
-        //º¤ÅÍÀÇ Å©±â
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 
         if (inputVec.x != 0)
         {
@@ -134,7 +135,7 @@ public class Player : MonoBehaviour
 
         if (GameManager.Instance.health < 0)
         {
-            //shadow¿Í area´Â »ì·ÁµÎ°í ³ª¸ÓÁö ºñÈ°¼ºÈ­
+            //shadowï¿½ï¿½ areaï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
             for (int index = 2; index < transform.childCount; index++)
             {
                 transform.GetChild(index).gameObject.SetActive(false);
@@ -145,14 +146,14 @@ public class Player : MonoBehaviour
     }
     
 
-    //Collector ÇÔ¼ö¿¡¼­ ÇØ´ç ÇÔ¼ö¸¦ È£ÃâÇÏ¿© ¹öÇÁ Àû¿ë
+    //Collector ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ActivateBuff(BuffData buff)
     {
         buff.ResetTime();
         if (!buffs.Contains(buff))
         {
-            //Debug.Log("¹öÇÁ Àû¿ë");
-            switch (buff.effect) //¹öÇÁ È¿°ú Á¾·ù¿¡ µû¶ó °¢°¢ÀÇ ½ºÅÝ¿¡ ºñÀ²À» °öÇÑ´Ù.
+            //Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+            switch (buff.effect) //ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
             {
                 case BuffData.BuffEffect.Attack:
                     attackRate *= buff.value;
@@ -170,11 +171,11 @@ public class Player : MonoBehaviour
                     isInvincible = true;
                     break;
             }
-            buffs.Add(buff); //¹öÇÁ ¸®½ºÆ®¿¡ ¹öÇÁ¸¦ Ãß°¡ÇÑ´Ù
-            StartCoroutine(BuffRoutine(buff, () =>  //¹öÇÁ Áö¼Ó½Ã°£À» °è»êÇÏ´Â ÄÚ·çÆ¾À» ½ÇÇàÇÑ´Ù. ¹öÇÁ°¡ ³¡³ª¸é ¶÷´Ù½Ä ÇÔ¼ö°¡ È£ÃâµÈ´Ù.
+            buffs.Add(buff); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½
+            StartCoroutine(BuffRoutine(buff, () =>  //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.
             {
-                //Debug.Log("¹öÇÁ Áö¼Ó½Ã°£ ³¡");
-                switch (buff.effect) //¹öÇÁ Á¾·ù¿¡ µû¶ó Á¾·áµÇ´Â ¹öÇÁ·Î Áõ°¡µÈ ¸¸Å­ °ªÀ» °¨¼Ò½ÃÅ²´Ù
+                //Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ ï¿½ï¿½");
+                switch (buff.effect) //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½Å²ï¿½ï¿½
                 {
                     case BuffData.BuffEffect.Attack:
                         attackRate /= buff.value;                       
@@ -192,14 +193,14 @@ public class Player : MonoBehaviour
                         isInvincible = false;
                         break;
                 }
-                buffs.Remove(buff); //¹öÇÁ ¸ñ·Ï¿¡¼­ Á¦°ÅÇÑ´Ù.
-                buff.ResetTime(); //´ÙÀ½¿¡ ´Ù½Ã °°Àº ¾ÆÀÌÅÛÀ» ¸Ô°Ô µÉ °æ¿ì Áö¼Ó½Ã°£ÀÌ Á¤»óÀûÀ¸·Î Àû¿ëµÇµµ·Ï ÃÊ±âÈ­½ÃÄÑÁØ´Ù.
+                buffs.Remove(buff); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+                buff.ResetTime(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
             }));
         }
     }
     private IEnumerator BuffRoutine(BuffData buff, System.Action done)
-    {//¹öÇÁ µ¥ÀÌÅÍ °´Ã¼¿¡¼­ ³²Àº Áö¼Ó½Ã°£À» Èê·¯°£ ½Ã°£¸¸Å­ °è¼Ó °¨¼Ò½ÃÅ°´Ù°¡
-        //Áö¼Ó½Ã°£ÀÌ 0ÀÌ µÉ °æ¿ì ¹öÇÁ¸¦ ³¡³½´Ù.
+    {//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ ï¿½ê·¯ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½Å°ï¿½Ù°ï¿½
+        //ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         float remainTime;
         while ((remainTime = buff.GetRemainTime()) >= 0f)
         {
@@ -230,7 +231,7 @@ public class Player : MonoBehaviour
 /*
 public class Player : MonoBehaviour
 {
-    //publicÀ¸·Î º¯°æ ÈÄ Add Component µî·Ï ½Ã Input VecÀÌ º¸ÀÓ
+    //publicï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Add Component ï¿½ï¿½ï¿½ ï¿½ï¿½ Input Vecï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public Vector2 inputVec;
     public float speed;
 
@@ -246,33 +247,33 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //Input Å¬·¡½º = À¯´ÏÆ¼¿¡¼­ ¹Þ´Â ¸ðµç ÀÔ·ÂÀ» °ü¸®ÇÏ´Â Å¬·¡½º
-        //Project Settint-Input Manager¿¡¼­ È®ÀÎ
+        //Input Å¬ï¿½ï¿½ï¿½ï¿½ = ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+        //Project Settint-Input Managerï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
-        //±×³É GetAxis¿¡´Â º¸Á¤ÀÌ µé¾î°¨. 
+        //ï¿½×³ï¿½ GetAxisï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¨. 
     }
 
-    //¹°¸®¿¡ °üÇØ¼­´Â FixedUpdate
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ FixedUpdate
     private void FixedUpdate()
     {
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        //normalized = ´ë°¢¼±À¸·Î ÀÌµ¿ÇÒ ¶§ ¼Óµµ°¡ Áõ°¡ÇÏ´Â ÀÏÀ» ¹æÁö
-        //fixed delta time = ¹°¸® ÇÁ·¹ÀÓ ÇÏ³ª°¡ ¼ÒºñÇÑ ½Ã°£
-        //delta time = update¿¡¼­ »ç¿ë
+        //normalized = ï¿½ë°¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //fixed delta time = ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Òºï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+        //delta time = updateï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-        //ÀÌµ¿¹æ¹ý
-        //1.ÈûÀ» ÁØ´Ù
+        //ï¿½Ìµï¿½ï¿½ï¿½ï¿½
+        //1.ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½
         //rigid.AddForce(inputVec);
 
-        //2.¼Óµµ Á¦¾î
+        //2.ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         //rigid.velocity = inputVec;
 
-        //3.À§Ä¡ ÀÌµ¿
-        //¸Å°³º¯¼ö·Î ¿ùµå¸ÊÀÇ À§Ä¡¸¦ ¹Þ±â¶§¹®¿¡ ´õÇØÁÖ¾î¾ßÇÑ´Ù.
+        //3.ï¿½ï¿½Ä¡ ï¿½Ìµï¿½
+        //ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Þ±â¶§ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½Ñ´ï¿½.
         rigid.MovePosition(rigid.position + nextVec);
 
-        //¹®Á¦Á¡ 1. ³Ê¹« ºü¸§, 2.ÇÁ·¹ÀÓ¿¡ µû¶ó ÀÌµ¿¼Óµµ ´Ù¸¦ ¼ö ÀÖÀ½
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1. ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½, 2.ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Óµï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }
 */

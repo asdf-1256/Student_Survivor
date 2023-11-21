@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     private readonly int maxLevel = 120;
     public int kill;
     public int exp;
+    public float manBoGi;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
     //public int money;
     public float expRate = 1.0f;
@@ -38,6 +40,34 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
+    public GameObject QuestBox;
+
+    public int MaxQuestCount = 3;
+    public List<UIQuest> freeQuestUI;
+
+    int questCount = 0;
+
+    public bool CanAddQuest() {
+        if (questCount < MaxQuestCount) return true;
+        return false;
+    }
+
+    public UIQuest AddQuest(QuestChecker checker, QuestData data) {
+        UIQuest questUI = freeQuestUI[0];
+        freeQuestUI.RemoveAt(0);
+        questCount++;
+
+        questUI.QuestSet(checker, data);
+
+        return questUI;
+    }
+
+    public void EndQuest(UIQuest endQuestUI) {
+        endQuestUI.gameObject.SetActive(false);
+        freeQuestUI.Add(endQuestUI);
+        questCount--;
+
+    }
 
     private void Awake()
     {
@@ -154,6 +184,11 @@ public class GameManager : MonoBehaviour
         if (!isLive)
             return;
         health = Mathf.Min(maxHealth, health + h);
+    }
+
+    public void AddManBogi(float distance)
+    {
+        manBoGi += distance;
     }
 
     //각 스크립트의 Update 계열 로직에 isLive 조건 추가
