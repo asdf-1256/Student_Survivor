@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,11 +42,14 @@ public class GameManager : MonoBehaviour
     public Transform uiJoy;
     public GameObject enemyCleaner;
     public GameObject QuestBox;
+    public GameObject bossSet;
 
     public int MaxQuestCount = 3;
     public List<UIQuest> freeQuestUI;
 
     int questCount = 0;
+
+    private IEnumerator currentBossSpawn;
 
     public bool CanAddQuest() {
         if (questCount < MaxQuestCount) return true;
@@ -88,6 +92,8 @@ public class GameManager : MonoBehaviour
 
         AudioManager.Instance.PlayBgm(true);
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Select);
+
+        currentBossSpawn = SpawnBoss();
     }
     public void GameOver()
     {
@@ -144,10 +150,7 @@ public class GameManager : MonoBehaviour
         gameTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Debug.Log("디버깅용 코드 실행됨");
-            level++;
-            currentPhase = level / (maxLevel / semesterDifficulty.Length);
-            Debug.Log(string.Format("현재 레벨:{0}, 현재 페이즈:{1}", level, currentPhase));
+            GetExp(10);
         }
     }
     public void GetExp() //.. 1만큼 증가하는 경험치 획득 함수
@@ -161,6 +164,11 @@ public class GameManager : MonoBehaviour
             exp = 0;
             uiLevelUpSkill.Show();
             currentPhase = level / (maxLevel / semesterDifficulty.Length);
+            if(level == 59 || level == 119)
+            {
+                Debug.Log("보스 소환");
+                currentBossSpawn.MoveNext();
+            }
         }
     }
     public void GetExp(int e) //... e만큼 증가하는 경험치 획득 함수
@@ -177,6 +185,11 @@ public class GameManager : MonoBehaviour
             exp -= nextexp;
             uiLevelUpSkill.Show();
             currentPhase = level / (maxLevel / semesterDifficulty.Length);
+            if (level == 59 || level == 119)
+            {
+                Debug.Log("보스 소환");
+                currentBossSpawn.MoveNext();
+            }
         }
     }
     public void GetHealth(int h) //.. h만큼 체력 회복
@@ -203,5 +216,18 @@ public class GameManager : MonoBehaviour
         isLive = true;
         Time.timeScale = 1; //만약 2면 시간이 그만큼 빨리 흘러감.
         uiJoy.localScale = Vector3.one;
+    }
+    private IEnumerator SpawnBoss()
+    {
+        int currentBoss = 0;
+
+        while ( currentBoss != bossSet.transform.childCount - 1 ) {
+            Transform nextBoss = bossSet.transform.GetChild(currentBoss);
+            nextBoss.localPosition = player.transform.position + Vector3.up * 10;
+            nextBoss.gameObject.SetActive(true);
+            Debug.Log(string.Format("보스 소환 {0}번째",currentBoss));
+            currentBoss++;
+            yield return null;
+        }
     }
 }
