@@ -24,6 +24,7 @@ TagManager:
   - Machine
   - Laptop
   - SysProg
+  - SleepGas
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Area
   - 
   - 
   - 

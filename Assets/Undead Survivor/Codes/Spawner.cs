@@ -7,40 +7,47 @@ public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
-    public float levelTime;
+    //public float levelTime;
     public float ItemsRandomSpawnArea; //.. 플레이어 주위로 아이템 스폰되는 써클의 반지름
     public float ItemSpawnTime;
+    [SerializeField] private readonly float[] spawnTimes = { 2, 1, 0.2f, 2, 1, 0.2f, 2, 2 };
 
     private WaitForSeconds WaitSpawnTime; //디버깅용- 아이템이 스폰되는데 걸리는 시간. default:1초
 
-    int level;
-    float timer;
+    //int level;
+    [SerializeField] float timer;
 
     public SpawnItemData[] itemDatas;
     public int[] dropRates; //SpawnItemData 내부에 있는 드롭율 부분을 읽어와 순서대로 저장하는 배열
     private int totalDropRate; // dropRates 배열의 값을 다 더한 숫자
+
+    public bool isPlayer;
 
     private void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
         //자기 자신을 포함한 자식들 component 싹다 갖고옴
 
-        levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
+        //levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
 
         //ItemsRandomSpawnArea = GameManager.Instance.ItemsRandomSpawnArea;
-        ItemsRandomSpawnArea = 10f;
+        if (isPlayer)
+        {
+            ItemsRandomSpawnArea = 10f;
 
-        dropRates = new int[itemDatas.Length];
+            dropRates = new int[itemDatas.Length];
 
-        for (int i = 0; i < dropRates.Length; i++)
-            dropRates[i] = itemDatas[i].dropRate;
+            for (int i = 0; i < dropRates.Length; i++)
+                dropRates[i] = itemDatas[i].dropRate;
 
-        totalDropRate = dropRates.Sum();
+            totalDropRate = dropRates.Sum();
 
-        ItemSpawnTime = 1f;
-        WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
+            ItemSpawnTime = 1f;
+            WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
 
-        StartCoroutine(CreateCoinRoutine());
+
+            StartCoroutine(CreateCoinRoutine());
+        }
     }
 
     private void OnValidate()//유니티 Inspector에서 값이 변경될 경우 호출되는 함수.
@@ -48,7 +55,7 @@ public class Spawner : MonoBehaviour
         totalDropRate = dropRates.Sum();//드롭율 총합 다시 계산
         WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);//아이템 스폰 시간 객체 다시 만듬
     }
-
+    /*
     void Update()
     {
         if (!GameManager.Instance.isLive)
@@ -65,6 +72,23 @@ public class Spawner : MonoBehaviour
         }
  
     }
+    */
+    void Update()
+    {
+        if (!GameManager.Instance.isLive)
+            return;
+
+        timer += Time.deltaTime;
+        //level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / levelTime), spawnData.Length - 1);
+        //나눠서 소수점 버림
+
+        if (timer > spawnTimes[GameManager.Instance.currentPhase])
+        {
+            timer = 0f;
+            SpwanEnemy();
+        }
+
+    }
 
     IEnumerator CreateCoinRoutine()
     {
@@ -80,7 +104,7 @@ public class Spawner : MonoBehaviour
         GameObject enemy = GameManager.Instance.pool.Get(0);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         //1인 이유는 자기 자신 제외
-        enemy.GetComponent<Enemy>().Init(spawnData[level]);
+        enemy.GetComponent<Enemy>().Init(spawnData[Random.Range(0, spawnData.Length)]);
     }
 
     /*
@@ -157,7 +181,7 @@ public class Spawner : MonoBehaviour
 [System.Serializable]
 public class SpawnData
 {
-    public float spawnTime;
+    //public float spawnTime;
     public int spriteType;
     public int health;
     public float speed;

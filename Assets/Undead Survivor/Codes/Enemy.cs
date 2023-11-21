@@ -70,10 +70,13 @@ public class Enemy : MonoBehaviour
 
     public void Init(SpawnData data)
     {
+        float difficulty = GameManager.Instance.semesterDifficulty[GameManager.Instance.currentPhase];
         anim.runtimeAnimatorController = animCon[data.spriteType];
         speed = data.speed;
-        maxHealth = data.health;
-        health = data.health;
+        maxHealth = data.health * difficulty;
+        health = data.health * difficulty;
+
+        Debug.Log(string.Format("현재 적 체력: {0} * {1} = 최종적으로 {2}", data.health, difficulty, health));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

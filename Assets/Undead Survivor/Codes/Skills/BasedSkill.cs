@@ -118,6 +118,5 @@ public class BasedSkill : MonoBehaviour
 
         if (attackSkillId.Contains(skillData.skillID))
             coolTime = skillData.cooltimes[level] * GameManager.Instance.player.attackSkillCoolDownRate;
-
     }
 }

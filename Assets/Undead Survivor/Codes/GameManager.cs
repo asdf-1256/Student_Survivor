@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,18 +14,22 @@ public class GameManager : MonoBehaviour
     [Header("# Game Control")]
     public bool isLive;
     public float gameTime;
-    public float maxGameTime = 2 * 10f;
+    //public float maxGameTime = 2 * 10f;
+    public readonly float[] semesterDifficulty = { 1, 1.2f, 1.4f, 1.6f, 1.8f, 2f, 3f, 3.5f }; //난이도 상수
 
     [Header("# Player Info")]
     public int playerId;
     public float health;
     public float maxHealth = 100;
     public int level;
+    private readonly int maxLevel = 120;
     public int kill;
     public int exp;
+    public float manBoGi;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
     //public int money;
     public float expRate = 1.0f;
+    public int currentPhase; //현재 난이도
 
     [Header("# Game Object")]
     public PoolManager pool;
@@ -35,6 +40,34 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
+    public GameObject QuestBox;
+
+    public int MaxQuestCount = 3;
+    public List<UIQuest> freeQuestUI;
+
+    int questCount = 0;
+
+    public bool CanAddQuest() {
+        if (questCount < MaxQuestCount) return true;
+        return false;
+    }
+
+    public UIQuest AddQuest(QuestChecker checker, QuestData data) {
+        UIQuest questUI = freeQuestUI[0];
+        freeQuestUI.RemoveAt(0);
+        questCount++;
+
+        questUI.QuestSet(checker, data);
+
+        return questUI;
+    }
+
+    public void EndQuest(UIQuest endQuestUI) {
+        endQuestUI.gameObject.SetActive(false);
+        freeQuestUI.Add(endQuestUI);
+        questCount--;
+
+    }
 
     private void Awake()
     {
@@ -109,13 +142,13 @@ public class GameManager : MonoBehaviour
         if (!isLive)
             return;
         gameTime += Time.deltaTime;
-
-        if (gameTime > maxGameTime)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            gameTime = maxGameTime;
-            GameVictory();
+            //Debug.Log("디버깅용 코드 실행됨");
+            level++;
+            currentPhase = level / (maxLevel / semesterDifficulty.Length);
+            Debug.Log(string.Format("현재 레벨:{0}, 현재 페이즈:{1}", level, currentPhase));
         }
-
     }
     public void GetExp() //.. 1만큼 증가하는 경험치 획득 함수
     {
@@ -127,6 +160,7 @@ public class GameManager : MonoBehaviour
             level++;
             exp = 0;
             uiLevelUpSkill.Show();
+            currentPhase = level / (maxLevel / semesterDifficulty.Length);
         }
     }
     public void GetExp(int e) //... e만큼 증가하는 경험치 획득 함수
@@ -142,6 +176,7 @@ public class GameManager : MonoBehaviour
             level++;
             exp -= nextexp;
             uiLevelUpSkill.Show();
+            currentPhase = level / (maxLevel / semesterDifficulty.Length);
         }
     }
     public void GetHealth(int h) //.. h만큼 체력 회복
@@ -149,6 +184,11 @@ public class GameManager : MonoBehaviour
         if (!isLive)
             return;
         health = Mathf.Min(maxHealth, health + h);
+    }
+
+    public void AddManBogi(float distance)
+    {
+        manBoGi += distance;
     }
 
     //각 스크립트의 Update 계열 로직에 isLive 조건 추가

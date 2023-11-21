@@ -15,16 +15,25 @@ public class Magnet : MonoBehaviour
     public float MagneticRate
     {
         get { return magneticRate; }
-        set { magneticRate = value; coll.radius = radius * magneticRate; }
+        set
+        {
+            magneticRate = value;
+            //coll.radius = radius * magneticRate;
+            transform.localScale = Vector3.one * magneticRate;
+            spriteRenderer.enabled = true;
+        }
     }
 
     CircleCollider2D coll; // 자력 범위를 설정할 Collider
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         coll = GetComponent<CircleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         radius = coll.radius;
         magneticRate = 1f;
+        spriteRenderer.enabled = false;
     }
 
 
@@ -60,7 +69,7 @@ public class Magnet : MonoBehaviour
     {
         coll.radius *= 2f;
     }
-
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -68,5 +77,5 @@ public class Magnet : MonoBehaviour
             Debug.Log("Space Key Input 발생");
             LevelUpColliderRadius();
         }
-    }
+    }*/
 }

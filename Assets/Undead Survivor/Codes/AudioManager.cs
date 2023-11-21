@@ -23,6 +23,12 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
+    }
+    private void Start()//DataManager의 Instance가 생기고 나서 참조할 수 있도록 생명주기 느린 Start 함수에서 정보 불러오기.
+    {
+        bgmVolume = DataManager.Instance.bgmVolume;
+        sfxVolume = DataManager.Instance.sfxVolume;
         Init();
     }
     void Init()

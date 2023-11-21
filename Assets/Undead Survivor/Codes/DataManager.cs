@@ -10,6 +10,8 @@ public class DataManager : MonoBehaviour
     public int money = 0; //돈
     public int selectedCharacterId = 0; //현재 선택된 캐릭터
     public bool[] isUnlockCharacters = new bool[4]; //캐릭터가 해금된 상태인지 여부
+    [SerializeField] public float bgmVolume;
+    [SerializeField] public float sfxVolume;
     public static DataManager Instance //이 클래스의 instance를 받아올 수 있는 속성 - 게임매니저쓸 때랑 똑같이 쓰면 됨.
     {
         get { return instance; }
@@ -26,13 +28,14 @@ public class DataManager : MonoBehaviour
     }
     private void Init()//초기화 함수 - 기기에 저장된 데이터를 불러와 멤버 변수들을 초기화한다.
     {
-        if (!PlayerPrefs.HasKey("UserData"))
-            Save();
-        money = PlayerPrefs.GetInt("money"); 
-        selectedCharacterId = PlayerPrefs.GetInt("selectedCharacterId"); 
+        money = PlayerPrefs.GetInt("money", 0); 
+        selectedCharacterId = PlayerPrefs.GetInt("selectedCharacterId", 0); 
         for (int i = 0; i < isUnlockCharacters.Length; i++) {
-            isUnlockCharacters[i] = Convert.ToBoolean(PlayerPrefs.GetInt(string.Format("isUnlockCharacter{0}", i)));
+            isUnlockCharacters[i] = Convert.ToBoolean(PlayerPrefs.GetInt(string.Format("isUnlockCharacter{0}", i), 0));
         }
+        bgmVolume = PlayerPrefs.GetFloat("bgmVolume", 0.3f);
+        sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
+        //(key, key에 해당하는 값이 없을 때 가져올 default value) 값이 기기에 있으면 그 값이 반환된다.
     }
     public void SetSelectedCharacter(int id)//캐릭터 선택 버튼에 연결되는 메소드
     {
@@ -41,7 +44,7 @@ public class DataManager : MonoBehaviour
     }
     public void Save()//기기에 저장하는 메소드
     {
-        PlayerPrefs.SetInt("UserData", 1);
+        //PlayerPrefs.SetInt("UserData", 1);
 
         PlayerPrefs.SetInt("money", money);
         PlayerPrefs.SetInt("selectedCharacterId", selectedCharacterId);
@@ -49,6 +52,12 @@ public class DataManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(string.Format("isUnlockCharacter{0}", i), Convert.ToInt32(isUnlockCharacters[i]));
         }
+
+        bgmVolume = AudioManager.Instance.bgmVolume;//현재 수정된 볼륨을 받아와서
+        sfxVolume = AudioManager.Instance.sfxVolume;
+
+        PlayerPrefs.SetFloat("bgmVolume", bgmVolume);//저장한다.
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
     }
 
     //UnlockCharacter, CheckMoney 는 아직 테스트 못 함. 미래를 위해 만들어둔 메소드
