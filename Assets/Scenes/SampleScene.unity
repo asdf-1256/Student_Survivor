@@ -24606,7 +24606,7 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  selectedNums: 000000000000000000000000
+  skillCount: 3
 --- !u!1 &1044996711
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,8 +68,8 @@ public class SkillSelect : MonoBehaviour
                 if (skillData.skillID == 15) // �ΰ����� ��ų�̶��
                 {
                     GameManager.Instance.ai_Player.gameObject.SetActive(true);
-                    level++;
                 }
+                level++;
                 /*
                 else if (level == 0)
                 {
