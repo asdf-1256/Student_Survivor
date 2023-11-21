@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Shield shield;
     [SerializeField] private BuffData[] buffDatas;
 
+    private float debuffSpeedRate = 1f;
+
     public float TotalDistance
     {
         get { return totalDistance; }
@@ -89,7 +91,8 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.Instance.isLive)
             return;
-        Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime * speedRate;
+        
+        Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime * speedRate * debuffSpeedRate;
         totalDistance += nextVec.magnitude;
         rigid.MovePosition(rigid.position + nextVec);
     }
@@ -205,6 +208,19 @@ public class Player : MonoBehaviour
             yield return wait;
         }
         done.Invoke();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("SleepGas"))
+            return;
+        debuffSpeedRate = 0f;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(!collision.CompareTag("SleepGas"))
+            return;
+        debuffSpeedRate = 1f;
     }
 
 }
