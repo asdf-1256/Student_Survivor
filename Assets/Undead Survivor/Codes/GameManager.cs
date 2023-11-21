@@ -36,8 +36,6 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
-    public Bgm_Slider uibgm;
-    public Sfx_Slider uisfx;
     
 
     private void Awake()
