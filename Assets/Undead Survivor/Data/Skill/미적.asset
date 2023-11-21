@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: Skill 21
+  m_Name: "\uBBF8\uC801"
   m_EditorClassIdentifier: 
   skillType: 1
-  skillID: 21
+  skillID: 19
   bulletPrefabID: 0
   level: 0
-  skillName: "\uCCB4\uC911 \uAD00\uB9AC"
-  skillDesc: "\uB2E4\uC774\uC5B4\uD2B8"
+  skillName: "\uBBF8\uBD84\uC801\uBD84\uD559"
+  skillDesc: "\uBBF8\uC801\uBBF8\uC801 \uACF5\uACA9 \uCFE8\uAC10"
   skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   bulletPrefab: {fileID: 0}
   pool_index: 0
-  getype: 1
+  getype: 8
   cooltimes: []
   lifeTimes: []
   damages:
   - 0.8
-  - 0.6
+  - 0.7
   - 0.4
   speeds: []
   counts: []

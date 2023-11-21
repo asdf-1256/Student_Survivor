@@ -1061,7 +1061,7 @@ GameObject:
   - component: {fileID: 62218251}
   - component: {fileID: 62218250}
   m_Layer: 5
-  m_Name: Skill 19
+  m_Name: "\uBBF8\uC801"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1917,7 +1917,7 @@ GameObject:
   - component: {fileID: 106721918}
   - component: {fileID: 106721917}
   m_Layer: 5
-  m_Name: Skill 22
+  m_Name: "\uB0B4\uBAB8\uC9C8\uBCD1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7486,7 +7486,7 @@ GameObject:
   - component: {fileID: 221412408}
   - component: {fileID: 221412407}
   m_Layer: 5
-  m_Name: Skill 11
+  m_Name: "C\uC5B8\uC5B4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13377,7 +13377,7 @@ GameObject:
   - component: {fileID: 403286791}
   - component: {fileID: 403286790}
   m_Layer: 5
-  m_Name: Skill 1
+  m_Name: "\uC790\uBC14"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14285,7 +14285,7 @@ GameObject:
   - component: {fileID: 488301338}
   - component: {fileID: 488301337}
   m_Layer: 5
-  m_Name: Skill 8
+  m_Name: IoT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19032,7 +19032,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.8796296
+  orthographic size: 48.92284
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19299,7 +19299,7 @@ GameObject:
   - component: {fileID: 559754313}
   - component: {fileID: 559754312}
   m_Layer: 5
-  m_Name: Skill 21
+  m_Name: "\uCCB4\uC911\uAD00\uB9AC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19340,7 +19340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a5d6f5342cd204ea9724cab9a0ba6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillData: {fileID: 11400000, guid: 7dbb4f83af9b57a499fb081be015b12e, type: 2}
+  skillData: {fileID: 11400000, guid: 49adc39165e3eca4aa757e86fc92a0e8, type: 2}
   level: 0
   skill: {fileID: 0}
   AIskill: {fileID: 0}
@@ -19467,7 +19467,7 @@ GameObject:
   - component: {fileID: 563582259}
   - component: {fileID: 563582258}
   m_Layer: 5
-  m_Name: Skill 17
+  m_Name: "\uACB0\uAC00"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21547,7 +21547,7 @@ GameObject:
   - component: {fileID: 740872311}
   - component: {fileID: 740872314}
   m_Layer: 5
-  m_Name: Skill 0
+  m_Name: "\uCEF4\uB124\uC2E4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21944,7 +21944,7 @@ GameObject:
   - component: {fileID: 767204576}
   - component: {fileID: 767204575}
   m_Layer: 5
-  m_Name: Skill 12
+  m_Name: "\uD30C\uC774\uC36C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23409,7 +23409,7 @@ GameObject:
   - component: {fileID: 979942348}
   - component: {fileID: 979942347}
   m_Layer: 5
-  m_Name: Skill 18
+  m_Name: "\uD589\uB82C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23747,7 +23747,7 @@ GameObject:
   - component: {fileID: 1007285819}
   - component: {fileID: 1007285818}
   m_Layer: 5
-  m_Name: Skill 16
+  m_Name: "\uD504\uC789"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25920,7 +25920,7 @@ GameObject:
   - component: {fileID: 1288578604}
   - component: {fileID: 1288578603}
   m_Layer: 5
-  m_Name: Skill 13
+  m_Name: "\uB370\uBCA0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26741,7 +26741,7 @@ GameObject:
   - component: {fileID: 1371515423}
   - component: {fileID: 1371515422}
   m_Layer: 5
-  m_Name: Skill 9
+  m_Name: "\uB9C8\uD504"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27651,7 +27651,7 @@ GameObject:
   - component: {fileID: 1426053059}
   - component: {fileID: 1426053058}
   m_Layer: 5
-  m_Name: Skill 15
+  m_Name: "\uC778\uACF5\uC9C0\uB2A5"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27819,7 +27819,7 @@ GameObject:
   - component: {fileID: 1444776787}
   - component: {fileID: 1444776786}
   m_Layer: 5
-  m_Name: Skill 20
+  m_Name: "\uBB3C\uB9AC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28066,7 +28066,7 @@ GameObject:
   - component: {fileID: 1451565923}
   - component: {fileID: 1451565922}
   m_Layer: 5
-  m_Name: Skill 2
+  m_Name: "\uC54C\uACE0\uB9AC\uC998"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28854,7 +28854,7 @@ GameObject:
   - component: {fileID: 1582873110}
   - component: {fileID: 1582873109}
   m_Layer: 5
-  m_Name: Skill 6
+  m_Name: "\uBA38\uC2E0\uB7EC\uB2DD"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30155,7 +30155,7 @@ GameObject:
   - component: {fileID: 1678648737}
   - component: {fileID: 1678648736}
   m_Layer: 5
-  m_Name: Skill 7
+  m_Name: "\uD074\uB77C\uC6B0\uB4DC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30560,7 +30560,7 @@ GameObject:
   - component: {fileID: 1752416137}
   - component: {fileID: 1752416136}
   m_Layer: 5
-  m_Name: Skill 3
+  m_Name: OS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30882,7 +30882,7 @@ GameObject:
   - component: {fileID: 1777930036}
   - component: {fileID: 1777930035}
   m_Layer: 5
-  m_Name: Skill 24
+  m_Name: "\uB2EC\uB9AC\uAE30"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30923,7 +30923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a5d6f5342cd204ea9724cab9a0ba6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillData: {fileID: 11400000, guid: c337d93d9b3c6114f80049c28d3cba52, type: 2}
+  skillData: {fileID: 11400000, guid: 9901472165f59d94bb3d4ca418083e39, type: 2}
   level: 0
   skill: {fileID: 0}
   AIskill: {fileID: 0}
@@ -32326,7 +32326,7 @@ GameObject:
   - component: {fileID: 1969190308}
   - component: {fileID: 1969190307}
   m_Layer: 5
-  m_Name: Skill 14
+  m_Name: "\uB17C\uB9AC\uD68C\uB85C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37136,7 +37136,7 @@ GameObject:
   - component: {fileID: 2020980061}
   - component: {fileID: 2020980060}
   m_Layer: 5
-  m_Name: Skill 4
+  m_Name: "\uADF8\uB798\uD53D\uC2A4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37304,7 +37304,7 @@ GameObject:
   - component: {fileID: 2046272505}
   - component: {fileID: 2046272504}
   m_Layer: 5
-  m_Name: Skill 5
+  m_Name: "\uC790\uAD6C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37875,7 +37875,7 @@ GameObject:
   - component: {fileID: 2078677273}
   - component: {fileID: 2078677272}
   m_Layer: 5
-  m_Name: Skill 10
+  m_Name: "\uC2DC\uBCF4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38400,7 +38400,7 @@ GameObject:
   - component: {fileID: 2118327832}
   - component: {fileID: 2118327831}
   m_Layer: 5
-  m_Name: Skill 23
+  m_Name: "\uC735\uAE00"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

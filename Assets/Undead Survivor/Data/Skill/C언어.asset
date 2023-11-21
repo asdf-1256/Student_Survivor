@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: Skill 9
+  m_Name: "C\uC5B8\uC5B4"
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 9
+  skillID: 11
   bulletPrefabID: 4
   level: 0
-  skillName: "\uB9C8\uD504"
-  skillDesc: "\uB77C\uC778\uD2B8\uB808\uC774\uC11C"
+  skillName: "C\uC5B8\uC5B4"
+  skillDesc: "\uC528\uBFCC\uB9AC\uAE30"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  bulletPrefab: {fileID: 5665052994215594943, guid: f72040c2bc43fa244954dcd643287080, type: 3}
+  bulletPrefab: {fileID: 8761848194503045102, guid: 21c4d4b7fba67fe46a8c4ed4cc95ca84, type: 3}
   pool_index: 0
-  getype: 0
   cooltimes:
-  - 7
-  - 5
-  - 3
+  - 1
+  - 0.5
+  - 0.1
   lifeTimes:
   - 1
   - 2
@@ -33,11 +32,11 @@ MonoBehaviour:
   damages:
   - 3
   - 6
-  - 10
+  - 9
   speeds:
-  - 3
-  - 3
-  - 3
+  - 10
+  - 15
+  - 20
   counts:
   - 1
   - 1

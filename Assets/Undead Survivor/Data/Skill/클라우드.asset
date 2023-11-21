@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: Skill 10
+  m_Name: "\uD074\uB77C\uC6B0\uB4DC"
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 10
+  skillID: 7
   bulletPrefabID: 4
   level: 0
-  skillName: "\uC2DC\uBCF4"
-  skillDesc: "\uC801\uC744 \uD574\uD0B9\uD569\uB2C8\uB2E4"
+  skillName: "\uD074\uB77C\uC6B0\uB4DC"
+  skillDesc: "\uD074\uB77C\uC6B0\uB4DC\uC785\uB2C8\uB2E4"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  bulletPrefab: {fileID: 1889395839027343230, guid: 93561b892688a1c4f981034940920ba7, type: 3}
+  bulletPrefab: {fileID: 1155342979010886728, guid: 401b32686349da649bfd22014119050d, type: 3}
   pool_index: 0
   cooltimes:
-  - 2
-  - 1
-  - 0.3
+  - 10
+  - 9
+  - 8
   lifeTimes:
-  - 1
-  - 2
-  - 3
+  - 5
+  - 6
+  - 7
   damages:
   - 3
   - 6

@@ -10,36 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: Skill 15
+  m_Name: "\uD504\uC789"
   m_EditorClassIdentifier: 
-  skillType: 0
-  skillID: 15
+  skillType: 1
+  skillID: 16
   bulletPrefabID: 0
   level: 0
-  skillName: "\uC778\uACF5\uC9C0\uB2A5"
-  skillDesc: "\uD2B9\uC774\uC810\uC740 \uC628\uB2E4."
+  skillName: "\uD504\uC789"
+  skillDesc: "\uC790\uC11D\uC790\uC11D"
   skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   bulletPrefab: {fileID: 0}
   pool_index: 0
-  getype: 0
-  cooltimes:
-  - 8
-  - 7
-  - 6
-  lifeTimes:
-  - 3
-  - 4
-  - 5
+  getype: 2
+  cooltimes: []
+  lifeTimes: []
   damages:
-  - 3
-  speeds:
-  - 8
-  - 8
-  - 8
-  counts:
-  - 1
-  - 1
-  - 1
+  - 2
+  - 2
+  - 2
+  speeds: []
+  counts: []
   attackCoolTime: 0
   scaleFactor: 0
   flightTime: 0

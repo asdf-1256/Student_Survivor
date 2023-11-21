@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: Skill 13
+  m_Name: OS
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 13
-  bulletPrefabID: 0
+  skillID: 3
+  bulletPrefabID: 4
   level: 0
-  skillName: DB
-  skillDesc: "DB\uC785\uB2C8\uB2E4"
-  skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  bulletPrefab: {fileID: 1917820268869603708, guid: a57b4f0a40226884fa7cd726a93ff78e, type: 3}
+  skillName: OS
+  skillDesc: "OS\uC785\uB2C8\uB2E4"
+  skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  bulletPrefab: {fileID: 3768573273252977567, guid: 87faba1d298f2e1489d576878b2069ff, type: 3}
   pool_index: 0
   cooltimes:
+  - 10
+  - 9
   - 8
-  - 7
-  - 6
   lifeTimes:
-  - 3
-  - 4
   - 5
+  - 6
+  - 7
   damages:
-  - 0
-  - 0
-  - 0
+  - 3
+  - 6
+  - 10
   speeds:
-  - 8
-  - 8
-  - 8
+  - 1
+  - 2
+  - 3
   counts:
   - 1
   - 1
   - 1
-  attackCoolTime: 0
-  scaleFactor: 0
-  flightTime: 0
-  rotateSpeed: 0
+  attackCoolTime: 0.5
+  scaleFactor: 0.1
+  flightTime: 2
+  rotateSpeed: 200
