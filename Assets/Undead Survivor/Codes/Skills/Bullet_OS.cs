@@ -48,6 +48,7 @@ public class Bullet_OS : BulletBase
         Fire(0, -1);
         Fire(1, -1);
         Fire(-1, 1);
+        gameObject.SetActive(false);
         yield return null;
     }
     void Fire(int x, int y)
@@ -64,3 +65,5 @@ public class Bullet_OS : BulletBase
     }
 
 }
+
+
