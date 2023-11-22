@@ -98,7 +98,7 @@ public class SkillSelect : MonoBehaviour
         switch (skillData.skillType)
         {
             case SkillData.SkillType.전공:
-                QuestManager.Instance.AddQuest(name, questData, _questReward);
+                QuestManager.Instance.AddQuest(name, level, questData, _questReward);
                 
                 
                 level++;

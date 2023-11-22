@@ -56,12 +56,12 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    public UIQuest AddQuest(QuestChecker checker, QuestData data) {
+    public UIQuest AddQuest(string skillName, int level, QuestChecker checker, QuestData data) {
         UIQuest questUI = freeQuestUI[0];
         freeQuestUI.RemoveAt(0);
         questCount++;
 
-        questUI.QuestSet(checker, data);
+        questUI.QuestSet(skillName, level, checker, data);
 
         return questUI;
     }

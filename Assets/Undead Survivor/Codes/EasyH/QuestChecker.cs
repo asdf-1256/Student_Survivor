@@ -46,7 +46,8 @@ public class SafeTimeQuestChecker : QuestChecker {
 public class HealthMakeToQuestChecker : QuestChecker {
 
     float _goalRatio;
-
+    float _goalSpendHealth;
+    float _spendHealth;
     public HealthMakeToQuestChecker(float ratio)
     {
         _goalRatio = ratio;
@@ -54,7 +55,9 @@ public class HealthMakeToQuestChecker : QuestChecker {
 
     public bool CheckAchieve()
     {
-        if (GameManager.Instance.health / GameManager.Instance.maxHealth > _goalRatio)
+        _goalSpendHealth = GameManager.Instance.maxHealth * (1 - _goalRatio);
+        _spendHealth = GameManager.Instance.maxHealth - GameManager.Instance.health;
+        if (_spendHealth < _goalSpendHealth)
             return false;
 
         return true;
@@ -62,13 +65,12 @@ public class HealthMakeToQuestChecker : QuestChecker {
 
     public float GetProgress()
     {
-        return GameManager.Instance.health / GameManager.Instance.maxHealth / _goalRatio;
+        return (_spendHealth + 1) / _goalSpendHealth;
 
     }
     public override string ToString()
     {
-        if (CheckAchieve()) return "1 / 1";
-        return "0 / 0";
+        return _spendHealth.ToString("F0") + " / " + _goalSpendHealth.ToString("F0");
 
     }
 }
@@ -92,7 +94,7 @@ public class KillCountQuestChecker : QuestChecker {
     }
     public float GetProgress()
     {
-        return GameManager.Instance.kill - _originKillCount / _goalCount;
+        return (GameManager.Instance.kill - _originKillCount) / _goalCount;
 
     }
     public override string ToString()
@@ -116,7 +118,7 @@ public class WalkQuestChecker : QuestChecker {
 
     public float GetProgress()
     {
-        return GameManager.Instance.manBoGi - _originalWalk / _golaWalk;
+        return (GameManager.Instance.manBoGi - _originalWalk) / _golaWalk;
     }
     public override string ToString()
     {

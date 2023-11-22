@@ -19,7 +19,7 @@ public class QuestManager : MonoBehaviour
     public List<string> _doingQuestName;
     List<QuestInfor> _doingQuest;
 
-    public void AddQuest(string skillName, QuestData newQuest, QuestReward reward) {
+    public void AddQuest(string skillName, int level, QuestData newQuest, QuestReward reward) {
 
         if (!GameManager.Instance.CanAddQuest())
         {
@@ -53,7 +53,7 @@ public class QuestManager : MonoBehaviour
                 break;
         }
 
-        newQuestInfor.UI = GameManager.Instance.AddQuest(newQuestInfor.Checker, newQuest);
+        newQuestInfor.UI = GameManager.Instance.AddQuest(skillName, level, newQuestInfor.Checker, newQuest);
 
         _doingQuest.Add(newQuestInfor);
 
