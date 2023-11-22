@@ -1,18 +1,46 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
+public class SkillLevelUpReward: QuestReward {
+    int level = 0;
+
+    BasedSkill skill, AIskill;
+    internal SkillData skillData;
+
+    public void Reward()
+    {
+        if (level > 0)
+        {
+            skill.LevelUp();
+            AIskill.LevelUp();
+            level++;
+            return;
+        }
+
+        GameObject newSkill = new GameObject();
+        GameObject newAISkill = new GameObject();
+        skill = newSkill.AddComponent<BasedSkill>();
+        AIskill = newAISkill.AddComponent<BasedSkill>();
+
+        skill.Init(false, skillData);
+        AIskill.Init(true, skillData);
+        level++;
+    }
+}
 
 public class SkillSelect : MonoBehaviour
 {
     // �� ���� item ��Ʈ��Ʈ
     public SkillData skillData;
+    SkillLevelUpReward _questReward;
     public int level;
     public BasedSkill skill, AIskill; // �� ���� weapon
     public Gear gear;
     public QuestData questData;
-    public QuestManager quest;
 
     Image icon;
     Text textLevel;
@@ -52,18 +80,19 @@ public class SkillSelect : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        _questReward = new SkillLevelUpReward();
+        _questReward.skillData = skillData;
+    }
+
     public void OnClick()
     {
 
         switch (skillData.skillType)
         {
             case SkillData.SkillType.전공:
-                if (!quest)
-                {
-                    GameObject newQuest = new GameObject();
-                    quest = newQuest.AddComponent<QuestManager>();
-                }
-                quest.SetQuest(questData, skillData);
+                QuestManager.Instance.AddQuest(name, questData, _questReward);
                 
                 if (skillData.skillID == 15) // �ΰ����� ��ų�̶��
                 {

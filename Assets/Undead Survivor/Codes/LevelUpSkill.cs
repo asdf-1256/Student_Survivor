@@ -11,6 +11,7 @@ public class LevelUpSkill : MonoBehaviour
 
     public int skillCount = 3; // 선택 가능한 스킬 개수
     int[] selectedNums = new int[30]; // 담을 수 있는 스킬 개수 30개로
+
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -65,8 +66,12 @@ public class LevelUpSkill : MonoBehaviour
             selectedNums[index] = SelectRandomNum(index); // selectedNums 배열에 랜덤한 스킬번호 넣기
             SkillSelect randomSkill = skillSelects[selectedNums[index]];
             Debug.Log(index + "번째 뽑음 : " + selectedNums[index]);
+
+            if (QuestManager.Instance.IsQuestDoing(randomSkill.name)) {
+                Debug.Log(index + "번째 : 현재 수행중");
+            }
             // 만렙 스킬이라면 다시 뽑기
-            if (randomSkill.level == randomSkill.skillData.damages.Length)
+            else if (randomSkill.level == randomSkill.skillData.damages.Length)
             {
                 Debug.Log(index + "번째 : 만렙이네?");
             }
