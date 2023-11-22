@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 62218251}
   - component: {fileID: 62218250}
   m_Layer: 5
-  m_Name: "\uBBF8\uC801"
+  m_Name: "19. \uBBF8\uC801"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2012,7 +2012,7 @@ GameObject:
   - component: {fileID: 106721918}
   - component: {fileID: 106721917}
   m_Layer: 5
-  m_Name: "\uB0B4\uBAB8\uC9C8\uBCD1"
+  m_Name: "22. \uB0B4\uBAB8\uC9C8\uBCD1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7693,7 +7693,7 @@ GameObject:
   - component: {fileID: 221412408}
   - component: {fileID: 221412407}
   m_Layer: 5
-  m_Name: "C\uC5B8\uC5B4"
+  m_Name: "11. C\uC5B8\uC5B4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7739,7 +7739,7 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
-  questData: {fileID: 11400000, guid: eb1bb2ed6356db84fb24d45c3d8ef7c0, type: 2}
+  questData: {fileID: 11400000, guid: e57180456aa968b4f9b1033920e795ab, type: 2}
 --- !u!114 &221412408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13755,7 +13755,7 @@ GameObject:
   - component: {fileID: 403286791}
   - component: {fileID: 403286790}
   m_Layer: 5
-  m_Name: "\uC790\uBC14"
+  m_Name: "1. \uC790\uBC14"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14662,7 +14662,7 @@ GameObject:
   - component: {fileID: 488301338}
   - component: {fileID: 488301337}
   m_Layer: 5
-  m_Name: IoT
+  m_Name: 8. IoT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19408,7 +19408,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.8796296
+  orthographic size: 48.92284
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19675,7 +19675,7 @@ GameObject:
   - component: {fileID: 559754313}
   - component: {fileID: 559754312}
   m_Layer: 5
-  m_Name: "\uCCB4\uC911\uAD00\uB9AC"
+  m_Name: "21. \uCCB4\uC911\uAD00\uB9AC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19842,7 +19842,7 @@ GameObject:
   - component: {fileID: 563582259}
   - component: {fileID: 563582258}
   m_Layer: 5
-  m_Name: "\uACB0\uAC00"
+  m_Name: "17. \uACB0\uAC00"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20459,7 +20459,7 @@ GameObject:
   - component: {fileID: 605454174}
   - component: {fileID: 605454173}
   m_Layer: 5
-  m_Name: OS
+  m_Name: 25. OS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22172,7 +22172,7 @@ GameObject:
   - component: {fileID: 740872311}
   - component: {fileID: 740872314}
   m_Layer: 5
-  m_Name: "\uCEF4\uB124\uC2E4"
+  m_Name: "0. \uCEF4\uB124\uC2E4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22568,7 +22568,7 @@ GameObject:
   - component: {fileID: 767204576}
   - component: {fileID: 767204575}
   m_Layer: 5
-  m_Name: "\uD30C\uC774\uC36C"
+  m_Name: "12. \uD30C\uC774\uC36C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22614,7 +22614,7 @@ MonoBehaviour:
   skill: {fileID: 0}
   AIskill: {fileID: 0}
   gear: {fileID: 0}
-  questData: {fileID: 11400000, guid: e8936b8c09788df4890a5d5c0389a435, type: 2}
+  questData: {fileID: 11400000, guid: 155a2fd210b1d40478c44b06e99442d6, type: 2}
 --- !u!114 &767204576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23421,10 +23421,13 @@ MonoBehaviour:
   spawnData:
   - spriteType: 0
     health: 10
-    speed: 1.5
+    speed: 2.4
   - spriteType: 1
     health: 15
-    speed: 2.4
+    speed: 2
+  - spriteType: 2
+    health: 30
+    speed: 1.4
   ItemsRandomSpawnArea: 5
   ItemSpawnTime: 0
   timer: 0
@@ -24031,7 +24034,7 @@ GameObject:
   - component: {fileID: 979942348}
   - component: {fileID: 979942347}
   m_Layer: 5
-  m_Name: "\uD589\uB82C"
+  m_Name: "18. \uD589\uB82C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24368,7 +24371,7 @@ GameObject:
   - component: {fileID: 1007285819}
   - component: {fileID: 1007285818}
   m_Layer: 5
-  m_Name: "\uD504\uC789"
+  m_Name: "16. \uD504\uC789"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24755,32 +24758,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillSelectRates:
+  - 10
+  - 1000
+  - 10
+  - 10
+  - 10
+  - 100
+  - 10
   - 1
+  - 10
+  - 100
+  - 100
+  - 1000
+  - 1000
+  - 10
+  - 100
   - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 10
   skillCount: 3
 --- !u!1 &1044996711
 GameObject:
@@ -26742,7 +26745,7 @@ GameObject:
   - component: {fileID: 1288578604}
   - component: {fileID: 1288578603}
   m_Layer: 5
-  m_Name: "\uB370\uBCA0"
+  m_Name: "13. \uB370\uBCA0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27562,7 +27565,7 @@ GameObject:
   - component: {fileID: 1371515423}
   - component: {fileID: 1371515422}
   m_Layer: 5
-  m_Name: "\uB9C8\uD504"
+  m_Name: "9. \uB9C8\uD504"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28494,7 +28497,7 @@ GameObject:
   - component: {fileID: 1426053059}
   - component: {fileID: 1426053058}
   m_Layer: 5
-  m_Name: "\uC778\uACF5\uC9C0\uB2A5"
+  m_Name: "15. \uC778\uACF5\uC9C0\uB2A5"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28661,7 +28664,7 @@ GameObject:
   - component: {fileID: 1444776787}
   - component: {fileID: 1444776786}
   m_Layer: 5
-  m_Name: "\uBB3C\uB9AC"
+  m_Name: "20. \uBB3C\uB9AC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28907,7 +28910,7 @@ GameObject:
   - component: {fileID: 1451565923}
   - component: {fileID: 1451565922}
   m_Layer: 5
-  m_Name: "\uC54C\uACE0\uB9AC\uC998"
+  m_Name: "2. \uC54C\uACE0\uB9AC\uC998"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29613,7 +29616,7 @@ GameObject:
   - component: {fileID: 1582873110}
   - component: {fileID: 1582873109}
   m_Layer: 5
-  m_Name: "\uBA38\uC2E0\uB7EC\uB2DD"
+  m_Name: "6. \uBA38\uC2E0\uB7EC\uB2DD"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30915,7 +30918,7 @@ GameObject:
   - component: {fileID: 1678648737}
   - component: {fileID: 1678648736}
   m_Layer: 5
-  m_Name: "\uD074\uB77C\uC6B0\uB4DC"
+  m_Name: "7. \uD074\uB77C\uC6B0\uB4DC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31319,7 +31322,7 @@ GameObject:
   - component: {fileID: 1752416137}
   - component: {fileID: 1752416136}
   m_Layer: 5
-  m_Name: "\uBAA8\uD504(\uAD6COS)"
+  m_Name: "3. \uBAA8\uD504(\uAD6COS)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31640,7 +31643,7 @@ GameObject:
   - component: {fileID: 1777930036}
   - component: {fileID: 1777930035}
   m_Layer: 5
-  m_Name: "\uB2EC\uB9AC\uAE30"
+  m_Name: "24. \uB2EC\uB9AC\uAE30"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33141,7 +33144,7 @@ GameObject:
   - component: {fileID: 1969190308}
   - component: {fileID: 1969190307}
   m_Layer: 5
-  m_Name: "\uB17C\uB9AC\uD68C\uB85C"
+  m_Name: "14. \uB17C\uB9AC\uD68C\uB85C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37951,7 +37954,7 @@ GameObject:
   - component: {fileID: 2020980061}
   - component: {fileID: 2020980060}
   m_Layer: 5
-  m_Name: "\uADF8\uB798\uD53D\uC2A4"
+  m_Name: "4. \uADF8\uB798\uD53D\uC2A4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38118,7 +38121,7 @@ GameObject:
   - component: {fileID: 2046272505}
   - component: {fileID: 2046272504}
   m_Layer: 5
-  m_Name: "\uC790\uAD6C"
+  m_Name: "5. \uC790\uAD6C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38763,7 +38766,7 @@ GameObject:
   - component: {fileID: 2078677273}
   - component: {fileID: 2078677272}
   m_Layer: 5
-  m_Name: "\uC2DC\uBCF4"
+  m_Name: "10. \uC2DC\uBCF4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39287,7 +39290,7 @@ GameObject:
   - component: {fileID: 2118327832}
   - component: {fileID: 2118327831}
   m_Layer: 5
-  m_Name: "\uC735\uAE00"
+  m_Name: "23. \uC735\uAE00"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
