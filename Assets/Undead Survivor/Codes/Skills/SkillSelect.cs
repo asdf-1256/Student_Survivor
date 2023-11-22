@@ -13,7 +13,13 @@ public class SkillLevelUpReward: QuestReward {
 
     public void Reward()
     {
-        if (level > 0)
+        if (skillData.skillID == 15) // 인공지능 스킬이면 AI 오브젝트 활성화
+        {
+            GameManager.Instance.ai_Player.gameObject.SetActive(true);
+            level++;
+            return;
+        }
+        else if (level > 0)
         {
             skill.LevelUp();
             AIskill.LevelUp();
@@ -94,10 +100,7 @@ public class SkillSelect : MonoBehaviour
             case SkillData.SkillType.전공:
                 QuestManager.Instance.AddQuest(name, questData, _questReward);
                 
-                if (skillData.skillID == 15) // �ΰ����� ��ų�̶��
-                {
-                    GameManager.Instance.ai_Player.gameObject.SetActive(true);
-                }
+                
                 level++;
                 /*
                 else if (level == 0)

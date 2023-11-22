@@ -10,7 +10,7 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance;
 
     class QuestInfor {
-        internal string name;
+        internal string skillName;
         internal QuestChecker Checker;
         internal QuestReward Reward;
         internal UIQuest UI;
@@ -19,14 +19,17 @@ public class QuestManager : MonoBehaviour
     public List<string> _doingQuestName;
     List<QuestInfor> _doingQuest;
 
-    public void AddQuest(string questName, QuestData newQuest, QuestReward reward) {
+    public void AddQuest(string skillName, QuestData newQuest, QuestReward reward) {
 
-        if (!GameManager.Instance.CanAddQuest()) return;
-
-        _doingQuestName.Add(questName);
+        if (!GameManager.Instance.CanAddQuest())
+        {
+            Debug.Log("Äù½ºÆ®°¡ ²Ë Â÷ÀÖ½À´Ï´Ù.");
+            return;
+        }
+        _doingQuestName.Add(skillName);
 
         QuestInfor newQuestInfor = new QuestInfor();
-        newQuestInfor.name = questName;
+        newQuestInfor.skillName = skillName;
         newQuestInfor.Reward = reward;
 
         switch (newQuest.Type) {
@@ -58,7 +61,7 @@ public class QuestManager : MonoBehaviour
 
     private void _QuestAchieve(QuestInfor infor)
     {
-        _doingQuestName.Remove(infor.name);
+        _doingQuestName.Remove(infor.skillName);
         _doingQuest.Remove(infor);
         UIManager.Instance.Notice(string.Format("Äù½ºÆ® ¼º°ø"));
 

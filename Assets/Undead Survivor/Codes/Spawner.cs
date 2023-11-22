@@ -28,12 +28,8 @@ public class Spawner : MonoBehaviour
         spawnPoint = GetComponentsInChildren<Transform>();
         //자기 자신을 포함한 자식들 component 싹다 갖고옴
 
-        //levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
-
-        //ItemsRandomSpawnArea = GameManager.Instance.ItemsRandomSpawnArea;
         if (isPlayer)
         {
-            ItemsRandomSpawnArea = 10f;
 
             dropRates = new int[itemDatas.Length];
 
@@ -55,32 +51,12 @@ public class Spawner : MonoBehaviour
         totalDropRate = dropRates.Sum();//드롭율 총합 다시 계산
         WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);//아이템 스폰 시간 객체 다시 만듬
     }
-    /*
     void Update()
     {
         if (!GameManager.Instance.isLive)
             return;
 
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / levelTime), spawnData.Length - 1);
-        //나눠서 소수점 버림
-
-        if (timer > spawnData[level].spawnTime)
-        {
-            timer = 0f;
-            SpwanEnemy();
-        }
- 
-    }
-    */
-    void Update()
-    {
-        if (!GameManager.Instance.isLive)
-            return;
-
-        timer += Time.deltaTime;
-        //level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / levelTime), spawnData.Length - 1);
-        //나눠서 소수점 버림
 
         if (timer > spawnTimes[GameManager.Instance.currentPhase])
         {
@@ -107,48 +83,6 @@ public class Spawner : MonoBehaviour
         enemy.GetComponent<Enemy>().Init(spawnData[Random.Range(0, spawnData.Length)]);
     }
 
-    /*
-    int SelectRandomItem() //.. 게임매니저의 아이템 별 degree수치에 따라 확률적으로 아이템 번호를 선택하는 함수
-    {
-        int resultItem;
-        float coin_spd = GameManager.Instance.coin_spd;
-        float exp0_spd = GameManager.Instance.exp0_spd;
-        float exp1_spd = GameManager.Instance.exp1_spd;
-        float health_spd = GameManager.Instance.health_spd;
-        float mag_spd = GameManager.Instance.mag_spd;
-
-        float total_spd = coin_spd + exp0_spd + exp1_spd + health_spd + mag_spd;
-        float select_spd = Random.Range(0f, total_spd);
-
-         //이전 코드
-        //if (select_spd < coin_spd)
-        //    resultItem = 3;
-        //else if (select_spd < coin_spd + exp0_spd)
-        //    resultItem = 4;
-        //else if (select_spd < coin_spd + exp0_spd + exp1_spd)
-        //    resultItem = 5;
-        //else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
-        //    resultItem = 6;
-        //else
-        //    resultItem = 7;
-        //return resultItem;
-
-
-        //resultItem을 itemDatas배열의 인덱스로 사용.
-        if (select_spd < coin_spd)
-            resultItem = 0;
-        else if (select_spd < coin_spd + exp0_spd)
-            resultItem = 1;
-        else if (select_spd < coin_spd + exp0_spd + exp1_spd)
-            resultItem = 2;
-        else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
-            resultItem = 3;
-        else
-            resultItem = 4;
-        return resultItem;
-
-    }
-*/
     int SelectRandomItem()
     {
         int resultItem = 0;
