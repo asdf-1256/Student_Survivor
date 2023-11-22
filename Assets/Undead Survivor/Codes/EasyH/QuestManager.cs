@@ -21,11 +21,6 @@ public class QuestManager : MonoBehaviour
 
     public void AddQuest(string skillName, int level, QuestData newQuest, QuestReward reward) {
 
-        if (!GameManager.Instance.CanAddQuest())
-        {
-            Debug.Log("퀘스트가 꽉 차있습니다.");
-            return;
-        }
         _doingQuestName.Add(skillName);
 
         QuestInfor newQuestInfor = new QuestInfor();

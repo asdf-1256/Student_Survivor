@@ -98,29 +98,14 @@ public class SkillSelect : MonoBehaviour
         switch (skillData.skillType)
         {
             case SkillData.SkillType.전공:
+                if (!GameManager.Instance.CanAddQuest())
+                {
+                    UIManager.Instance.Notice(string.Format("풀강입니다! 공강이 없습니다?"));
+                    Debug.Log("퀘스트가 꽉 차있습니다.");
+                    break;
+                }
                 QuestManager.Instance.AddQuest(name, level, questData, _questReward);
-                
-                
                 level++;
-                /*
-                else if (level == 0)
-                {
-                    GameObject newSkill = new GameObject();
-                    GameObject newAISkill = new GameObject();
-                    skill = newSkill.AddComponent<BasedSkill>();
-                    AIskill = newAISkill.AddComponent<BasedSkill>();
-
-                    skill.Init(false, skillData);
-                    AIskill.Init(true, skillData);
-                    level++;
-                }
-                else
-                {
-                    skill.LevelUp();
-                    AIskill.LevelUp();
-                    level++;
-                }
-*/
                 break;
             case SkillData.SkillType.교양:
                 GEActive();
