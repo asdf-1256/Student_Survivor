@@ -10,7 +10,7 @@ public class Bullet_Park : MonoBehaviour
     [SerializeField] float flightTime = 2;
     [SerializeField] float lifeTime = 1;
     [SerializeField] float rotateSpeed = 200;
-    [SerializeField] float timer = 0;
+    //[SerializeField] float timer = 0;
 
     [SerializeField] float warningTime = 1;
     [SerializeField] float fadeOutTime = 1;

@@ -9,8 +9,18 @@ public class Boss : MonoBehaviour
     [SerializeField] private SpawnItemData[] itemDatas;
     [SerializeField] private int spawnExpCount = 100;
 
+    [SerializeField] private GameObject bossHealthHUD;
+
+    private void OnEnable()
+    {
+        bossHealthHUD.SetActive(true);
+    }
+
     private void OnDisable()
     {
+        bossHealthHUD.SetActive(false);
+        GameManager.Instance.SpawnedBoss = null;
+
         if (bossId == 0)
         {
             Spawner spawner = GetComponentInChildren<Spawner>();

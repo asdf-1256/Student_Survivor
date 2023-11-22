@@ -78,7 +78,7 @@ public class Spawner : MonoBehaviour
         if (!GameManager.Instance.isLive)
             return;
 
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * ((!isPlayer) ? 5f : 1f);
         //level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / levelTime), spawnData.Length - 1);
         //나눠서 소수점 버림
 

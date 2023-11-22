@@ -50,7 +50,12 @@ public class GameManager : MonoBehaviour
     int questCount = 0;
 
     private IEnumerator currentBossSpawn;
-
+    private Enemy _boss;
+    public Enemy SpawnedBoss
+    {
+        get { return _boss; }
+        set { _boss = value; }
+    }
     public bool CanAddQuest() {
         if (questCount < MaxQuestCount) return true;
         return false;
@@ -223,6 +228,7 @@ public class GameManager : MonoBehaviour
 
         while ( currentBoss != bossSet.transform.childCount - 1 ) {
             Transform nextBoss = bossSet.transform.GetChild(currentBoss);
+            _boss = nextBoss.GetComponent<Enemy>();
             nextBoss.localPosition = player.transform.position + Vector3.up * 10;
             nextBoss.gameObject.SetActive(true);
             Debug.Log(string.Format("보스 소환 {0}번째",currentBoss));
