@@ -18,13 +18,13 @@ public class SafeTimeQuestChecker : QuestChecker {
 
     public bool CheckAchieve()
     {
-        if (_originHealth != GameManager.Instance.health)
+        if (GameManager.Instance.health < _originHealth)
         {
             _originHealth = GameManager.Instance.health;
             _spendTime = 0;
             return false;
         }
-
+        _originHealth = GameManager.Instance.health;
         _spendTime += Time.deltaTime;
 
         if (_spendTime < _goalTime)

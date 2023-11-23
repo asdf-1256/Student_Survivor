@@ -119,10 +119,11 @@ public class SkillSelect : MonoBehaviour
                     Debug.Log("퀘스트가 꽉 차있습니다.");
                     break;
                 }
-                QuestManager.Instance.AddQuest(name, level, questData, _questReward);
+                QuestManager.Instance.AddQuest(skillData.skillName, level, questData, _questReward);
                 level++;
                 break;
             case SkillData.SkillType.교양:
+                SkillTreeManager.instance.AddSkillLevelPair(skillData.skillName);
                 GEActive();
                 break;
         }

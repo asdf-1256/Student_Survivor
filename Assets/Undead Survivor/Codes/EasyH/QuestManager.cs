@@ -59,6 +59,7 @@ public class QuestManager : MonoBehaviour
         _doingQuestName.Remove(infor.skillName);
         _doingQuest.Remove(infor);
         UIManager.Instance.Notice(string.Format("Äù½ºÆ® ¼º°ø"));
+        SkillTreeManager.instance.AddSkillLevelPair(infor.skillName);
 
         GameManager.Instance.EndQuest(infor.UI);
         infor.Reward.Reward();
