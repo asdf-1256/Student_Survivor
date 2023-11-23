@@ -258,12 +258,6 @@ public class Enemy : MonoBehaviour
             GameManager.Instance.killByType.Add(currentSpriteType, 1);
         }
 
-        //Debug.Log(GameManager.Instance.killByType);
-        
-        foreach(var kvp in GameManager.Instance.killByType)
-        {
-            Debug.Log(string.Format("몬스터 타입:{0} | 킬 수:{1}", kvp.Key, kvp.Value));
-        }
         gameObject.SetActive(false);
     }
     IEnumerator LavaRoutine(SkillBase skillBase)
