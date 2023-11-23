@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public int level;
     private readonly int maxLevel = 120;
     public int kill;
+    public Dictionary<int, int> killByType;
     public int exp;
     public float manBoGi;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
@@ -81,6 +82,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        killByType = new();
+        for(int i = 0; i < 3; i++)
+            killByType.Add(i, 0);
         Application.targetFrameRate = 60;
     }
     public void GameStart(int id)

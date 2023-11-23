@@ -23,6 +23,12 @@ public class Enemy : MonoBehaviour
 
     Coroutine lockCoroutine = null;
 
+    [SerializeField] private Transform damageTransform;
+    [SerializeField] private GameObject DamageTextObjectPrefab;
+    private int damagePoolIndex;
+
+    private int currentSpriteType;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,6 +37,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
+        damagePoolIndex = GetDamageTextPoolIndex();
     }
 
     // Update is called once per frame
@@ -75,6 +82,7 @@ public class Enemy : MonoBehaviour
         speed = data.speed;
         maxHealth = data.health * difficulty;
         health = data.health * difficulty;
+        currentSpriteType = data.spriteType;
 
         //Debug.Log(string.Format("현재 적 체력: {0} * {1} = 최종적으로 {2}", data.health, difficulty, health));
     }
@@ -92,6 +100,9 @@ public class Enemy : MonoBehaviour
                 if (gameObject.name.Contains("Boss"))
                     return;
             health -= bullet.damage * GameManager.Instance.player.attackRate; // 이건 왜 이거야
+
+            PrintDamage(bullet.damage * GameManager.Instance.player.attackRate);
+
             if (health > 0)
             {
                 //.. 살았고 피격판정
@@ -150,7 +161,11 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            health -= targetObject.GetComponent<Bullet_MachhineLearning>().damage * GameManager.Instance.player.attackRate;
+            Bullet_MachhineLearning bullet = targetObject.GetComponent<Bullet_MachhineLearning>();
+            health -= bullet.damage * GameManager.Instance.player.attackRate;
+
+            PrintDamage(bullet.damage * GameManager.Instance.player.attackRate);
+
             if (health <= 0)
             {
                 //.. 죽음
@@ -234,6 +249,21 @@ public class Enemy : MonoBehaviour
         }
         lockCoroutine = null;
 
+        if(GameManager.Instance.killByType.ContainsKey(currentSpriteType))
+        {
+            GameManager.Instance.killByType[currentSpriteType] += 1;
+        }
+        else
+        {
+            GameManager.Instance.killByType.Add(currentSpriteType, 1);
+        }
+
+        //Debug.Log(GameManager.Instance.killByType);
+        
+        foreach(var kvp in GameManager.Instance.killByType)
+        {
+            Debug.Log(string.Format("몬스터 타입:{0} | 킬 수:{1}", kvp.Key, kvp.Value));
+        }
         gameObject.SetActive(false);
     }
     IEnumerator LavaRoutine(SkillBase skillBase)
@@ -291,5 +321,24 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
+    }
+
+    private int GetDamageTextPoolIndex()
+    {
+        PoolManager pool = GameManager.Instance.pool;
+
+        for (int i = 0; i < pool.prefabs.Length; i++)
+        {
+            if (pool.prefabs[i] == DamageTextObjectPrefab)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    private void PrintDamage(float damage)
+    {
+        GameObject damageText = GameManager.Instance.pool.Get(damagePoolIndex);
+        damageText.GetComponent<DamageTextMesh>().Init(damageTransform, damage);
     }
 }
