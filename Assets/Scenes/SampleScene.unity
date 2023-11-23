@@ -19395,7 +19395,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.180555
+  orthographic size: 48.92284
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -24411,6 +24411,9 @@ MonoBehaviour:
   - spriteType: 1
     health: 15
     speed: 2
+  - spriteType: 2
+    health: 50
+    speed: 1
   ItemsRandomSpawnArea: 20
   ItemSpawnTime: 0
   timer: 0
