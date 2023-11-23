@@ -1,89 +1,97 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public interface QuestReward {
+    public void Reward();
+}
 
 public class QuestManager : MonoBehaviour
 {
-    public int level;
-    public string Name;
+    public static QuestManager Instance;
 
-    QuestChecker _checker; // 하나의 퀘스트를 관리하는 클래스
-    SkillData _SkillData;
-    BasedSkill skill, AIskill;
+    class QuestInfor {
+        internal string skillName;
+        internal QuestChecker Checker;
+        internal QuestReward Reward;
+        internal UIQuest UI;
+    }
 
-    public UIQuest questUI;
+    public List<string> _doingQuestName;
+    List<QuestInfor> _doingQuest;
 
-    public float progress;
+    public void AddQuest(string skillName, int level, QuestData newQuest, QuestReward reward) {
 
-    public void SetQuest(QuestData newQuest, SkillData skillData) {
-        if (!GameManager.Instance.CanAddQuest()) return;
+        _doingQuestName.Add(skillName);
 
-        _SkillData = skillData;
-        Name = newQuest.Name;
-        transform.parent = GameManager.Instance.QuestBox.transform; // 위치를 퀘스트박스로 이동
+        QuestInfor newQuestInfor = new QuestInfor();
+        newQuestInfor.skillName = skillName;
+        newQuestInfor.Reward = reward;
 
         switch (newQuest.Type) {
             case QuestData.QuestType.killQuiz:
-                _checker = new KillCountQuestChecker(newQuest.IntValue);
+                newQuestInfor.Checker = new KillCountQuestChecker(newQuest.IntValue);
                 break;
             case QuestData.QuestType.killHW:
-                _checker = new KillCountQuestChecker(newQuest.IntValue);
+                newQuestInfor.Checker = new KillCountQuestChecker(newQuest.IntValue);
                 break;
             case QuestData.QuestType.killTest:
-                _checker = new KillCountQuestChecker(newQuest.IntValue);
+                newQuestInfor.Checker = new KillCountQuestChecker(newQuest.IntValue);
                 break;
             case QuestData.QuestType.walk:
-                _checker = new WalkQuestChecker(newQuest.FloatValue);
+                newQuestInfor.Checker = new WalkQuestChecker(newQuest.FloatValue);
                 break;
             case QuestData.QuestType.safeTime:
-                _checker = new SafeTimeQuestChecker(newQuest.FloatValue);
+                newQuestInfor.Checker = new SafeTimeQuestChecker(newQuest.FloatValue);
                 break;
             default:
-                _checker = new HealthMakeToQuestChecker(newQuest.FloatValue);
+                newQuestInfor.Checker = new HealthMakeToQuestChecker(newQuest.FloatValue);
                 break;
         }
 
-        questUI = GameManager.Instance.AddQuest(_checker, newQuest);
+        newQuestInfor.UI = GameManager.Instance.AddQuest(skillName, level, newQuestInfor.Checker, newQuest);
+
+        _doingQuest.Add(newQuestInfor);
+
     }
 
-    public float GetProgress() {
-        return _checker.GetProgress();
-    }
-
-    public void QuestAchieve()
+    private void _QuestAchieve(QuestInfor infor)
     {
-        Debug.Log("퀘스트 성공");
+        _doingQuestName.Remove(infor.skillName);
+        _doingQuest.Remove(infor);
+        UIManager.Instance.Notice(string.Format("퀘스트 성공"));
 
-        GameManager.Instance.EndQuest(questUI);
+        GameManager.Instance.EndQuest(infor.UI);
+        infor.Reward.Reward();
 
-        if (level == 0)
-        {
-            GameObject newSkill = new GameObject();
-            GameObject newAISkill = new GameObject();
-            skill = newSkill.AddComponent<BasedSkill>();
-            AIskill = newAISkill.AddComponent<BasedSkill>();
+    }
 
-            skill.Init(false, _SkillData);
-            AIskill.Init(true, _SkillData);
-            level++;
-        }
-        else
-        {
-            skill.LevelUp();
-            AIskill.LevelUp();
-            level++;
-        }
+    public bool IsQuestDoing(string name) {
+        return _doingQuestName.Contains(name);
+    }
+
+    private void Awake()
+    {
+        Instance = this;
+        _doingQuestName = new List<string>();
+        _doingQuest = new List<QuestInfor>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_checker == null) return;
-        progress = _checker.GetProgress();
-        if (!_checker.CheckAchieve()) return;
+        if (_doingQuest.Count == 0) return;
 
-        QuestAchieve();
-        _checker = null;
+        List<QuestInfor> achieveQuest = new List<QuestInfor>();
 
+        foreach (QuestInfor quest in _doingQuest) {
+            if (!quest.Checker.CheckAchieve()) continue;
+
+            achieveQuest.Add(quest);
+        }
+
+        foreach (QuestInfor quest in achieveQuest) {
+            _QuestAchieve(quest);
+        }
     }
 }

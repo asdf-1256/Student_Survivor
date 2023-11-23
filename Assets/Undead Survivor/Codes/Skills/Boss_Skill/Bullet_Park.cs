@@ -10,7 +10,6 @@ public class Bullet_Park : MonoBehaviour
     [SerializeField] float flightTime = 2;
     [SerializeField] float lifeTime = 1;
     [SerializeField] float rotateSpeed = 200;
-    //[SerializeField] float timer = 0;
 
     [SerializeField] float warningTime = 1;
     [SerializeField] float fadeOutTime = 1;
@@ -82,7 +81,7 @@ public class Bullet_Park : MonoBehaviour
 
 
     }
-    IEnumerator CurveRoutine() //child = Ã¹¹øÂ° ÀÚ½ÄÀÎ ÀÚ¹ÙÄÅÀÌ Áß·Â¹ÞÀ¸¸ç À§·Î ¿Ã¶ó°¡´Â ÇÔ¼ö
+    IEnumerator CurveRoutine() //child = Ã¹ï¿½ï¿½Â° ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß·Â¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¶ó°¡´ï¿½ ï¿½Ô¼ï¿½
     {
         bombObject.SetActive(true);
         glassObject.SetActive(true);
@@ -100,7 +99,7 @@ public class Bullet_Park : MonoBehaviour
         Vector3 dirVec = end - start;
         dirVec = dirVec * 1 / flightTime;
 
-        float upperForceToCup = flightTime * 4.9f; // ÄÅÀ» À§·Î ´øÁö´Â ÈûÀº ³¯¾Æ°¡´Â °Å¸®¿¡ ºñ·Ê
+        float upperForceToCup = flightTime * 4.9f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         glassRigid.velocity = dirVec + new Vector3(0, upperForceToCup, 0);
         bombParentRigid.velocity = dirVec;
 
@@ -132,7 +131,7 @@ public class Bullet_Park : MonoBehaviour
         explosionSpriter.enabled = true;
 
         while (timer < lifeTime)
-        { //nÃÊ µ¿¾È ´ë±â
+        { //nï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             timer += Time.deltaTime;
             yield return null;
         }
@@ -147,7 +146,7 @@ public class Bullet_Park : MonoBehaviour
         gameObject.SetActive(false);
     }
     /*
-    private void OnDisable() //ºñÈ°¼ºÈ­ÇÒ ¶§ ÃÊ±â»óÅÂ·Î µÇµ¹¸®±â
+    private void OnDisable() //ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½
     {
         bombObject.SetActive(false);
         shadowObject.SetActive(false);
