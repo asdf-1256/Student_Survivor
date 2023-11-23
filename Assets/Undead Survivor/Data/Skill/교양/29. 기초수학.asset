@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: "\uBBF8\uC801"
+  m_Name: "29. \uAE30\uCD08\uC218\uD559"
   m_EditorClassIdentifier: 
   skillType: 1
-  skillID: 19
+  skillID: 29
   bulletPrefabID: 0
   level: 0
-  skillName: "\uBBF8\uBD84\uC801\uBD84\uD559"
+  skillName: "\uAE30\uCD08\uC218\uD559"
   skillDesc: "\uBBF8\uC801\uBBF8\uC801 \uACF5\uACA9 \uCFE8\uAC10"
   skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   bulletPrefab: {fileID: 0}
