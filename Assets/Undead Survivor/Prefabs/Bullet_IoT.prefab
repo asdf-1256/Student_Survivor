@@ -216,11 +216,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479dde9d7292a31429b2d54a796172cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
   damage: 0
   speed: 0
-  lifeTime: 0
+  count: 0
   attackCoolTime: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  playerTransform: {fileID: 0}
+  spawnDistance: 5
   movePosTime: 0
+  bulletPrefab: {fileID: 1272332711815712340, guid: 15c34713d43d0a9469e978492fffa98c, type: 3}
 --- !u!50 &5213855058814173047
 Rigidbody2D:
   serializedVersion: 4

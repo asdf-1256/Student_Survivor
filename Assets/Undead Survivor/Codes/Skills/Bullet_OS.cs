@@ -7,9 +7,14 @@ public class Bullet_OS : BulletBase
 
     Rigidbody2D rigid;
     float timer;
+
+    [SerializeField] private GameObject fragmentPrefab;
+
+    private int fragmentIndex;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        fragmentIndex = GameManager.Instance.pool.GetPoolIndex(fragmentPrefab);
     }
     public override void Init(bool isAI, SkillData skillData, int level)
     {
@@ -57,7 +62,7 @@ public class Bullet_OS : BulletBase
         Vector3 dir = new Vector3(x, y, 0);
         dir = dir.normalized;
 
-        Transform bullet = GameManager.Instance.pool.Get(2).transform; // Bullet 1의 총알 그대로 일단 씀
+        Transform bullet = GameManager.Instance.pool.Get(fragmentIndex).transform; // Bullet 1의 총알 그대로 일단 씀
 
         bullet.position = transform.position;//위치결정
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);//회전결정

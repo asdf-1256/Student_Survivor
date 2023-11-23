@@ -134,3 +134,4 @@ MonoBehaviour:
   flightTime: 0
   rotateSpeed: 0
   playerTransform: {fileID: 0}
+  fragmentPrefab: {fileID: 1272332711815712340, guid: 15c34713d43d0a9469e978492fffa98c, type: 3}

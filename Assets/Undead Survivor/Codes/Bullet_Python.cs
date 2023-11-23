@@ -11,6 +11,7 @@ public class Bullet_Python : BulletBase
 
     private void Awake()
     {
+        /*
         for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++)
         {
             if (PythonPrefab == GameManager.Instance.pool.prefabs[index])
@@ -18,7 +19,9 @@ public class Bullet_Python : BulletBase
                 prefabId = index;
                 break;
             }
-        }
+        }*/
+
+        prefabId = GameManager.Instance.pool.GetPoolIndex(PythonPrefab);
     }
     private void OnEnable()
     {
