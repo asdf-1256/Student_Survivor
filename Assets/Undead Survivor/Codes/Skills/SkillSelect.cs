@@ -1,18 +1,52 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
+public class SkillLevelUpReward: QuestReward {
+    int level = 0;
+
+    BasedSkill skill, AIskill;
+    internal SkillData skillData;
+
+    public void Reward()
+    {
+        if (skillData.skillID == 15) // 인공지능 스킬이면 AI 오브젝트 활성화
+        {
+            GameManager.Instance.ai_Player.gameObject.SetActive(true);
+            level++;
+            return;
+        }
+        else if (level > 0)
+        {
+            skill.LevelUp();
+            AIskill.LevelUp();
+            level++;
+            return;
+        }
+
+        GameObject newSkill = new GameObject();
+        GameObject newAISkill = new GameObject();
+        skill = newSkill.AddComponent<BasedSkill>();
+        AIskill = newAISkill.AddComponent<BasedSkill>();
+
+        skill.Init(false, skillData);
+        AIskill.Init(true, skillData);
+        level++;
+    }
+}
 
 public class SkillSelect : MonoBehaviour
 {
     // �� ���� item ��Ʈ��Ʈ
     public SkillData skillData;
+    SkillLevelUpReward _questReward;
     public int level;
     public BasedSkill skill, AIskill; // �� ���� weapon
     public Gear gear;
     public QuestData questData;
-    public QuestManager quest;
 
     Image icon;
     Text textLevel;
@@ -52,43 +86,26 @@ public class SkillSelect : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        _questReward = new SkillLevelUpReward();
+        _questReward.skillData = skillData;
+    }
+
     public void OnClick()
     {
 
         switch (skillData.skillType)
         {
             case SkillData.SkillType.전공:
-                if (!quest)
+                if (!GameManager.Instance.CanAddQuest())
                 {
-                    GameObject newQuest = new GameObject();
-                    quest = newQuest.AddComponent<QuestManager>();
+                    UIManager.Instance.Notice(string.Format("풀강입니다! 공강이 없습니다?"));
+                    Debug.Log("퀘스트가 꽉 차있습니다.");
+                    break;
                 }
-                quest.SetQuest(questData, skillData);
-                
-                if (skillData.skillID == 15) // �ΰ����� ��ų�̶��
-                {
-                    GameManager.Instance.ai_Player.gameObject.SetActive(true);
-                    level++;
-                }
-                /*
-                else if (level == 0)
-                {
-                    GameObject newSkill = new GameObject();
-                    GameObject newAISkill = new GameObject();
-                    skill = newSkill.AddComponent<BasedSkill>();
-                    AIskill = newAISkill.AddComponent<BasedSkill>();
-
-                    skill.Init(false, skillData);
-                    AIskill.Init(true, skillData);
-                    level++;
-                }
-                else
-                {
-                    skill.LevelUp();
-                    AIskill.LevelUp();
-                    level++;
-                }
-*/
+                QuestManager.Instance.AddQuest(name, level, questData, _questReward);
+                level++;
                 break;
             case SkillData.SkillType.교양:
                 GEActive();

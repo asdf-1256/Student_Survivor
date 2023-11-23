@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UIQuest : MonoBehaviour
 {
 
+    public Text SkillName;
+    public Text SkillLevel;
     public Text QuestName;
     public Text QuestProgress;
     public Image QuestProgressBar;
@@ -13,10 +15,12 @@ public class UIQuest : MonoBehaviour
     QuestChecker checker;
 
     // Start is called before the first frame update
-    public void QuestSet(QuestChecker checker, QuestData data)
+    public void QuestSet(string skillName, int level, QuestChecker checker, QuestData data)
     {
         this.checker = checker;
 
+        SkillName.text = skillName;
+        SkillLevel.text = "Lv." + level.ToString();
         QuestName.text = data.Name;
         QuestProgress.text = checker.ToString();
         QuestProgressBar.fillAmount = checker.GetProgress();

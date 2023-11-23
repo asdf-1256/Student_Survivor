@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: OS
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 3
+  skillID: 25
   bulletPrefabID: 4
   level: 0
-  skillName: OS
-  skillDesc: "OS\uC785\uB2C8\uB2E4"
+  skillName: "\uC6B4\uC601\uCCB4\uC81C"
+  skillDesc: "\uC708\uB3C4\uC6B0(new OS)"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  bulletPrefab: {fileID: 3768573273252977567, guid: 87faba1d298f2e1489d576878b2069ff, type: 3}
+  bulletPrefab: {fileID: 4787796469309447804, guid: 07f8166a2d8ac554da16a78be5079cf8, type: 3}
   pool_index: 0
+  getype: 0
   cooltimes:
   - 10
   - 9
@@ -34,8 +35,8 @@ MonoBehaviour:
   - 6
   - 10
   speeds:
-  - 1
-  - 2
+  - 3
+  - 3
   - 3
   counts:
   - 1

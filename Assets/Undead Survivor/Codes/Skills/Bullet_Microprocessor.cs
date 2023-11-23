@@ -28,6 +28,7 @@ public class Bullet_Microprocessor : BulletBase
     {
         base.Init(isAI, skillData, level);
 
+        lineTracerCollider.GetComponent<Bullet>().putDamage(damage); // 자식 총알의 데미지 설정
         transform.parent = playerTransform;
         transform.localPosition = Vector3.zero;
         lineTracer.rotation = Quaternion.Euler(0, 0, 180f);

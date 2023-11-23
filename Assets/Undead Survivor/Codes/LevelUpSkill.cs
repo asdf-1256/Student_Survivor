@@ -9,7 +9,9 @@ public class LevelUpSkill : MonoBehaviour
     RectTransform rect;
     SkillSelect[] skillSelects;
 
-    public int[] selectedNums = new int[3]; // 스킬 선택 개수 3개
+    public int skillCount = 3; // 선택 가능한 스킬 개수
+    int[] selectedNums = new int[30]; // 담을 수 있는 스킬 개수 30개로
+
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -58,24 +60,25 @@ public class LevelUpSkill : MonoBehaviour
                 break;
         }
 */
-        for (int i=0; i<selectedNums.Length; i++)
+        int count = 0;
+        for (int index = 0; count < skillCount && index < selectedNums.Length; index++)
         {
-            selectedNums[i] = SelectRandomNum(i); // selectedNums 배열에 랜덤한 스킬번호 넣기
-        }
-
-        for (int index = 0; index < selectedNums.Length; index++)
-        {
+            selectedNums[index] = SelectRandomNum(index); // selectedNums 배열에 랜덤한 스킬번호 넣기
             SkillSelect randomSkill = skillSelects[selectedNums[index]];
+            Debug.Log(index + "번째 뽑음 : " + selectedNums[index]);
 
-            // 3. 만렙 아이템의 경우는 소비아이템으로 대체
-            if (randomSkill.level == randomSkill.skillData.damages.Length)
+            if (QuestManager.Instance.IsQuestDoing(randomSkill.name)) {
+                Debug.Log(index + "번째 : 현재 수행중");
+            }
+            // 만렙 스킬이라면 다시 뽑기
+            else if (randomSkill.level == randomSkill.skillData.damages.Length)
             {
-                //소비아이템이 하나니까 4 로 지정. 여러개면 인덱스에 random.range로.
-                skillSelects[4].gameObject.SetActive(true);
+                Debug.Log(index + "번째 : 만렙이네?");
             }
             else
             {
                 randomSkill.gameObject.SetActive(true);
+                count++;
             }
         }
 

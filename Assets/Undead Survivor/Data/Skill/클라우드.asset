@@ -16,11 +16,12 @@ MonoBehaviour:
   skillID: 7
   bulletPrefabID: 4
   level: 0
-  skillName: "\uD074\uB77C\uC6B0\uB4DC"
+  skillName: "\uD074\uB77C\uC6B0\uB4DC \uCEF4\uD4E8\uD305"
   skillDesc: "\uD074\uB77C\uC6B0\uB4DC\uC785\uB2C8\uB2E4"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   bulletPrefab: {fileID: 1155342979010886728, guid: 401b32686349da649bfd22014119050d, type: 3}
   pool_index: 0
+  getype: 0
   cooltimes:
   - 10
   - 9

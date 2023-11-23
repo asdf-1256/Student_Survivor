@@ -23,6 +23,12 @@ public class Enemy : MonoBehaviour
 
     Coroutine lockCoroutine = null;
 
+    [SerializeField] private Transform damageTransform;
+    [SerializeField] private GameObject DamageTextObjectPrefab;
+    private int damagePoolIndex;
+
+    private int currentSpriteType;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,6 +37,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
+        damagePoolIndex = GetDamageTextPoolIndex();
     }
 
     // Update is called once per frame
@@ -75,8 +82,9 @@ public class Enemy : MonoBehaviour
         speed = data.speed;
         maxHealth = data.health * difficulty;
         health = data.health * difficulty;
+        currentSpriteType = data.spriteType;
 
-        Debug.Log(string.Format("현재 적 체력: {0} * {1} = 최종적으로 {2}", data.health, difficulty, health));
+        //Debug.Log(string.Format("현재 적 체력: {0} * {1} = 최종적으로 {2}", data.health, difficulty, health));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -87,7 +95,14 @@ public class Enemy : MonoBehaviour
 
         if (collision.CompareTag("Bullet")) // 일단은 기본무기 + 운체, 자바, 클라우드, 알고리즘, IoT를 담당
         {
-            health -= collision.GetComponent<BulletBase>().damage; // 이건 왜 이거야
+            BulletBase bullet = collision.GetComponent<BulletBase>();
+            if (bullet.damage == 1e+07)
+                if (gameObject.name.Contains("Boss"))
+                    return;
+            health -= bullet.damage * GameManager.Instance.player.attackRate; // 이건 왜 이거야
+
+            PrintDamage(bullet.damage * GameManager.Instance.player.attackRate);
+
             if (health > 0)
             {
                 //.. 살았고 피격판정
@@ -120,7 +135,7 @@ public class Enemy : MonoBehaviour
         else if (collision.CompareTag("SysProg"))
         {
             Bullet_SystemProgramming bullet = collision.GetComponent<Bullet_SystemProgramming>();
-            if(lockCoroutine == null)
+            if (lockCoroutine == null)
                 lockCoroutine = StartCoroutine(LockRoutine(collision.GetComponent<Bullet_SystemProgramming>().lifeTime, () =>
                 {
                     lockCoroutine = null;
@@ -146,7 +161,11 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            health -= targetObject.GetComponent<Bullet_MachhineLearning>().damage;
+            Bullet_MachhineLearning bullet = targetObject.GetComponent<Bullet_MachhineLearning>();
+            health -= bullet.damage * GameManager.Instance.player.attackRate;
+
+            PrintDamage(bullet.damage * GameManager.Instance.player.attackRate);
+
             if (health <= 0)
             {
                 //.. 죽음
@@ -230,14 +249,23 @@ public class Enemy : MonoBehaviour
         }
         lockCoroutine = null;
 
+        if(GameManager.Instance.killByType.ContainsKey(currentSpriteType))
+        {
+            GameManager.Instance.killByType[currentSpriteType] += 1;
+        }
+        else
+        {
+            GameManager.Instance.killByType.Add(currentSpriteType, 1);
+        }
+
         gameObject.SetActive(false);
     }
     IEnumerator LavaRoutine(SkillBase skillBase)
     {
         while (true)
         {
-            health -= skillBase.data.damages[skillBase.GetLevel()] * 0.5f;
-            Debug.Log(string.Format("데미지 {0} 루틴 발동", skillBase.data.damages[skillBase.GetLevel()]));
+            health -= skillBase.data.damages[skillBase.GetLevel()] * 0.5f * GameManager.Instance.player.attackRate;
+            //Debug.Log(string.Format("데미지 {0} 루틴 발동", skillBase.data.damages[skillBase.GetLevel()]));
             if (health <= 0)
             {
                 //.. 죽음
@@ -287,5 +315,24 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
+    }
+
+    private int GetDamageTextPoolIndex()
+    {
+        PoolManager pool = GameManager.Instance.pool;
+
+        for (int i = 0; i < pool.prefabs.Length; i++)
+        {
+            if (pool.prefabs[i] == DamageTextObjectPrefab)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    private void PrintDamage(float damage)
+    {
+        GameObject damageText = GameManager.Instance.pool.Get(damagePoolIndex);
+        damageText.GetComponent<DamageTextMesh>().Init(damageTransform, damage);
     }
 }
