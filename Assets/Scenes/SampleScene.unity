@@ -9062,12 +9062,13 @@ MonoBehaviour:
   maxGameTime: 300
   playerId: 0
   health: 0
-  maxHealth: 100
+  maxHealth: 1
   level: 0
   kill: 0
   exp: 0
   nextExp: 03000000050000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a00000064000000640000006400000064000000640000006400000064000000640000006400000064000000640000006400000064000000640000006400000064000000640000006400000064000000
   expRate: 1
+  respawncount: 0
   pool: {fileID: 344728782}
   player: {fileID: 731594822}
   ai_Player: {fileID: 1807414842}
@@ -9076,6 +9077,9 @@ MonoBehaviour:
   uiResult: {fileID: 833415375}
   uiJoy: {fileID: 495292951}
   enemyCleaner: {fileID: 343345482}
+  gameResult: {fileID: 833415373}
+  hud: {fileID: 449479687}
+  resPawn: {fileID: 923323897}
 --- !u!4 &283515367
 Transform:
   m_ObjectHideFlags: 0
@@ -22865,6 +22869,7 @@ MonoBehaviour:
   speed: 3
   scanner: {fileID: 0}
   hands: []
+  animator: {fileID: 0}
   animCon:
   - {fileID: 9100000, guid: f86f43347404a8b4c9d5a311e9e0cbe5, type: 2}
   - {fileID: 22100000, guid: 438472a62b41978439bf0e3021b92172, type: 2}
@@ -23770,7 +23775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.323, y: -70}
+  m_AnchoredPosition: {x: -0.2999878, y: -106.599976}
   m_SizeDelta: {x: -110, y: -260}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805483760
@@ -24654,7 +24659,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 283515366}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: GameRetry
+        m_MethodName: Respawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26045,7 +26050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.8, y: -70}
+  m_AnchoredPosition: {x: -0.5, y: -32.2}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072613537
@@ -34109,7 +34114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1839029427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34390,7 +34395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1875922038
 RectTransform:
   m_ObjectHideFlags: 0

@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using static UnityEngine.InputManagerEntry;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     //static - 정적, 메모리에 얹겠다
     //inspector에 나타나지 않음
     public static GameManager Instance;
+    Animator animator;
 
     [Header("# Game Control")]
     public bool isLive;
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
     //public int money;
     public float expRate = 1.0f;
+    public int respawncount;
 
     [Header("# Game Object")]
     public PoolManager pool;
@@ -36,12 +40,15 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
-    
+    public GameObject gameResult;
+    public GameObject hud;
+    public GameObject resPawn;
 
     private void Awake()
     {
         Instance = this;
         Application.targetFrameRate = 60;
+        animator = player.GetComponent<Animator>();
     }
     public void GameStart(int id)
     {
@@ -167,5 +174,26 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1; //만약 2면 시간이 그만큼 빨리 흘러감.
         uiJoy.localScale = Vector3.one;
     }
+
+    public void Respawn()
+    {
+        isLive = true;
+        player.gameObject.SetActive(true);
+        health = maxHealth;
+        uiJoy.localScale = Vector3.one;
+        gameResult.SetActive(false);
+        hud.SetActive(true);
+        animator.SetTrigger("Respawn");
+        Resume();
+        respawncount++;
+
+        if(respawncount >= 1)
+        {
+            Debug.Log("부활 불가 : 이미 한 번 죽었습니다.");
+            resPawn.GetComponent<Button>().interactable = false;
+        }
+    }
+
+
 }
 

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class Stop_Menu : MonoBehaviour
 {
 
-    [SerializeField] GameObject stopMenu;
+    [SerializeField] GameObject stopMenu; // UI Hierarchy¿¡ ÀÖ´Â
     [SerializeField] GameObject joy;
 
 
