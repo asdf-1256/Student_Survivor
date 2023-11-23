@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public int level;
     private readonly int maxLevel = 120;
     public int kill;
+    public Dictionary<int, int> killByType;
     public int exp;
     public float manBoGi;
     public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
@@ -50,7 +51,12 @@ public class GameManager : MonoBehaviour
     int questCount = 0;
 
     private IEnumerator currentBossSpawn;
-
+    private Enemy _boss;
+    public Enemy SpawnedBoss
+    {
+        get { return _boss; }
+        set { _boss = value; }
+    }
     public bool CanAddQuest() {
         if (questCount < MaxQuestCount) return true;
         return false;
@@ -76,6 +82,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        killByType = new();
+        for(int i = 0; i < 3; i++)
+            killByType.Add(i, 0);
         Application.targetFrameRate = 60;
     }
     public void GameStart(int id)
@@ -223,6 +232,7 @@ public class GameManager : MonoBehaviour
 
         while ( currentBoss != bossSet.transform.childCount - 1 ) {
             Transform nextBoss = bossSet.transform.GetChild(currentBoss);
+            _boss = nextBoss.GetComponent<Enemy>();
             nextBoss.localPosition = player.transform.position + Vector3.up * 10;
             nextBoss.gameObject.SetActive(true);
             Debug.Log(string.Format("보스 소환 {0}번째",currentBoss));
