@@ -40,7 +40,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float totalDistance = 0f;
 
-    [SerializeField] private Shield shield;
+    [SerializeField] private Shield _shield;
+    public Shield shield
+    {
+        get { return _shield; }
+    }
     [SerializeField] private BuffData[] buffDatas;
 
     private float debuffSpeedRate = 1f;
@@ -123,9 +127,9 @@ public class Player : MonoBehaviour
         if (isInvincible)
             return;
 
-        if (shield.ShieldCount > 0)
+        if (_shield.ShieldCount > 0)
         {
-            shield.RemoveShield();
+            _shield.RemoveShield();
             foreach (var buffdata in buffDatas)
                 if (buffdata.effect == BuffData.BuffEffect.Invincible)
                     ActivateBuff(buffdata);

@@ -13,6 +13,21 @@ public class SkillLevelUpReward: QuestReward {
 
     public void Reward()
     {
+        if (skillData.skillID == 26) //블록 체인이면
+        {
+            if (level == 0)
+            {
+                GameObject blockChainSKillObject = new GameObject();
+                skill = blockChainSKillObject.AddComponent<BasedSkill>();
+                skill.Init(false, skillData);
+            }
+            else
+            {
+                skill.LevelUp();
+                level++;
+            }
+            return;
+        }
         if (skillData.skillID == 15) // 인공지능 스킬이면 AI 오브젝트 활성화
         {
             GameManager.Instance.ai_Player.gameObject.SetActive(true);
