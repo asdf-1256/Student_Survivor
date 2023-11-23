@@ -16,7 +16,7 @@ MonoBehaviour:
   skillID: 16
   bulletPrefabID: 0
   level: 0
-  skillName: "\uD504\uC789"
+  skillName: "\uC2E4\uC6A9 \uC601\uC5B4"
   skillDesc: "\uC790\uC11D\uC790\uC11D"
   skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   bulletPrefab: {fileID: 0}
