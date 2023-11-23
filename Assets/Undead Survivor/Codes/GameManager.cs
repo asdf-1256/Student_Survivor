@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyCleaner;
     public GameObject QuestBox;
     public GameObject bossSet;
+    public GameObject HealthInHUD;
 
     public int MaxQuestCount = 3;
     public List<UIQuest> freeQuestUI;
@@ -173,7 +174,7 @@ public class GameManager : MonoBehaviour
             exp = 0;
             uiLevelUpSkill.Show();
             currentPhase = level / (maxLevel / semesterDifficulty.Length);
-            if(level == 59 || level == 119)
+            if(level == 50 || level == 100)
             {
                 Debug.Log("보스 소환");
                 currentBossSpawn.MoveNext();

@@ -9265,6 +9265,7 @@ MonoBehaviour:
   enemyCleaner: {fileID: 343345482}
   QuestBox: {fileID: 582250775}
   bossSet: {fileID: 43729827}
+  HealthInHUD: {fileID: 135509581}
   MaxQuestCount: 5
   freeQuestUI:
   - {fileID: 1419657920}

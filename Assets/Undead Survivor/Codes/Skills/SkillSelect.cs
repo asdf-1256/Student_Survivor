@@ -159,6 +159,7 @@ public class SkillSelect : MonoBehaviour
             case SkillData.GEType.MaxHealth:
                 GameManager.Instance.maxHealth += skillData.damages[level];
                 GameManager.Instance.health += Convert.ToInt32(skillData.damages[level]);
+                GameManager.Instance.HealthInHUD.GetComponent<RectTransform>().sizeDelta = new Vector2(GameManager.Instance.maxHealth / 10, 4);
                 break;
             case SkillData.GEType.Recovery:
                 if (level == 0)
