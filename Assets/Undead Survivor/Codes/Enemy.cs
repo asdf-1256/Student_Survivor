@@ -128,7 +128,6 @@ public class Enemy : MonoBehaviour
                     AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
             }
         }
-        else if (collision.CompareTag("Lava"))
         else if (collision.CompareTag("Web"))
             speed /= collision.GetComponent<BulletBase>().damage;
         else if (collision.CompareTag("SysProg"))
