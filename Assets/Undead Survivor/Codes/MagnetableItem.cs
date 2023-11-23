@@ -9,7 +9,7 @@ public class MagnetableItem : MonoBehaviour
 {
 
     Transform target;//플레이어의 위치 및, Magnet의 반경에 들어왔는지 확인함
-    float MagneticConst;//자력 상수
+    private readonly float MagneticConst = 4f;//자력 상수
     
 
     private void Awake()
@@ -38,9 +38,8 @@ public class MagnetableItem : MonoBehaviour
 
     //Player 자식 오브젝트인 Magnet의 Collider에 코인, 경험치 등의 자력의 영향을 받는 아이템이 들어올 경우 이 함수가 호출되어 target과 자력이 활성화되고
     //이후 Player쪽으로 움직이다가 Player의 자식 오브젝트인 Collector의 Collider에서 물건을 습득하도록 처리.
-    public void ActiveMagnet(float radius)
+    public void ActiveMagnet()
     {
         target = GameManager.Instance.player.transform;
-        this.MagneticConst = radius * 2f;
     }
 }
