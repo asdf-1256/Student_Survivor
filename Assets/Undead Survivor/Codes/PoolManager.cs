@@ -55,4 +55,13 @@ public class PoolManager : MonoBehaviour
         
         return select;
     }
+    public int GetPoolIndex(GameObject prefab)
+    {
+        for(int i = 0;i < prefabs.Length;i++)
+        {
+            if (prefabs[i] == prefab)
+                return i;
+        }
+        return -1;
+    }
 }

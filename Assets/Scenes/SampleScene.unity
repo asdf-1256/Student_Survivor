@@ -2235,6 +2235,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2652511566545216649, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2856368887950090257, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2287,6 +2291,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5237038384074170623, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5572693873794750869, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
       propertyPath: bossHealthHUD
       value: 
@@ -2303,6 +2311,22 @@ PrefabInstance:
       propertyPath: bossHealthHUD
       value: 
       objectReference: {fileID: 6650528858153559740}
+    - target: {fileID: 6789248105942308258, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443862865480620876, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 6447392317033242439, guid: a67ac2f5dde127248b11931f255d74a6, type: 3}
+    - target: {fileID: 7443862865480620876, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
+      propertyPath: spawnItemPrefab
+      value: 
+      objectReference: {fileID: 7831486342206985405, guid: 34b9435f321ba53459bbf0754946eb12, type: 3}
+    - target: {fileID: 7443862865480620876, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
+      propertyPath: ItemsRandomSpawnArea
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7756051437648396524, guid: b6bf23297a49cee458e1b8b2102f5c70, type: 3}
       propertyPath: m_Controller
       value: 
@@ -26610,6 +26634,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 17839841031c9744c88a014995ccfc37, type: 2}
   dropRates: 
   isPlayer: 1
+  enemyPrefab: {fileID: 6447392317033242439, guid: a67ac2f5dde127248b11931f255d74a6, type: 3}
+  spawnItemPrefab: {fileID: 7831486342206985405, guid: 34b9435f321ba53459bbf0754946eb12, type: 3}
 --- !u!1 &884439409
 GameObject:
   m_ObjectHideFlags: 0

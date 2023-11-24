@@ -23,10 +23,18 @@ public class Spawner : MonoBehaviour
 
     public bool isPlayer;
 
+    [SerializeField] GameObject enemyPrefab;
+    private int enemyPoolIndex;
+
+    [SerializeField] GameObject spawnItemPrefab;
+    private int itemPoolIndex;
+
     private void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
         //�ڱ� �ڽ��� ������ �ڽĵ� component �ϴ� ������
+        enemyPoolIndex = GameManager.Instance.pool.GetPoolIndex(enemyPrefab);
+        itemPoolIndex = GameManager.Instance.pool.GetPoolIndex(spawnItemPrefab);
 
         if (isPlayer)
         {
@@ -40,7 +48,6 @@ public class Spawner : MonoBehaviour
 
             ItemSpawnTime = 1f;
             WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
-
 
             StartCoroutine(CreateCoinRoutine());
         }
@@ -77,7 +84,7 @@ public class Spawner : MonoBehaviour
     }
     void SpwanEnemy()
     {
-        GameObject enemy = GameManager.Instance.pool.Get(0);
+        GameObject enemy = GameManager.Instance.pool.Get(enemyPoolIndex);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         //1�� ������ �ڱ� �ڽ� ����
         enemy.GetComponent<Enemy>().Init(spawnData[Random.Range(0, spawnData.Length)]);
@@ -104,16 +111,18 @@ public class Spawner : MonoBehaviour
 
     void SpawnItem(int itemNum) //Item : 3��, ������� ���� ���õ� �������� �޾�, �ش� �������� index�� �ϴ� �������� �������� ����.
     {
-        GameObject item = GameManager.Instance.pool.Get(3);
+        GameObject item = GameManager.Instance.pool.Get(itemPoolIndex);
         item.GetComponent<SpawnItem>().Init(itemDatas[itemNum]);
         item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
     }
-    public void SpawnItem(SpawnItemData itemData)
+    public GameObject SpawnItem(SpawnItemData itemData)
     {
-        GameObject item = GameManager.Instance.pool.Get(3);
+        GameObject item = GameManager.Instance.pool.Get(itemPoolIndex);
         item.GetComponent<SpawnItem>().Init(itemData);
-        item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 10;
+        item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
+        return item;
     }
+
 }
 
 //�Ӽ�-����ȭ�� �־��ָ� unity������ �� �� ����

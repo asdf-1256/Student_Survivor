@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8092903649122623082}
   - component: {fileID: 4287845949264833807}
   m_Layer: 0
-  m_Name: Skill_WebProg
+  m_Name: Bullet_WebProg
   m_TagString: Web
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
