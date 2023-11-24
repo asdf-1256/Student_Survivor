@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: "\uB370\uBCA0"
+  m_Name: "14. \uB17C\uB9AC\uD68C\uB85C"
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 13
+  skillID: 14
   bulletPrefabID: 0
   level: 0
-  skillName: "\uB370\uC774\uD130\uBCA0\uC774\uC2A4"
-  skillDesc: "DB\uC785\uB2C8\uB2E4"
+  skillName: "\uB17C\uB9AC\uD68C\uB85C \uBC0F \uC2E4\uC2B5"
+  grade: 2
+  skillDesc: "\uC6C0\uC9C1\uC784\uC744 \uC783\uC740 OS"
   skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  bulletPrefab: {fileID: 1917820268869603708, guid: a57b4f0a40226884fa7cd726a93ff78e, type: 3}
+  bulletPrefab: {fileID: 4905441765479098046, guid: 8eb4a1856be00f24c98dba0effa94131, type: 3}
   pool_index: 0
   getype: 0
   cooltimes:
@@ -31,9 +32,9 @@ MonoBehaviour:
   - 4
   - 5
   damages:
-  - 0
-  - 0
-  - 0
+  - 3
+  - 6
+  - 10
   speeds:
   - 8
   - 8

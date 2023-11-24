@@ -10,37 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: "\uC778\uACF5\uC9C0\uB2A5"
+  m_Name: "9. \uB9C8\uD504"
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 15
-  bulletPrefabID: 0
+  skillID: 9
+  bulletPrefabID: 4
   level: 0
-  skillName: "\uC778\uACF5\uC9C0\uB2A5"
-  skillDesc: "\uD2B9\uC774\uC810\uC740 \uC628\uB2E4."
-  skillIcon: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  bulletPrefab: {fileID: 0}
+  skillName: "\uB9C8\uC774\uD06C\uB85C\uD504\uB85C\uC138\uC11C \uBC0F \uC2E4\uC2B5"
+  grade: 2
+  skillDesc: "\uB77C\uC778\uD2B8\uB808\uC774\uC11C"
+  skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  bulletPrefab: {fileID: 5665052994215594943, guid: f72040c2bc43fa244954dcd643287080, type: 3}
   pool_index: 0
   getype: 0
   cooltimes:
-  - 8
   - 7
-  - 6
-  lifeTimes:
-  - 3
-  - 4
   - 5
+  - 3
+  lifeTimes:
+  - 1
+  - 2
+  - 3
   damages:
   - 3
+  - 6
+  - 10
   speeds:
-  - 8
-  - 8
-  - 8
+  - 3
+  - 3
+  - 3
   counts:
   - 1
   - 1
   - 1
-  attackCoolTime: 0
-  scaleFactor: 0
-  flightTime: 0
-  rotateSpeed: 0
+  attackCoolTime: 0.5
+  scaleFactor: 0.1
+  flightTime: 2
+  rotateSpeed: 200

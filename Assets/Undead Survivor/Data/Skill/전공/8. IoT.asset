@@ -10,33 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: "\uB9C8\uD504"
+  m_Name: 8. IoT
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 9
+  skillID: 8
   bulletPrefabID: 4
   level: 0
-  skillName: "\uB9C8\uC774\uD06C\uB85C\uD504\uB85C\uC138\uC11C \uBC0F \uC2E4\uC2B5"
-  skillDesc: "\uB77C\uC778\uD2B8\uB808\uC774\uC11C"
+  skillName: "IoT\uC640 \uC784\uBCA0\uB514\uB4DC \uC18C\uD504\uD2B8\uC6E8\uC5B4"
+  grade: 3
+  skillDesc: "\uB0C9\uC7A5\uACE0"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  bulletPrefab: {fileID: 5665052994215594943, guid: f72040c2bc43fa244954dcd643287080, type: 3}
+  bulletPrefab: {fileID: 6961580268855133401, guid: 26265290d7e260f41a4fa0fa3b1a9f13, type: 3}
   pool_index: 0
   getype: 0
   cooltimes:
-  - 7
-  - 5
-  - 3
+  - 10
+  - 9
+  - 8
   lifeTimes:
-  - 1
-  - 2
-  - 3
+  - 5
+  - 6
+  - 7
   damages:
   - 3
   - 6
   - 10
   speeds:
-  - 3
-  - 3
+  - 1
+  - 2
   - 3
   counts:
   - 1

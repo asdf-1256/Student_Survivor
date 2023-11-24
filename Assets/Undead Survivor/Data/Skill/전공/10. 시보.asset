@@ -10,22 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: "\uCEF4\uB124\uC2E4"
+  m_Name: "10. \uC2DC\uBCF4"
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 0
+  skillID: 10
   bulletPrefabID: 4
   level: 0
-  skillName: "\uCEF4\uD4E8\uD130 \uB124\uD2B8\uC6CC\uD06C \uBC0F \uC2E4\uC2B5"
-  skillDesc: "\uCEF4\uB124\uC2E4\uC785\uB2C8\uB2E4"
+  skillName: "\uC2DC\uC2A4\uD15C \uD504\uB85C\uADF8\uB798\uBC0D \uBC0F \uBCF4\uC548"
+  grade: 2
+  skillDesc: "\uC801\uC744 \uD574\uD0B9\uD569\uB2C8\uB2E4"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  bulletPrefab: {fileID: 5031534047927111826, guid: b71f736a988eb5045a5a7bb74b3fb086, type: 3}
+  bulletPrefab: {fileID: 1889395839027343230, guid: 93561b892688a1c4f981034940920ba7, type: 3}
   pool_index: 0
   getype: 0
   cooltimes:
-  - 5
-  - 4
-  - 3
+  - 2
+  - 1
+  - 0.3
   lifeTimes:
   - 1
   - 2

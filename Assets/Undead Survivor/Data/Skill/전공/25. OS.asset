@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
-  m_Name: IoT
+  m_Name: 25. OS
   m_EditorClassIdentifier: 
   skillType: 0
-  skillID: 8
+  skillID: 25
   bulletPrefabID: 4
   level: 0
-  skillName: "IoT\uC640 \uC784\uBCA0\uB514\uB4DC \uC18C\uD504\uD2B8\uC6E8\uC5B4"
-  skillDesc: "\uB0C9\uC7A5\uACE0"
+  skillName: "\uC6B4\uC601\uCCB4\uC81C"
+  grade: 3
+  skillDesc: "\uC708\uB3C4\uC6B0(new OS)"
   skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  bulletPrefab: {fileID: 6961580268855133401, guid: 26265290d7e260f41a4fa0fa3b1a9f13, type: 3}
+  bulletPrefab: {fileID: 4787796469309447804, guid: 07f8166a2d8ac554da16a78be5079cf8, type: 3}
   pool_index: 0
   getype: 0
   cooltimes:
@@ -35,8 +36,8 @@ MonoBehaviour:
   - 6
   - 10
   speeds:
-  - 1
-  - 2
+  - 3
+  - 3
   - 3
   counts:
   - 1
