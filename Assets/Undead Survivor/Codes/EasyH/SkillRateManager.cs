@@ -26,7 +26,22 @@ public class SkillRateManager : MonoBehaviour
     public void updateSkillRate(int pahse)
     {
         // 현재 페이즈(0~7)에 맞게 스킬 등장 비율 재구성
-
+        for (int i=0; i<SkillDatas.Length; i++)
+        {
+            int grade = SkillDatas[i].grade;
+            if (grade == 0)
+                LevelUpObject.setRate(i, ratesOnSubject[pahse]);
+            else if (grade == 1)
+                LevelUpObject.setRate(i, ratesOnGrade1[pahse]);
+            else if (grade == 2)
+                LevelUpObject.setRate(i, ratesOnGrade2[pahse]);
+            else if (grade == 3)
+                LevelUpObject.setRate(i, ratesOnGrade3[pahse]);
+            else if (grade == 4)
+                LevelUpObject.setRate(i, ratesOnGrade4[pahse]);
+            else
+                Debug.LogError("학년초과에러!!");
+        } 
     }
 
 }

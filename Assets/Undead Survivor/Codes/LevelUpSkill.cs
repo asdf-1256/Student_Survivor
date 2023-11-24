@@ -123,8 +123,8 @@ public class LevelUpSkill : MonoBehaviour
         return index;
     }
 
-    public void setRate(float ratesOnSubject, float ratesOnGrade1, float ratesOnGrade2, float ratesOnGrade3, float ratesOnGrade4)
+    public void setRate(int index, float rate)
     {
-        // SkillSelectRates[index] = rate;
+        SkillSelectRates[index] = rate;
     }
 }
