@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 5
   Name: "\uCD5C\uB300\uCCB4\uB825\uC758"
-  IntValue: 0
-  FloatValue: 0.5
+  IntValues: 
+  FloatValues:
+  - 0.7
+  - 0.6
+  - 0.5

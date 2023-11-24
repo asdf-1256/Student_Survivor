@@ -79,27 +79,29 @@ public class KillCountQuestChecker : QuestChecker {
 
     int _originKillCount;
     int _goalCount;
+    int _killType;
 
-    public KillCountQuestChecker(int goalCount)
+    public KillCountQuestChecker(int killType, int goalCount)
     {
-        _originKillCount = GameManager.Instance.kill;
+        _originKillCount = GameManager.Instance.killByType[killType];
         _goalCount = goalCount;
+        _killType = killType;
     }
 
     public bool CheckAchieve()
     {
-        if (GameManager.Instance.kill - _originKillCount < _goalCount) return false;
+        if (GameManager.Instance.killByType[_killType] - _originKillCount < _goalCount) return false;
 
         return true;
     }
     public float GetProgress()
     {
-        return (GameManager.Instance.kill - _originKillCount) / _goalCount;
+        return (GameManager.Instance.killByType[_killType] - _originKillCount) / _goalCount;
 
     }
     public override string ToString()
     {
-        return (GameManager.Instance.kill - _originKillCount).ToString() + " / " + _goalCount.ToString();
+        return (GameManager.Instance.killByType[_killType] - _originKillCount).ToString() + " / " + _goalCount.ToString();
     }
 }
 
