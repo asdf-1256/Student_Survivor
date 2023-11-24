@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("보스 소환");
                 currentBossSpawn.MoveNext();
             }
+            SkillRateManager.instance.updateSkillRate(currentPhase);
         }
     }
     public void GetHealth(int h) //.. h만큼 체력 회복
