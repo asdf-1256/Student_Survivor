@@ -20641,7 +20641,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 48.92284
+  orthographic size: 8.180555
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -28114,43 +28114,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillSelectRates:
-  - 10
-  - 200
-  - 10
-  - 10
-  - 10
-  - 100
-  - 10
+  - 0
   - 1
-  - 10
-  - 100
-  - 100
-  - 200
-  - 200
-  - 10
-  - 100
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 1
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 10
   - 1
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   skillCount: 3
 --- !u!1 &1044996711
 GameObject:
@@ -37299,8 +37299,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d629353d3a8ad6343aba0ed153323a57, type: 2}
   - {fileID: 11400000, guid: e2d7c55dca9c24b47bc9a42a6d5bb067, type: 2}
   - {fileID: 11400000, guid: 5cc95f5bee8c7644a8a499bbcc53a24d, type: 2}
-  - {fileID: 11400000, guid: 7c8c8dde1499ed342b1daa0ed23a703b, type: 2}
-  - {fileID: 11400000, guid: fd913b67a44d4d44ea22c6d0060ccaf0, type: 2}
   - {fileID: 11400000, guid: 90a38e7ec99b8e54a835e7cf26c4566d, type: 2}
   - {fileID: 11400000, guid: 815ede633f1c5ef4eac278194e3421aa, type: 2}
   - {fileID: 11400000, guid: 95d8d1ce8d7a3a948a2848ac603f1c1d, type: 2}
@@ -37310,6 +37308,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b86b835e02119d4497f856663b33cfe, type: 2}
   - {fileID: 11400000, guid: 22c15ceee52f6564f9675280bfddfbff, type: 2}
   - {fileID: 11400000, guid: 9901472165f59d94bb3d4ca418083e39, type: 2}
+  - {fileID: 11400000, guid: 7c8c8dde1499ed342b1daa0ed23a703b, type: 2}
+  - {fileID: 11400000, guid: fd913b67a44d4d44ea22c6d0060ccaf0, type: 2}
   - {fileID: 11400000, guid: 1a12bdeeea69577428da354955fe10e1, type: 2}
   - {fileID: 11400000, guid: 693b4eec3924c1a43a65cb1784ff4bff, type: 2}
   - {fileID: 11400000, guid: dc23765454a9002448e524a22ef25ae6, type: 2}
@@ -37321,7 +37321,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f0b3a11138cf70847906118d55a4f056, type: 2}
   - {fileID: 11400000, guid: f0cb0ba3b6e0dc94aa23f43ba62c3b24, type: 2}
   ratesOnSubject:
-  - 0
+  - 2
+  - 2
   - 2
   - 2
   - 2
@@ -37338,18 +37339,21 @@ MonoBehaviour:
   - 2
   - 2
   - 2
+  - 2
   ratesOnGrade2:
   - 0
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   ratesOnGrade3:
   - 0
   - 0
+  - 1
   - 1
   - 1
   - 1
@@ -37360,6 +37364,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0.1
   - 0.1
   - 0.1
   - 0.1
