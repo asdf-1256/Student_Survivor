@@ -233,13 +233,32 @@ public class GameManager : MonoBehaviour
         int currentBoss = 0;
 
         while ( currentBoss != bossSet.transform.childCount - 1 ) {
+
+            StartCoroutine(BossSpawnEffector( () => {
+                Transform nextBoss = bossSet.transform.GetChild(currentBoss);
+                _boss = nextBoss.GetComponent<Enemy>();
+                nextBoss.localPosition = player.transform.position + Vector3.up * 10;
+                nextBoss.gameObject.SetActive(true);
+                Debug.Log(string.Format("보스 소환 {0}번째", currentBoss));
+                currentBoss++;
+            } ));
+            yield return null;
+            /*
             Transform nextBoss = bossSet.transform.GetChild(currentBoss);
             _boss = nextBoss.GetComponent<Enemy>();
             nextBoss.localPosition = player.transform.position + Vector3.up * 10;
             nextBoss.gameObject.SetActive(true);
             Debug.Log(string.Format("보스 소환 {0}번째",currentBoss));
             currentBoss++;
-            yield return null;
+            yield return null;*/
         }
+    }
+    private IEnumerator BossSpawnEffector(System.Action done)
+    {
+        //effect에 관한 코드를 추가해야함.
+
+        yield return new WaitUntil( () => { return Time.timeScale == 1; });
+
+        done.Invoke();
     }
 }
