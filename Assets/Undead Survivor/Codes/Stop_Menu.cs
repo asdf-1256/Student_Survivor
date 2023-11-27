@@ -13,6 +13,7 @@ public class Stop_Menu : MonoBehaviour
         stopMenu.SetActive(true);
         Time.timeScale = 0;
         joy.GetComponent<RectTransform>().localScale = Vector3.zero;
+        Debug.Log("일시정지 버튼이 눌렸습니다.");
     }
 
     public void Home()
