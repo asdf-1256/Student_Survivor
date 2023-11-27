@@ -201,19 +201,21 @@ public class GameManager : MonoBehaviour
             currentPhase++;
         }
     }
-    /*public string getLevelForNextPhase()
+    public float getRateForNextPhase()
     {
-        int curLevel;
+        float curLevel, goalLevel;
         if (currentPhase == 0)
+        {
             curLevel = level;
+            goalLevel = levelPerPhase[currentPhase];
+        }
         else
+        {
             curLevel = level - levelPerPhase[currentPhase - 1];
-
-        string result = string.Format("다음 페이즈까지 {0:F0} / {1:F0}",
-            curLevel,
-            levelPerPhase[currentPhase] - levelPerPhase[currentPhase - 1]);
-        return result;
-    }*/
+            goalLevel = levelPerPhase[currentPhase] - levelPerPhase[currentPhase - 1];
+        }
+        return curLevel / goalLevel;
+    }
     public void GetHealth(int h) //.. h만큼 체력 회복
     {
         if (!isLive)
