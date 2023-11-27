@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fc8cda8f3af4854faccd002e4ea3326, type: 3}
-  m_Name: "\uB9DE\uC544\uBD10"
+  m_Name: "\uB9DE\uC544\uBD10(\uACE0\uC815\uC218\uCE58)"
   m_EditorClassIdentifier: 
-  Type: 5
-  Name: "\uCD5C\uB300\uCCB4\uB825\uC758"
+  Type: 6
+  Name: "\uB204\uC801 \uB370\uBBF8\uC9C0"
   IntValues: 
   FloatValues:
-  - 0.7
-  - 0.6
-  - 0.5
+  - 50
+  - 100
+  - 300

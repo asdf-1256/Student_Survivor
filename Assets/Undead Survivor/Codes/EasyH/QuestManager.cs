@@ -44,8 +44,11 @@ public class QuestManager : MonoBehaviour
             case QuestData.QuestType.safeTime:
                 newQuestInfor.Checker = new SafeTimeQuestChecker(newQuest.FloatValues[level]);
                 break;
-            default:
+            case QuestData.QuestType.survive:
                 newQuestInfor.Checker = new HealthMakeToQuestChecker(newQuest.FloatValues[level]);
+                break;
+            case QuestData.QuestType.getDamage:
+                newQuestInfor.Checker = new GetDamageQuestChecker(newQuest.FloatValues[level]);
                 break;
         }
 
