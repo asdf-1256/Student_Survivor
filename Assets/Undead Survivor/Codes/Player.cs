@@ -40,7 +40,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float totalDistance = 0f;
 
-    [SerializeField] private Shield shield;
+    [SerializeField] private Shield _shield;
+    public Shield shield
+    {
+        get { return _shield; }
+    }
     [SerializeField] private BuffData[] buffDatas;
 
     private float debuffSpeedRate = 1f;
@@ -49,7 +53,6 @@ public class Player : MonoBehaviour
     {
         get { return totalDistance; }
     }
-
     public Vector3 Scale
     {
         set
@@ -65,7 +68,18 @@ public class Player : MonoBehaviour
             
         }
     }
+    private Collider2D playerCollider;
+    private ParticleSystem buffEffectParticle;
 
+    private Color attackBuffColor = Color.red;
+    private Color defenseBuffColor = Color.yellow;
+    private Color invincibleBuffColor = Color.white;
+    private Color magnetBuffColor = Color.black;
+    private Color speedBuffColor = Color.blue;
+
+    //빨주노초파
+    //오방색?
+    
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -81,6 +95,16 @@ public class Player : MonoBehaviour
         isInvincible = false;
         buffs = new List<BuffData>();
         wait = new WaitForSeconds(0.1f);
+
+        playerCollider = GetComponent<Collider2D>();
+
+
+        buffEffectParticle = GetComponent<ParticleSystem>();
+        attackBuffColor.a = 64;
+        defenseBuffColor.a = 64;
+        invincibleBuffColor.a = 64;
+        magnetBuffColor.a = 64;
+        speedBuffColor.a = 64;
     }
     private void OnEnable()
     {
@@ -119,13 +143,15 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.Instance.isLive)
             return;
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Machine"))
+            Physics2D.IgnoreCollision(collision.collider, playerCollider, true);
 
         if (isInvincible)
             return;
 
-        if (shield.ShieldCount > 0)
+        if (_shield.ShieldCount > 0)
         {
-            shield.RemoveShield();
+            _shield.RemoveShield();
             foreach (var buffdata in buffDatas)
                 if (buffdata.effect == BuffData.BuffEffect.Invincible)
                     ActivateBuff(buffdata);

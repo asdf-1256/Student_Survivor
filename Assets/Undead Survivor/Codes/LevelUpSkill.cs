@@ -67,7 +67,7 @@ public class LevelUpSkill : MonoBehaviour
             SkillSelect randomSkill = skillSelects[selectedNums[index]];
             Debug.Log(index + "번째 뽑음 : " + selectedNums[index]);
 
-            if (QuestManager.Instance.IsQuestDoing(randomSkill.name)) {
+            if (QuestManager.Instance.IsQuestDoing(randomSkill.skillData.skillName)) {
                 Debug.Log(index + "번째 : 현재 수행중");
             }
             // 만렙 스킬이라면 다시 뽑기
@@ -121,5 +121,10 @@ public class LevelUpSkill : MonoBehaviour
             }
         }
         return index;
+    }
+
+    public void setRate(int index, float rate)
+    {
+        SkillSelectRates[index] = rate;
     }
 }

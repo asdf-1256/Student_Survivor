@@ -70,7 +70,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349547450116809816}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -113,10 +113,12 @@ MonoBehaviour:
   lifeTime: 2
   damage: 10
   speed: 0
+  count: 0
   attackCoolTime: 0
   scaleFactor: 0
   flightTime: 2
   rotateSpeed: 200
+  playerTransform: {fileID: 0}
   sprites:
   - {fileID: 1304559308, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   - {fileID: 21300000, guid: e79e71700cb1e9d4c97ac05193474aca, type: 3}

@@ -14,10 +14,15 @@ public class Bullet_IoT : BulletBase
     float attackTimer;
     Vector3 nextPos;
 
+    [SerializeField] private GameObject bulletPrefab;
+
+    private int bulletIndex;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         scanner = GetComponent<Scanner>();
+        bulletIndex = GameManager.Instance.pool.GetPoolIndex(bulletPrefab);
     }
     public override void Init(bool isAI, SkillData skillData, int level)
     {
@@ -89,7 +94,7 @@ public class Bullet_IoT : BulletBase
         Vector3 dir = targetPos - transform.position + ddabalRate; // 플레이어->적 벡터에 따발률 첨가
         dir = dir.normalized;//방향 구하기
 
-        Transform bullet = GameManager.Instance.pool.Get(2).transform; // Bullet 1의 총알 그대로 일단 씀
+        Transform bullet = GameManager.Instance.pool.Get(bulletIndex).transform; // Bullet 1의 총알 그대로 일단 씀
 
         bullet.position = transform.position;//위치결정
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);//회전결정

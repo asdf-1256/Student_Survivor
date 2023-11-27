@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
+  m_Name: "4. \uADF8\uB798\uD53D\uC2A4"
+  m_EditorClassIdentifier: 
+  skillType: 0
+  skillID: 4
+  bulletPrefabID: 4
+  level: 0
+  skillName: "\uCEF4\uD4E8\uD130 \uADF8\uB798\uD53D\uC2A4"
+  grade: 3
+  skillDesc: "\uADF8\uB798\uD53D\uC2A4\uC774\uC5D0\uC6A9"
+  skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  bulletPrefab: {fileID: 3888502785941969304, guid: 3c078ec35ae184345971ea4f8351e55a, type: 3}
+  pool_index: 0
+  getype: 0
+  cooltimes:
+  - 7
+  - 5
+  - 3
+  lifeTimes:
+  - 1
+  - 2
+  - 3
+  damages:
+  - 3
+  - 6
+  - 10
+  speeds:
+  - 1
+  - 2
+  - 3
+  counts:
+  - 1
+  - 1
+  - 1
+  attackCoolTime: 0.5
+  scaleFactor: 0.1
+  flightTime: 2
+  rotateSpeed: 200

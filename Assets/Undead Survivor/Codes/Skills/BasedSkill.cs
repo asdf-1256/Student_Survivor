@@ -69,14 +69,15 @@ public class BasedSkill : MonoBehaviour
         coolTime = skillData.cooltimes[0];
 
         if (skillData.skillType == SkillData.SkillType.Àü°ø)
-            for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++)
-            {
-                if (skillData.bulletPrefab == GameManager.Instance.pool.prefabs[index])
+            if (skillData.bulletPrefab != null)
+                for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++)
                 {
-                    prefabId = index;
-                    break;
+                    if (skillData.bulletPrefab == GameManager.Instance.pool.prefabs[index])
+                    {
+                        prefabId = index;
+                        break;
+                    }
                 }
-            }
 
         /*switch (id)
         {
@@ -102,6 +103,11 @@ public class BasedSkill : MonoBehaviour
 
     void Fire()
     {
+        if(skillData.skillID == 26)
+        {
+            GameManager.Instance.player.shield.AddShield();
+            return;
+        }
         if (!playerTransform.GetComponent<Scanner>().nearestTarget)
             return;
         GameObject bullet = GameManager.Instance.pool.Get(prefabId);

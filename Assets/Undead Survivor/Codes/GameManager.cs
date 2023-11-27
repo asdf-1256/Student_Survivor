@@ -23,15 +23,19 @@ public class GameManager : MonoBehaviour
     public float health;
     public float maxHealth = 100;
     public int level;
-    private readonly int maxLevel = 120;
+    public readonly int maxLevel = 100;
     public int kill;
     public Dictionary<int, int> killByType;
     public int exp;
     public float manBoGi;
-    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
-    //public int money;
     public float expRate = 1.0f;
+
+    [Header("# Game Info")]
+    public int[] levelPerPhase; // 페이즈 당 필요레벨
     public int currentPhase; //현재 난이도
+    public int[] nextExp;
+    public int[] levelForBoss;
+    //public int money;
 
     [Header("# Game Object")]
     public PoolManager pool;
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyCleaner;
     public GameObject QuestBox;
     public GameObject bossSet;
+    public GameObject HealthInHUD;
 
     public int MaxQuestCount = 3;
     public List<UIQuest> freeQuestUI;
@@ -164,21 +169,7 @@ public class GameManager : MonoBehaviour
     }
     public void GetExp() //.. 1만큼 증가하는 경험치 획득 함수
     {
-        if (!isLive)
-            return;
-        exp++;
-        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)]) //index bound error 안 나오도록
-        {
-            level++;
-            exp = 0;
-            uiLevelUpSkill.Show();
-            currentPhase = level / (maxLevel / semesterDifficulty.Length);
-            if(level == 59 || level == 119)
-            {
-                Debug.Log("보스 소환");
-                currentBossSpawn.MoveNext();
-            }
-        }
+        GetExp(1);
     }
     public void GetExp(int e) //... e만큼 증가하는 경험치 획득 함수
     {
@@ -193,14 +184,36 @@ public class GameManager : MonoBehaviour
             level++;
             exp -= nextexp;
             uiLevelUpSkill.Show();
-            currentPhase = level / (maxLevel / semesterDifficulty.Length);
-            if (level == 59 || level == 119)
+            UpdatePhase();
+            if (level == levelForBoss[0] || level == levelForBoss[1])
             {
                 Debug.Log("보스 소환");
                 currentBossSpawn.MoveNext();
             }
+            SkillRateManager.instance.updateSkillRate(currentPhase);
         }
     }
+    void UpdatePhase()
+    {
+        int requestLevel = levelPerPhase[currentPhase];
+        if (level >= requestLevel)
+        {
+            currentPhase++;
+        }
+    }
+    /*public string getLevelForNextPhase()
+    {
+        int curLevel;
+        if (currentPhase == 0)
+            curLevel = level;
+        else
+            curLevel = level - levelPerPhase[currentPhase - 1];
+
+        string result = string.Format("다음 페이즈까지 {0:F0} / {1:F0}",
+            curLevel,
+            levelPerPhase[currentPhase] - levelPerPhase[currentPhase - 1]);
+        return result;
+    }*/
     public void GetHealth(int h) //.. h만큼 체력 회복
     {
         if (!isLive)
@@ -231,13 +244,32 @@ public class GameManager : MonoBehaviour
         int currentBoss = 0;
 
         while ( currentBoss != bossSet.transform.childCount - 1 ) {
+
+            StartCoroutine(BossSpawnEffector( () => {
+                Transform nextBoss = bossSet.transform.GetChild(currentBoss);
+                _boss = nextBoss.GetComponent<Enemy>();
+                nextBoss.localPosition = player.transform.position + Vector3.up * 10;
+                nextBoss.gameObject.SetActive(true);
+                Debug.Log(string.Format("보스 소환 {0}번째", currentBoss));
+                currentBoss++;
+            } ));
+            yield return null;
+            /*
             Transform nextBoss = bossSet.transform.GetChild(currentBoss);
             _boss = nextBoss.GetComponent<Enemy>();
             nextBoss.localPosition = player.transform.position + Vector3.up * 10;
             nextBoss.gameObject.SetActive(true);
             Debug.Log(string.Format("보스 소환 {0}번째",currentBoss));
             currentBoss++;
-            yield return null;
+            yield return null;*/
         }
+    }
+    private IEnumerator BossSpawnEffector(System.Action done)
+    {
+        //effect에 관한 코드를 추가해야함.
+
+        yield return new WaitUntil( () => { return Time.timeScale == 1; });
+
+        done.Invoke();
     }
 }

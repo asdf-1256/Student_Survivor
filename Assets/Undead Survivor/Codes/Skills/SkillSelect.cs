@@ -13,6 +13,21 @@ public class SkillLevelUpReward: QuestReward {
 
     public void Reward()
     {
+        if (skillData.skillID == 26) //블록 체인이면
+        {
+            if (level == 0)
+            {
+                GameObject blockChainSKillObject = new GameObject();
+                skill = blockChainSKillObject.AddComponent<BasedSkill>();
+                skill.Init(false, skillData);
+            }
+            else
+            {
+                skill.LevelUp();
+                level++;
+            }
+            return;
+        }
         if (skillData.skillID == 15) // 인공지능 스킬이면 AI 오브젝트 활성화
         {
             GameManager.Instance.ai_Player.gameObject.SetActive(true);
@@ -104,10 +119,11 @@ public class SkillSelect : MonoBehaviour
                     Debug.Log("퀘스트가 꽉 차있습니다.");
                     break;
                 }
-                QuestManager.Instance.AddQuest(name, level, questData, _questReward);
+                QuestManager.Instance.AddQuest(skillData.skillName, level, questData, _questReward);
                 level++;
                 break;
             case SkillData.SkillType.교양:
+                SkillTreeManager.instance.AddSkillLevelPair(skillData.skillName);
                 GEActive();
                 break;
         }
@@ -143,6 +159,7 @@ public class SkillSelect : MonoBehaviour
             case SkillData.GEType.MaxHealth:
                 GameManager.Instance.maxHealth += skillData.damages[level];
                 GameManager.Instance.health += Convert.ToInt32(skillData.damages[level]);
+                GameManager.Instance.HealthInHUD.GetComponent<RectTransform>().sizeDelta = new Vector2(GameManager.Instance.maxHealth / 10, 4);
                 break;
             case SkillData.GEType.Recovery:
                 if (level == 0)

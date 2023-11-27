@@ -6,13 +6,13 @@ using UnityEngine;
 public class QuestData : ScriptableObject
 {
     public enum QuestType { 
-        killQuiz, killHW, killTest, walk, safeTime, survive
+        killHW, killQuiz, killTest, walk, safeTime, survive
     }
 
     public QuestType Type;
     public string Name;
 
-    public int IntValue;
-    public float FloatValue;
+    public int[] IntValues;
+    public float[] FloatValues;
 
 }
