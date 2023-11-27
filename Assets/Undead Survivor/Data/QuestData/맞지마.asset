@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 4
   Name: "\uD53C\uD574\uB2E4\uB140"
-  IntValue: 0
-  FloatValue: 10
+  IntValues: 
+  FloatValues:
+  - 10
+  - 20
+  - 30

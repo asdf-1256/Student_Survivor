@@ -10,6 +10,11 @@ public class Boss : MonoBehaviour
     [SerializeField] private int spawnExpCount = 100;
 
     [SerializeField] private GameObject bossHealthHUD;
+    private Collider2D coll;
+    private void Awake()
+    {
+        coll = GetComponent<Collider2D>();
+    }
 
     private void OnEnable()
     {
@@ -33,5 +38,10 @@ public class Boss : MonoBehaviour
         else if (bossId == 1)
             GameManager.Instance.GameVictory();
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Enemy"))
+            return;
+        Physics2D.IgnoreCollision(collision.collider, coll, true);
+    }
 }

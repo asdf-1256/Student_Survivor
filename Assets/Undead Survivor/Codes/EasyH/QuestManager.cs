@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,22 +30,22 @@ public class QuestManager : MonoBehaviour
 
         switch (newQuest.Type) {
             case QuestData.QuestType.killQuiz:
-                newQuestInfor.Checker = new KillCountQuestChecker(newQuest.IntValue);
+                newQuestInfor.Checker = new KillCountQuestChecker((int)newQuest.Type, newQuest.IntValues[level]);
                 break;
             case QuestData.QuestType.killHW:
-                newQuestInfor.Checker = new KillCountQuestChecker(newQuest.IntValue);
+                newQuestInfor.Checker = new KillCountQuestChecker((int)newQuest.Type, newQuest.IntValues[level]);
                 break;
             case QuestData.QuestType.killTest:
-                newQuestInfor.Checker = new KillCountQuestChecker(newQuest.IntValue);
+                newQuestInfor.Checker = new KillCountQuestChecker((int)newQuest.Type, newQuest.IntValues[level]);
                 break;
             case QuestData.QuestType.walk:
-                newQuestInfor.Checker = new WalkQuestChecker(newQuest.FloatValue);
+                newQuestInfor.Checker = new WalkQuestChecker(newQuest.FloatValues[level]);
                 break;
             case QuestData.QuestType.safeTime:
-                newQuestInfor.Checker = new SafeTimeQuestChecker(newQuest.FloatValue);
+                newQuestInfor.Checker = new SafeTimeQuestChecker(newQuest.FloatValues[level]);
                 break;
             default:
-                newQuestInfor.Checker = new HealthMakeToQuestChecker(newQuest.FloatValue);
+                newQuestInfor.Checker = new HealthMakeToQuestChecker(newQuest.FloatValues[level]);
                 break;
         }
 

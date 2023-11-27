@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1479126427639853883}
   m_Layer: 0
   m_Name: GameObject (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2528623769004022607}
   m_Layer: 0
   m_Name: GameObject (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 2554270205258270962}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2854058704902835544}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 6264244893917245766}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 2024365219132500463}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 3412219390647820152}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 5834649245666141384}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 7935146617986394893}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 4518644330747088172}
   m_Layer: 0
   m_Name: GameObject (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 6055780647376535511}
   m_Layer: 0
   m_Name: GameObject (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 9039513427872230177}
   m_Layer: 0
   m_Name: Bullet_Grapics_Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 1862815371889450717}
   m_Layer: 0
   m_Name: Bullet_Grapics_Triangle
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -826,7 +826,7 @@ GameObject:
   - component: {fileID: 7280955148581329328}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 1488753851541441615}
   m_Layer: 0
   m_Name: GameObject (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -986,7 +986,7 @@ GameObject:
   - component: {fileID: 658482602715462400}
   m_Layer: 0
   m_Name: GameObject (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 1565593139472907219}
   m_Layer: 0
   m_Name: GameObject (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1095,6 +1095,7 @@ MonoBehaviour:
   scaleFactor: 0
   flightTime: 0
   rotateSpeed: 0
+  playerTransform: {fileID: 0}
   spawnDistance: 10
 --- !u!1 &4197157801048303815
 GameObject:
@@ -1107,7 +1108,7 @@ GameObject:
   - component: {fileID: 6498587345484860664}
   m_Layer: 0
   m_Name: GameObject (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1141,7 +1142,7 @@ GameObject:
   - component: {fileID: 7711266934026689348}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1269,7 +1270,7 @@ GameObject:
   - component: {fileID: 7697535885502633388}
   m_Layer: 0
   m_Name: GameObject (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1303,7 +1304,7 @@ GameObject:
   - component: {fileID: 8265174102487959999}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1433,7 +1434,7 @@ GameObject:
   - component: {fileID: 8178011896084739888}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1563,7 +1564,7 @@ GameObject:
   - component: {fileID: 7834152437851929846}
   m_Layer: 0
   m_Name: Square (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1693,7 +1694,7 @@ GameObject:
   - component: {fileID: 6813413156767891945}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1823,7 +1824,7 @@ GameObject:
   - component: {fileID: 218361384870287534}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1953,7 +1954,7 @@ GameObject:
   - component: {fileID: 8450575323247910648}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2081,7 +2082,7 @@ GameObject:
   - component: {fileID: 5115908574135763302}
   m_Layer: 0
   m_Name: GameObject (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2115,7 +2116,7 @@ GameObject:
   - component: {fileID: 7678261231450533418}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2245,7 +2246,7 @@ GameObject:
   - component: {fileID: 2823088542648630955}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2375,7 +2376,7 @@ GameObject:
   - component: {fileID: 6401550651694700153}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2503,7 +2504,7 @@ GameObject:
   - component: {fileID: 6604546674042899642}
   m_Layer: 0
   m_Name: Bullet_Grapics_Pentagon
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2539,7 +2540,7 @@ GameObject:
   - component: {fileID: 4685235812302075634}
   m_Layer: 0
   m_Name: GameObject (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2573,7 +2574,7 @@ GameObject:
   - component: {fileID: 4268768134497350189}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2703,7 +2704,7 @@ GameObject:
   - component: {fileID: 1840433402695712480}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2833,7 +2834,7 @@ GameObject:
   - component: {fileID: 7785705952626540615}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2961,7 +2962,7 @@ GameObject:
   - component: {fileID: 4214697078899329304}
   m_Layer: 0
   m_Name: Bullet_Grapics_Hexagon
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2995,6 +2996,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3625523465949762194}
     m_Modifications:
+    - target: {fileID: 740328456669233505, guid: 329d157cec9a14446864296defbfc13d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306849656102137594, guid: 329d157cec9a14446864296defbfc13d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346266765418296426, guid: 329d157cec9a14446864296defbfc13d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 3894050942383363696, guid: 329d157cec9a14446864296defbfc13d, type: 3}
       propertyPath: m_Name
       value: Bullet_Grapics_Triangle
@@ -3002,6 +3015,14 @@ PrefabInstance:
     - target: {fileID: 3894050942383363696, guid: 329d157cec9a14446864296defbfc13d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894050942383363696, guid: 329d157cec9a14446864296defbfc13d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148944829964986764, guid: 329d157cec9a14446864296defbfc13d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6033830297797936241, guid: 329d157cec9a14446864296defbfc13d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3043,6 +3064,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7797452556775763978, guid: 329d157cec9a14446864296defbfc13d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427090864660876334, guid: 329d157cec9a14446864296defbfc13d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3056,6 +3085,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3625523465949762194}
     m_Modifications:
+    - target: {fileID: 673956068910319487, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 910833616930150053, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1449028146318847597, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
       propertyPath: m_Name
       value: Bullet_Grapics_Pentagon
@@ -3063,6 +3100,18 @@ PrefabInstance:
     - target: {fileID: 1449028146318847597, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449028146318847597, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016731396760782248, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3246822154236361368, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 3535283382233004730, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3103,6 +3152,30 @@ PrefabInstance:
     - target: {fileID: 3535283382233004730, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4055736053099628376, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530445488702580587, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050089037482253594, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758867963334348428, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503786431203837891, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240228125425990981, guid: 9f26abe06030fff4891d7bc74be78e52, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3157,6 +3230,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1581727436938136586, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637559572764867123, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689563461753723131, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3811608563488785938, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288666665991643596, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 4353299911938103793, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
       propertyPath: m_Name
       value: Bullet_Grapics_Hexagon
@@ -3164,6 +3257,38 @@ PrefabInstance:
     - target: {fileID: 4353299911938103793, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353299911938103793, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877661674492047774, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801057014276640070, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965040086281554878, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685835840883506071, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029478917805593918, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432041618126363707, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927187224208542300, guid: 6cc44dd7318d0b94c8930e1392b828be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3185,6 +3310,14 @@ PrefabInstance:
     - target: {fileID: 12433427899032228, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 12433427899032228, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 260533401756884330, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 5443513149702663406, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3225,6 +3358,18 @@ PrefabInstance:
     - target: {fileID: 5443513149702663406, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230782984792997951, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118603763933846816, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305880235783876463, guid: a19f5d63a5b82fd4bb2219a40292ca45, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

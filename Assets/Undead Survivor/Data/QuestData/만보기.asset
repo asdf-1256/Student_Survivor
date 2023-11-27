@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 3
   Name: "\uB3C4\uBCF4"
-  IntValue: 0
-  FloatValue: 10
+  IntValues: 
+  FloatValues:
+  - 10
+  - 30
+  - 70
