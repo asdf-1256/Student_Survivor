@@ -2067,12 +2067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccf44e28c678449c2c9ec4381635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: bf9309e8b8401594fa24a937d8c0c4e5, type: 2}
-  data: {fileID: 0}
-  attackRate: 0
-  speedRate: 0
-  defenseRate: 0
-  isInvincible: 0
 --- !u!114 &83290838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3038,12 +3032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccf44e28c678449c2c9ec4381635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: 6fe1c4aeaa97f9d4598e7242ec8dac50, type: 2}
-  data: {fileID: 0}
-  attackRate: 0
-  speedRate: 0
-  defenseRate: 0
-  isInvincible: 0
 --- !u!114 &110806877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22199,12 +22187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccf44e28c678449c2c9ec4381635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: bf9309e8b8401594fa24a937d8c0c4e5, type: 2}
-  data: {fileID: 0}
-  attackRate: 0
-  speedRate: 0
-  defenseRate: 0
-  isInvincible: 0
 --- !u!114 &528658820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23026,12 +23008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccf44e28c678449c2c9ec4381635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: 354957ec02dcfad4188bdd6f12b063a6, type: 2}
-  data: {fileID: 0}
-  attackRate: 0
-  speedRate: 0
-  defenseRate: 0
-  isInvincible: 0
 --- !u!114 &577745262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41072,12 +41048,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccf44e28c678449c2c9ec4381635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: 354957ec02dcfad4188bdd6f12b063a6, type: 2}
-  data: {fileID: 0}
-  attackRate: 0
-  speedRate: 0
-  defenseRate: 0
-  isInvincible: 0
 --- !u!114 &1780374684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43500,12 +43470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fccf44e28c678449c2c9ec4381635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: 6fe1c4aeaa97f9d4598e7242ec8dac50, type: 2}
-  data: {fileID: 0}
-  attackRate: 0
-  speedRate: 0
-  defenseRate: 0
-  isInvincible: 0
 --- !u!114 &1956446153
 MonoBehaviour:
   m_ObjectHideFlags: 0
