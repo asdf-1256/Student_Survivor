@@ -5,7 +5,7 @@ using UnityEngine.UI;//Text 넣을 때 알아서 추가됨
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { Exp, Level, Kill, Time, Health, BossHealth }
+    public enum InfoType { Exp, Level, NextPhase, Kill, Time, Health, BossHealth }
     public InfoType type;
 
     Text myText;
@@ -27,7 +27,11 @@ public class HUD : MonoBehaviour
                 mySlider.value = curExp / maxExp;
                 break;
             case InfoType.Level:
-                myText.text = string.Format("Lv.{0:F0}", GameManager.Instance.level);
+                myText.text = string.Format("졸업 학점 : {0:F0}", GameManager.Instance.level);
+                break;
+            case InfoType.NextPhase:
+                myText.text = string.Format("다음 페이즈까지 {0:F0} / {1:F0}", 
+                    GameManager.Instance.level, GameManager.Instance.levelPerPhase[GameManager.Instance.currentPhase]);
                 break;
             case InfoType.Kill:
                 myText.text = string.Format("{0:F0}", GameManager.Instance.kill);
