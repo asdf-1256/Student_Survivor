@@ -485,7 +485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1e9214399ee5a4ea5c5dded16803ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillTree: {fileID: 789847292}
 --- !u!114 &20534429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8991,13 +8990,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 20534427}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 283515366}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1246355879}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -22252,7 +22263,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 48.92284
+  orthographic size: 8.296296
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
