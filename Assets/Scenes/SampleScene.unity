@@ -44857,7 +44857,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SSOS
+  m_Text: "\uC5D1\uD37C"
 --- !u!222 &1843834520
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -52506,7 +52506,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SSOS
+  m_Text: PNC
 --- !u!222 &2078183363
 CanvasRenderer:
   m_ObjectHideFlags: 0
