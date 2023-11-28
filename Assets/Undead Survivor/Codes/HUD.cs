@@ -50,11 +50,13 @@ public class HUD : MonoBehaviour
                 float maxHealth = GameManager.Instance.maxHealth;
                 mySlider.value = curHealth / maxHealth;
                 break;
-            case InfoType.Coin:
-                myText.text = string.Format("{0:F0}", DataManager.Instance.money);
             case InfoType.BossHealth:
                 mySlider.value = GameManager.Instance.SpawnedBoss.health / GameManager.Instance.SpawnedBoss.maxHealth;
                 break;
+            case InfoType.Coin:
+                myText.text = string.Format("{0:F0}", DataManager.Instance.money);
+                break;
+            
         }
     }
 }

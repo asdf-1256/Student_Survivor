@@ -253,8 +253,14 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
+        Debug.Log("Respawn func call");
         isLive = true;
         player.gameObject.SetActive(true);
+        for (int i = 0; i < player.transform.childCount; i++)
+        {
+            player.transform.GetChild(i).gameObject.SetActive(true);
+            Debug.Log(string.Format("자식 오브젝트 SetActive true 됨 : {0}", player.transform.GetChild(i).gameObject.name));
+        }
         health = maxHealth;
         uiJoy.localScale = Vector3.one;
         gameResult.SetActive(false);
@@ -262,8 +268,7 @@ public class GameManager : MonoBehaviour
         animator.SetTrigger("Respawn");
         Resume();
         respawncount++;
-
-        if(respawncount >= 1)
+        if (respawncount >= 1)
         {
             Debug.Log("��Ȱ �Ұ� : �̹� �� �� �׾����ϴ�.");
             resPawn.GetComponent<Button>().interactable = false;
