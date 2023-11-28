@@ -13,5 +13,5 @@ public class StoreData : ScriptableObject
     public DongAriType Type;
     public string Name;
     public int price;
-    
+    public float degree;
 }

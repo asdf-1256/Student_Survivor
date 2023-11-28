@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Select);
 
         currentBossSpawn = SpawnBoss();
+        StoreManager.instance.ApplyAllDongAri();
     }
     public void GameOver()
     {

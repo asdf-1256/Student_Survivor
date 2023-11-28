@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SSOS
   m_EditorClassIdentifier: 
   Type: 1
-  Name: "\uBC84\uD504"
+  Name: "\uC790\uC11D \uBC18\uACBD \uC99D\uAC00"
   price: 3
+  degree: 5

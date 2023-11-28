@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PNC
   m_EditorClassIdentifier: 
   Type: 0
-  Name: "\uBC84\uD504"
+  Name: "\uCD5C\uB300\uCCB4\uB825 \uC99D\uAC00"
   price: 2
+  degree: 200
