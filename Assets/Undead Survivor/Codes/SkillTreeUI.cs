@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SkillTreeUI : MonoBehaviour
 {
     public Text SkillTree;
+    public SkillTreeManager SkillTreeManager;
 
     public void OnClick()
     {

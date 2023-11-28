@@ -23,7 +23,7 @@ public class Retry_Button : MonoBehaviour
         else
         {
             GetComponent<Button>().interactable = true;
-            data.money = data.money - 1;
+            data.money--;
         }
     }
 }
