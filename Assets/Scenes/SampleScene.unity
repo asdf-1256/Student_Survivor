@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 20534431}
   - component: {fileID: 20534430}
   - component: {fileID: 20534429}
-  - component: {fileID: 20534428}
+  - component: {fileID: 20534433}
   m_Layer: 5
   m_Name: SkillTreeBox
   m_TagString: Untagged
@@ -473,18 +473,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &20534428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20534427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f1e9214399ee5a4ea5c5dded16803ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &20534429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +527,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -612,6 +600,19 @@ RectTransform:
   m_AnchoredPosition: {x: 1.800003, y: -0.42999268}
   m_SizeDelta: {x: 90.381714, y: 149.83965}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &20534433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20534427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f312fe698ef1d45bfd1b22146c4d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillTree: {fileID: 0}
 --- !u!1 &21454348
 GameObject:
   m_ObjectHideFlags: 0
@@ -8920,6 +8921,7 @@ GameObject:
   - component: {fileID: 215913913}
   - component: {fileID: 215913912}
   - component: {fileID: 215913911}
+  - component: {fileID: 215913914}
   m_Layer: 5
   m_Name: History_Button
   m_TagString: Untagged
@@ -8990,6 +8992,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 20534427}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 283515366}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Stop
@@ -9000,19 +9014,19 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1246355879}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 215913914}
+        m_TargetAssemblyTypeName: SkillTreeUI, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &215913912
 MonoBehaviour:
@@ -9052,6 +9066,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215913909}
   m_CullTransparentMesh: 1
+--- !u!114 &215913914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215913909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f312fe698ef1d45bfd1b22146c4d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillTree: {fileID: 0}
 --- !u!1 &217706574
 GameObject:
   m_ObjectHideFlags: 0
@@ -26735,6 +26762,7 @@ GameObject:
   - component: {fileID: 789847294}
   - component: {fileID: 789847293}
   - component: {fileID: 789847292}
+  - component: {fileID: 789847295}
   m_Layer: 5
   m_Name: SkillTree
   m_TagString: Untagged
@@ -26803,6 +26831,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &789847295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789847291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f312fe698ef1d45bfd1b22146c4d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillTree: {fileID: 0}
 --- !u!1 &792040132
 GameObject:
   m_ObjectHideFlags: 0
