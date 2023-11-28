@@ -4,27 +4,37 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
-    [SerializeField]
-    private float radius; //아직은 사용되지 않음
+    //[SerializeField]
+    //private float radius; //아직은 사용되지 않음
     private float magneticRate;
+    /*
     public float Radius
     {
         get { return radius; }
         set { radius = value; coll.radius = radius * magneticRate; }
-    }
+    }*/
     public float MagneticRate
     {
         get { return magneticRate; }
-        set { magneticRate = value; coll.radius = radius * magneticRate; }
+        set
+        {
+            magneticRate = value;
+            //coll.radius = radius * magneticRate;
+            transform.localScale = Vector3.one * magneticRate;
+            spriteRenderer.enabled = true;
+        }
     }
 
     CircleCollider2D coll; // 자력 범위를 설정할 Collider
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         coll = GetComponent<CircleCollider2D>();
-        radius = coll.radius;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        //radius = coll.radius;
         magneticRate = 1f;
+        spriteRenderer.enabled = false;
     }
 
 
@@ -34,18 +44,33 @@ public class Magnet : MonoBehaviour
             return;
 
 
-        MagnetableItem magnet;//현재 충돌한 아이템의 스크립트를 불러와
-        if (!collision.TryGetComponent<MagnetableItem>(out magnet))
+        SpawnItem item;//현재 충돌한 아이템의 스크립트를 불러와
+        if (!collision.TryGetComponent<SpawnItem>(out item))
         {
             Debug.LogWarning("TryGetComponent문 실패했을 경우 실행됨");
             return;
         }
-            magnet.ActiveMagnet(coll.radius);//자석을 활성화 한다.
+            item.ActiveMagnet(magneticRate);//자석을 활성화 한다.
 
 
 
     }
+    /*
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Item"))//Item만을 끌어당긴다.
+            return;
 
+
+        SpawnItem item;//현재 충돌한 아이템의 스크립트를 불러와
+        if (!collision.TryGetComponent<SpawnItem>(out item))
+        {
+            Debug.LogWarning("TryGetComponent문 실패했을 경우 실행됨");
+            return;
+        }
+        item.DeActiveMagnet();//자석을 비활성화 한다.
+    }
+    */
     IEnumerator CreateMagRoutine() // 10초 동안 반지름 10 증가
     {
         Debug.Log("자석자석");
@@ -60,7 +85,7 @@ public class Magnet : MonoBehaviour
     {
         coll.radius *= 2f;
     }
-
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -68,5 +93,5 @@ public class Magnet : MonoBehaviour
             Debug.Log("Space Key Input 발생");
             LevelUpColliderRadius();
         }
-    }
+    }*/
 }

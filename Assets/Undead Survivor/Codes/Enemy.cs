@@ -23,6 +23,13 @@ public class Enemy : MonoBehaviour
 
     Coroutine lockCoroutine = null;
 
+    [SerializeField] private Transform damageTransform;
+
+    [SerializeField] private GameObject DamageTextObjectPrefab;
+    private int damagePoolIndex;
+
+    private int currentSpriteType;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,6 +38,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
+        damagePoolIndex = GameManager.Instance.pool.GetPoolIndex(DamageTextObjectPrefab);
     }
 
     // Update is called once per frame
@@ -70,10 +78,14 @@ public class Enemy : MonoBehaviour
 
     public void Init(SpawnData data)
     {
+        float difficulty = GameManager.Instance.semesterDifficulty[GameManager.Instance.currentPhase];
         anim.runtimeAnimatorController = animCon[data.spriteType];
         speed = data.speed;
-        maxHealth = data.health;
-        health = data.health;
+        maxHealth = data.health * difficulty;
+        health = data.health * difficulty;
+        currentSpriteType = data.spriteType;
+
+        //Debug.Log(string.Format("현재 적 체력: {0} * {1} = 최종적으로 {2}", data.health, difficulty, health));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -84,7 +96,14 @@ public class Enemy : MonoBehaviour
 
         if (collision.CompareTag("Bullet")) // 일단은 기본무기 + 운체, 자바, 클라우드, 알고리즘, IoT를 담당
         {
-            health -= collision.GetComponent<BulletBase>().damage; // 이건 왜 이거야
+            BulletBase bullet = collision.GetComponent<BulletBase>();
+            if (bullet.damage == 1e+07)
+                if (gameObject.name.Contains("Boss"))
+                    return;
+            health -= bullet.damage * GameManager.Instance.player.attackRate; // 이건 왜 이거야
+
+            PrintDamage(bullet.damage * GameManager.Instance.player.attackRate);
+
             if (health > 0)
             {
                 //.. 살았고 피격판정
@@ -109,15 +128,12 @@ public class Enemy : MonoBehaviour
                     AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
             }
         }
-
-        else if (collision.CompareTag("Lava"))
-            StartCoroutine(LavaRoutine(collision.GetComponent<SkillBase>()));
         else if (collision.CompareTag("Web"))
-            speed /= 3f;
+            speed /= collision.GetComponent<BulletBase>().damage;
         else if (collision.CompareTag("SysProg"))
         {
             Bullet_SystemProgramming bullet = collision.GetComponent<Bullet_SystemProgramming>();
-            if(lockCoroutine == null)
+            if (lockCoroutine == null)
                 lockCoroutine = StartCoroutine(LockRoutine(collision.GetComponent<Bullet_SystemProgramming>().lifeTime, () =>
                 {
                     lockCoroutine = null;
@@ -143,7 +159,11 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            health -= targetObject.GetComponent<Bullet_MachhineLearning>().damage;
+            Bullet_MachhineLearning bullet = targetObject.GetComponent<Bullet_MachhineLearning>();
+            health -= bullet.damage * GameManager.Instance.player.attackRate;
+
+            PrintDamage(bullet.damage * GameManager.Instance.player.attackRate);
+
             if (health <= 0)
             {
                 //.. 죽음
@@ -178,10 +198,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Lava"))
-            StopAllCoroutines();
-        else if (collision.CompareTag("Web"))
-            speed *= 3f;
+        if (collision.CompareTag("Web"))
+            speed *= collision.GetComponent<BulletBase>().damage;
     }
     void DropExp()
     {
@@ -190,9 +208,8 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        GameObject Exp = GameManager.Instance.pool.Get(3);
-        Exp.GetComponent<SpawnItem>().Init(expData);
-        Exp.transform.position = new Vector2(transform.position.x, transform.position.y);
+        GameObject Exp = GameManager.Instance.player.GetComponentInChildren<Spawner>().SpawnItem(expData);
+        Exp.transform.position = transform.position;
         //Debug.Log("@경험치 드랍됨");
 
     }
@@ -200,13 +217,6 @@ public class Enemy : MonoBehaviour
     //코루틴 - 비동기
     IEnumerator KnockBack()
     {
-
-        //yield - 코루틴 반환
-        //yield return null; // 1프레임 쉬기
-        
-        //yield return new WaitForSeconds(2f);//2초 쉬기 - new 계속하면 성능문제
-
-        //하나의 물리 프레임을 딜레이할 것
         yield return wait;
 
         Vector3 playerPos = GameManager.Instance.player.transform.position;
@@ -222,45 +232,26 @@ public class Enemy : MonoBehaviour
         {
             rigid.bodyType = RigidbodyType2D.Dynamic;
             Bullet_SystemProgramming bullet = GetComponentInChildren<Bullet_SystemProgramming>();
-            bullet?.transform.SetParent(GameManager.Instance.pool.transform);
-            bullet?.gameObject.SetActive(false);
+            if (bullet != null)
+            {
+                bullet.transform.SetParent(GameManager.Instance.pool.transform);
+                bullet.gameObject.SetActive(false);
+            }
         }
         lockCoroutine = null;
 
+        if(GameManager.Instance.killByType.ContainsKey(currentSpriteType))
+        {
+            GameManager.Instance.killByType[currentSpriteType] += 1;
+        }
+        else
+        {
+            GameManager.Instance.killByType.Add(currentSpriteType, 1);
+        }
+
         gameObject.SetActive(false);
     }
-    IEnumerator LavaRoutine(SkillBase skillBase)
-    {
-        while (true)
-        {
-            health -= skillBase.data.damages[skillBase.GetLevel()] * 0.5f;
-            Debug.Log(string.Format("데미지 {0} 루틴 발동", skillBase.data.damages[skillBase.GetLevel()]));
-            if (health <= 0)
-            {
-                //.. 죽음
-                isLive = false;
-                coll.enabled = false;
-                rigid.simulated = false;
-                spriteRenderer.sortingOrder = 1;
-                anim.SetBool("Dead", true);
-                GameManager.Instance.kill++;
-                GameManager.Instance.GetExp();
-                DropExp();
-
-                if (GameManager.Instance.isLive)
-                    AudioManager.Instance.PlaySfx(AudioManager.Sfx.Dead);
-                break;
-            }
-            else
-            {
-                //.. 살았고 피격판정
-                //애니메이션, 넉백
-                anim.SetTrigger("Hit");
-                AudioManager.Instance.PlaySfx(AudioManager.Sfx.Hit);
-            }
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
+ 
     public IEnumerator LockRoutine(float duration, System.Action done)
     {
         float tempSpeed = speed;
@@ -284,5 +275,10 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
+    }
+    private void PrintDamage(float damage)
+    {
+        GameObject damageText = GameManager.Instance.pool.Get(damagePoolIndex);
+        damageText.GetComponent<DamageTextMesh>().Init(damageTransform, damage);
     }
 }

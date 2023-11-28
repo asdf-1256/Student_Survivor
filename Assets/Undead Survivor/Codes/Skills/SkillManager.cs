@@ -42,7 +42,7 @@ public class SkillManager : MonoBehaviour
 }
 
 [System.Serializable]
-class Skill {
+public class Skill {
     public SkillData data;
     public int level;
     public float remainTime;

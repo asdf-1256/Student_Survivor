@@ -7,124 +7,89 @@ public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
-    public float levelTime;
-    public float ItemsRandomSpawnArea; //.. ÇÃ·¹ÀÌ¾î ÁÖÀ§·Î ¾ÆÀÌÅÛ ½ºÆùµÇ´Â ½áÅ¬ÀÇ ¹ÝÁö¸§
+    //public float levelTime;
+    public float ItemsRandomSpawnArea; //.. ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public float ItemSpawnTime;
+    [SerializeField] private readonly float[] spawnTimes = { 2, 1, 0.2f, 2, 1, 0.2f, 2, 2 };
 
-    private WaitForSeconds WaitSpawnTime; //µð¹ö±ë¿ë- ¾ÆÀÌÅÛÀÌ ½ºÆùµÇ´Âµ¥ °É¸®´Â ½Ã°£. default:1ÃÊ
+    private WaitForSeconds WaitSpawnTime; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´Âµï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½. default:1ï¿½ï¿½
 
-    int level;
-    float timer;
+    //int level;
+    [SerializeField] float timer;
 
     public SpawnItemData[] itemDatas;
-    public int[] dropRates; //SpawnItemData ³»ºÎ¿¡ ÀÖ´Â µå·ÓÀ² ºÎºÐÀ» ÀÐ¾î¿Í ¼ø¼­´ë·Î ÀúÀåÇÏ´Â ¹è¿­
-    private int totalDropRate; // dropRates ¹è¿­ÀÇ °ªÀ» ´Ù ´õÇÑ ¼ýÀÚ
+    public int[] dropRates; //SpawnItemData ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½è¿­
+    private int totalDropRate; // dropRates ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+    public bool isPlayer;
+
+    [SerializeField] GameObject enemyPrefab;
+    private int enemyPoolIndex;
+
+    [SerializeField] GameObject spawnItemPrefab;
+    private int itemPoolIndex;
 
     private void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
-        //ÀÚ±â ÀÚ½ÅÀ» Æ÷ÇÔÇÑ ÀÚ½Äµé component ½Ï´Ù °®°í¿È
+        //ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Äµï¿½ component ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        enemyPoolIndex = GameManager.Instance.pool.GetPoolIndex(enemyPrefab);
+        itemPoolIndex = GameManager.Instance.pool.GetPoolIndex(spawnItemPrefab);
 
-        levelTime = GameManager.Instance.maxGameTime / spawnData.Length;
+        if (isPlayer)
+        {
 
-        //ItemsRandomSpawnArea = GameManager.Instance.ItemsRandomSpawnArea;
-        ItemsRandomSpawnArea = 10f;
+            dropRates = new int[itemDatas.Length];
 
-        dropRates = new int[itemDatas.Length];
+            for (int i = 0; i < dropRates.Length; i++)
+                dropRates[i] = itemDatas[i].dropRate;
 
-        for (int i = 0; i < dropRates.Length; i++)
-            dropRates[i] = itemDatas[i].dropRate;
+            totalDropRate = dropRates.Sum();
 
-        totalDropRate = dropRates.Sum();
+            ItemSpawnTime = 1f;
+            WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
 
-        ItemSpawnTime = 1f;
-        WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
-
-        StartCoroutine(CreateCoinRoutine());
+            StartCoroutine(CreateCoinRoutine());
+        }
     }
 
-    private void OnValidate()//À¯´ÏÆ¼ Inspector¿¡¼­ °ªÀÌ º¯°æµÉ °æ¿ì È£ÃâµÇ´Â ÇÔ¼ö.
+    private void OnValidate()//ï¿½ï¿½ï¿½ï¿½Æ¼ Inspectorï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½.
     {
-        totalDropRate = dropRates.Sum();//µå·ÓÀ² ÃÑÇÕ ´Ù½Ã °è»ê
-        WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);//¾ÆÀÌÅÛ ½ºÆù ½Ã°£ °´Ã¼ ´Ù½Ã ¸¸µë
+        totalDropRate = dropRates.Sum();//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½
+        WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½Ã¼ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
-
     void Update()
     {
         if (!GameManager.Instance.isLive)
             return;
 
-        timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.Instance.gameTime / levelTime), spawnData.Length - 1);
-        //³ª´²¼­ ¼Ò¼öÁ¡ ¹ö¸²
+        timer += Time.deltaTime * ((!isPlayer) ? 5f:1f);
 
-        if (timer > spawnData[level].spawnTime)
+        if (timer > spawnTimes[GameManager.Instance.currentPhase])
         {
             timer = 0f;
             SpwanEnemy();
         }
- 
+
     }
 
     IEnumerator CreateCoinRoutine()
     {
         while (true)
         {
-            yield return WaitSpawnTime; //new¸¦ ¾ø¾Ö±â À§ÇØ awake´Ü°è¿¡¼­ WaitForSeconds¸¦ ¸¸µë
+            yield return WaitSpawnTime; //newï¿½ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ awakeï¿½Ü°è¿¡ï¿½ï¿½ WaitForSecondsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             int randomItemNum = SelectRandomItem();
             SpawnItem(randomItemNum);
         }
     }
     void SpwanEnemy()
     {
-        GameObject enemy = GameManager.Instance.pool.Get(0);
+        GameObject enemy = GameManager.Instance.pool.Get(enemyPoolIndex);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
-        //1ÀÎ ÀÌÀ¯´Â ÀÚ±â ÀÚ½Å Á¦¿Ü
-        enemy.GetComponent<Enemy>().Init(spawnData[level]);
+        //1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        enemy.GetComponent<Enemy>().Init(spawnData[Random.Range(0, spawnData.Length)]);
     }
 
-    /*
-    int SelectRandomItem() //.. °ÔÀÓ¸Å´ÏÀúÀÇ ¾ÆÀÌÅÛ º° degree¼öÄ¡¿¡ µû¶ó È®·üÀûÀ¸·Î ¾ÆÀÌÅÛ ¹øÈ£¸¦ ¼±ÅÃÇÏ´Â ÇÔ¼ö
-    {
-        int resultItem;
-        float coin_spd = GameManager.Instance.coin_spd;
-        float exp0_spd = GameManager.Instance.exp0_spd;
-        float exp1_spd = GameManager.Instance.exp1_spd;
-        float health_spd = GameManager.Instance.health_spd;
-        float mag_spd = GameManager.Instance.mag_spd;
-
-        float total_spd = coin_spd + exp0_spd + exp1_spd + health_spd + mag_spd;
-        float select_spd = Random.Range(0f, total_spd);
-
-         //ÀÌÀü ÄÚµå
-        //if (select_spd < coin_spd)
-        //    resultItem = 3;
-        //else if (select_spd < coin_spd + exp0_spd)
-        //    resultItem = 4;
-        //else if (select_spd < coin_spd + exp0_spd + exp1_spd)
-        //    resultItem = 5;
-        //else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
-        //    resultItem = 6;
-        //else
-        //    resultItem = 7;
-        //return resultItem;
-
-
-        //resultItemÀ» itemDatas¹è¿­ÀÇ ÀÎµ¦½º·Î »ç¿ë.
-        if (select_spd < coin_spd)
-            resultItem = 0;
-        else if (select_spd < coin_spd + exp0_spd)
-            resultItem = 1;
-        else if (select_spd < coin_spd + exp0_spd + exp1_spd)
-            resultItem = 2;
-        else if (select_spd < coin_spd + exp0_spd + exp1_spd + health_spd)
-            resultItem = 3;
-        else
-            resultItem = 4;
-        return resultItem;
-
-    }
-*/
     int SelectRandomItem()
     {
         int resultItem = 0;
@@ -144,20 +109,27 @@ public class Spawner : MonoBehaviour
         return resultItem;
     }
 
-    void SpawnItem(int itemNum) //Item : 3¹ø, µå¶øÀ²¿¡ µû¶ó ¼±ÅÃµÈ Á¤¼ö°ªÀ» ¹Þ¾Æ, ÇØ´ç Á¤¼ö°ªÀ» index·Î ÇÏ´Â µ¥ÀÌÅÍÀÇ ¾ÆÀÌÅÛÀ» ½ºÆù.
+    void SpawnItem(int itemNum) //Item : 3ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½, ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ indexï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
     {
-        GameObject item = GameManager.Instance.pool.Get(3);
+        GameObject item = GameManager.Instance.pool.Get(itemPoolIndex);
         item.GetComponent<SpawnItem>().Init(itemDatas[itemNum]);
         item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
-        
     }
+    public GameObject SpawnItem(SpawnItemData itemData)
+    {
+        GameObject item = GameManager.Instance.pool.Get(itemPoolIndex);
+        item.GetComponent<SpawnItem>().Init(itemData);
+        item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
+        return item;
+    }
+
 }
 
-//¼Ó¼º-Á÷·ÄÈ­¸¦ ³Ö¾îÁÖ¸é unity¿¡¼­µµ º¼ ¼ö ÀÖÀ½
+//ï¿½Ó¼ï¿½-ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö¸ï¿½ unityï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 [System.Serializable]
 public class SpawnData
 {
-    public float spawnTime;
+    //public float spawnTime;
     public int spriteType;
     public int health;
     public float speed;

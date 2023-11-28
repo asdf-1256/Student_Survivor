@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
@@ -8,44 +10,93 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //static - Á¤Àû, ¸Þ¸ð¸®¿¡ ¾ñ°Ú´Ù
-    //inspector¿¡ ³ªÅ¸³ªÁö ¾ÊÀ½
+    //static - ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¸ð¸®¿ï¿½ ï¿½ï¿½Ú´ï¿½
+    //inspectorï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public static GameManager Instance;
     Animator animator;
 
     [Header("# Game Control")]
     public bool isLive;
     public float gameTime;
-    public float maxGameTime = 2 * 10f;
+    //public float maxGameTime = 2 * 10f;
+    public readonly float[] semesterDifficulty = { 1, 1.2f, 1.4f, 1.6f, 1.8f, 2f, 3f, 3.5f }; //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½
 
     [Header("# Player Info")]
     public int playerId;
     public float health;
     public float maxHealth = 100;
     public int level;
+    public readonly int maxLevel = 100;
     public int kill;
+    public Dictionary<int, int> killByType;
     public int exp;
-    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
-    //public int money;
+    public float manBoGi;
     public float expRate = 1.0f;
     public int respawncount;
+
+    [Header("# Game Info")]
+    public int[] levelPerPhase; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ä·¹ï¿½ï¿½
+    public int currentPhase; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+    public int[] nextExp;
+    public int[] levelForBoss;
+    //public int money;
 
     [Header("# Game Object")]
     public PoolManager pool;
     public Player player;
     public AI_Player ai_Player;
     public LevelUp uiLevelUp;
-    public LevelUpSkill uiLevelUpSkill; // ÀÓ½Ã Ãß°¡
+    public LevelUpSkill uiLevelUpSkill; // ï¿½Ó½ï¿½ ï¿½ß°ï¿½
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
     public GameObject gameResult;
     public GameObject hud;
     public GameObject resPawn;
+    public GameObject QuestBox;
+    public GameObject bossSet;
+    public GameObject HealthInHUD;
+
+    public int MaxQuestCount = 3;
+    public List<UIQuest> freeQuestUI;
+
+    int questCount = 0;
+
+    private IEnumerator currentBossSpawn;
+    private Enemy _boss;
+    public Enemy SpawnedBoss
+    {
+        get { return _boss; }
+        set { _boss = value; }
+    }
+    public bool CanAddQuest() {
+        if (questCount < MaxQuestCount) return true;
+        return false;
+    }
+
+    public UIQuest AddQuest(string skillName, int level, QuestChecker checker, QuestData data) {
+        UIQuest questUI = freeQuestUI[0];
+        freeQuestUI.RemoveAt(0);
+        questCount++;
+
+        questUI.QuestSet(skillName, level, checker, data);
+
+        return questUI;
+    }
+
+    public void EndQuest(UIQuest endQuestUI) {
+        endQuestUI.gameObject.SetActive(false);
+        freeQuestUI.Add(endQuestUI);
+        questCount--;
+
+    }
 
     private void Awake()
     {
         Instance = this;
+        killByType = new();
+        for(int i = 0; i < 3; i++)
+            killByType.Add(i, 0);
         Application.targetFrameRate = 60;
         animator = player.GetComponent<Animator>();
     }
@@ -57,12 +108,14 @@ public class GameManager : MonoBehaviour
 
         player.gameObject.SetActive(true);
 
-        //Ã¹¹øÂ° Ä³¸¯ÅÍ ¼±ÅÃ
-        // uiLevelUp.Select(playerId % 2); // Ä³¸¯ÅÍ ¼±ÅÃÇÏ¸é ¹«±â Áö±ÞÇß´ø°Å ÁÖ¼®Ã³¸® ÇÔ
+        //Ã¹ï¿½ï¿½Â° Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // uiLevelUp.Select(playerId % 2); // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½
         Resume();
 
         AudioManager.Instance.PlayBgm(true);
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Select);
+
+        currentBossSpawn = SpawnBoss();
     }
 
     public void GameOver()
@@ -105,7 +158,7 @@ public class GameManager : MonoBehaviour
     public void GameRetry()
     {
         DataManager.Instance.Save();
-        SceneManager.LoadScene(0); // build setting¿¡ scene ¹øÈ£
+        SceneManager.LoadScene(0); // build settingï¿½ï¿½ scene ï¿½ï¿½È£
     }
 
     public void GameQuit()
@@ -118,59 +171,83 @@ public class GameManager : MonoBehaviour
         if (!isLive)
             return;
         gameTime += Time.deltaTime;
-
-        if (gameTime > maxGameTime)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            gameTime = maxGameTime;
-            GameVictory();
+            GetExp(10);
         }
-
     }
-    public void GetExp() //.. 1¸¸Å­ Áõ°¡ÇÏ´Â °æÇèÄ¡ È¹µæ ÇÔ¼ö
+    public void GetExp() //.. 1ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ È¹ï¿½ï¿½ ï¿½Ô¼ï¿½
+    {
+        GetExp(1);
+    }
+    public void GetExp(int e) //... eï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ È¹ï¿½ï¿½ ï¿½Ô¼ï¿½
     {
         if (!isLive)
             return;
-        exp++;
-        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)]) //index bound error ¾È ³ª¿Àµµ·Ï
-        {
-            level++;
-            exp = 0;
-            uiLevelUpSkill.Show();
-        }
-    }
-    public void GetExp(int e) //... e¸¸Å­ Áõ°¡ÇÏ´Â °æÇèÄ¡ È¹µæ ÇÔ¼ö
-    {
-        if (!isLive)
-            return;
-        if(expRate != 1.0f) //°æÇèÄ¡ Áõ°¡ ±³¾ç½ºÅ³ÀÌ Ãß°¡µÇ¸é ÀÌ ºÎºÐÀÌ ½ÇÇàµÊ. - ½Ç¼ö°ªÀ» °öÇØ¼­ ¹Ý¿Ã¸²ÇÑ Á¤¼öÇü
+        if(expRate != 1.0f) //ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ç½ºÅ³ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. - ï¿½Ç¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ý¿Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             e = Convert.ToInt32(expRate * e);
         exp += e;
-        int nextexp = nextExp[Mathf.Min(level, nextExp.Length - 1)]; //index bound error ¾È ³ª¿Àµµ·Ï
+        int nextexp = nextExp[Mathf.Min(level, nextExp.Length - 1)]; //index bound error ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (exp >= nextexp)
         {
             level++;
             exp -= nextexp;
             uiLevelUpSkill.Show();
+            UpdatePhase();
+            if (level == levelForBoss[0] || level == levelForBoss[1])
+            {
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯");
+                currentBossSpawn.MoveNext();
+            }
+            SkillRateManager.instance.updateSkillRate(currentPhase);
         }
     }
-    public void GetHealth(int h) //.. h¸¸Å­ Ã¼·Â È¸º¹
+    void UpdatePhase()
+    {
+        int requestLevel = levelPerPhase[currentPhase];
+        if (level >= requestLevel)
+        {
+            currentPhase++;
+        }
+    }
+    public float getRateForNextPhase()
+    {
+        float curLevel, goalLevel;
+        if (currentPhase == 0)
+        {
+            curLevel = level;
+            goalLevel = levelPerPhase[currentPhase];
+        }
+        else
+        {
+            curLevel = level - levelPerPhase[currentPhase - 1];
+            goalLevel = levelPerPhase[currentPhase] - levelPerPhase[currentPhase - 1];
+        }
+        return curLevel / goalLevel;
+    }
+    public void GetHealth(int h) //.. hï¿½ï¿½Å­ Ã¼ï¿½ï¿½ È¸ï¿½ï¿½
     {
         if (!isLive)
             return;
         health = Mathf.Min(maxHealth, health + h);
     }
 
-    //°¢ ½ºÅ©¸³Æ®ÀÇ Update °è¿­ ·ÎÁ÷¿¡ isLive Á¶°Ç Ãß°¡
+    public void AddManBogi(float distance)
+    {
+        manBoGi += distance;
+    }
+
+    //ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ Update ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ isLive ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     public void Stop()
     {
         isLive = false;
-        Time.timeScale = 0; //À¯´ÏÆ¼ÀÇ ½Ã°£ ¼Óµµ ¹èÀ²
+        Time.timeScale = 0; //ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         uiJoy.localScale = Vector3.zero;
     }
     public void Resume()
     {
         isLive = true;
-        Time.timeScale = 1; //¸¸¾à 2¸é ½Ã°£ÀÌ ±×¸¸Å­ »¡¸® Èê·¯°¨.
+        Time.timeScale = 1; //ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½×¸ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½ê·¯ï¿½ï¿½.
         uiJoy.localScale = Vector3.one;
     }
 
@@ -188,11 +265,44 @@ public class GameManager : MonoBehaviour
 
         if(respawncount >= 1)
         {
-            Debug.Log("ºÎÈ° ºÒ°¡ : ÀÌ¹Ì ÇÑ ¹ø Á×¾ú½À´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½È° ï¿½Ò°ï¿½ : ï¿½Ì¹ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½×¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             resPawn.GetComponent<Button>().interactable = false;
         }
     }
 
 
+    private IEnumerator SpawnBoss()
+    {
+        int currentBoss = 0;
+
+        while ( currentBoss != bossSet.transform.childCount - 1 ) {
+
+            StartCoroutine(BossSpawnEffector( () => {
+                Transform nextBoss = bossSet.transform.GetChild(currentBoss);
+                _boss = nextBoss.GetComponent<Enemy>();
+                nextBoss.localPosition = player.transform.position + Vector3.up * 10;
+                nextBoss.gameObject.SetActive(true);
+                Debug.Log(string.Format("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ {0}ï¿½ï¿½Â°", currentBoss));
+                currentBoss++;
+            } ));
+            yield return null;
+            /*
+            Transform nextBoss = bossSet.transform.GetChild(currentBoss);
+            _boss = nextBoss.GetComponent<Enemy>();
+            nextBoss.localPosition = player.transform.position + Vector3.up * 10;
+            nextBoss.gameObject.SetActive(true);
+            Debug.Log(string.Format("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ {0}ï¿½ï¿½Â°",currentBoss));
+            currentBoss++;
+            yield return null;*/
+        }
+    }
+    private IEnumerator BossSpawnEffector(System.Action done)
+    {
+        //effectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ß°ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½.
+
+        yield return new WaitUntil( () => { return Time.timeScale == 1; });
+
+        done.Invoke();
+    }
 }
 

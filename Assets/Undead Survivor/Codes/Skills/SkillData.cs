@@ -15,6 +15,7 @@ public class SkillData : ScriptableObject
     public int bulletPrefabID; // Bullet의 프리펩 ID
     public int level; // 0~2까지
     public string skillName;
+    public int grade; // 전공인 경우 학년
     [TextArea]
     public string skillDesc;
     public Sprite skillIcon;

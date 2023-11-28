@@ -7,43 +7,42 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
-    public int money = 0; //µ·
-    public int selectedCharacterId = 0; //ÇöÀç ¼±ÅÃµÈ Ä³¸¯ÅÍ
-    public bool[] isUnlockCharacters = new bool[4]; //Ä³¸¯ÅÍ°¡ ÇØ±ÝµÈ »óÅÂÀÎÁö ¿©ºÎ
+    public int money = 0; //ï¿½ï¿½
+    public int selectedCharacterId = 0; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Ä³ï¿½ï¿½ï¿½ï¿½
+    public bool[] isUnlockCharacters = new bool[4]; //Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ø±Ýµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float bgmVolume;
     public float sfxVolume;
-    public static DataManager Instance //ÀÌ Å¬·¡½ºÀÇ instance¸¦ ¹Þ¾Æ¿Ã ¼ö ÀÖ´Â ¼Ó¼º - °ÔÀÓ¸Å´ÏÀú¾µ ¶§¶û ¶È°°ÀÌ ¾²¸é µÊ.
+    public static DataManager Instance //ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ instanceï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ó¼ï¿½ - ï¿½ï¿½ï¿½Ó¸Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
     {
         get { return instance; }
     }
     private void Awake()
     {
-        if (instance == null) //Áö±Ý±îÁö »ý¼ºµÈ °´Ã¼°¡ ¾øÀ¸¸é
-            instance = this; //ÀÌ°É staticÀ¸·Î ¾´´Ù.
-        else if (instance != this) //»ý¼ºµÈ °´Ã¼°¡ ÀÖ´Âµ¥ ±×°Ô ÀÌ °´Ã¼ÀÇ instance°¡ ¾Æ´Ï¸é
-            Destroy(gameObject); //Áö±Ý °´Ã¼´Â ¾ø¾Ø´Ù.
+        if (instance == null) //ï¿½ï¿½ï¿½Ý±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            instance = this; //ï¿½Ì°ï¿½ staticï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+        else if (instance != this) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ö´Âµï¿½ ï¿½×°ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ instanceï¿½ï¿½ ï¿½Æ´Ï¸ï¿½
+            Destroy(gameObject); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
 
-        Init(); //ÃÊ±âÈ­¸¦ ¼öÇàÇÑ´Ù.
-        DontDestroyOnLoad(gameObject);//°ÔÀÓÀ» Àç½ÃÀÛÇÏ¿© LoadSceneÀÌ È£ÃâµÇ¾îµµ ÀÌ ¿ÀºêÁ§Æ®´Â ÆÄ±«µÇÁö ¾Ê´Â´Ù.
+        Init(); //ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+        DontDestroyOnLoad(gameObject);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ LoadSceneï¿½ï¿½ È£ï¿½ï¿½Ç¾îµµ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
     }
-    private void Init()//ÃÊ±âÈ­ ÇÔ¼ö - ±â±â¿¡ ÀúÀåµÈ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Í ¸â¹ö º¯¼öµéÀ» ÃÊ±âÈ­ÇÑ´Ù.
+    private void Init()//ï¿½Ê±ï¿½È­ ï¿½Ô¼ï¿½ - ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½.
     {
-        money = PlayerPrefs.GetInt("money", 0);
-        selectedCharacterId = PlayerPrefs.GetInt("selectedCharacterId", 0);
-        for (int i = 0; i < isUnlockCharacters.Length; i++)
-        {
+        money = PlayerPrefs.GetInt("money", 0); 
+        selectedCharacterId = PlayerPrefs.GetInt("selectedCharacterId", 0); 
+        for (int i = 0; i < isUnlockCharacters.Length; i++) {
             isUnlockCharacters[i] = Convert.ToBoolean(PlayerPrefs.GetInt(string.Format("isUnlockCharacter{0}", i), 0));
         }
         bgmVolume = PlayerPrefs.GetFloat("bgmVolume", 0.3f);
         sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
-        //(key, key¿¡ ÇØ´çÇÏ´Â °ªÀÌ ¾øÀ» ¶§ °¡Á®¿Ã default value) °ªÀÌ ±â±â¿¡ ÀÖÀ¸¸é ±× °ªÀÌ ¹ÝÈ¯µÈ´Ù.
+        //(key, keyï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ default value) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½È´ï¿½.
     }
-    public void SetSelectedCharacter(int id)//Ä³¸¯ÅÍ ¼±ÅÃ ¹öÆ°¿¡ ¿¬°áµÇ´Â ¸Þ¼Òµå
+    public void SetSelectedCharacter(int id)//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼Òµï¿½
     {
         selectedCharacterId = id;
         Save();
     }
-    public void Save()//±â±â¿¡ ÀúÀåÇÏ´Â ¸Þ¼Òµå
+    public void Save()//ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
     {
         //PlayerPrefs.SetInt("UserData", 1);
 
@@ -54,28 +53,28 @@ public class DataManager : MonoBehaviour
             PlayerPrefs.SetInt(string.Format("isUnlockCharacter{0}", i), Convert.ToInt32(isUnlockCharacters[i]));
         }
 
-        bgmVolume = AudioManager.Instance.bgmVolume;//ÇöÀç ¼öÁ¤µÈ º¼·ýÀ» ¹Þ¾Æ¿Í¼­
+        bgmVolume = AudioManager.Instance.bgmVolume;//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½
         sfxVolume = AudioManager.Instance.sfxVolume;
 
-        PlayerPrefs.SetFloat("bgmVolume", bgmVolume);//ÀúÀåÇÑ´Ù.
+        PlayerPrefs.SetFloat("bgmVolume", bgmVolume);//ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
     }
 
-    //UnlockCharacter, CheckMoney ´Â ¾ÆÁ÷ Å×½ºÆ® ¸ø ÇÔ. ¹Ì·¡¸¦ À§ÇØ ¸¸µé¾îµÐ ¸Þ¼Òµå
+    //UnlockCharacter, CheckMoney ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½. ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 
-    public void UnlockCharacter(int id, int price)//Ä³¸¯ÅÍ ÇØ±Ý ¸Þ¼Òµå
+    public void UnlockCharacter(int id, int price)//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ø±ï¿½ ï¿½Þ¼Òµï¿½
     {
-        if (!CheckMoney(price))//µ· ¾çÀ» °Ë»çÇÑ´Ù.
+        if (!CheckMoney(price))//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½.
             return;
 
-        SubMoney(price);//µ·À» »«´Ù
-        isUnlockCharacters[id] = true;//ÇØ±ÝÇÑ´Ù.
+        SubMoney(price);//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        isUnlockCharacters[id] = true;//ï¿½Ø±ï¿½ï¿½Ñ´ï¿½.
 
-        Save();//ÀúÀåÇÑ´Ù.
+        Save();//ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     }
-    public bool CheckMoney(int price)//µ·ÀÌ ¸ðÀÚ¶óÁö ¾Ê´ÂÁö °Ë»çÇÏ´Â ¸Þ¼Òµå. return value = if µ· ÃæºÐ - true, else µ· ¾È ÃæºÐ - false. 
+    public bool CheckMoney(int price)//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½. return value = if ï¿½ï¿½ ï¿½ï¿½ï¿½ - true, else ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ - false. 
     {
-        return money > price;
+        return money >= price;
     }
 
     public void AddMoney(int value)

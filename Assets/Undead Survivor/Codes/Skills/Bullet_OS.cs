@@ -5,91 +5,70 @@ using UnityEngine;
 public class Bullet_OS : BulletBase
 {
 
-    [SerializeField]
-    Sprite[] sprites; // 0:로봇 이미지, 1: 폭발 이미지
-
-
-    Collider2D collExplosion, collOSBot; // 콜라이더들
-    SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
-    Scanner scanner;
-    Transform target;
+    float timer;
 
-    bool isExplosion;
+    [SerializeField] private GameObject fragmentPrefab;
 
+    private int fragmentIndex;
     private void Awake()
     {
-        collExplosion = GetComponent<Collider2D>(); // 폭발모드 콜라이더
-        collOSBot = GetComponentInChildren<Collider2D>(); // OS로봇 모드 콜라이더
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
-        scanner = GetComponent<Scanner>();
-        isExplosion = false;
+        fragmentIndex = GameManager.Instance.pool.GetPoolIndex(fragmentPrefab);
     }
-
     public override void Init(bool isAI, SkillData skillData, int level)
     {
         base.Init(isAI, skillData, level);
 
-        Vector3 playerPos = playerTransform.position;
-        Vector3 targetPos = playerTransform.GetComponent<Scanner>().nearestTarget.position;
 
-        Vector3 dir = targetPos - playerPos;
-        dir = dir.normalized;//방향 구하기
+        Vector2 randomCircle = Random.insideUnitCircle; // 원 내의 한 점
+        Vector3 randomPosition = new Vector3(randomCircle.x, randomCircle.y, 0);
+        randomPosition = randomPosition.normalized; // 원 위의 한 점
 
-        transform.position = playerPos + dir;
+        transform.position = playerTransform.position;
+        Vector3 dir = randomPosition;
+        rigid.velocity = dir * speed;
+
+        StartCoroutine(MoveRoutine()); // 해당 오브젝트가 On 될 때마다 실행
     }
 
-
-    private void FixedUpdate()
+    IEnumerator MoveRoutine()
     {
-        if (isExplosion) // 적과 만나 폭발했으면 이동X
-            return;
-        if (!scanner.nearestTarget)
-            return;
-
-        target = scanner.nearestTarget;// OS 객체의 scanner를 통해 최단거리 적 찾아감
-        Vector3 dirVec = target.position - transform.position;
-        Vector3 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(transform.position + nextVec);
-        rigid.velocity = Vector2.zero;
-    }
-    
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.CompareTag("Enemy"))
-            return;
-        rigid.velocity = Vector2.zero;
-
-        spriteRenderer.sprite = sprites[1];//이미지를 폭발로 변경
-        
-        isExplosion = true; // 폭발했음으로 바꿈
-
-        StartCoroutine(ExplosionRoutine(() => { gameObject.SetActive(false); }));
-        
-    }
-    private void OnDisable()
-    {
-        collExplosion.enabled = false;
-        collOSBot.enabled = true;
-
-        spriteRenderer.sprite = sprites[0];
-        transform.position = new Vector3(0, 0, 0);
-        isExplosion = false;
-        // transform.rotation = Quaternion.identity;
-    }
-    IEnumerator ExplosionRoutine(System.Action done)
-    {
-        collOSBot.enabled = false;
-        collExplosion.enabled = true;
-
-        float timer = 0f;
-        while (timer <= lifeTime)
+        while (timer < flightTime)
         {
             timer += Time.deltaTime;
             yield return null;
         }
-        done.Invoke();
+        timer = 0f;
+        StartCoroutine(SaBangPalBang());
     }
+
+    IEnumerator SaBangPalBang()
+    {
+        Fire(1, 0);
+        Fire(1, 1);
+        Fire(0, 1);
+        Fire(-1, 0);
+        Fire(-1, -1);
+        Fire(0, -1);
+        Fire(1, -1);
+        Fire(-1, 1);
+        gameObject.SetActive(false);
+        yield return null;
+    }
+    void Fire(int x, int y)
+    {
+
+        Vector3 dir = new Vector3(x, y, 0);
+        dir = dir.normalized;
+
+        Transform bullet = GameManager.Instance.pool.Get(fragmentIndex).transform; // Bullet 1의 총알 그대로 일단 씀
+
+        bullet.position = transform.position;//위치결정
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);//회전결정
+        bullet.GetComponent<Bullet>().Init(damage, 1, dir);
+    }
+
 }
+
+

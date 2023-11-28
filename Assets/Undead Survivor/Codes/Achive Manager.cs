@@ -69,7 +69,7 @@ public class AchiveManager : MonoBehaviour
                 isAchive = GameManager.Instance.kill >= 10;
                 break;
             case Achive.UnlockBean:
-                isAchive = GameManager.Instance.gameTime == GameManager.Instance.maxGameTime;
+                //isAchive = GameManager.Instance.gameTime == GameManager.Instance.maxGameTime;
                 break;
         }
 

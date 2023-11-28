@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Microprocessor : MonoBehaviour
+public class Bullet_Microprocessor : BulletBase
 {
     Transform lineTracer;
     Transform lineTracerCollider;
     
     Vector3[] positions;
-    public float speed = 3f;
     WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private void Awake()
     {
@@ -25,15 +24,17 @@ public class Bullet_Microprocessor : MonoBehaviour
         positions[5] = new Vector3(0, -1, 0) * 2;
     }
 
-    
-
-    private void OnEnable()
+    public override void Init(bool isAI, SkillData skillData, int level)
     {
-        transform.parent = GameManager.Instance.player.transform;
-        transform.position = GameManager.Instance.player.transform.position;
+        base.Init(isAI, skillData, level);
+
+        lineTracerCollider.GetComponent<Bullet>().putDamage(damage); // 자식 총알의 데미지 설정
+        transform.parent = playerTransform;
+        transform.localPosition = Vector3.zero;
         lineTracer.rotation = Quaternion.Euler(0, 0, 180f);
         StartCoroutine(LineTracerRoutine(() => { gameObject.SetActive(false); }));
     }
+
     IEnumerator LineTracerRoutine(System.Action done)
     {
         for(int i = 1; i < positions.Length; i++)

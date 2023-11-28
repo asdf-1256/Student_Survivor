@@ -151,3 +151,4 @@ MonoBehaviour:
   scaleFactor: 0
   flightTime: 0
   rotateSpeed: 0
+  playerTransform: {fileID: 0}

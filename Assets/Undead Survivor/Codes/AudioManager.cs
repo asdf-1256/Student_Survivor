@@ -26,9 +26,8 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
     }
-    private void Start()//DataManagerÀÇ Instance°¡ »ý±â°í ³ª¼­ ÂüÁ¶ÇÒ ¼ö ÀÖµµ·Ï »ý¸íÁÖ±â ´À¸° Start ÇÔ¼ö¿¡¼­ Á¤º¸ ºÒ·¯¿À±â.
+    private void Start()//DataManagerï¿½ï¿½ Instanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ Start ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½.
     {
         bgmVolume = DataManager.Instance.bgmVolume;
         sfxVolume = DataManager.Instance.sfxVolume;
@@ -36,7 +35,7 @@ public class AudioManager : MonoBehaviour
     }
     void Init()
     {
-        // ¹è°æÀ½ ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ê±ï¿½È­
         GameObject bgmObject = new GameObject("BgmPlayer");
         bgmObject.transform.parent = transform;
         bgmPlayer = bgmObject.AddComponent<AudioSource>();
@@ -47,7 +46,7 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.outputAudioMixerGroup = bgmOutput;
         bgmEffect = Camera.main.GetComponent<AudioHighPassFilter>();
 
-        // È¿°úÀ½ ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        // È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ê±ï¿½È­
         GameObject sfxObject = new GameObject("SfxPlayer");
         sfxObject.transform.parent = transform;
         sfxPlayers = new AudioSource[channels];
@@ -99,11 +98,11 @@ public class AudioManager : MonoBehaviour
 
     public float BgmVolume
     {
-        get // ÀÐ±â
+        get // ï¿½Ð±ï¿½
         {
             return bgmPlayer.volume;
         }
-        set // ¾²±â, setÀÚÃ¼°¡ °ªÀ» ¹Ù²Û´Ù´Â ÀÇ¹Ì, value ¹Ýµå½Ã »ç¿ë(´Ù¸¥°Å »ç¿ë ¸øÇÔ)
+        set // ï¿½ï¿½ï¿½ï¿½, setï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Û´Ù´ï¿½ ï¿½Ç¹ï¿½, value ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         {   
             if(bgmVolume != 0) 
             {
