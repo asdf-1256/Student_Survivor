@@ -74,7 +74,7 @@ public class DataManager : MonoBehaviour
     }
     public bool CheckMoney(int price)//돈이 모자라지 않는지 검사하는 메소드. return value = if 돈 충분 - true, else 돈 안 충분 - false. 
     {
-        return money > price;
+        return money >= price;
     }
 
     public void AddMoney(int value)
