@@ -12,6 +12,7 @@ public class StoreData : ScriptableObject
 
     public DongAriType Type;
     public string Name;
+    public Sprite iconSprite;
     public int price;
     
 }

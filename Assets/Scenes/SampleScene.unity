@@ -3893,9 +3893,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeData: {fileID: 11400000, guid: b3abae033e5250749bda75402c83d165, type: 2}
+  membershipPrice: {fileID: 382712315}
+  IconImage: {fileID: 1185478568}
   isSelected: 0
   notPressed: {r: 1, g: 1, b: 1, a: 1}
-  pressed: {r: 0, g: 0, b: 0, a: 1}
+  pressed: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
 --- !u!1 &112032005
 GameObject:
   m_ObjectHideFlags: 0
@@ -11795,7 +11797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &266053530
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18674,9 +18676,9 @@ RectTransform:
   - {fileID: 500007718}
   m_Father: {fileID: 518957778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 93.375, y: -75.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 35, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &408629230
@@ -25415,7 +25417,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 48.92284
+  orthographic size: 8.37963
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -25743,9 +25745,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeData: {fileID: 11400000, guid: 0cb547d9e8f2c4a47a867fb02b6fdef0, type: 2}
+  membershipPrice: {fileID: 615839828}
+  IconImage: {fileID: 765671891}
   isSelected: 0
   notPressed: {r: 1, g: 1, b: 1, a: 1}
-  pressed: {r: 0, g: 0, b: 0, a: 1}
+  pressed: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
 --- !u!1 &536283852
 GameObject:
   m_ObjectHideFlags: 0
@@ -35956,9 +35960,9 @@ RectTransform:
   - {fileID: 555620466}
   m_Father: {fileID: 518957778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.2, y: -58.800003}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 91.5, y: -75.5}
   m_SizeDelta: {x: 35, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &751701126
@@ -38975,9 +38979,9 @@ RectTransform:
   - {fileID: 203846944}
   m_Father: {fileID: 518957778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 19.875, y: -75.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 35, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &922659008
@@ -46415,9 +46419,9 @@ RectTransform:
   - {fileID: 1283737337}
   m_Father: {fileID: 518957778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.2, y: -58.8}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 91.5, y: -75.5}
   m_SizeDelta: {x: 35, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1341198270
@@ -47190,9 +47194,9 @@ RectTransform:
   - {fileID: 999131652}
   m_Father: {fileID: 518957778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.125, y: -75.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 35, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1371515420
@@ -50525,9 +50529,9 @@ RectTransform:
   - {fileID: 117372403}
   m_Father: {fileID: 518957778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 56.625, y: -75.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 35, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1548311968
@@ -55057,9 +55061,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeData: {fileID: 11400000, guid: 4bf4433cf74601a42a18f3285d508aeb, type: 2}
+  membershipPrice: {fileID: 1477594323}
+  IconImage: {fileID: 508969084}
   isSelected: 0
   notPressed: {r: 1, g: 1, b: 1, a: 1}
-  pressed: {r: 0, g: 0, b: 0, a: 1}
+  pressed: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
 --- !u!1 &1781672462
 GameObject:
   m_ObjectHideFlags: 0
