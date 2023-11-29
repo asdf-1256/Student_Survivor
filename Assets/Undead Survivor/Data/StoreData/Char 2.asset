@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 045b9430e5e46294ca074e69ce95f2ff, type: 3}
-  m_Name: PNC
+  m_Name: Char 2
   m_EditorClassIdentifier: 
-  dongAriType: 0
-  skinType: 4
-  Name: "\uCD5C\uB300\uCCB4\uB825 \uC99D\uAC00"
-  price: 2
-  degree: 200
+  dongAriType: 3
+  skinType: 2
+  Name: "\uD6C4\uB4DC\uB0A8"
+  price: 10
+  degree: 2

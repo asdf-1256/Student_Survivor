@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045b9430e5e46294ca074e69ce95f2ff, type: 3}
   m_Name: SSOS
   m_EditorClassIdentifier: 
-  Type: 1
+  dongAriType: 0
+  skinType: 4
   Name: "\uC790\uC11D \uBC18\uACBD \uC99D\uAC00"
   price: 3
   degree: 5

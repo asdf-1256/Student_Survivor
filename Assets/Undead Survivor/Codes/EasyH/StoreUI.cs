@@ -7,17 +7,19 @@ public class StoreUI : MonoBehaviour
 {
     public StoreData storeData;
     public bool isSelected;
+    public bool isBought;
 
     Image image;
 
     [SerializeField] Color pressed;
     [SerializeField] Color notPressed;
+    [SerializeField] Color locked;
 
     private void Awake()
     {
         image = GetComponent<Image>();
     }
-    public void OnClick()
+    public void OnClickDongAri()
     {
         if (isSelected)
         {
@@ -43,4 +45,11 @@ public class StoreUI : MonoBehaviour
             image.color = notPressed;
     }
     
+    public void OnClickSkin()
+    {
+        if(isBought)
+        {
+            StoreManager.instance.ApplySkin(storeData.degree);
+        }
+    }
 }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045b9430e5e46294ca074e69ce95f2ff, type: 3}
   m_Name: EXPERT
   m_EditorClassIdentifier: 
-  Type: 2
+  dongAriType: 0
+  skinType: 4
   Name: "\uBCF4\uD638\uB9C9 1\uD68C \uC0DD\uC131"
   price: 1
   degree: 1

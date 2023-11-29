@@ -7,6 +7,7 @@ public class StoreManager : MonoBehaviour
 {
     public static StoreManager instance;
     public List<StoreData> JoinedDongAris;
+    public int PlayerSkinID;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class StoreManager : MonoBehaviour
     }
     public void ApplyDongAri(StoreData DongAri)
     {
-        switch (DongAri.Type)
+        switch (DongAri.dongAriType)
         {
             case StoreData.DongAriType.EXPERT:
                 GameManager.Instance.player.shield.AddShield();
@@ -52,5 +53,9 @@ public class StoreManager : MonoBehaviour
                 Debug.Log("최대 체력 증가");
                 break;
         }
+    }
+    public void ApplySkin(int playerSkinID)
+    {
+        PlayerSkinID = playerSkinID;
     }
 }

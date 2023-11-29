@@ -7,10 +7,15 @@ public class StoreData : ScriptableObject
 {
     public enum DongAriType
     {
-        PNC, SSOS, EXPERT
+        PNC, SSOS, EXPERT, None
+    }
+    public enum SkinType
+    {
+        Nomal, Nerd, Hood, Girl, None
     }
 
-    public DongAriType Type;
+    public DongAriType dongAriType;
+    public SkinType skinType;
     public string Name;
     public int price;
     public float degree;
