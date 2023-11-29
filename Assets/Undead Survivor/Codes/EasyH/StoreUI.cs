@@ -49,7 +49,7 @@ public class StoreUI : MonoBehaviour
     {
         if(isBought)
         {
-            StoreManager.instance.ApplySkin(storeData.degree);
+            // StoreManager.instance.ApplySkin(storeData.degree);
         }
     }
 }
