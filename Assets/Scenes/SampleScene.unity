@@ -17196,7 +17196,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -30713,11 +30713,12 @@ MonoBehaviour:
   totalDistance: 0
   _shield: {fileID: 1783903021}
   buffDatas:
-  - {fileID: 11400000, guid: 28a0d9ca5caa0e44a94077ad0415d657, type: 2}
-  - {fileID: 11400000, guid: bf9309e8b8401594fa24a937d8c0c4e5, type: 2}
   - {fileID: 11400000, guid: 6fe1c4aeaa97f9d4598e7242ec8dac50, type: 2}
-  - {fileID: 11400000, guid: 855815264e686eb4fa5b88d76ca97113, type: 2}
   - {fileID: 11400000, guid: 354957ec02dcfad4188bdd6f12b063a6, type: 2}
+  - {fileID: 11400000, guid: 2b952038e9bfd324f9812fa3d4f16d96, type: 2}
+  - {fileID: 11400000, guid: 855815264e686eb4fa5b88d76ca97113, type: 2}
+  - {fileID: 11400000, guid: bf9309e8b8401594fa24a937d8c0c4e5, type: 2}
+  - {fileID: 11400000, guid: 28a0d9ca5caa0e44a94077ad0415d657, type: 2}
 --- !u!114 &731594823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38283,9 +38284,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a400248412fa5804ab1e40275ae572b4, type: 2}
   - {fileID: 11400000, guid: a92ae6acbc93d1440b97d076b72490e8, type: 2}
   - {fileID: 11400000, guid: e02ee2bc1c256ad43843c2f679cb40cf, type: 2}
+  - {fileID: 11400000, guid: 70a5f51fe064448408dcc1870d24ecb4, type: 2}
   - {fileID: 11400000, guid: 9a6628203bdee854981f79a2e066e814, type: 2}
   - {fileID: 11400000, guid: 27bf44090637d5e41bc54c93f4847c17, type: 2}
   - {fileID: 11400000, guid: 17839841031c9744c88a014995ccfc37, type: 2}
+  - {fileID: 11400000, guid: 11bdad0498f62e04db68d690eac8105a, type: 2}
   dropRates: 
   isPlayer: 1
   enemyPrefab: {fileID: 6447392317033242439, guid: a67ac2f5dde127248b11931f255d74a6, type: 3}

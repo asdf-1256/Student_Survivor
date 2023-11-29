@@ -310,5 +310,17 @@ public class GameManager : MonoBehaviour
 
         done.Invoke();
     }
+
+    public void ActiveEnemyCleaner()
+    {
+        StartCoroutine(EnemyCleanerRoutine());
+    }
+    IEnumerator EnemyCleanerRoutine()
+    {
+        enemyCleaner.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        enemyCleaner.SetActive(false);
+    }
+    
 }
 

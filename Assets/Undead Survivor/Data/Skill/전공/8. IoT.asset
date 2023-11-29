@@ -19,7 +19,7 @@ MonoBehaviour:
   skillName: "IoT\uC640 \uC784\uBCA0\uB514\uB4DC \uC18C\uD504\uD2B8\uC6E8\uC5B4"
   grade: 3
   skillDesc: "\uB0C9\uC7A5\uACE0"
-  skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  skillIcon: {fileID: 21300000, guid: 10edc0ee297fd6b419aff6cad7276ff4, type: 3}
   bulletPrefab: {fileID: 6961580268855133401, guid: 26265290d7e260f41a4fa0fa3b1a9f13, type: 3}
   pool_index: 0
   getype: 0

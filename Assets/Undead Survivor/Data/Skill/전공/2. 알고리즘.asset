@@ -19,7 +19,7 @@ MonoBehaviour:
   skillName: "\uC54C\uACE0\uB9AC\uC998"
   grade: 3
   skillDesc: "\uC54C\uACE0\uB9AC\uC998\uC785\uB2C8\uB2E4"
-  skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  skillIcon: {fileID: 21300000, guid: 17aa12b629d026c40a2d2943c35314aa, type: 3}
   bulletPrefab: {fileID: 4108934483820179828, guid: 6e2a3d2a307dabe4088a51564ad46700, type: 3}
   pool_index: 0
   getype: 0
