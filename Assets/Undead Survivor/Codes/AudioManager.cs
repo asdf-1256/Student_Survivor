@@ -1,31 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     [Header("#BGM")]
     public AudioClip bgmClip;
+    public AudioMixerGroup bgmOutput;
     public float bgmVolume;
     AudioSource bgmPlayer;
     AudioHighPassFilter bgmEffect;
 
     [Header("#SFX")]
     public AudioClip[] sfxClips;
+    public AudioMixerGroup sfxOutput;
     public float sfxVolume;
     public int channels;
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum Sfx { Dead, Hit, LevelUp=3, Lose, Melee, Range=7, Select, Win}
+    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win }
 
     private void Awake()
     {
         Instance = this;
-        
     }
-    private void Start()//DataManagerÀÇ Instance°¡ »ý±â°í ³ª¼­ ÂüÁ¶ÇÒ ¼ö ÀÖµµ·Ï »ý¸íÁÖ±â ´À¸° Start ÇÔ¼ö¿¡¼­ Á¤º¸ ºÒ·¯¿À±â.
+    private void Start()//DataManagerï¿½ï¿½ Instanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ Start ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½.
     {
         bgmVolume = DataManager.Instance.bgmVolume;
         sfxVolume = DataManager.Instance.sfxVolume;
@@ -33,7 +35,7 @@ public class AudioManager : MonoBehaviour
     }
     void Init()
     {
-        // ¹è°æÀ½ ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ê±ï¿½È­
         GameObject bgmObject = new GameObject("BgmPlayer");
         bgmObject.transform.parent = transform;
         bgmPlayer = bgmObject.AddComponent<AudioSource>();
@@ -41,9 +43,10 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.loop = true;
         bgmPlayer.volume = bgmVolume;
         bgmPlayer.clip = bgmClip;
+        bgmPlayer.outputAudioMixerGroup = bgmOutput;
         bgmEffect = Camera.main.GetComponent<AudioHighPassFilter>();
 
-        // È¿°úÀ½ ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        // È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ê±ï¿½È­
         GameObject sfxObject = new GameObject("SfxPlayer");
         sfxObject.transform.parent = transform;
         sfxPlayers = new AudioSource[channels];
@@ -54,13 +57,14 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[index].playOnAwake = false;
             sfxPlayers[index].bypassEffects = true;
             sfxPlayers[index].volume = sfxVolume;
+            sfxPlayers[index].outputAudioMixerGroup = sfxOutput;
         }
 
     }
 
     public void PlaySfx(Sfx sfx)
     {
-        for (int index = 0;index < sfxPlayers.Length; index++)
+        for (int index = 0; index < sfxPlayers.Length; index++)
         {
             int loopIndex = (index + channelIndex) % sfxPlayers.Length;
 
@@ -77,18 +81,34 @@ public class AudioManager : MonoBehaviour
             break;
 
         }
-        
+
     }
     public void PlayBgm(bool isPlay)
     {
         if (isPlay)
             bgmPlayer.Play();
-        else 
+        else
             bgmPlayer.Stop();
     }
 
     public void EffectBgm(bool isPlay)
     {
         bgmEffect.enabled = isPlay;
+    }
+
+    public float BgmVolume
+    {
+        get // ï¿½Ð±ï¿½
+        {
+            return bgmPlayer.volume;
+        }
+        set // ï¿½ï¿½ï¿½ï¿½, setï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Û´Ù´ï¿½ ï¿½Ç¹ï¿½, value ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+        {   
+            if(bgmVolume != 0) 
+            {
+                bgmVolume = value;
+                bgmPlayer.volume = value;
+            }
+        }
     }
 }

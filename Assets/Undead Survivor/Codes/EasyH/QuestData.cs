@@ -6,7 +6,7 @@ using UnityEngine;
 public class QuestData : ScriptableObject
 {
     public enum QuestType { 
-        killHW, killQuiz, killTest, walk, safeTime, survive
+        killHW, killQuiz, killTest, walk, safeTime, survive, getDamage
     }
 
     public QuestType Type;

@@ -75,6 +75,44 @@ public class HealthMakeToQuestChecker : QuestChecker {
     }
 }
 
+public class GetDamageQuestChecker : QuestChecker
+{
+
+    float _goalDamage;
+    float _currentHealth;
+    float _totalDamage;
+    public GetDamageQuestChecker(float damage)
+    {
+        _goalDamage = damage;
+        _currentHealth = GameManager.Instance.health;
+    }
+
+    public bool CheckAchieve()
+    {
+        if (GameManager.Instance.health < _currentHealth)
+        {
+            _totalDamage += _currentHealth - GameManager.Instance.health;
+        }
+        _currentHealth = GameManager.Instance.health;
+
+        if (_totalDamage < _goalDamage)
+            return false;
+
+        return true;
+    }
+
+    public float GetProgress()
+    {
+        return (_totalDamage + 1) / _goalDamage;
+
+    }
+    public override string ToString()
+    {
+        return _totalDamage.ToString("F0") + " / " + _goalDamage.ToString("F0");
+
+    }
+}
+
 public class KillCountQuestChecker : QuestChecker {
 
     int _originKillCount;

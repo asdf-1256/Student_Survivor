@@ -31,6 +31,9 @@ public class Collector : MonoBehaviour
                 //Debug.Log("힐 아이템 먹음");
                 GameManager.Instance.GetHealth(data.value);
                 break;
+            case SpawnItemData.ItemType.EnemyCleaner:
+                GameManager.Instance.ActiveEnemyCleaner();
+                break;
         }
 
         collision.gameObject.SetActive(false);//이후 아이템을 없앤다.

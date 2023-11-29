@@ -45,7 +45,7 @@ public class Bullet_Microprocessor : BulletBase
 
             lineTracer.Rotate(Vector3.forward, 90f, Space.World);
 
-            Debug.Log("dir의 값" + dir);
+            //Debug.Log("dir의 값" + dir);
 
             while (Vector3.Distance(lineTracer.localPosition, nextPos) > 0.1f) {
                 lineTracer.localPosition += dir * speed * Time.fixedDeltaTime;

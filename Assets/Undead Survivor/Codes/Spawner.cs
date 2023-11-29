@@ -35,7 +35,9 @@ public class Spawner : MonoBehaviour
         //�ڱ� �ڽ��� ������ �ڽĵ� component �ϴ� ������
         enemyPoolIndex = GameManager.Instance.pool.GetPoolIndex(enemyPrefab);
         itemPoolIndex = GameManager.Instance.pool.GetPoolIndex(spawnItemPrefab);
-
+    }
+    private void OnEnable()
+    {
         if (isPlayer)
         {
 
@@ -51,6 +53,10 @@ public class Spawner : MonoBehaviour
 
             StartCoroutine(CreateCoinRoutine());
         }
+    }
+    private void OnDisable()
+    {
+        StopCoroutine(CreateCoinRoutine());
     }
 
     private void OnValidate()//����Ƽ Inspector���� ���� ����� ��� ȣ��Ǵ� �Լ�.

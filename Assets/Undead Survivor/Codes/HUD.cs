@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;//Text ³ÖÀ» ¶§ ¾Ë¾Æ¼­ Ãß°¡µÊ
+using UnityEngine.UI;//Text ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ë¾Æ¼ï¿½ ï¿½ß°ï¿½ï¿½ï¿½
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { Exp, Level, NextPhase, Kill, Time, Health, BossHealth }
+    public enum InfoType { Exp, Level, NextPhase, Kill, Time, Health, BossHealth, Coin }
     public InfoType type;
 
+    string[] Phases = { "1ï¿½Ð³ï¿½ 1ï¿½Ð±ï¿½", "1ï¿½Ð³ï¿½ 2ï¿½Ð±ï¿½", "2ï¿½Ð³ï¿½ 1ï¿½Ð±ï¿½", "2ï¿½Ð³ï¿½ 2ï¿½Ð±ï¿½", "3ï¿½Ð³ï¿½ 1ï¿½Ð±ï¿½", "3ï¿½Ð³ï¿½ 2ï¿½Ð±ï¿½", "4ï¿½Ð³ï¿½ 1ï¿½Ð±ï¿½", "4ï¿½Ð³ï¿½ 2ï¿½Ð±ï¿½", "5ï¿½Ð³ï¿½ 1ï¿½Ð±ï¿½" };
     Text myText;
     Slider mySlider;
 
@@ -27,11 +28,13 @@ public class HUD : MonoBehaviour
                 mySlider.value = curExp / maxExp;
                 break;
             case InfoType.Level:
-                myText.text = string.Format("Á¹¾÷ ÇÐÁ¡ : {0:F0}", GameManager.Instance.level);
+                myText.text = string.Format("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : {0:F0}", GameManager.Instance.level);
                 break;
             case InfoType.NextPhase:
-                myText.text = string.Format("´ÙÀ½ ÆäÀÌÁî±îÁö {0:F0} / {1:F0}", 
+                myText.text = string.Format(Phases[GameManager.Instance.currentPhase] + 
+                    "\nï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ {0:F0} / {1:F0}", 
                     GameManager.Instance.level, GameManager.Instance.levelPerPhase[GameManager.Instance.currentPhase]);
+                mySlider.value = GameManager.Instance.getRateForNextPhase();
                 break;
             case InfoType.Kill:
                 myText.text = string.Format("{0:F0}", GameManager.Instance.kill);
@@ -50,6 +53,10 @@ public class HUD : MonoBehaviour
             case InfoType.BossHealth:
                 mySlider.value = GameManager.Instance.SpawnedBoss.health / GameManager.Instance.SpawnedBoss.maxHealth;
                 break;
+            case InfoType.Coin:
+                myText.text = string.Format("{0:F0}", DataManager.Instance.money);
+                break;
+            
         }
     }
 }
