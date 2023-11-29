@@ -263,7 +263,8 @@ public class GameManager : MonoBehaviour
         }
         health = maxHealth;
         uiJoy.localScale = Vector3.one;
-        gameResult.SetActive(false);
+        uiResult.gameObject.SetActive(false);
+        //gameResult.SetActive(false);
         hud.SetActive(true);
         animator.SetTrigger("Respawn");
         Resume();
