@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045b9430e5e46294ca074e69ce95f2ff, type: 3}
-  m_Name: Char 0
+  m_Script: {fileID: 11500000, guid: c2769a0ae4ef98a4884b09370588f9a1, type: 3}
+  m_Name: S_Hood
   m_EditorClassIdentifier: 
-  dongAriType: 3
-  skinType: 0
-  Name: "\uAE30\uBCF8 \uCE90\uB9AD"
+  Icon: {fileID: 33490002, guid: d33598d781682e049a53a0a13104ef29, type: 3}
+  dataType: 1
+  Name: "\uD6C4\uB4DC\uB0A8"
+  Descript: "\uD6C4\uB4DC \uCC28\uB9BC"
   price: 10
-  degree: 0
+  skinType: 2
+  SkinID: 2

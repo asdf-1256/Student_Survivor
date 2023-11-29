@@ -5,18 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StoreData", menuName = "Scriptable Object/StoreData")]
 public class StoreData : ScriptableObject
 {
-    public enum DongAriType
+    public enum DataType
     {
-        PNC, SSOS, EXPERT, None
-    }
-    public enum SkinType
-    {
-        Nomal, Nerd, Hood, Girl, None
+        DongAri, Skin
     }
 
-    public DongAriType dongAriType;
-    public SkinType skinType;
+    public Sprite Icon;
+    public DataType dataType;
     public string Name;
+    public string Descript;
     public int price;
-    public float degree;
 }

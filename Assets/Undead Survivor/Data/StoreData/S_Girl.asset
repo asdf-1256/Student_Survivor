@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045b9430e5e46294ca074e69ce95f2ff, type: 3}
-  m_Name: PNC
+  m_Script: {fileID: 11500000, guid: c2769a0ae4ef98a4884b09370588f9a1, type: 3}
+  m_Name: S_Girl
   m_EditorClassIdentifier: 
-  dongAriType: 0
-  skinType: 4
-  Name: "\uCD5C\uB300\uCCB4\uB825 \uC99D\uAC00"
-  price: 2
-  degree: 200
+  Icon: {fileID: -150523396, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
+  dataType: 1
+  Name: "\uC5EC\uD559\uC0DD"
+  Descript: "\uC5EC\uC7A5 \uCC28\uB9BC"
+  price: 10
+  skinType: 3
+  SkinID: 3

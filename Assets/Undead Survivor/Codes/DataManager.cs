@@ -10,6 +10,10 @@ public class DataManager : MonoBehaviour
     public int money = 0; //돈
     public int selectedCharacterId = 0; //현재 선택된 캐릭터
     public bool[] isUnlockCharacters = new bool[4]; //캐릭터가 해금된 상태인지 여부
+    [Header("스킨 정보")]
+    public int selectedSkinID;
+    public bool[] isUnLockedSkins;
+
     [SerializeField] public float bgmVolume;
     [SerializeField] public float sfxVolume;
     public static DataManager Instance //이 클래스의 instance를 받아올 수 있는 속성 - 게임매니저쓸 때랑 똑같이 쓰면 됨.
@@ -36,10 +40,21 @@ public class DataManager : MonoBehaviour
         bgmVolume = PlayerPrefs.GetFloat("bgmVolume", 0.3f);
         sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
         //(key, key에 해당하는 값이 없을 때 가져올 default value) 값이 기기에 있으면 그 값이 반환된다.
+
+        selectedSkinID = PlayerPrefs.GetInt("selectedSkinID", 0);
+        for (int i = 0; i < isUnLockedSkins.Length; i++)
+        {
+            isUnLockedSkins[i] = Convert.ToBoolean(PlayerPrefs.GetInt(string.Format("isUnLockedSkins{0}", i), 0));
+        }
     }
     public void SetSelectedCharacter(int id)//캐릭터 선택 버튼에 연결되는 메소드
     {
         selectedCharacterId = id;
+        Save();
+    }
+    public void SetSelectedSkinID(int id)//캐릭터 선택 버튼에 연결되는 메소드
+    {
+        selectedSkinID = id;
         Save();
     }
     public void Save()//기기에 저장하는 메소드
@@ -51,6 +66,12 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < isUnlockCharacters.Length; i++)
         {
             PlayerPrefs.SetInt(string.Format("isUnlockCharacter{0}", i), Convert.ToInt32(isUnlockCharacters[i]));
+        }
+
+        PlayerPrefs.SetInt("selectedSkinID", selectedSkinID);
+        for (int i = 0; i < isUnLockedSkins.Length; i++)
+        {
+            PlayerPrefs.SetInt(string.Format("isUnLockedSkins{0}", i), Convert.ToInt32(isUnLockedSkins[i]));
         }
 
         bgmVolume = AudioManager.Instance.bgmVolume;//현재 수정된 볼륨을 받아와서
@@ -69,6 +90,12 @@ public class DataManager : MonoBehaviour
 
         SubMoney(price);//돈을 뺀다
         isUnlockCharacters[id] = true;//해금한다.
+
+        Save();//저장한다.
+    }
+    public void UnlockSkin(int id)//캐릭터 해금 메소드
+    {
+        isUnLockedSkins[id] = true;//해금한다.
 
         Save();//저장한다.
     }

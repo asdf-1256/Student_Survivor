@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045b9430e5e46294ca074e69ce95f2ff, type: 3}
-  m_Name: SSOS
+  m_Script: {fileID: 11500000, guid: 549c61e0ba7dfd746b4d18b24c522c33, type: 3}
+  m_Name: D_SSOS
   m_EditorClassIdentifier: 
-  dongAriType: 0
-  skinType: 4
-  Name: "\uC790\uC11D \uBC18\uACBD \uC99D\uAC00"
-  price: 3
+  Icon: {fileID: -344242777, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  dataType: 0
+  Name: SSOS
+  Descript: "\uC790\uC11D \uBC18\uACBD \uC99D\uAC00"
+  price: 30
+  dongAriType: 1
   degree: 5

@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045b9430e5e46294ca074e69ce95f2ff, type: 3}
-  m_Name: Char 1
+  m_Script: {fileID: 11500000, guid: 549c61e0ba7dfd746b4d18b24c522c33, type: 3}
+  m_Name: D_PNC
   m_EditorClassIdentifier: 
-  dongAriType: 3
-  skinType: 1
-  Name: "\uB108\uB4DC\uB0A8"
-  price: 10
-  degree: 1
+  Icon: {fileID: -344242777, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  dataType: 0
+  Name: PNC
+  Descript: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
+  price: 20
+  dongAriType: 0
+  degree: 200

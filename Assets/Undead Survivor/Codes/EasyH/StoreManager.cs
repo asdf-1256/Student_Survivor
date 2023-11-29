@@ -6,21 +6,23 @@ using UnityEngine;
 public class StoreManager : MonoBehaviour
 {
     public static StoreManager instance;
-    public List<StoreData> JoinedDongAris;
+    public List<DongAriData> JoinedDongAris;
     public int PlayerSkinID;
 
+    public ShowingSkinUI showingSkinUI;
+    public SkinStoreUI[] skinStoreUIs;
     private void Awake()
     {
         instance = this;
-        JoinedDongAris = new List<StoreData>();
+        JoinedDongAris = new List<DongAriData>();
     }
-    public void SelectDongAri(StoreData storeData)
+    public void SelectDongAri(DongAriData dongAriData)
     {
         Debug.Log("돈 충분함!");
-        JoinedDongAris.Add(storeData);
-        DataManager.Instance.SubMoney(storeData.price);
+        JoinedDongAris.Add(dongAriData);
+        DataManager.Instance.SubMoney(dongAriData.price);
     }
-    public void CancelDongAri(StoreData storeData)
+    public void CancelDongAri(DongAriData storeData)
     {
         Debug.Log("돈 롤백함");
         DataManager.Instance.AddMoney(storeData.price);
@@ -34,19 +36,19 @@ public class StoreManager : MonoBehaviour
             ApplyDongAri(DongAri);
         }
     }
-    public void ApplyDongAri(StoreData DongAri)
+    public void ApplyDongAri(DongAriData DongAri)
     {
         switch (DongAri.dongAriType)
         {
-            case StoreData.DongAriType.EXPERT:
+            case DongAriData.DongAriType.EXPERT:
                 GameManager.Instance.player.shield.AddShield();
                 Debug.Log("쉴드 추가");
                 break;
-            case StoreData.DongAriType.SSOS:
+            case DongAriData.DongAriType.SSOS:
                 GameManager.Instance.player.GetComponentInChildren<Magnet>().MagneticRate *= DongAri.degree;
                 Debug.Log("자석 범위 증가");
                 break;
-            case StoreData.DongAriType.PNC:
+            case DongAriData.DongAriType.PNC:
                 GameManager.Instance.maxHealth += DongAri.degree;
                 GameManager.Instance.health += Convert.ToInt32(DongAri.degree);
                 GameManager.Instance.HealthInHUD.GetComponent<RectTransform>().sizeDelta = new Vector2(GameManager.Instance.maxHealth / 10, 4);
@@ -54,8 +56,44 @@ public class StoreManager : MonoBehaviour
                 break;
         }
     }
+
+    public bool isBought(int skinID)
+    {
+        return DataManager.Instance.isUnLockedSkins[skinID];
+    }
     public void ApplySkin(int playerSkinID)
     {
         PlayerSkinID = playerSkinID;
+    }
+    public void ShowSkinUI(SkinData skinData, bool isBought)
+    {
+        showingSkinUI.UpdateSkin(skinData, isBought);
+    }
+    public void BuySkin(SkinData skinData)
+    {
+        if (DataManager.Instance.CheckMoney(skinData.price))
+        {
+            Debug.Log(skinData.SkinID + "번 스킨 구매함");
+            DataManager.Instance.SubMoney(skinData.price);
+            DataManager.Instance.UnlockSkin(skinData.SkinID);
+
+
+            ApplySkin(skinData.SkinID);
+            UIManager.Instance.Notice(skinData.Name + " 스킨 구매함");
+        }
+        else
+        {
+            UIManager.Instance.Notice("돈 충분하지 못함!");
+        }
+    }
+    public void DecisionAllSkinUI(int skinID)
+    {
+        foreach (SkinStoreUI skinStoreUI in skinStoreUIs)
+        {
+            if (skinStoreUI.skinData.SkinID == skinID)
+            {
+                skinStoreUI.UnLockSkin();
+            }
+        }
     }
 }

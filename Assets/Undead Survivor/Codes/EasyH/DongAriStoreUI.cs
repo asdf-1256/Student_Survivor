@@ -3,32 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StoreUI : MonoBehaviour
+public class DongAriStoreUI : MonoBehaviour
 {
-    public StoreData storeData;
+    public DongAriData dongAriData;
     public bool isSelected;
-    public bool isBought;
 
     Image image;
 
     [SerializeField] Color pressed;
     [SerializeField] Color notPressed;
-    [SerializeField] Color locked;
 
     private void Awake()
     {
         image = GetComponent<Image>();
     }
-    public void OnClickDongAri()
+    public void OnClick()
     {
         if (isSelected)
         {
-            StoreManager.instance.CancelDongAri(storeData);
+            StoreManager.instance.CancelDongAri(dongAriData);
             isSelected = false;
         }
-        else if (DataManager.Instance.CheckMoney(storeData.price))
+        else if (DataManager.Instance.CheckMoney(dongAriData.price))
         {
-            StoreManager.instance.SelectDongAri(storeData);
+            StoreManager.instance.SelectDongAri(dongAriData);
             isSelected = true;
         }
         else
@@ -43,13 +41,5 @@ public class StoreUI : MonoBehaviour
             image.color = pressed;
         else
             image.color = notPressed;
-    }
-    
-    public void OnClickSkin()
-    {
-        if(isBought)
-        {
-            // StoreManager.instance.ApplySkin(storeData.degree);
-        }
     }
 }
