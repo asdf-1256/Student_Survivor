@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreUI : MonoBehaviour
 {
     public StoreData storeData;
     public bool isSelected;
 
+    Image image;
+
+    [SerializeField] Color pressed;
+    [SerializeField] Color notPressed;
+
+    private void Awake()
+    {
+        image = GetComponent<Image>();
+    }
     public void OnClick()
     {
         if (isSelected)
@@ -23,6 +33,14 @@ public class StoreUI : MonoBehaviour
         {
             UIManager.Instance.Notice("돈 충분하지 못함!");
         }
+        ChangeButtonColor();
+    }
+    void ChangeButtonColor()
+    {
+        if (isSelected)
+            image.color = pressed;
+        else
+            image.color = notPressed;
     }
     
 }
