@@ -5,14 +5,14 @@ using UnityEngine;
 public class Bullet_Microprocessor : BulletBase
 {
     Transform lineTracer;
-    Transform lineTracerCollider;
+    //Transform lineTracerCollider;
     
     Vector3[] positions;
     WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private void Awake()
     {
         lineTracer = transform.GetChild(0).GetComponent<Transform>();
-        lineTracerCollider = transform.GetChild(1).GetComponent<Transform>();
+        //lineTracerCollider = transform.GetChild(1).GetComponent<Transform>();
 
 
         positions = new Vector3[6];
@@ -28,10 +28,10 @@ public class Bullet_Microprocessor : BulletBase
     {
         base.Init(isAI, skillData, level);
 
-        lineTracerCollider.GetComponent<Bullet>().putDamage(damage); // 자식 총알의 데미지 설정
+        //lineTracerCollider.GetComponent<Bullet>().putDamage(damage); // 자식 총알의 데미지 설정
         transform.parent = playerTransform;
         transform.localPosition = Vector3.zero;
-        lineTracer.rotation = Quaternion.Euler(0, 0, 180f);
+        lineTracer.rotation = Quaternion.identity;
         StartCoroutine(LineTracerRoutine(() => { gameObject.SetActive(false); }));
     }
 
@@ -49,7 +49,7 @@ public class Bullet_Microprocessor : BulletBase
 
             while (Vector3.Distance(lineTracer.localPosition, nextPos) > 0.1f) {
                 lineTracer.localPosition += dir * speed * Time.fixedDeltaTime;
-                lineTracerCollider.localPosition += dir * speed * Time.fixedDeltaTime;
+                //lineTracerCollider.localPosition += dir * speed * Time.fixedDeltaTime;
                 yield return wait;
             }
 

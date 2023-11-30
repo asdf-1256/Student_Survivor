@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1917820268869603708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.114, y: 0.096, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56,6 +56,7 @@ MonoBehaviour:
   scaleFactor: 0
   flightTime: 0
   rotateSpeed: 0
+  playerTransform: {fileID: 0}
 --- !u!50 &3000294995867578986
 Rigidbody2D:
   serializedVersion: 4
@@ -116,7 +117,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.2777778, y: 0.5}
+  m_Size: {x: 0.5, y: 0.7777778}
   m_Direction: 0
 --- !u!212 &326615946339626848
 SpriteRenderer:
@@ -159,12 +160,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1327499133, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  m_Sprite: {fileID: 110463973, guid: c5d6759ac37c233419e996209d3e609c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2777778, y: 0.5}
+  m_Size: {x: 0.5, y: 0.7777778}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -301,7 +302,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 44295ec2e67c2574b946069c9ce9d989, type: 3}
-  m_Color: {r: 0.3490566, g: 0, b: 0.0054040765, a: 0.6313726}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

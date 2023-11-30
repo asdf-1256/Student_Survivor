@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 891942287, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  m_Sprite: {fileID: -827917760, guid: ca2cdc3d9b8b3b74fa47149232ae20c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.44444445, y: 0.44444445}
+  m_Size: {x: 0.5277778, y: 0.5277778}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99,8 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92add9a2f49e68b4fbfbdf5914cb7e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
+  lifeTime: 0
+  damage: 0
   speed: 2
+  count: 0
+  attackCoolTime: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
+  playerTransform: {fileID: 0}
 --- !u!50 &5879645035956816810
 Rigidbody2D:
   serializedVersion: 4
@@ -160,6 +167,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.44444445, y: 0.44444445}
+  m_Offset: {x: 0.00845102, y: 0.042250607}
+  m_Size: {x: 0.4432794, y: 0.4432794}
   m_Direction: 1

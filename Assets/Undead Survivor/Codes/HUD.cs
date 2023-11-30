@@ -8,7 +8,7 @@ public class HUD : MonoBehaviour
     public enum InfoType { Exp, Level, NextPhase, Kill, Time, Health, BossHealth, Coin }
     public InfoType type;
 
-    string[] Phases = { "1�г� 1�б�", "1�г� 2�б�", "2�г� 1�б�", "2�г� 2�б�", "3�г� 1�б�", "3�г� 2�б�", "4�г� 1�б�", "4�г� 2�б�", "5�г� 1�б�" };
+    string[] Phases = { "1학년 1학기", "1학년 2학기", "2학년 1학기", "2학년 2학기", "3학년 1학기", "3학년 2학기", "4학년 1학기", "4학년 2학기", "5�г� 1�б�" };
     Text myText;
     Slider mySlider;
 
@@ -28,11 +28,11 @@ public class HUD : MonoBehaviour
                 mySlider.value = curExp / maxExp;
                 break;
             case InfoType.Level:
-                myText.text = string.Format("���� ���� : {0:F0}", GameManager.Instance.level);
+                myText.text = string.Format("{0:F0}", GameManager.Instance.level);
                 break;
             case InfoType.NextPhase:
                 myText.text = string.Format(Phases[GameManager.Instance.currentPhase] + 
-                    "\n���� ��������� {0:F0} / {1:F0}", 
+                    "\n다음학기까지 {0:F0} / {1:F0}", 
                     GameManager.Instance.level, GameManager.Instance.levelPerPhase[GameManager.Instance.currentPhase]);
                 mySlider.value = GameManager.Instance.getRateForNextPhase();
                 break;
