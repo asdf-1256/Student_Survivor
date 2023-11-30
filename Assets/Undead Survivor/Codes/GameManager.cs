@@ -100,6 +100,12 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         animator = player.GetComponent<Animator>();
     }
+
+    public void Start()
+    {
+        AudioManager.Instance.PlayBgm(true);
+    }
+
     public void GameStart(int id)
     {
         playerId = id;
@@ -112,7 +118,7 @@ public class GameManager : MonoBehaviour
         // uiLevelUp.Select(playerId % 2); // ĳ���� �����ϸ� ���� �����ߴ��� �ּ�ó�� ��
         Resume();
 
-        AudioManager.Instance.PlayBgm(true);
+
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Select);
 
         currentBossSpawn = SpawnBoss();
