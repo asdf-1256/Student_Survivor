@@ -27,6 +27,8 @@ MonoBehaviour:
   - 8
   - 7
   - 6
+  - 6
+  - 6
   lifeTimes:
   - 3
   - 4
@@ -38,6 +40,8 @@ MonoBehaviour:
   - 8
   - 8
   counts:
+  - 1
+  - 1
   - 1
   - 1
   - 1

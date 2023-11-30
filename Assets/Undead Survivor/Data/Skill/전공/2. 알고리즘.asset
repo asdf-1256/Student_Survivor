@@ -27,7 +27,11 @@ MonoBehaviour:
   - 7
   - 5
   - 3
+  - 3
+  - 3
   lifeTimes:
+  - 3
+  - 3
   - 3
   - 3
   - 3
@@ -35,11 +39,17 @@ MonoBehaviour:
   - 3
   - 6
   - 10
+  - 15
+  - 20
   speeds:
   - 1
   - 2
   - 3
+  - 3
+  - 3
   counts:
+  - 1
+  - 1
   - 1
   - 1
   - 1

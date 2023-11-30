@@ -27,21 +27,31 @@ MonoBehaviour:
   - 10
   - 9
   - 8
+  - 8
+  - 8
   lifeTimes:
   - 2
   - 3
+  - 4
+  - 4
   - 4
   damages:
   - 3
   - 4
   - 5
+  - 6
+  - 7
   speeds:
+  - 0
+  - 0
   - 0
   - 0
   - 0
   counts:
   - 7
   - 9
+  - 11
+  - 11
   - 11
   attackCoolTime: 0
   scaleFactor: 0

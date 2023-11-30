@@ -24,10 +24,14 @@ MonoBehaviour:
   pool_index: 0
   getype: 0
   cooltimes:
+  - 10
+  - 9
   - 8
   - 7
   - 6
   lifeTimes:
+  - 1
+  - 2
   - 3
   - 4
   - 5
@@ -35,11 +39,17 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
+  - 0
   speeds:
   - 8
   - 8
   - 8
+  - 8
+  - 8
   counts:
+  - 1
+  - 1
   - 1
   - 1
   - 1

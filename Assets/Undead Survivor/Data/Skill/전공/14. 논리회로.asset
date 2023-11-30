@@ -27,19 +27,29 @@ MonoBehaviour:
   - 8
   - 7
   - 6
+  - 6
+  - 6
   lifeTimes:
   - 3
   - 4
+  - 5
+  - 5
   - 5
   damages:
   - 3
   - 6
   - 10
+  - 15
+  - 20
   speeds:
   - 8
   - 8
   - 8
+  - 8
+  - 8
   counts:
+  - 1
+  - 1
   - 1
   - 1
   - 1
