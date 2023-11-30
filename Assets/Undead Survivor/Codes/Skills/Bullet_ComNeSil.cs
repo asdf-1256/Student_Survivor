@@ -23,7 +23,7 @@ public class Bullet_ComNeSil : BulletBase
         dir = dir.normalized;//방향 구하기
 
         transform.position = playerPos + dir;
-        transform.rotation = Quaternion.FromToRotation(Vector3.left, dir);//회전결정
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);//회전결정
 
         rigid.velocity = dir * speed;
     }
