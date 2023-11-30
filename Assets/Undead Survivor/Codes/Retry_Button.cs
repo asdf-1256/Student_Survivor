@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class Retry_Button : MonoBehaviour
@@ -15,7 +16,7 @@ public class Retry_Button : MonoBehaviour
 
     private void UpdateButtonInteractable()
     {
-        if (DataManager.Instance.money <= 0)
+        if (DataManager.Instance.money <= 15)
         {
             GetComponent<Button>().interactable = false;
             Debug.Log("돈이 부족합니다.");
@@ -23,7 +24,20 @@ public class Retry_Button : MonoBehaviour
         else
         {
             GetComponent<Button>().interactable = true;
-            data.money--;
+            
+        }
+    }
+
+    public void OnClick()
+    {
+        if (DataManager.Instance.CheckMoney(15))
+        {
+            DataManager.Instance.SubMoney(15);
+            data.Save();
+        }
+        else
+        {
+
         }
     }
 }
