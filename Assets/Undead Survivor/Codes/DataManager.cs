@@ -57,6 +57,10 @@ public class DataManager : MonoBehaviour
         selectedSkinID = id;
         Save();
     }
+    public int GetSelectedSkinID()
+    {
+        return selectedSkinID;
+    }
     public void Save()//기기에 저장하는 메소드
     {
         //PlayerPrefs.SetInt("UserData", 1);

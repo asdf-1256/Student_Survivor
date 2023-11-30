@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
     {
         playerId = id;
 
+        playerId = DataManager.Instance.GetSelectedSkinID();
+
         health = maxHealth;
 
         player.gameObject.SetActive(true);

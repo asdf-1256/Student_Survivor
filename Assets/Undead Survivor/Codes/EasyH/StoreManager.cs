@@ -64,6 +64,7 @@ public class StoreManager : MonoBehaviour
     public void ApplySkin(int playerSkinID)
     {
         PlayerSkinID = playerSkinID;
+        DataManager.Instance.SetSelectedSkinID(playerSkinID);
     }
     public void ShowSkinUI(SkinData skinData, bool isBought)
     {
