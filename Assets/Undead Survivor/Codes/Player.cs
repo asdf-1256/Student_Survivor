@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -69,17 +70,23 @@ public class Player : MonoBehaviour
         }
     }
     private Collider2D playerCollider;
+
     private ParticleSystem buffEffectParticle;
 
-    private Color attackBuffColor = Color.red;
-    private Color defenseBuffColor = Color.yellow;
-    private Color invincibleBuffColor = Color.white;
-    private Color magnetBuffColor = Color.black;
-    private Color speedBuffColor = Color.blue;
+    private readonly Color attackBuffColor = Color.red;
+    private readonly Color speedBuffColor = Color.blue;
+    private readonly Color defenseBuffColor = Color.yellow;
+    private readonly Color magneticBuffColor = Color.black;
+    private readonly Color invincibleBuffColor = Color.white;
+
+    //private readonly float alpha = 0.25f;
+    private readonly float alpha = 1f;
+
+    Gradient buffEffectGradient;
 
     //빨주노초파
     //오방색?
-    
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -100,17 +107,15 @@ public class Player : MonoBehaviour
 
 
         buffEffectParticle = GetComponent<ParticleSystem>();
-        attackBuffColor.a = 64;
-        defenseBuffColor.a = 64;
-        invincibleBuffColor.a = 64;
-        magnetBuffColor.a = 64;
-        speedBuffColor.a = 64;
+        buffEffectGradient = new()
+        {
+            mode = GradientMode.Fixed
+        };
     }
     private void OnEnable()
     {
         speed *= Character.Speed;
-        //animator.runtimeAnimatorController = animCon[GameManager.Instance.playerId];
-        animator.runtimeAnimatorController = animCon[Mathf.Min(DataManager.Instance.selectedCharacterId, animCon.Length)];
+        animator.runtimeAnimatorController = animCon[GameManager.Instance.playerId];
     }
     private void FixedUpdate()
     {
@@ -199,6 +204,7 @@ public class Player : MonoBehaviour
                     break;
             }
             buffs.Add(buff); //���� ����Ʈ�� ������ �߰��Ѵ�
+            SetBuffParticle();
             StartCoroutine(BuffRoutine(buff, () =>  //���� ���ӽð��� ����ϴ� �ڷ�ƾ�� �����Ѵ�. ������ ������ ���ٽ� �Լ��� ȣ��ȴ�.
             {
                 //Debug.Log("���� ���ӽð� ��");
@@ -221,6 +227,7 @@ public class Player : MonoBehaviour
                         break;
                 }
                 buffs.Remove(buff); //���� ��Ͽ��� �����Ѵ�.
+                SetBuffParticle();
                 buff.ResetTime(); //������ �ٽ� ���� �������� �԰� �� ��� ���ӽð��� ���������� ����ǵ��� �ʱ�ȭ�����ش�.
             }));
         }
@@ -249,6 +256,82 @@ public class Player : MonoBehaviour
         if(!collision.CompareTag("SleepGas"))
             return;
         debuffSpeedRate = 1f;
+    }
+    private void SetBuffParticle()
+    {
+        var main = buffEffectParticle.main;
+
+        int count = buffs.Count;
+        if (count == 0) {
+            buffEffectParticle.Stop();
+            return;
+        }
+        else if (count == 1)
+        {
+            Color color = Color.white;
+
+            switch (buffs[0].effect)
+            {
+                case BuffData.BuffEffect.Attack:
+                    color = new(attackBuffColor.r, attackBuffColor.g, attackBuffColor.b, alpha);
+                    break;
+                case BuffData.BuffEffect.Speed:
+                    color = new(speedBuffColor.r, speedBuffColor.g, speedBuffColor.b, alpha);
+                    break;
+                case BuffData.BuffEffect.Defense:
+                    color = new(defenseBuffColor.r, defenseBuffColor.g, defenseBuffColor.b, alpha);
+                    break;
+                case BuffData.BuffEffect.Magnetic:
+                    color = new(magneticBuffColor.r, magneticBuffColor.g, magneticBuffColor.b, alpha);
+                    break;
+                case BuffData.BuffEffect.Invincible:
+                    color = new(invincibleBuffColor.r, invincibleBuffColor.g, invincibleBuffColor.b, alpha);
+                    break;
+            }
+            main.startColor = color;
+            buffEffectParticle.Play();
+            return;
+        }
+
+
+        var colors = new List<GradientColorKey>();
+        var alphas = new GradientAlphaKey[2] { new GradientAlphaKey(alpha, 0), new GradientAlphaKey(alpha, 1) };
+
+        for (int i = 0; i < count; i++)
+        {
+            float min = ((float) i) / count;
+            float max = ((float) (i + 1)) / count - 0.001f;
+            switch (buffs[i].effect)
+            {
+                case BuffData.BuffEffect.Attack:
+                    //colors.Add(new GradientColorKey(attackBuffColor, min));
+                    colors.Add(new GradientColorKey(attackBuffColor, max));
+                    break;
+                case BuffData.BuffEffect.Speed:
+                    //colors.Add(new GradientColorKey(speedBuffColor, min));
+                    colors.Add(new GradientColorKey(speedBuffColor, max));
+                    break;
+                case BuffData.BuffEffect.Defense:
+                    //colors.Add(new GradientColorKey(defenseBuffColor, min));
+                    colors.Add(new GradientColorKey(defenseBuffColor, max));
+                    break;
+                case BuffData.BuffEffect.Magnetic:
+                    //colors.Add(new GradientColorKey(magneticBuffColor, min));
+                    colors.Add(new GradientColorKey(magneticBuffColor, max));
+                    break;
+                case BuffData.BuffEffect.Invincible:
+                    //colors.Add(new GradientColorKey(invincibleBuffColor, min));
+                    colors.Add(new GradientColorKey(invincibleBuffColor, max));
+                    break;
+            }
+
+            UnityEngine.Debug.Log(string.Format("버프 종류 : {0} | min : {1} | max = {2}", buffs[i].effect.ToSafeString(), min, max));
+        }
+
+        buffEffectGradient.SetKeys(colors.ToArray(), alphas);
+        main.startColor = buffEffectGradient;
+        //main.startColor = new ParticleSystem.MinMaxGradient(buffEffectGradient) { mode = ParticleSystemGradientMode.RandomColor };
+        buffEffectParticle.Play();
     }
 
 }

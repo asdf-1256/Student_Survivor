@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -13,7 +14,6 @@ public class Enemy : MonoBehaviour
     bool isLive;
 
     Rigidbody2D rigid;
-    Collider2D coll;
     Animator anim;
     SpriteRenderer spriteRenderer;
     WaitForFixedUpdate wait;
@@ -31,10 +31,26 @@ public class Enemy : MonoBehaviour
     private int currentSpriteType;
 
     // Start is called before the first frame update
+
+    private Collider2D[] colliders;
+    private Collider2D bossCollider;
+
+    [SerializeField] private bool isBoss;
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
+
+        if (isBoss)
+            bossCollider = GetComponent<Collider2D>();
+        else
+        {
+            colliders = new Collider2D[3];
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i] = transform.GetChild(2 + i).GetComponent<Collider2D>();
+            }
+        }
+
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
@@ -69,7 +85,8 @@ public class Enemy : MonoBehaviour
     {
         target = GameManager.Instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
-        coll.enabled = true;
+        if(isBoss)
+            bossCollider.enabled = true;
         rigid.simulated = true;
         spriteRenderer.sortingOrder = 2;
         anim.SetBool("Dead", false);
@@ -84,6 +101,9 @@ public class Enemy : MonoBehaviour
         maxHealth = data.health * difficulty;
         health = data.health * difficulty;
         currentSpriteType = data.spriteType;
+
+        if(!isBoss)
+            colliders[currentSpriteType / 3].enabled = true;
 
         //Debug.Log(string.Format("현재 적 체력: {0} * {1} = 최종적으로 {2}", data.health, difficulty, health));
     }
@@ -116,7 +136,10 @@ public class Enemy : MonoBehaviour
             {
                 //.. 죽음
                 isLive = false;
-                coll.enabled = false;
+                if(!isBoss)
+                    colliders[currentSpriteType / 3].enabled = false;
+                else
+                    bossCollider.enabled = false;
                 rigid.simulated = false;
                 spriteRenderer.sortingOrder = 1;
                 anim.SetBool("Dead", true);
@@ -168,7 +191,10 @@ public class Enemy : MonoBehaviour
             {
                 //.. 죽음
                 isLive = false;
-                coll.enabled = false;
+                if(!isBoss)
+                    colliders[currentSpriteType / 3].enabled = false;
+                else
+                    bossCollider.enabled = false;
                 rigid.simulated = false;
                 spriteRenderer.sortingOrder = 1;
                 anim.SetBool("Dead", true);
@@ -240,14 +266,16 @@ public class Enemy : MonoBehaviour
         }
         lockCoroutine = null;
 
-        if(GameManager.Instance.killByType.ContainsKey(currentSpriteType))
-        {
-            GameManager.Instance.killByType[currentSpriteType] += 1;
-        }
-        else
-        {
-            GameManager.Instance.killByType.Add(currentSpriteType, 1);
-        }
+        if (!isBoss)
+            if (GameManager.Instance.killByType.ContainsKey(currentSpriteType / 3))
+            {
+                GameManager.Instance.killByType[currentSpriteType / 3] += 1;
+            }
+            else
+            {
+                GameManager.Instance.killByType.Add(currentSpriteType / 3, 1);
+            }
+        Debug.Log(string.Format("과제 : {0} | 퀴즈 : {1} | 시험 : {2}", GameManager.Instance.killByType[0], GameManager.Instance.killByType[1], GameManager.Instance.killByType[2]));
 
         gameObject.SetActive(false);
     }

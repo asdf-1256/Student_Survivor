@@ -100,6 +100,12 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         animator = player.GetComponent<Animator>();
     }
+
+    public void Start()
+    {
+        AudioManager.Instance.PlayBgm(true);
+    }
+
     public void GameStart(int id)
     {
         playerId = id;
@@ -112,7 +118,7 @@ public class GameManager : MonoBehaviour
         // uiLevelUp.Select(playerId % 2); // ĳ���� �����ϸ� ���� �����ߴ��� �ּ�ó�� ��
         Resume();
 
-        AudioManager.Instance.PlayBgm(true);
+
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Select);
 
         currentBossSpawn = SpawnBoss();
@@ -256,6 +262,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Respawn func call");
         isLive = true;
         player.gameObject.SetActive(true);
+        AudioManager.Instance.PlayBgm(true);
         for (int i = 0; i < player.transform.childCount; i++)
         {
             player.transform.GetChild(i).gameObject.SetActive(true);
