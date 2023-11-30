@@ -25,7 +25,25 @@ public class SkillTreeManager : MonoBehaviour
         }
         public string getSkillInfo()
         {
-            return _skillName + "(" + _skillLevel.ToString() + ") ";
+            return _skillName + "(" + levelToGrade(_skillLevel - 1) + ") ";
+        }
+        string levelToGrade(int level)
+        {
+            switch (level)
+            {
+                case 0:
+                    return "C+";
+                case 1:
+                    return "B0";
+                case 2:
+                    return "B+";
+                case 3:
+                    return "A0";
+                case 4:
+                    return "A+";
+                default:
+                    return "error!!";
+            }
         }
     }
 
