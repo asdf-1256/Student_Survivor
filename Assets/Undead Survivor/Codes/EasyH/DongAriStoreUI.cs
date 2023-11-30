@@ -7,6 +7,10 @@ public class DongAriStoreUI : MonoBehaviour
 {
     public DongAriData dongAriData;
     public bool isSelected;
+    public Image Icon;
+    public Text Name;
+    public Text Desc;
+    public Text Cost;
 
     Image image;
 
@@ -16,6 +20,11 @@ public class DongAriStoreUI : MonoBehaviour
     private void Awake()
     {
         image = GetComponent<Image>();
+        Icon.sprite = dongAriData.Icon;
+        Name.text = dongAriData.Name;
+        Desc.text = dongAriData.Descript;
+        Cost.text = dongAriData.price.ToString();
+
     }
     public void OnClick()
     {

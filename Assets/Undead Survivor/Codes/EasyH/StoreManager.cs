@@ -97,4 +97,11 @@ public class StoreManager : MonoBehaviour
             }
         }
     }
+    public void UpdateAllSkinUI()
+    {
+        foreach (SkinStoreUI skinStoreUI in skinStoreUIs)
+            if (DataManager.Instance.isUnLockedSkins[skinStoreUI.skinData.SkinID])
+                return;
+
+    }
 }

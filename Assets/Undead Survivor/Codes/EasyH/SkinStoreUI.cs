@@ -7,6 +7,9 @@ public class SkinStoreUI : MonoBehaviour
 {
     public SkinData skinData;
     public bool isBought;
+    public Image Icon;
+    public Text Name;
+    public Text Desc;
 
     Image image;
 
@@ -18,6 +21,9 @@ public class SkinStoreUI : MonoBehaviour
         image = GetComponent<Image>();
         isBought = StoreManager.instance.isBought(skinData.SkinID);
         DecisionSkinLock();
+        Icon.sprite = skinData.Icon;
+        Name.text = skinData.Name;
+        Desc.text = skinData.Descript;
     }
     
     public void OnClick()
