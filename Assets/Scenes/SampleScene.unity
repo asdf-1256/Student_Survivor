@@ -3723,8 +3723,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeData: {fileID: 11400000, guid: b3abae033e5250749bda75402c83d165, type: 2}
-  membershipPrice: {fileID: 0}
-  IconImage: {fileID: 0}
+  membershipPrice: {fileID: 382712315}
+  IconImage: {fileID: 1185478568}
   isSelected: 0
   notPressed: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: 0, g: 0, b: 0, a: 1}
@@ -12720,7 +12720,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 9.208333
+  orthographic size: 8.296296
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13048,8 +13048,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeData: {fileID: 11400000, guid: 0cb547d9e8f2c4a47a867fb02b6fdef0, type: 2}
-  membershipPrice: {fileID: 0}
-  IconImage: {fileID: 0}
+  membershipPrice: {fileID: 615839828}
+  IconImage: {fileID: 765671891}
   isSelected: 0
   notPressed: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: 0, g: 0, b: 0, a: 1}
@@ -43998,8 +43998,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeData: {fileID: 11400000, guid: 4bf4433cf74601a42a18f3285d508aeb, type: 2}
-  membershipPrice: {fileID: 0}
-  IconImage: {fileID: 0}
+  membershipPrice: {fileID: 1477594323}
+  IconImage: {fileID: 508969084}
   isSelected: 0
   notPressed: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: 0, g: 0, b: 0, a: 1}

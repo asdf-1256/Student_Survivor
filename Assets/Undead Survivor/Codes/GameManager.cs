@@ -256,6 +256,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Respawn func call");
         isLive = true;
         player.gameObject.SetActive(true);
+        AudioManager.Instance.PlayBgm(true);
         for (int i = 0; i < player.transform.childCount; i++)
         {
             player.transform.GetChild(i).gameObject.SetActive(true);
