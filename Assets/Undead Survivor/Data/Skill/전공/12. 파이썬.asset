@@ -24,7 +24,7 @@ MonoBehaviour:
     \uC0AC\uC6A9\uB418\uBA70, \uC6F9 \uAC1C\uBC1C, \uB370\uC774\uD130 \uACFC\uD559,
     \uC778\uACF5\uC9C0\uB2A5, \uC790\uB3D9\uD654, \uAC8C\uC784 \uAC1C\uBC1C \uB4F1
     \uB2E4\uC591\uD55C \uBAA9\uC801\uC73C\uB85C \uD65C\uC6A9\uB429\uB2C8\uB2E4."
-  skillIcon: {fileID: -155058199, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  skillIcon: {fileID: 21300000, guid: edae49a039aaca34dbb982a8c656736a, type: 3}
   bulletPrefab: {fileID: 3603598420296841094, guid: b91a49ca8b7feb447a788d84cf6ac0b3, type: 3}
   pool_index: 0
   getype: 0
@@ -45,9 +45,9 @@ MonoBehaviour:
   - 150
   - 200
   counts:
+  - 1
+  - 2
   - 3
-  - 4
-  - 5
   attackCoolTime: 0.5
   scaleFactor: 0.1
   flightTime: 2

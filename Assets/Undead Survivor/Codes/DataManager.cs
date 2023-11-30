@@ -24,6 +24,7 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject); //���� ��ü�� ���ش�.
 
         Init(); //�ʱ�ȭ�� �����Ѵ�.
+        isUnlockCharacters[0] = true;
         DontDestroyOnLoad(gameObject);//������ ������Ͽ� LoadScene�� ȣ��Ǿ �� ������Ʈ�� �ı����� �ʴ´�.
     }
     private void Init()//�ʱ�ȭ �Լ� - ��⿡ ����� �����͸� �ҷ��� ��� �������� �ʱ�ȭ�Ѵ�.
@@ -31,7 +32,7 @@ public class DataManager : MonoBehaviour
         money = PlayerPrefs.GetInt("money", 0); 
         selectedCharacterId = PlayerPrefs.GetInt("selectedCharacterId", 0); 
         for (int i = 0; i < isUnlockCharacters.Length; i++) {
-            isUnlockCharacters[i] = Convert.ToBoolean(PlayerPrefs.GetInt(string.Format("isUnlockCharacter{0}", i), 0));
+            isUnlockCharacters[i] = Convert.ToBoolean(PlayerPrefs.GetInt(string.Format("isUnlockCharacter{0}", i), (i == 0) ? 1 : 0));
         }
         bgmVolume = PlayerPrefs.GetFloat("bgmVolume", 0.3f);
         sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);

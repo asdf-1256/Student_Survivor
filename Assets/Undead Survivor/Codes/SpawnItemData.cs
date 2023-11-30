@@ -12,7 +12,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "Scriptable Object/SpawnItemData")]
 public class SpawnItemData : ScriptableObject
 {
-    public enum ItemType{ Coin, EXP, Buff, Heal } //아이템 종류 구분
+    public enum ItemType{ Coin, EXP, Buff, Heal, EnemyCleaner } //아이템 종류 구분
     public enum BuffEffect { Power, Speed, Defense, Magnetic, Invincible, None } // 버프 아이템 효과 구분
 
     [Header("# Main Info")]

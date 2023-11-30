@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class StoreUI : MonoBehaviour
 {
     public StoreData storeData;
+    public Text membershipPrice;
+    public Image IconImage;
     public bool isSelected;
 
     public Color notPressed;
@@ -15,6 +17,8 @@ public class StoreUI : MonoBehaviour
     private void Awake()
     {
         image = GetComponent<Image>();
+        membershipPrice.text = storeData.price.ToString();
+        IconImage.sprite = storeData.iconSprite;
     }
     public void OnClick()
     {
@@ -40,11 +44,12 @@ public class StoreUI : MonoBehaviour
         if (isSelected)
         {
             image.color = pressed;
+            IconImage.color = pressed;
         }
         else
         {
             image.color = notPressed;
+            IconImage.color = notPressed;
         }
     }
-    
 }
