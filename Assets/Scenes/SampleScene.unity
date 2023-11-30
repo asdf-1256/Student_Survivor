@@ -17127,7 +17127,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343345482}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -30858,10 +30858,10 @@ MonoBehaviour:
   scanner: {fileID: 0}
   hands: []
   animCon:
-  - {fileID: 9100000, guid: f86f43347404a8b4c9d5a311e9e0cbe5, type: 2}
-  - {fileID: 22100000, guid: 438472a62b41978439bf0e3021b92172, type: 2}
-  - {fileID: 22100000, guid: 12a2e1ffd3cd09d4294582dc666c449c, type: 2}
-  - {fileID: 22100000, guid: af54be96942266843928dd251c1a976a, type: 2}
+  - {fileID: 22100000, guid: 1d75b41aaab928b40aea265b08c77abf, type: 2}
+  - {fileID: 22100000, guid: ca26738457e8d4f46b48873a3763d9b8, type: 2}
+  - {fileID: 22100000, guid: aab3735ce884cd1488cd6eca878b1bf0, type: 2}
+  - {fileID: 22100000, guid: 97392607bddb945429bbbd1cd803578b, type: 2}
   attackRate: 0
   speedRate: 0
   defenseRate: 0

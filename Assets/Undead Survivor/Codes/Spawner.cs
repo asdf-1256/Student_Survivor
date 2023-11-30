@@ -19,7 +19,8 @@ public class Spawner : MonoBehaviour
 
     public SpawnItemData[] itemDatas;
     public int[] dropRates; //SpawnItemData ���ο� �ִ� ����� �κ��� �о�� ������� �����ϴ� �迭
-    private int totalDropRate; // dropRates �迭�� ���� �� ���� ����
+    private int totalDropRate = 0; // dropRates �迭�� ���� �� ���� ����
+    public int[] cumulativeSum;
 
     public bool isPlayer;
 
@@ -28,6 +29,8 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] GameObject spawnItemPrefab;
     private int itemPoolIndex;
+
+    [SerializeField] private int[] debugItemCounts;
 
     private void Awake()
     {
@@ -42,11 +45,19 @@ public class Spawner : MonoBehaviour
         {
 
             dropRates = new int[itemDatas.Length];
+            cumulativeSum = new int[itemDatas.Length];
+            
+            //debug
+            debugItemCounts = new int[itemDatas.Length];
 
+            totalDropRate = 0;
             for (int i = 0; i < dropRates.Length; i++)
+            {
                 dropRates[i] = itemDatas[i].dropRate;
+                totalDropRate += dropRates[i];
+                cumulativeSum[i] = totalDropRate;
+            }
 
-            totalDropRate = dropRates.Sum();
 
             ItemSpawnTime = 1f;
             WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
@@ -61,7 +72,19 @@ public class Spawner : MonoBehaviour
 
     private void OnValidate()//����Ƽ Inspector���� ���� ����� ��� ȣ��Ǵ� �Լ�.
     {
-        totalDropRate = dropRates.Sum();//����� ���� �ٽ� ���
+        //dropRates = new int[itemDatas.Length];
+        //cumulativeSum = new int[itemDatas.Length];
+
+        //debug
+        //debugItemCounts = new int[itemDatas.Length];
+
+        totalDropRate = 0;
+        for (int i = 0; i < dropRates.Length; i++)
+        {
+            //dropRates[i] = itemDatas[i].dropRate;
+            totalDropRate += dropRates[i];
+            cumulativeSum[i] = totalDropRate;
+        }
         WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);//������ ���� �ð� ��ü �ٽ� ����
     }
     void Update()
@@ -98,25 +121,25 @@ public class Spawner : MonoBehaviour
 
     int SelectRandomItem()
     {
-        int resultItem = 0;
-        int select = Random.Range(0, totalDropRate);
+        int randomSelect = Random.Range(0, totalDropRate);
 
-        for (int i = 0; i < dropRates.Length; i++)
+        for (int i = 0; i < cumulativeSum.Length; i++)
         {
-            select -= dropRates[i];
 
-            if (select <= 0)
+            if (randomSelect < cumulativeSum[i])
             {
-                resultItem = i;
-                break;
+                return i;
             }
         }
 
-        return resultItem;
+        return cumulativeSum.Length - 1;
     }
 
     void SpawnItem(int itemNum) //Item : 3��, ������� ���� ���õ� �������� �޾�, �ش� �������� index�� �ϴ� �������� �������� ����.
     {
+        //debug
+        debugItemCounts[itemNum]++;
+
         GameObject item = GameManager.Instance.pool.Get(itemPoolIndex);
         item.GetComponent<SpawnItem>().Init(itemDatas[itemNum]);
         item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
