@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c7bea67dc924e24498afee5142d550c9
+guid: b60349b1d61d2a94b9627ba688468a01
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -136,30 +136,30 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uBD80\uC11C\uC9C4 \uCC3D\uBB38_0"
+      name: "\uD30C\uC774\uC36C 1_0"
       rect:
         serializedVersion: 2
-        x: 5
-        y: 6
-        width: 24
-        height: 23
+        x: 10
+        y: 14
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0, y: -11.5}
-        - {x: 12, y: 0}
-        - {x: 0, y: 11.5}
-        - {x: -12, y: 0}
+      - - {x: 0, y: -5}
+        - {x: 6, y: 0}
+        - {x: 0, y: 5}
+        - {x: -6, y: 0}
       physicsShape:
-      - - {x: 0, y: -11.5}
-        - {x: 12, y: 0}
-        - {x: 0, y: 11.5}
-        - {x: -12, y: 0}
+      - - {x: 0, y: -5}
+        - {x: 6, y: 0}
+        - {x: 0, y: 5}
+        - {x: -6, y: 0}
       tessellationDetail: 0
       bones: []
-      spriteID: 012d2c759322cb74294cab1587f72c24
-      internalID: -1130880285
+      spriteID: 1fd10ee518d33134d903059726fb8d57
+      internalID: -33420353
       vertices: []
       indices: 
       edges: []
@@ -175,7 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uBD80\uC11C\uC9C4 \uCC3D\uBB38_0": -1130880285
+      "\uD30C\uC774\uC36C 1_0": -33420353
+      "\uD30C\uC774\uC36C 1_1": -984426597
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

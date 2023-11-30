@@ -8,17 +8,12 @@ public class Skill_Python : BulletBase
     public GameObject PythonPrefab;
     public int prefabId;
 
+    public Sprite[] pythonImage;
+
     float timer;
     private void Awake()
     {
-        for (int index = 0; index < GameManager.Instance.pool.prefabs.Length; index++)
-        {
-            if (PythonPrefab == GameManager.Instance.pool.prefabs[index])
-            {
-                prefabId = index;
-                break;
-            }
-        }
+        prefabId = GameManager.Instance.pool.GetPoolIndex(PythonPrefab);
     }
     public override void Init(bool isAI, SkillData skillData, int level)
     {
@@ -40,11 +35,12 @@ public class Skill_Python : BulletBase
             transform.parent = GameManager.Instance.pool.transform; // 사라질 땐 다시 부모를 pool로 바꾸기
             gameObject.SetActive(false);
         }
-        transform.Rotate(Vector3.back * speed * Time.deltaTime); // 회전주기
+        transform.Rotate(Vector3.back * (speed * Time.deltaTime)); // 회전주기
     }
     void Arrange()
     {
-        for (int index = 0; index < count; index++)
+        float countTwice = count * 2;
+        for (int index = 0; index < countTwice; index++)
         {
             Transform bullet;
             if (index < transform.childCount)
@@ -57,11 +53,17 @@ public class Skill_Python : BulletBase
                 //현 부모:풀 매니저 -> 플레이어로 바꿔줄 수 있도록 트랜스폼 갖고옴
                 bullet.parent = transform;
             }
+            if (index % 2 == 0)
+                bullet.GetComponent<SpriteRenderer>().sprite = pythonImage[0];
+            else
+                bullet.GetComponent<SpriteRenderer>().sprite = pythonImage[1];
 
             bullet.localPosition = Vector3.zero;
             bullet.localRotation = Quaternion.identity;
 
-            Vector3 rotVec = Vector3.forward * 360 * index / count;
+            
+
+            Vector3 rotVec = Vector3.forward * (360 * index / countTwice);
             bullet.Rotate(rotVec);
             bullet.Translate(bullet.up * high, Space.World);
 

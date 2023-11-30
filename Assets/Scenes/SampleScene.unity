@@ -17279,6 +17279,7 @@ MonoBehaviour:
   - {fileID: 4787796469309447804, guid: 07f8166a2d8ac554da16a78be5079cf8, type: 3}
   - {fileID: 7740203993453340174, guid: 80ad797c317d87046abe0b131e4d9dae, type: 3}
   - {fileID: 2783419670797785261, guid: cf639d11f3a2a624788b2e97ce28c562, type: 3}
+  - {fileID: 2783419670797785261, guid: cf639d11f3a2a624788b2e97ce28c562, type: 3}
 --- !u!4 &344728783
 Transform:
   m_ObjectHideFlags: 0
@@ -38450,9 +38451,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 17839841031c9744c88a014995ccfc37, type: 2}
   - {fileID: 11400000, guid: 11bdad0498f62e04db68d690eac8105a, type: 2}
   dropRates: 
+  cumulativeSum: 
   isPlayer: 1
   enemyPrefab: {fileID: 6447392317033242439, guid: a67ac2f5dde127248b11931f255d74a6, type: 3}
   spawnItemPrefab: {fileID: 7831486342206985405, guid: 34b9435f321ba53459bbf0754946eb12, type: 3}
+  debugItemCounts: 
 --- !u!1 &884439409
 GameObject:
   m_ObjectHideFlags: 0

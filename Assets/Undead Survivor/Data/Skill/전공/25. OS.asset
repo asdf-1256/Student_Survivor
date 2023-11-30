@@ -20,7 +20,7 @@ MonoBehaviour:
   grade: 3
   skillDesc: "\uC708\uB3C4\uC6B0(new OS)"
   skillIcon: {fileID: 21300000, guid: b61d63042283f7c4a9b4c1b465b91457, type: 3}
-  bulletPrefab: {fileID: 4787796469309447804, guid: 07f8166a2d8ac554da16a78be5079cf8, type: 3}
+  bulletPrefab: {fileID: 5319925331007868888, guid: cc180a5d1cd2909458cd6113fff42798, type: 3}
   pool_index: 0
   getype: 0
   cooltimes:

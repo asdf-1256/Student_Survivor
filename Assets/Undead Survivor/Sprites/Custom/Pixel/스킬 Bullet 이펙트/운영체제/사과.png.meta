@@ -43,9 +43,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 18
@@ -134,7 +134,36 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "\uC0AC\uACFC_0"
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 11
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -8.5}
+        - {x: 8, y: 0}
+        - {x: 0, y: 8.5}
+        - {x: -8, y: 0}
+      physicsShape:
+      - - {x: 0, y: -8.5}
+        - {x: 8, y: 0}
+        - {x: 0, y: 8.5}
+        - {x: -8, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd070e20a475fd409a13c900d7d78d4
+      internalID: 228871949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +174,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\uC0AC\uACFC_0": 228871949
+      "\uC0AC\uACFC_1": 1551195705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
