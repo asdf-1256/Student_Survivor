@@ -29,6 +29,8 @@ MonoBehaviour:
   - 0.8
   - 0.7
   - 0.4
+  - 0.4
+  - 0.4
   speeds: []
   counts: []
   attackCoolTime: 0
