@@ -20,12 +20,30 @@ public class UIQuest : MonoBehaviour
         this.checker = checker;
 
         SkillName.text = skillName;
-        SkillLevel.text = "Lv." + level.ToString();
+        SkillLevel.text = "예상 학점 : " + levelToGrade(level);
         QuestName.text = data.Name;
         QuestProgress.text = checker.ToString();
         QuestProgressBar.fillAmount = checker.GetProgress();
         
         gameObject.SetActive(true);
+    }
+    string levelToGrade(int level)
+    {
+        switch (level)
+        {
+            case 0:
+                return "C+";
+            case 1:
+                return "B0";
+            case 2:
+                return "B+";
+            case 3:
+                return "A0";
+            case 4:
+                return "A+";
+            default:
+                return "error!!";
+        }
     }
 
     // Update is called once per frame

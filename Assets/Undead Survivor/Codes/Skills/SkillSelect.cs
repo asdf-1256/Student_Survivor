@@ -86,7 +86,7 @@ public class SkillSelect : MonoBehaviour
 
     private void OnEnable()
     {
-        textLevel.text = "Lv." + (level);
+        textLevel.text = "최종 학점 : " + levelToGrade(level);
 
         switch (skillData.skillType)
         {
@@ -97,8 +97,23 @@ public class SkillSelect : MonoBehaviour
                 textDesc.text = string.Format(skillData.skillDesc);
                 break;
         }
-
-
+    }
+    string levelToGrade(int level) {
+        switch (level)
+        {
+            case 0:
+                return "F!";
+            case 1:
+                return "C+";
+            case 2:
+                return "B0";
+            case 3:
+                return "B+";
+            case 4:
+                return "A0";
+            default:
+                return "error!!";
+        }
     }
 
     private void Start()
