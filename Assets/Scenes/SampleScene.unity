@@ -2686,7 +2686,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBCF5\uD559\uD558\uAE30    15"
+  m_Text: "\uC7AC\uC218\uAC15    15"
 --- !u!222 &81832128
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7639,7 +7639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.6, y: 29.8}
+  m_AnchoredPosition: {x: 1.7, y: 29.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &261039107
@@ -7675,7 +7675,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD1F4\uD559"
+  m_Text: "\uD1F4\uD559 \uCC98\uB9AC"
 --- !u!222 &261039108
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8302,7 +8302,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD734\uD559 \uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  m_Text: "\uD559\uC0AC\uACBD\uACE0 \uBC1B\uC740 \uB2F9\uC2E0\uC758 \uC120\uD0DD\uC740?"
 --- !u!222 &297810241
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9897,7 +9897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -16.07, y: -10}
+  m_AnchoredPosition: {x: -14.61, y: -5.56}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &399482780
@@ -11555,9 +11555,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1220730496}
-        m_TargetAssemblyTypeName: Stop_Menu, Assembly-CSharp
-        m_MethodName: Home
+      - m_Target: {fileID: 283515368}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameRetry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11655,7 +11655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743176f1316a933468f37fed3f6a3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
 --- !u!114 &469284067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37820,9 +37820,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1220730496}
-        m_TargetAssemblyTypeName: Stop_Menu, Assembly-CSharp
-        m_MethodName: Home
+      - m_Target: {fileID: 283515368}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameRetry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -38467,7 +38467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4.5, y: -8.01}
+  m_AnchoredPosition: {x: 4.5, y: -4.68}
   m_SizeDelta: {x: 22.731499, y: 9.2438965}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1531530581
@@ -44156,7 +44156,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 130, y: 213.81}
+  m_SizeDelta: {x: 130, y: 190.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796878369
 MonoBehaviour:
@@ -44510,7 +44510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1.9}
+  m_AnchoredPosition: {x: 0, y: 7.9}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1819194944
@@ -46063,7 +46063,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC790\uD1F4\uD558\uAE30"
+  m_Text: "\uC790\uD1F4"
 --- !u!222 &1870235667
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50301,7 +50301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.2, y: -0.5}
+  m_AnchoredPosition: {x: 8.29, y: -0.5}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2083534316
