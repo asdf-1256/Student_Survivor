@@ -156,6 +156,10 @@ public class Enemy : MonoBehaviour
         else if (collision.CompareTag("SysProg"))
         {
             Bullet_SystemProgramming bullet = collision.GetComponent<Bullet_SystemProgramming>();
+            if(bullet != null)
+            {
+                bullet.DisableTimer();
+            }
             if (lockCoroutine == null)
                 lockCoroutine = StartCoroutine(LockRoutine(collision.GetComponent<Bullet_SystemProgramming>().lifeTime, () =>
                 {

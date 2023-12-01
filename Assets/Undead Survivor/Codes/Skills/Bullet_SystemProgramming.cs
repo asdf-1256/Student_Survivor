@@ -7,6 +7,7 @@ public class Bullet_SystemProgramming : BulletBase
 {
     Rigidbody2D rigid;
     Collider2D coll;
+    Coroutine timer;
 
     private void Awake()
     {
@@ -28,7 +29,10 @@ public class Bullet_SystemProgramming : BulletBase
         rigid.velocity = dir.normalized * speed;
 
         coll.enabled = true;
-        StartCoroutine(ExtinctTimerRoutine());
+    }
+    private void OnEnable()
+    {
+        timer = StartCoroutine(ExtinctTimerRoutine());
     }
 
 
@@ -52,8 +56,11 @@ public class Bullet_SystemProgramming : BulletBase
         yield return new WaitForSeconds(lifeTime + 10f);
         gameObject.SetActive(false);
     }
-    private void OnDisable()
+
+    public void DisableTimer()
     {
-        StopAllCoroutines();
+        if (timer != null)
+            StopCoroutine(timer);
+
     }
 }
