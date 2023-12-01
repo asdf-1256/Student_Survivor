@@ -8,7 +8,7 @@ public class HUD : MonoBehaviour
     public enum InfoType { Exp, Level, NextPhase, Kill, Time, Health, BossHealth, Coin }
     public InfoType type;
 
-    string[] Phases = { "1학년 1학기", "1학년 2학기", "2학년 1학기", "2학년 2학기", "3학년 1학기", "3학년 2학기", "4학년 1학기", "4학년 2학기", "5�г� 1�б�" };
+    string[] Phases = { "1학년 1학기", "1학년 2학기", "2학년 1학기", "2학년 2학기", "3학년 1학기", "3학년 2학기", "4학년 1학기", "4학년 2학기", "대학원생" };
     Text myText;
     Slider mySlider;
 
