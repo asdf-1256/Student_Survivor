@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossSet;
     public GameObject HealthInHUD;
 
-    public int MaxQuestCount = 3;
+    public int MaxQuestCount;
     public List<UIQuest> freeQuestUI;
 
     int questCount = 0;

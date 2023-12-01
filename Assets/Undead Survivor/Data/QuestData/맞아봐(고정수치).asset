@@ -16,6 +16,8 @@ MonoBehaviour:
   Name: "\uB204\uC801 \uB370\uBBF8\uC9C0"
   IntValues: 
   FloatValues:
+  - 30
   - 50
   - 100
   - 300
+  - 1000

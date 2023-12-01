@@ -34,11 +34,11 @@ public class SkillTreeManager : MonoBehaviour
                 case 0:
                     return "C+";
                 case 1:
-                    return "B0";
+                    return "B ";
                 case 2:
                     return "B+";
                 case 3:
-                    return "A0";
+                    return "A ";
                 case 4:
                     return "A+";
                 default:

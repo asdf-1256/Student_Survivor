@@ -86,7 +86,7 @@ public class SkillSelect : MonoBehaviour
 
     private void OnEnable()
     {
-        textLevel.text = "최종 학점 : " + levelToGrade(level);
+        textLevel.text = "현재 학점 : " + levelToGrade(level);
 
         switch (skillData.skillType)
         {
@@ -102,15 +102,15 @@ public class SkillSelect : MonoBehaviour
         switch (level)
         {
             case 0:
-                return "F!";
+                return "F ";
             case 1:
                 return "C+";
             case 2:
-                return "B0";
+                return "B ";
             case 3:
                 return "B+";
             case 4:
-                return "A0";
+                return "A ";
             default:
                 return "error!!";
         }
