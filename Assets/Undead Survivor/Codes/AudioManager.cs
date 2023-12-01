@@ -13,6 +13,10 @@ public class AudioManager : MonoBehaviour
     AudioSource bgmPlayer;
     AudioHighPassFilter bgmEffect;
 
+    [Header("#MBGM")]
+    [SerializeField] AudioSource mbgmPlayer;
+    [SerializeField] public AudioClip mbgmClip;
+
     [Header("#SFX")]
     public AudioClip[] sfxClips;
     public AudioMixerGroup sfxOutput;
@@ -32,6 +36,8 @@ public class AudioManager : MonoBehaviour
         bgmVolume = DataManager.Instance.bgmVolume;
         sfxVolume = DataManager.Instance.sfxVolume;
         Init();
+
+        mbgmPlayer.Play();
     }
     void Init()
     {
@@ -86,7 +92,10 @@ public class AudioManager : MonoBehaviour
     public void PlayBgm(bool isPlay)
     {
         if (isPlay)
+        {
+            mbgmPlayer.Stop();
             bgmPlayer.Play();
+        }
         else
             bgmPlayer.Stop();
     }

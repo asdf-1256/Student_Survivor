@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        AudioManager.Instance.PlayBgm(true);
+
     }
 
     public void GameStart(int id)
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
         // uiLevelUp.Select(playerId % 2); // ĳ���� �����ϸ� ���� �����ߴ��� �ּ�ó�� ��
         Resume();
 
-
+        AudioManager.Instance.PlayBgm(true);
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Select);
 
         currentBossSpawn = SpawnBoss();
