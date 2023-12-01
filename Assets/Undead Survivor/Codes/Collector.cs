@@ -17,7 +17,8 @@ public class Collector : MonoBehaviour
         {
             case SpawnItemData.ItemType.Coin:
                 //Debug.Log(string.Format("코인 {0}만큼 먹음", data.value));
-                DataManager.Instance.AddMoney(data.value);
+                //DataManager.Instance.AddMoney(data.value);
+                DataManager.Instance.AddMoney(Random.Range(1,data.value));
                 break;
             case SpawnItemData.ItemType.EXP:
                 //Debug.Log(string.Format("경험치 {0}만큼 먹음", data.value));

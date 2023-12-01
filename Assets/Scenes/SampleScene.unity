@@ -15037,7 +15037,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.37963
+  orthographic size: 48.92284
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -20868,7 +20868,6 @@ MonoBehaviour:
   speedRate: 0
   defenseRate: 0
   isInvincible: 0
-  buffs: []
   skillManager: {fileID: 0}
   spawnSkillCoolDownRate: 1
   attackSkillCoolDownRate: 1
@@ -28859,8 +28858,8 @@ MonoBehaviour:
   - spriteType: 8
     health: 15
     speed: 2.4
-  ItemsRandomSpawnArea: 5
-  ItemSpawnTime: 0
+  ItemsRandomSpawnArea: 200
+  ItemSpawnTime: 0.02
   timer: 0
   itemDatas:
   - {fileID: 11400000, guid: 8a0acfa879051b64192d3ffee5df878e, type: 2}
@@ -51155,7 +51154,7 @@ MonoBehaviour:
   - 2
   - 2
   ratesOnGrade2:
-  - 0.1
+  - 1
   - 1
   - 1
   - 1

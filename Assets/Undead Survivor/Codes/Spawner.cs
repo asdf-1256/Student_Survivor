@@ -59,7 +59,7 @@ public class Spawner : MonoBehaviour
             }
 
 
-            ItemSpawnTime = 1f;
+            //ItemSpawnTime = 1f;
             WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
 
             StartCoroutine(CreateCoinRoutine());

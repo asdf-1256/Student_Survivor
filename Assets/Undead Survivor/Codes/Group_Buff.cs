@@ -51,14 +51,14 @@ public class GroupBuff : MonoBehaviour
     {
         switch (buff.effect)
         {
-            case BuffData.BuffEffect.Magnetic:
+            case BuffData.BuffEffect.자기력:
                 GetComponentInChildren<Magnet>().MagneticRate *= buff.value;
                 //GetComponent<Button>().interactable = false;
                 break;
-            case BuffData.BuffEffect.Speed:
+            case BuffData.BuffEffect.이동속도:
                 speedRate *= buff.value;
                 break;
-            case BuffData.BuffEffect.Invincible:
+            case BuffData.BuffEffect.무적:
                 isInvincible = true;
                 break;
         }
