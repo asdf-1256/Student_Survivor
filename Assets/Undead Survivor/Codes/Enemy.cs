@@ -254,7 +254,7 @@ public class Enemy : MonoBehaviour
     }
     void Dead()
     {
-        if (transform.childCount > 1)
+        if (lockCoroutine != null)
         {
             rigid.bodyType = RigidbodyType2D.Dynamic;
             Bullet_SystemProgramming bullet = GetComponentInChildren<Bullet_SystemProgramming>();
@@ -263,8 +263,9 @@ public class Enemy : MonoBehaviour
                 bullet.transform.SetParent(GameManager.Instance.pool.transform);
                 bullet.gameObject.SetActive(false);
             }
+            StopCoroutine(lockCoroutine);
+            lockCoroutine = null;
         }
-        lockCoroutine = null;
 
         if (!isBoss)
             if (GameManager.Instance.killByType.ContainsKey(currentSpriteType / 3))
