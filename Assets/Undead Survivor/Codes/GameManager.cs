@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < 3; i++)
             killByType.Add(i, 0);
         Application.targetFrameRate = 60;
-        animator = player.GetComponent<Animator>();
+        animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Start()
