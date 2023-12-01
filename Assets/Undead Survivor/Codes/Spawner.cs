@@ -148,7 +148,7 @@ public class Spawner : MonoBehaviour
     {
         GameObject item = GameManager.Instance.pool.Get(itemPoolIndex);
         item.GetComponent<SpawnItem>().Init(itemData);
-        item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
+        //item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
         return item;
     }
 
