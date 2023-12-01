@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
         if (exp >= nextexp)
         {
             level++;
-            exp -= nextexp;
+            exp = Mathf.Min(exp - nextexp, nextexp-1);
             uiLevelUpSkill.Show();
             UpdatePhase();
             if (level == levelForBoss[0] || level == levelForBoss[1])
