@@ -157,7 +157,8 @@ public class SkillSelect : MonoBehaviour
                 break;
             case SkillData.GEType.Size:
                 //GameManager.Instance.player.transform.localScale = Vector3.one * skillData.damages[level];
-                GameManager.Instance.player.Scale = Vector3.one * skillData.damages[level];
+                GameManager.Instance.player.SpriteTransform.localScale = Vector3.one * skillData.damages[level];
+                GameManager.Instance.player.ChangeColliderSize(skillData.damages[level]);
                 break;
             case SkillData.GEType.MagnetSize:
                 GameManager.Instance.player.GetComponentInChildren<Magnet>().MagneticRate *= skillData.damages[level];

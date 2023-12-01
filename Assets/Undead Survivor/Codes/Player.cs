@@ -16,9 +16,11 @@ public class Player : MonoBehaviour
     public Scanner scanner;
     public Hand[] hands;
 
+    public Transform SpriteTransform;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
+
     Rigidbody2D rigid;
-    SpriteRenderer spriteRenderer;
-    Animator animator;
     public RuntimeAnimatorController[] animCon;
 
     //���� ��ġ = �տ���
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour
             
         }
     }
-    private Collider2D playerCollider;
+    private CapsuleCollider2D playerCollider;
 
     private ParticleSystem buffEffectParticle;
 
@@ -89,8 +91,6 @@ public class Player : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true); // ��Ȱ��ȭ�� ������Ʈ�� �����Ͽ� �����´�.
         
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         buffs = new List<BuffData>();
         wait = new WaitForSeconds(0.1f);
 
-        playerCollider = GetComponent<Collider2D>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
 
 
         buffEffectParticle = GetComponent<ParticleSystem>();
@@ -334,7 +334,10 @@ public class Player : MonoBehaviour
         //main.startColor = new ParticleSystem.MinMaxGradient(buffEffectGradient) { mode = ParticleSystemGradientMode.RandomColor };
         buffEffectParticle.Play();
     }
-
+    public void ChangeColliderSize(float size)
+    {
+        playerCollider.size *= size;
+    }
 }
 
 
