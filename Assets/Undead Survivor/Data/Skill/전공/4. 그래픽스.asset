@@ -25,16 +25,16 @@ MonoBehaviour:
   pool_index: 0
   getype: 0
   cooltimes:
-  - 7
   - 5
+  - 4
   - 3
-  - 3
-  - 3
+  - 2
+  - 2
   lifeTimes:
   - 1
+  - 1
   - 2
-  - 3
-  - 3
+  - 2
   - 3
   damages:
   - 3

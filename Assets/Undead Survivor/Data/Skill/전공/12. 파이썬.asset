@@ -25,10 +25,10 @@ MonoBehaviour:
   pool_index: 0
   getype: 0
   cooltimes:
+  - 15
+  - 13
+  - 11
   - 10
-  - 9
-  - 8
-  - 8
   - 8
   lifeTimes:
   - 5
@@ -50,10 +50,10 @@ MonoBehaviour:
   - 200
   counts:
   - 1
+  - 1
   - 2
   - 3
-  - 3
-  - 3
+  - 4
   attackCoolTime: 0.5
   scaleFactor: 0.1
   flightTime: 2

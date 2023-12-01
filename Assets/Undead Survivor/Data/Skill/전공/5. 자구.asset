@@ -27,9 +27,9 @@ MonoBehaviour:
   getype: 0
   cooltimes:
   - 7
+  - 6
   - 5
-  - 3
-  - 3
+  - 4
   - 3
   lifeTimes:
   - 1
@@ -38,11 +38,11 @@ MonoBehaviour:
   - 3
   - 3
   damages:
-  - 3
+  - 2
+  - 4
   - 6
+  - 8
   - 10
-  - 15
-  - 20
   speeds:
   - 1
   - 2

@@ -25,11 +25,11 @@ MonoBehaviour:
   pool_index: 0
   getype: 0
   cooltimes:
+  - 2
+  - 1.6
+  - 1.4
   - 1
-  - 0.5
-  - 0.1
-  - 0.1
-  - 0.1
+  - 0.8
   lifeTimes:
   - 1
   - 2
@@ -37,11 +37,11 @@ MonoBehaviour:
   - 3
   - 3
   damages:
-  - 3
-  - 6
-  - 10
-  - 15
-  - 20
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 1
   speeds:
   - 10
   - 15

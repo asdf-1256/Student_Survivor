@@ -26,18 +26,18 @@ MonoBehaviour:
   pool_index: 0
   getype: 7
   cooltimes:
-  - 5
-  - 4
-  - 3
-  - 2
-  - 1
+  - 20
+  - 20
+  - 16
+  - 16
+  - 10
   lifeTimes: []
   damages:
+  - 5
   - 10
-  - 20
-  - 30
-  - 30
-  - 30
+  - 10
+  - 15
+  - 10
   speeds: []
   counts: []
   attackCoolTime: 0
