@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d719812ea2f72e459e0e55e27fdd7fa, type: 3}
+  m_Name: "37. \uC6F9\uD504\uB85C\uADF8\uB798\uBC0D"
+  m_EditorClassIdentifier: 
+  skillType: 0
+  skillID: 37
+  bulletPrefabID: 0
+  level: 0
+  skillName: "\uC6F9\uD504"
+  grade: 4
+  skillDesc: "\uC6F9 \uD504\uB85C\uADF8\uB798\uBC0D\uC744 \uC704\uD55C \uD504\uB860\uD2B8\uC5D4\uB4DC
+    \uAE30\uC220 \uD559\uC2B5\n\uC801\uC744 \uB290\uB824\uC9C0\uAC8C \uD558\uB294
+    \uAC70\uBBF8\uC904\uC744 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  skillIcon: {fileID: 21300000, guid: f11cea60196a37643b5a4abe28505708, type: 3}
+  bulletPrefab: {fileID: 2783419670797785261, guid: cf639d11f3a2a624788b2e97ce28c562, type: 3}
+  pool_index: 0
+  getype: 4
+  cooltimes:
+  - 10
+  - 9
+  - 8
+  - 8
+  - 8
+  lifeTimes:
+  - 2
+  - 3
+  - 4
+  - 4
+  - 4
+  damages:
+  - 1.6
+  - 2.2
+  - 2.8
+  - 3.4
+  - 4
+  speeds:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  counts:
+  - 7
+  - 9
+  - 11
+  - 11
+  - 11
+  attackCoolTime: 0
+  scaleFactor: 0
+  flightTime: 0
+  rotateSpeed: 0
