@@ -19,7 +19,8 @@ MonoBehaviour:
   skillName: "\uC778\uACF5\uC9C0\uB2A5"
   grade: 4
   skillDesc: "\uC778\uACF5\uC9C0\uB2A5 \uBC0F \uAE30\uACC4\uD559\uC2B5\uC758 \uC774\uB860
-    \uD559\uC2B5"
+    \uD559\uC2B5\n\uD50C\uB808\uC774\uC5B4\uC640 \uB3D9\uC77C\uD55C \uD559\uC2B5\uC744
+    \uD55C \uC778\uACF5\uC9C0\uB2A5\uC744 \uC18C\uD658\uD569\uB2C8\uB2E4."
   skillIcon: {fileID: 21300000, guid: a00642f4a0e0b684ab38d7e6e089bff4, type: 3}
   bulletPrefab: {fileID: 0}
   pool_index: 0
