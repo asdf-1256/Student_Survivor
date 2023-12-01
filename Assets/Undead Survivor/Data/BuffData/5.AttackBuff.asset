@@ -15,5 +15,5 @@ MonoBehaviour:
   effect: 0
   image: {fileID: 21300000, guid: 10ba8a43c43e9754b841931c64db6b53, type: 3}
   id: 5
-  value: 100
+  value: 2
   duration: 10

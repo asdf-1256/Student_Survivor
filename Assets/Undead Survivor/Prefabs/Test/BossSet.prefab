@@ -207,6 +207,7 @@ MonoBehaviour:
   expData: {fileID: 11400000, guid: 327c1116655536747baeb63805b1456f, type: 2}
   damageTransform: {fileID: 6025847154651250790}
   DamageTextObjectPrefab: {fileID: 7740203993453340174, guid: 80ad797c317d87046abe0b131e4d9dae, type: 3}
+  isBoss: 1
 --- !u!50 &7073552171989962301
 Rigidbody2D:
   serializedVersion: 4
@@ -601,6 +602,7 @@ MonoBehaviour:
   expData: {fileID: 11400000, guid: 327c1116655536747baeb63805b1456f, type: 2}
   damageTransform: {fileID: 8728957345744459381}
   DamageTextObjectPrefab: {fileID: 7740203993453340174, guid: 80ad797c317d87046abe0b131e4d9dae, type: 3}
+  isBoss: 1
 --- !u!212 &8407904872462106040
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1315,10 +1317,31 @@ MonoBehaviour:
   spawnData:
   - spriteType: 0
     health: 10
-    speed: 3
+    speed: 1.5
   - spriteType: 1
     health: 15
-    speed: 3.5
+    speed: 2.4
+  - spriteType: 2
+    health: 15
+    speed: 2.4
+  - spriteType: 3
+    health: 15
+    speed: 2.4
+  - spriteType: 4
+    health: 15
+    speed: 2.4
+  - spriteType: 5
+    health: 15
+    speed: 2.4
+  - spriteType: 6
+    health: 15
+    speed: 2.4
+  - spriteType: 7
+    health: 15
+    speed: 2.4
+  - spriteType: 8
+    health: 15
+    speed: 2.4
   ItemsRandomSpawnArea: 0
   ItemSpawnTime: 0
   timer: 0

@@ -18,7 +18,9 @@ MonoBehaviour:
   level: 0
   skillName: "\uBBF8\uBD84\uC801\uBD84\uD559"
   grade: 0
-  skillDesc: "\uBBF8\uC801\uBBF8\uC801 \uACF5\uACA9 \uCFE8\uAC10"
+  skillDesc: "\uBBF8\uBD84\uACFC\uC801\uBD84\uC744 \uC5EC\uB7EC \uBD84\uC57C\uC5D0
+    \uC751\uC6A9\uD560 \uC218 \uC788\uB294 \uB2A5\uB825 \uD559\uC2B5\n\uC77C\uBC18
+    \uACF5\uACA9\uC758 \uCFE8\uD0C0\uC784\uC774 \uAC10\uC18C\uD569\uB2C8\uB2E4."
   skillIcon: {fileID: 21300000, guid: 0d510255c097ae243966b2fa2a5b4bc2, type: 3}
   bulletPrefab: {fileID: 0}
   pool_index: 0
@@ -26,11 +28,11 @@ MonoBehaviour:
   cooltimes: []
   lifeTimes: []
   damages:
-  - 0.8
-  - 0.7
-  - 0.6
-  - 0.5
-  - 0.4
+  - 0.95
+  - 0.95
+  - 0.95
+  - 0.95
+  - 0.95
   speeds: []
   counts: []
   attackCoolTime: 0

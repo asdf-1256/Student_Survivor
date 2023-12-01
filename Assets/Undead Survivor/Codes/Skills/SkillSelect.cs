@@ -86,7 +86,7 @@ public class SkillSelect : MonoBehaviour
 
     private void OnEnable()
     {
-        textLevel.text = "최종 학점 : " + levelToGrade(level);
+        textLevel.text = "현재 학점 : " + levelToGrade(level);
 
         switch (skillData.skillType)
         {
@@ -102,15 +102,15 @@ public class SkillSelect : MonoBehaviour
         switch (level)
         {
             case 0:
-                return "F!";
+                return "F ";
             case 1:
                 return "C+";
             case 2:
-                return "B0";
+                return "B ";
             case 3:
                 return "B+";
             case 4:
-                return "A0";
+                return "A ";
             default:
                 return "error!!";
         }
@@ -157,7 +157,8 @@ public class SkillSelect : MonoBehaviour
                 break;
             case SkillData.GEType.Size:
                 //GameManager.Instance.player.transform.localScale = Vector3.one * skillData.damages[level];
-                GameManager.Instance.player.Scale = Vector3.one * skillData.damages[level];
+                GameManager.Instance.player.SpriteTransform.localScale = Vector3.one * skillData.damages[level];
+                GameManager.Instance.player.ChangeColliderSize(skillData.damages[level]);
                 break;
             case SkillData.GEType.MagnetSize:
                 GameManager.Instance.player.GetComponentInChildren<Magnet>().MagneticRate *= skillData.damages[level];
@@ -189,11 +190,11 @@ public class SkillSelect : MonoBehaviour
                 }
                 break;
             case SkillData.GEType.AttackCoolDownReduction:
-                GameManager.Instance.player.attackSkillCoolDownRate = skillData.damages[level];
+                GameManager.Instance.player.attackSkillCoolDownRate *= skillData.damages[level];
                 GameManager.Instance.player.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
                 break;
             case SkillData.GEType.SpawnCoolDownReduction:
-                GameManager.Instance.player.spawnSkillCoolDownRate = skillData.damages[level];
+                GameManager.Instance.player.spawnSkillCoolDownRate *= skillData.damages[level];
                 GameManager.Instance.player.BroadcastMessage("ApplyCooldown", SendMessageOptions.DontRequireReceiver);
                 break;
         }

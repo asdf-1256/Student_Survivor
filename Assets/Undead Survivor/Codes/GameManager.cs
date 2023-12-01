@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public bool isLive;
     public float gameTime;
     //public float maxGameTime = 2 * 10f;
-    public readonly float[] semesterDifficulty = { 1, 1.2f, 1.4f, 1.6f, 1.8f, 2f, 3f, 3.5f }; //���̵� ���
+    public readonly float[] semesterDifficulty = { 0.5f, 0.7f, 0.9f, 1f, 2f, 3f, 4, 3.5f, 4, 5, 6, 7, 8, 9, 10 }; //���̵� ���
 
     [Header("# Player Info")]
     public int playerId;
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossSet;
     public GameObject HealthInHUD;
 
-    public int MaxQuestCount = 3;
+    public int MaxQuestCount;
     public List<UIQuest> freeQuestUI;
 
     int questCount = 0;
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
         if (exp >= nextexp)
         {
             level++;
-            exp -= nextexp;
+            exp = Mathf.Min(exp - nextexp, nextexp-1);
             uiLevelUpSkill.Show();
             UpdatePhase();
             if (level == levelForBoss[0] || level == levelForBoss[1])

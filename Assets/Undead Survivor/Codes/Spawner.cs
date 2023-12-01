@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     //public float levelTime;
     public float ItemsRandomSpawnArea; //.. �÷��̾� ������ ������ �����Ǵ� ��Ŭ�� ������
     public float ItemSpawnTime;
-    [SerializeField] private readonly float[] spawnTimes = { 2, 1, 0.2f, 2, 1, 0.2f, 2, 2 };
+    [SerializeField] private readonly float[] spawnTimes = { 1, 0.7f, 0.4f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f, 0.1f, 0.09f, 0.08f, 0.07f, 0.06f, 0.05f };
 
     private WaitForSeconds WaitSpawnTime; //������- �������� �����Ǵµ� �ɸ��� �ð�. default:1��
 
@@ -59,7 +59,7 @@ public class Spawner : MonoBehaviour
             }
 
 
-            ItemSpawnTime = 1f;
+            //ItemSpawnTime = 1f;
             WaitSpawnTime = new WaitForSeconds(ItemSpawnTime);
 
             StartCoroutine(CreateCoinRoutine());
@@ -148,7 +148,7 @@ public class Spawner : MonoBehaviour
     {
         GameObject item = GameManager.Instance.pool.Get(itemPoolIndex);
         item.GetComponent<SpawnItem>().Init(itemData);
-        item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
+        //item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * ItemsRandomSpawnArea;
         return item;
     }
 

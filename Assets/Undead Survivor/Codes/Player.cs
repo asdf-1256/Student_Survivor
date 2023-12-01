@@ -16,9 +16,11 @@ public class Player : MonoBehaviour
     public Scanner scanner;
     public Hand[] hands;
 
+    public Transform SpriteTransform;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
+
     Rigidbody2D rigid;
-    SpriteRenderer spriteRenderer;
-    Animator animator;
     public RuntimeAnimatorController[] animCon;
 
     //���� ��ġ = �տ���
@@ -29,7 +31,6 @@ public class Player : MonoBehaviour
     //public float magneticRate; // �ڼ� ���� - ����� �������� �̰ͻ��̶� �̰͸� �׽�Ʈ �Ǿ�������, �ٸ� �����۵� �߰��Ͽ� ������ ������ ȹ������ ���� �׽�Ʈ�� �����ؾ���
     public bool isInvincible; // ����
 
-    [SerializeField]
     private List<BuffData> buffs; //Ȱ��ȭ�� ���� ���
     private WaitForSeconds wait; //���� �ð� ���� WaitForSeconds ��ü (0.1��)
 
@@ -69,7 +70,7 @@ public class Player : MonoBehaviour
             
         }
     }
-    private Collider2D playerCollider;
+    private CapsuleCollider2D playerCollider;
 
     private ParticleSystem buffEffectParticle;
 
@@ -90,8 +91,6 @@ public class Player : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true); // ��Ȱ��ȭ�� ������Ʈ�� �����Ͽ� �����´�.
         
@@ -103,7 +102,7 @@ public class Player : MonoBehaviour
         buffs = new List<BuffData>();
         wait = new WaitForSeconds(0.1f);
 
-        playerCollider = GetComponent<Collider2D>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
 
 
         buffEffectParticle = GetComponent<ParticleSystem>();
@@ -159,7 +158,7 @@ public class Player : MonoBehaviour
         {
             _shield.RemoveShield();
             foreach (var buffdata in buffDatas)
-                if (buffdata.effect == BuffData.BuffEffect.Invincible)
+                if (buffdata.effect == BuffData.BuffEffect.무적)
                     ActivateBuff(buffdata);
         }
 
@@ -187,46 +186,48 @@ public class Player : MonoBehaviour
             //Debug.Log("���� ����");
             switch (buff.effect) //���� ȿ�� ������ ���� ������ ���ݿ� ������ ���Ѵ�.
             {
-                case BuffData.BuffEffect.Attack:
+                case BuffData.BuffEffect.공격력:
                     attackRate *= buff.value;
                     break;
-                case BuffData.BuffEffect.Speed:
+                case BuffData.BuffEffect.이동속도:
                     speedRate *= buff.value;
                     break;
-                case BuffData.BuffEffect.Defense:
+                case BuffData.BuffEffect.방어력:
                     defenseRate *= buff.value;          
                     break;
-                case BuffData.BuffEffect.Magnetic:
+                case BuffData.BuffEffect.자기력:
                     GetComponentInChildren<Magnet>().MagneticRate *= buff.value;
                     break;
-                case BuffData.BuffEffect.Invincible:
+                case BuffData.BuffEffect.무적:
                     isInvincible = true;
                     break;
             }
             buffs.Add(buff); //���� ����Ʈ�� ������ �߰��Ѵ�
             SetBuffParticle();
+            UIManager.Instance.Notice(string.Format("{0} 버프를 획득했습니다.", buff.effect.ToString()));
             StartCoroutine(BuffRoutine(buff, () =>  //���� ���ӽð��� ����ϴ� �ڷ�ƾ�� �����Ѵ�. ������ ������ ���ٽ� �Լ��� ȣ��ȴ�.
             {
                 //Debug.Log("���� ���ӽð� ��");
                 switch (buff.effect) //���� ������ ���� ����Ǵ� ������ ������ ��ŭ ���� ���ҽ�Ų��
                 {
-                    case BuffData.BuffEffect.Attack:
+                    case BuffData.BuffEffect.공격력:
                         attackRate /= buff.value;                       
                         break;
-                    case BuffData.BuffEffect.Speed:
+                    case BuffData.BuffEffect.이동속도:
                         speedRate /= buff.value;
                         break;
-                    case BuffData.BuffEffect.Defense:
+                    case BuffData.BuffEffect.방어력:
                         defenseRate /= buff.value;
                         break;
-                    case BuffData.BuffEffect.Magnetic:
+                    case BuffData.BuffEffect.자기력:
                         GetComponentInChildren<Magnet>().MagneticRate /= buff.value;
                         break;
-                    case BuffData.BuffEffect.Invincible:
+                    case BuffData.BuffEffect.무적:
                         isInvincible = false;
                         break;
                 }
                 buffs.Remove(buff); //���� ��Ͽ��� �����Ѵ�.
+                //UIManager.Instance.Notice(string.Format("{0} 버프의 지속시간이 만료되었습니다.", buff.effect.ToString()));
                 SetBuffParticle();
                 buff.ResetTime(); //������ �ٽ� ���� �������� �԰� �� ��� ���ӽð��� ���������� ����ǵ��� �ʱ�ȭ�����ش�.
             }));
@@ -272,19 +273,19 @@ public class Player : MonoBehaviour
 
             switch (buffs[0].effect)
             {
-                case BuffData.BuffEffect.Attack:
+                case BuffData.BuffEffect.공격력:
                     color = new(attackBuffColor.r, attackBuffColor.g, attackBuffColor.b, alpha);
                     break;
-                case BuffData.BuffEffect.Speed:
+                case BuffData.BuffEffect.이동속도:
                     color = new(speedBuffColor.r, speedBuffColor.g, speedBuffColor.b, alpha);
                     break;
-                case BuffData.BuffEffect.Defense:
+                case BuffData.BuffEffect.방어력:
                     color = new(defenseBuffColor.r, defenseBuffColor.g, defenseBuffColor.b, alpha);
                     break;
-                case BuffData.BuffEffect.Magnetic:
+                case BuffData.BuffEffect.자기력:
                     color = new(magneticBuffColor.r, magneticBuffColor.g, magneticBuffColor.b, alpha);
                     break;
-                case BuffData.BuffEffect.Invincible:
+                case BuffData.BuffEffect.무적:
                     color = new(invincibleBuffColor.r, invincibleBuffColor.g, invincibleBuffColor.b, alpha);
                     break;
             }
@@ -303,23 +304,23 @@ public class Player : MonoBehaviour
             float max = ((float) (i + 1)) / count - 0.001f;
             switch (buffs[i].effect)
             {
-                case BuffData.BuffEffect.Attack:
+                case BuffData.BuffEffect.공격력:
                     //colors.Add(new GradientColorKey(attackBuffColor, min));
                     colors.Add(new GradientColorKey(attackBuffColor, max));
                     break;
-                case BuffData.BuffEffect.Speed:
+                case BuffData.BuffEffect.이동속도:
                     //colors.Add(new GradientColorKey(speedBuffColor, min));
                     colors.Add(new GradientColorKey(speedBuffColor, max));
                     break;
-                case BuffData.BuffEffect.Defense:
+                case BuffData.BuffEffect.방어력:
                     //colors.Add(new GradientColorKey(defenseBuffColor, min));
                     colors.Add(new GradientColorKey(defenseBuffColor, max));
                     break;
-                case BuffData.BuffEffect.Magnetic:
+                case BuffData.BuffEffect.자기력:
                     //colors.Add(new GradientColorKey(magneticBuffColor, min));
                     colors.Add(new GradientColorKey(magneticBuffColor, max));
                     break;
-                case BuffData.BuffEffect.Invincible:
+                case BuffData.BuffEffect.무적:
                     //colors.Add(new GradientColorKey(invincibleBuffColor, min));
                     colors.Add(new GradientColorKey(invincibleBuffColor, max));
                     break;
@@ -333,7 +334,10 @@ public class Player : MonoBehaviour
         //main.startColor = new ParticleSystem.MinMaxGradient(buffEffectGradient) { mode = ParticleSystemGradientMode.RandomColor };
         buffEffectParticle.Play();
     }
-
+    public void ChangeColliderSize(float size)
+    {
+        playerCollider.size *= size;
+    }
 }
 
 

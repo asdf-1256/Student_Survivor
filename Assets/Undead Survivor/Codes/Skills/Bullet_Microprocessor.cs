@@ -6,6 +6,7 @@ public class Bullet_Microprocessor : BulletBase
 {
     Transform lineTracer;
     //Transform lineTracerCollider;
+
     
     Vector3[] positions;
     WaitForFixedUpdate wait = new WaitForFixedUpdate();
@@ -32,6 +33,7 @@ public class Bullet_Microprocessor : BulletBase
         transform.parent = playerTransform;
         transform.localPosition = Vector3.zero;
         lineTracer.rotation = Quaternion.identity;
+        lineTracer.GetComponent<Bullet>().putDamage(damage);
         StartCoroutine(LineTracerRoutine(() => { gameObject.SetActive(false); }));
     }
 

@@ -18,29 +18,31 @@ MonoBehaviour:
   level: 0
   skillName: "\uC790\uBC14\uD504\uB85C\uADF8\uB798\uBC0D \uBC0F \uC2E4\uC2B5"
   grade: 1
-  skillDesc: "\uC790\uBC14\uC785\uB2C8\uB2E4"
+  skillDesc: "\uAC1D\uCCB4\uC9C0\uD5A5\uD615 \uC5B8\uC5B4\uB85C\uC11C \uC774\uB97C
+    \uC0AC\uC6A9\uD55C \uAE30\uCD08\uC801\uC778 \uD504\uB85C\uADF8\uB798\uBC0D \uAE30\uBC95
+    \uD559\uC2B5\n\uC801\uC744 \uD5A5\uD574 \uCEE4\uD53C\uC794\uC744 \uB358\uC9D1\uB2C8\uB2E4."
   skillIcon: {fileID: 21300000, guid: ba2df25852b040245ad62d77e9b09eca, type: 3}
   bulletPrefab: {fileID: 1349547450116809816, guid: 722c8c2180dc2ba4b88720d5cdd656c5, type: 3}
   pool_index: 0
   getype: 0
   cooltimes:
+  - 5
+  - 4
+  - 4
   - 3
-  - 2
-  - 1
-  - 1
-  - 1
+  - 3
   lifeTimes:
   - 1
+  - 1
   - 2
-  - 4
-  - 4
-  - 4
-  damages:
+  - 2
   - 3
-  - 6
+  damages:
   - 10
   - 15
   - 20
+  - 25
+  - 30
   speeds:
   - 1
   - 2
