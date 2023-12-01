@@ -28,11 +28,12 @@ public class Boss : MonoBehaviour
 
         if (bossId == 0)
         {
-            Spawner spawner = GetComponentInChildren<Spawner>();
+            Spawner spawner = GameManager.Instance.player.GetComponentInChildren<Spawner>();
 
             for(int i = 0;i < spawnExpCount; i++)
             {
-                spawner.SpawnItem(itemDatas[Random.Range(0, itemDatas.Length)]);
+                GameObject item = spawner.SpawnItem(itemDatas[Random.Range(0, itemDatas.Length)]);
+                item.transform.position = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 20;
             }
         }
         else if (bossId == 1)

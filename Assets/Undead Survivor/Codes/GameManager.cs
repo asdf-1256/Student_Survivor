@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public bool isLive;
     public float gameTime;
     //public float maxGameTime = 2 * 10f;
-    public readonly float[] semesterDifficulty = { 1, 1.2f, 1.4f, 1.6f, 1.8f, 2f, 3f, 3.5f }; //���̵� ���
+    public readonly float[] semesterDifficulty = { 1, 1.2f, 1.4f, 1.6f, 1.8f, 2f, 3f, 3.5f, 4, 5, 6, 7, 8, 9, 10 }; //���̵� ���
 
     [Header("# Player Info")]
     public int playerId;
