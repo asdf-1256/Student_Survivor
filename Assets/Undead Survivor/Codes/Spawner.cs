@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     //public float levelTime;
     public float ItemsRandomSpawnArea; //.. �÷��̾� ������ ������ �����Ǵ� ��Ŭ�� ������
     public float ItemSpawnTime;
-    [SerializeField] private readonly float[] spawnTimes = { 2, 1, 0.2f, 2, 1, 0.2f, 2, 2 };
+    [SerializeField] private readonly float[] spawnTimes = { 2, 1, 0.2f, 2, 1, 0.2f, 2, 1, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f };
 
     private WaitForSeconds WaitSpawnTime; //������- �������� �����Ǵµ� �ɸ��� �ð�. default:1��
 
