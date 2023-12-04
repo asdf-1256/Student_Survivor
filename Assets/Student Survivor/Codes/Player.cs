@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float speed;
     public Scanner scanner;
     public Hand[] hands;
+    public Spawner spawner;
 
     public Transform SpriteTransform;
     public SpriteRenderer spriteRenderer;

@@ -28,11 +28,11 @@ MonoBehaviour:
   cooltimes: []
   lifeTimes: []
   damages:
+  - 1.1
+  - 1.15
+  - 1.2
   - 1.25
-  - 1.25
-  - 1.25
-  - 1.25
-  - 1.25
+  - 1.3
   speeds: []
   counts: []
   attackCoolTime: 0
