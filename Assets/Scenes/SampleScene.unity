@@ -8903,6 +8903,7 @@ MonoBehaviour:
   currentPhase: 0
   nextExp: 03000000050000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a00000064000000640000006400000064000000640000006400000064000000640000006400000064000000640000006400000064000000640000006400000064000000640000006400000064000000
   levelForBoss: 3200000064000000
+  nextExpRate: 30
   nextLevelUpExp: 3
   pool: {fileID: 344728782}
   player: {fileID: 731594822}
@@ -12444,8 +12445,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -12.499998}
-  m_SizeDelta: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -7.499999}
+  m_SizeDelta: {x: 0, y: -15.000002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &438043198
 GameObject:
@@ -15040,7 +15041,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 48.92284
+  orthographic size: 8.37963
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -48054,7 +48055,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -1, y: -17.7}
-  m_SizeDelta: {x: 9.956984, y: 6.430552}
+  m_SizeDelta: {x: 9.628813, y: 6.6866755}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1610541040
 MonoBehaviour:
@@ -52811,7 +52812,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.1999512, y: -19.200012}
+  m_AnchoredPosition: {x: 2.1999207, y: -19.200012}
   m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1821557253
@@ -56256,8 +56257,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50.3}
-  m_SizeDelta: {x: 87.6, y: 32.1}
+  m_AnchoredPosition: {x: 5, y: -40}
+  m_SizeDelta: {x: 50, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1974698043
 MonoBehaviour:
@@ -56345,9 +56346,9 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 33f9c31003b5db949ba2356b6a140e29, type: 3}
-    m_FontSize: 3
+    m_FontSize: 5
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 10
     m_Alignment: 0
@@ -56356,7 +56357,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "5\uD559\uB144 5\uD559\uAE30\n"
+  m_Text: "5\uD559\uB144 5\uD559\uAE30\n\uB2E4\uC74C \uD559\uAE30\uAE4C\uC9C0 9/10\n"
 --- !u!222 &1974698046
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -56490,8 +56491,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -12.5}
-  m_SizeDelta: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -7.5}
+  m_SizeDelta: {x: 0, y: -15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979700117
 MonoBehaviour:

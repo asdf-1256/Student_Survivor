@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public int currentPhase; //���� ���̵�
     public int[] nextExp;
     public int[] levelForBoss;
+    public int nextExpRate;
     public int nextLevelUpExp = 3;
     //public int money;
 
@@ -201,7 +202,7 @@ public class GameManager : MonoBehaviour
             exp = Mathf.Min(exp - nextLevelUpExp, nextLevelUpExp - 1);
             uiLevelUpSkill.Show();
             UpdatePhase();
-            nextLevelUpExp = (int)(60f / player.spawner.spawnTimes[currentPhase]);
+            nextLevelUpExp = (int)(nextExpRate / player.spawner.spawnTimes[currentPhase]);
             Debug.Log("다음 경험치 : " + nextLevelUpExp);
             if (level == levelForBoss[0] || level == levelForBoss[1])
             {
