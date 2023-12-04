@@ -26,6 +26,8 @@ public class LevelUpSkill : MonoBehaviour
 
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.LevelUp);
         AudioManager.Instance.EffectBgm(true);
+
+        CheckSelectButtonActive();
     }
     public void Hide()
     {
@@ -126,5 +128,20 @@ public class LevelUpSkill : MonoBehaviour
     public void setRate(int index, float rate)
     {
         SkillSelectRates[index] = rate;
+    }
+
+    private void CheckSelectButtonActive()
+    {
+        foreach (SkillSelect skill in skillSelects)
+        {
+            if (skill.gameObject.activeSelf)
+            {
+                return;
+            }
+        }
+
+        Hide();
+        UIManager.Instance.Notice("더 이상 습득할 수 있는 스킬이 없습니다.");
+        Debug.Log("습득할 수 있는 스킬 없다는 부분이 실행됨");
     }
 }

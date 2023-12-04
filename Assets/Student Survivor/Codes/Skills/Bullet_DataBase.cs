@@ -19,7 +19,7 @@ public class Bullet_DataBase : BulletBase
         base.Init(isAI, skillData, level);
 
         transform.position = GameManager.Instance.player.transform.position;
-        Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;
+        Vector3 targetPos = GameManager.Instance.player.scanner.nearestTarget.position;//null에러 발생
         Vector3 dir = targetPos - GameManager.Instance.player.transform.position;
         dir = dir.normalized;//방향 구하기
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);

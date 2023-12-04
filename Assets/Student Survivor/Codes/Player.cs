@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -342,4 +343,11 @@ public class Player : MonoBehaviour
     {
         playerCollider.size *= size;
     }
+
+    //DataType class
+    private class Character
+    {
+        float Speed { get { return (DataManager.Instance.selectedCharacterId == 0) ? 1.1f : 1; } }
+    }
 }
+
