@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+//
 //using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
     public PoolManager pool;
     public Player player;
     public AI_Player ai_Player;
-    public LevelUp uiLevelUp;
+    //public LevelUp uiLevelUp;
     public LevelUpSkill uiLevelUpSkill; // �ӽ� �߰�
     public Result uiResult;
     public Transform uiJoy;

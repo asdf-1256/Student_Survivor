@@ -60,7 +60,7 @@ public class SkillSelect : MonoBehaviour
     SkillLevelUpReward _questReward;
     public int level;
     public BasedSkill skill, AIskill; // �� ���� weapon
-    public Gear gear;
+    //public Gear gear;
     public QuestData questData;
 
     Image icon;

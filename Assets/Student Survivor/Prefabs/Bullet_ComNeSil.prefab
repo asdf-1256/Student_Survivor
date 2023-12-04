@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6213078229152626052}
   - component: {fileID: 6177663579515332965}
   m_Layer: 0
-  m_Name: Bullet_Wave
+  m_Name: Bullet_ComNeSil
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

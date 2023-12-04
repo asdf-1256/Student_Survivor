@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public Vector2 inputVec;
     public float speed;
     public Scanner scanner;
-    public Hand[] hands;
+
     public Spawner spawner;
 
     public Transform SpriteTransform;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     private List<BuffData> buffs; //Ȱ��ȭ�� ���� ���
     private WaitForSeconds wait; //���� �ð� ���� WaitForSeconds ��ü (0.1��)
 
-    public SkillManager skillManager;
+    //public SkillManager skillManager;
 
 
     public float spawnSkillCoolDownRate = 1f;
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         scanner = GetComponent<Scanner>();
-        hands = GetComponentsInChildren<Hand>(true); // ��Ȱ��ȭ�� ������Ʈ�� �����Ͽ� �����´�.
+        //hands = GetComponentsInChildren<Hand>(true); // ��Ȱ��ȭ�� ������Ʈ�� �����Ͽ� �����´�.
         
         attackRate = 1f;
         speedRate = 1f;
@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
     }
     private void OnEnable()
     {
-        speed *= Character.Speed;
+        //speed *= Character.Speed;
         animator.runtimeAnimatorController = animCon[DataManager.Instance.selectedCharacterId];
     }
     private void FixedUpdate()
@@ -150,7 +150,10 @@ public class Player : MonoBehaviour
         if (!GameManager.Instance.isLive)
             return;
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Machine"))
+        {
             Physics2D.IgnoreCollision(collision.collider, playerCollider, true);
+            return;
+        }
 
         if (isInvincible)
             return;
@@ -340,55 +343,3 @@ public class Player : MonoBehaviour
         playerCollider.size *= size;
     }
 }
-
-
-
-/*
-public class Player : MonoBehaviour
-{
-    //public���� ���� �� Add Component ��� �� Input Vec�� ����
-    public Vector2 inputVec;
-    public float speed;
-
-    Rigidbody2D rigid;
-
-
-    void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-    }
-
-
-
-    void Update()
-    {
-        //Input Ŭ���� = ����Ƽ���� �޴� ��� �Է��� �����ϴ� Ŭ����
-        //Project Settint-Input Manager���� Ȯ��
-        inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.y = Input.GetAxisRaw("Vertical");
-        //�׳� GetAxis���� ������ ��. 
-    }
-
-    //������ ���ؼ��� FixedUpdate
-    private void FixedUpdate()
-    {
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        //normalized = �밢������ �̵��� �� �ӵ��� �����ϴ� ���� ����
-        //fixed delta time = ���� ������ �ϳ��� �Һ��� �ð�
-        //delta time = update���� ���
-
-        //�̵����
-        //1.���� �ش�
-        //rigid.AddForce(inputVec);
-
-        //2.�ӵ� ����
-        //rigid.velocity = inputVec;
-
-        //3.��ġ �̵�
-        //�Ű������� ������� ��ġ�� �ޱ⶧���� �����־���Ѵ�.
-        rigid.MovePosition(rigid.position + nextVec);
-
-        //������ 1. �ʹ� ����, 2.�����ӿ� ���� �̵��ӵ� �ٸ� �� ����
-    }
-}
-*/
