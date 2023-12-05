@@ -94,7 +94,7 @@ public class Spawner : MonoBehaviour
 
         timer += Time.deltaTime * ((!isPlayer) ? 5f:1f);
 
-        if (timer > spawnTimes[GameManager.Instance.currentPhase])
+        if (timer > spawnTimes[Mathf.Min(GameManager.Instance.currentPhase, spawnTimes.Length - 1)])
         {
             timer = 0f;
             SpwanEnemy();

@@ -8661,7 +8661,7 @@ MonoBehaviour:
   enemyCleaner: {fileID: 343345482}
   gameResult: {fileID: 833415373}
   hud: {fileID: 449479687}
-  resPawn: {fileID: 923323897}
+  respawnButton: {fileID: 923323900}
   QuestBox: {fileID: 388713836}
   bossSet: {fileID: 43729827}
   HealthInHUD: {fileID: 135509581}

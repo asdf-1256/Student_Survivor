@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
 
     public void Init(SpawnData data)
     {
-        float difficulty = GameManager.Instance.semesterDifficulty[GameManager.Instance.currentPhase];
+        float difficulty = GameManager.Instance.semesterDifficulty[Mathf.Min(GameManager.Instance.currentPhase, GameManager.Instance.semesterDifficulty.Length - 1)];
         anim.runtimeAnimatorController = animCon[data.spriteType];
         speed = data.speed;
         maxHealth = data.health * difficulty;
