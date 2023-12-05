@@ -8872,7 +8872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &297810237
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32027,6 +32027,7 @@ MonoBehaviour:
   titles:
   - {fileID: 297810236}
   - {fileID: 1582878301}
+  gameResultScreenTitleText: {fileID: 261039107}
 --- !u!114 &1013784531
 MonoBehaviour:
   m_ObjectHideFlags: 0
