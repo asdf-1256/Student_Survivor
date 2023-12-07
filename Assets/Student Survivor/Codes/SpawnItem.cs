@@ -85,8 +85,9 @@ public class SpawnItem : MonoBehaviour
         magnetForce = Mathf.Max(MagnetSize / 2, magnetForce);
         magnetCalc = magnetForce;
     }
+    /*
     public void DeActiveMagnet()
     {
         Clear();
-    }
+    }*/
 }

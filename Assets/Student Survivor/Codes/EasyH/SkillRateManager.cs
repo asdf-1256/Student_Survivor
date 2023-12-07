@@ -23,22 +23,23 @@ public class SkillRateManager : MonoBehaviour
         instance = this;
     }
 
-    public void updateSkillRate(int pahse)
+    public void updateSkillRate(int phase)
     {
         // 현재 페이즈(0~7)에 맞게 스킬 등장 비율 재구성
         for (int i=0; i<SkillDatas.Length; i++)
         {
+            
             int grade = SkillDatas[i].grade;
             if (grade == 0)
-                LevelUpObject.setRate(i, ratesOnSubject[pahse]);
+                LevelUpObject.setRate(i, ratesOnSubject[Mathf.Min(phase, ratesOnSubject.Length - 1)]);
             else if (grade == 1)
-                LevelUpObject.setRate(i, ratesOnGrade1[pahse]);
+                LevelUpObject.setRate(i, ratesOnGrade1[Mathf.Min(phase, ratesOnGrade1.Length - 1)]);
             else if (grade == 2)
-                LevelUpObject.setRate(i, ratesOnGrade2[pahse]);
+                LevelUpObject.setRate(i, ratesOnGrade2[Mathf.Min(phase, ratesOnGrade2.Length - 1)]);
             else if (grade == 3)
-                LevelUpObject.setRate(i, ratesOnGrade3[pahse]);
+                LevelUpObject.setRate(i, ratesOnGrade3[Mathf.Min(phase, ratesOnGrade3.Length - 1)]);
             else if (grade == 4)
-                LevelUpObject.setRate(i, ratesOnGrade4[pahse]);
+                LevelUpObject.setRate(i, ratesOnGrade4[Mathf.Min(phase, ratesOnGrade4.Length - 1)]);
             else
                 Debug.LogError("학년초과에러!!");
         } 

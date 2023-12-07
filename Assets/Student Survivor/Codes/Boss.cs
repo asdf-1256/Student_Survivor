@@ -24,7 +24,7 @@ public class Boss : MonoBehaviour
     private void OnDisable()
     {
         bossHealthHUD.SetActive(false);
-        GameManager.Instance.SpawnedBoss = null;
+        GameManager.Instance.CurrentSpawnedBoss = null;
 
         if (bossId == 0)
         {

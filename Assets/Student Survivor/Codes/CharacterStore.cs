@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,17 +26,30 @@ public class CharacterStore : MonoBehaviour
     //No를 누르면 선택된 캐릭터 표시시키고, 캐릭터 눌린 상태에 해금상태 따라서 다시 표시
 
     private Button[] notPurchasedCharacterButtonComponents;
+    private Text[] notPurchasedCharacterTexts;
+    private Text[] selectedCharacterWindowTexts;
+
+    public string[] characterAbilityDescribes;
     private void Awake()
     {
         notPurchasedCharacterButtonComponents = new Button[notPurchasedCharacterButtons.Length];
+        notPurchasedCharacterTexts = new Text[notPurchasedCharacterButtons.Length];
+        selectedCharacterWindowTexts = new Text[selectedCharacterWindows.Length];
+
         for (int i = 0; i < notPurchasedCharacterButtons.Length; i++)
         {
+            selectedCharacterWindowTexts[i] = selectedCharacterWindows[i].GetComponentInChildren<Text>(true);
+            selectedCharacterWindowTexts[i].text = characterAbilityDescribes[i];
+
             if (notPurchasedCharacterButtons[i] == null)
             {
                 notPurchasedCharacterButtonComponents[i] = null;
+                notPurchasedCharacterTexts[i] = null;
                 continue;
             }
             notPurchasedCharacterButtonComponents[i] = notPurchasedCharacterButtons[i].GetComponent<Button>();
+            notPurchasedCharacterTexts[i] = notPurchasedCharacterButtons[i].GetComponentInChildren<Text>();
+            notPurchasedCharacterTexts[i].text = prices[i].ToString();
         }
         Init();
     }

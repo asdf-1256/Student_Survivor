@@ -24,16 +24,16 @@ public class HUD : MonoBehaviour
         {
             case InfoType.Exp:
                 float curExp = GameManager.Instance.exp;
-                float maxExp = GameManager.Instance.nextExp[Mathf.Min(GameManager.Instance.level, GameManager.Instance.nextExp.Length-1)];
+                float maxExp = GameManager.Instance.nextLevelUpExp;
                 mySlider.value = curExp / maxExp;
                 break;
             case InfoType.Level:
                 myText.text = string.Format("{0:F0}", GameManager.Instance.level);
                 break;
             case InfoType.NextPhase:
-                myText.text = string.Format(Phases[GameManager.Instance.currentPhase] + 
+                myText.text = string.Format(Phases[Mathf.Min(GameManager.Instance.currentPhase, Phases.Length - 1)] + 
                     "\n다음학기까지 {0:F0} / {1:F0}", 
-                    GameManager.Instance.level, GameManager.Instance.levelPerPhase[GameManager.Instance.currentPhase]);
+                    GameManager.Instance.level, GameManager.Instance.levelPerPhase[Mathf.Min(GameManager.Instance.currentPhase, GameManager.Instance.levelPerPhase.Length - 1)]);
                 mySlider.value = GameManager.Instance.getRateForNextPhase();
                 break;
             case InfoType.Kill:
@@ -51,7 +51,7 @@ public class HUD : MonoBehaviour
                 mySlider.value = curHealth / maxHealth;
                 break;
             case InfoType.BossHealth:
-                mySlider.value = GameManager.Instance.SpawnedBoss.health / GameManager.Instance.SpawnedBoss.maxHealth;
+                mySlider.value = GameManager.Instance.CurrentSpawnedBoss.health / GameManager.Instance.CurrentSpawnedBoss.maxHealth;
                 break;
             case InfoType.Coin:
                 myText.text = string.Format("{0:F0}", DataManager.Instance.money);

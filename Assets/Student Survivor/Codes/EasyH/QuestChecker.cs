@@ -144,25 +144,25 @@ public class KillCountQuestChecker : QuestChecker {
 }
 
 public class WalkQuestChecker : QuestChecker {
-    float _golaWalk;
+    float _goalWalk;
     float _originalWalk;
     public WalkQuestChecker(float walkAmount) { 
-        _golaWalk = walkAmount;
+        _goalWalk = walkAmount;
         _originalWalk = GameManager.Instance.manBoGi;
     }
     
     public bool CheckAchieve() {
-        if (GameManager.Instance.manBoGi - _originalWalk < _golaWalk) return false;
+        if (GameManager.Instance.manBoGi - _originalWalk < _goalWalk) return false;
         return true;
     }
 
     public float GetProgress()
     {
-        return (GameManager.Instance.manBoGi - _originalWalk) / _golaWalk;
+        return (GameManager.Instance.manBoGi - _originalWalk) / _goalWalk;
     }
     public override string ToString()
     {
-        return (GameManager.Instance.manBoGi - _originalWalk).ToString("F0") + " / " + _golaWalk.ToString("F0");
+        return (GameManager.Instance.manBoGi - _originalWalk).ToString("F0") + " / " + _goalWalk.ToString("F0");
 
     }
 }

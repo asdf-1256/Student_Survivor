@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
     public GameObject[] titles;
+
+    public Text gameResultScreenTitleText;
     /*
     private void OnEnable()
     {
@@ -17,6 +20,9 @@ public class Result : MonoBehaviour
     public void Win()
     {
         titles[1].SetActive(true);
+        titles[1].transform.parent.GetComponentInChildren<Button>().gameObject.SetActive(false);
+        titles[1].transform.parent.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "메인으로";
+        gameResultScreenTitleText.text = "성적 우수";
     }
     private void OnDisable()
     {

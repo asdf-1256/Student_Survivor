@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+//
 //using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,13 +14,13 @@ public class GameManager : MonoBehaviour
     //static - ����, �޸𸮿� ��ڴ�
     //inspector�� ��Ÿ���� ����
     public static GameManager Instance;
-    Animator animator;
+    //Animator animator;
 
     [Header("# Game Control")]
     public bool isLive;
     public float gameTime;
     //public float maxGameTime = 2 * 10f;
-    public readonly float[] semesterDifficulty = { 0.5f, 0.7f, 0.9f, 1f, 2f, 3f, 4, 3.5f, 4, 5, 6, 7, 8, 9, 10 }; //���̵� ���
+    public readonly float[] phaseDifficulty = { 0.5f, 0.7f, 0.9f, 1f, 2f, 3f, 4, 3.5f, 4, 5, 6, 7, 8, 9, 10 }; //���̵� ���
 
     [Header("# Player Info")]
     public int playerId;
@@ -39,20 +40,22 @@ public class GameManager : MonoBehaviour
     public int currentPhase; //���� ���̵�
     public int[] nextExp;
     public int[] levelForBoss;
+    public int nextExpRate;
+    public int nextLevelUpExp = 3;
     //public int money;
 
     [Header("# Game Object")]
     public PoolManager pool;
     public Player player;
     public AI_Player ai_Player;
-    public LevelUp uiLevelUp;
+    //public LevelUp uiLevelUp;
     public LevelUpSkill uiLevelUpSkill; // �ӽ� �߰�
     public Result uiResult;
     public Transform uiJoy;
     public GameObject enemyCleaner;
     public GameObject gameResult;
     public GameObject hud;
-    public GameObject resPawn;
+    public Button respawnButton;
     public GameObject QuestBox;
     public GameObject bossSet;
     public GameObject HealthInHUD;
@@ -64,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator currentBossSpawn;
     private Enemy _boss;
-    public Enemy SpawnedBoss
+    public Enemy CurrentSpawnedBoss
     {
         get { return _boss; }
         set { _boss = value; }
@@ -98,7 +101,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < 3; i++)
             killByType.Add(i, 0);
         Application.targetFrameRate = 60;
-        animator = player.GetComponentInChildren<Animator>();
+        //animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Start()
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart(int id)
     {
-        playerId = id;
+        playerId = id;//GameManager.playerId는 이제 사용되지 않음.
 
         health = maxHealth;
 
@@ -193,13 +196,15 @@ public class GameManager : MonoBehaviour
         if(expRate != 1.0f) //����ġ ���� ���罺ų�� �߰��Ǹ� �� �κ��� �����. - �Ǽ����� ���ؼ� �ݿø��� ������
             e = Convert.ToInt32(expRate * e);
         exp += e;
-        int nextexp = nextExp[Mathf.Min(level, nextExp.Length - 1)]; //index bound error �� ��������
-        if (exp >= nextexp)
+        // int nextexp = nextExp[Mathf.Min(level, nextExp.Length - 1)]; //index bound error �� ��������
+        if (exp >= nextLevelUpExp)
         {
             level++;
-            exp = Mathf.Min(exp - nextexp, nextexp-1);
+            exp = Mathf.Min(exp - nextLevelUpExp, nextLevelUpExp - 1);
             uiLevelUpSkill.Show();
             UpdatePhase();
+            nextLevelUpExp = (int)(nextExpRate / player.spawner.spawnTimes[Mathf.Min(currentPhase, player.spawner.spawnTimes.Length - 1)]);
+            Debug.Log("다음 경험치 : " + nextLevelUpExp);
             if (level == levelForBoss[0] || level == levelForBoss[1])
             {
                 Debug.Log("���� ��ȯ");
@@ -210,7 +215,7 @@ public class GameManager : MonoBehaviour
     }
     void UpdatePhase()
     {
-        int requestLevel = levelPerPhase[currentPhase];
+        int requestLevel = levelPerPhase[Mathf.Min(currentPhase, levelPerPhase.Length - 1)];
         if (level >= requestLevel)
         {
             currentPhase++;
@@ -226,8 +231,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            curLevel = level - levelPerPhase[currentPhase - 1];
-            goalLevel = levelPerPhase[currentPhase] - levelPerPhase[currentPhase - 1];
+            curLevel = level - levelPerPhase[Mathf.Min(currentPhase - 1, levelPerPhase.Length - 1)];
+            goalLevel = levelPerPhase[Mathf.Min(currentPhase, levelPerPhase.Length - 1)] - levelPerPhase[Mathf.Min(currentPhase - 1, levelPerPhase.Length - 1)];
+            if (goalLevel <= 0)
+                return 1;
         }
         return curLevel / goalLevel;
     }
@@ -273,13 +280,13 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(false);
         //gameResult.SetActive(false);
         hud.SetActive(true);
-        animator.SetTrigger("Respawn");
+        player.GetComponentInChildren<Animator>().SetTrigger("Respawn");
         Resume();
         respawncount++;
         if (respawncount >= 1)
         {
             Debug.Log("��Ȱ �Ұ� : �̹� �� �� �׾����ϴ�.");
-            resPawn.GetComponent<Button>().interactable = false;
+            respawnButton.interactable = false;
         }
     }
 

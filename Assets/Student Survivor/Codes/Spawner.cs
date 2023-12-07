@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     //public float levelTime;
     public float ItemsRandomSpawnArea; //.. �÷��̾� ������ ������ �����Ǵ� ��Ŭ�� ������
     public float ItemSpawnTime;
-    [SerializeField] private readonly float[] spawnTimes = { 1, 0.7f, 0.4f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f, 0.1f, 0.09f, 0.08f, 0.07f, 0.06f, 0.05f };
+    [SerializeField] public readonly float[] spawnTimes = { 1, 0.7f, 0.4f, 0.2f, 0.1f, 0.07f, 0.04f, 0.02f, 0.01f, 0.007f, 0.004f, 0.002f, 0.001f, 0.0005f };
 
     private WaitForSeconds WaitSpawnTime; //������- �������� �����Ǵµ� �ɸ��� �ð�. default:1��
 
@@ -94,7 +94,7 @@ public class Spawner : MonoBehaviour
 
         timer += Time.deltaTime * ((!isPlayer) ? 5f:1f);
 
-        if (timer > spawnTimes[GameManager.Instance.currentPhase])
+        if (timer > spawnTimes[Mathf.Min(GameManager.Instance.currentPhase, spawnTimes.Length - 1)])
         {
             timer = 0f;
             SpwanEnemy();
