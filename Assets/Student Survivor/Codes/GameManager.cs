@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public bool isLive;
     public float gameTime;
     //public float maxGameTime = 2 * 10f;
-    public readonly float[] semesterDifficulty = { 0.5f, 0.7f, 0.9f, 1f, 2f, 3f, 4, 3.5f, 4, 5, 6, 7, 8, 9, 10 }; //���̵� ���
+    public readonly float[] phaseDifficulty = { 0.5f, 0.7f, 0.9f, 1f, 2f, 3f, 4, 3.5f, 4, 5, 6, 7, 8, 9, 10 }; //���̵� ���
 
     [Header("# Player Info")]
     public int playerId;
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart(int id)
     {
-        playerId = id;
+        playerId = id;//GameManager.playerId는 이제 사용되지 않음.
 
         health = maxHealth;
 
